@@ -1,0 +1,29 @@
+name: P1-1
+description: температура +3 до −5, свежий снег
+website_url: ""
+
+snow_type:
+  - fresh
+snow_temperature:
+  - min: -5
+  - max: 3
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - свежий снег
+  - умеренный
+
+similars:
+  - P10-3
+  - S12-2
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

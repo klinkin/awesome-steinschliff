@@ -1,0 +1,32 @@
+name: S11-2
+description: холодный сухой натуральный снег, t −10 −20
+website_url: ""
+
+snow_type:
+  - dry
+  - natural
+  - cold
+snow_temperature:
+  - min: -20
+  - max: -10
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - холодный
+  - сухой снег
+  - натуральный снег
+
+similars:
+  - S11-1
+  - S11-3
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

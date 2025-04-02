@@ -1,0 +1,30 @@
+name: S13-6
+description: мокрый снег с дождем, дождь
+website_url: ""
+
+snow_type:
+  - wet
+snow_temperature:
+  - min: 0
+  - max: null
+condition: "дождь"
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - мокрый снег
+  - дождь
+  - плюсовая температура
+
+similars:
+  - Р3-3
+  - S13-5
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

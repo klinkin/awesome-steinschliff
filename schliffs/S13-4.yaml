@@ -1,0 +1,33 @@
+name: S13-4
+description: влажный снег, натуральный и искусственный, переменчивая погода, большой диапазон
+website_url: ""
+
+snow_type:
+  - wet
+  - natural
+  - artificial
+snow_temperature:
+  - min: null
+  - max: null
+condition: "переменчивая погода"
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - влажный снег
+  - натуральный снег
+  - искусственный снег
+  - широкий диапазон
+
+similars:
+  - P5-1
+  - S13-5
+
+features:
+  - большой диапазон
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

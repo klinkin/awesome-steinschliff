@@ -1,0 +1,31 @@
+name: S12-2
+description: свежий мокрый снег t 0 −5
+website_url: ""
+
+snow_type:
+  - fresh
+  - wet
+snow_temperature:
+  - min: -5
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - мокрый
+  - легкий мороз
+
+similars:
+  - S12-6
+  - P10-3
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

@@ -1,0 +1,32 @@
+name: S12-6
+description: свежий падающий мокрый снег t 0 −5
+website_url: ""
+
+snow_type:
+  - fresh
+  - falling
+  - wet
+snow_temperature:
+  - min: -5
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - падающий снег
+  - свежий
+  - мокрый
+
+similars:
+  - S13-5
+  - P10-3
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

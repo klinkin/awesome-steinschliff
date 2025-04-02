@@ -1,0 +1,29 @@
+name: S12-3
+description: свежий снег под t −2 −6
+website_url: ""
+
+snow_type:
+  - fresh
+snow_temperature:
+  - min: -6
+  - max: -2
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - узкий диапазон
+
+similars:
+  - S12-2
+  - S12-4
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

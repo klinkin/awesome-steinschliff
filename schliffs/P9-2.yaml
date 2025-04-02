@@ -1,0 +1,29 @@
+name: P9-2
+description: влажный снег, t выше 0
+website_url: ""
+
+snow_type:
+  - wet
+snow_temperature:
+  - min: 0
+  - max: null
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - влажный снег
+  - плюсовая температура
+
+similars:
+  - Р3-1
+  - S13-5
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

@@ -1,0 +1,32 @@
+name: S13-5-08
+description: влажный мелкозернистый свежий снег
+website_url: ""
+
+snow_type:
+  - wet
+  - fine_grained
+  - fresh
+snow_temperature:
+  - min: null
+  - max: null
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - мелкозернистый
+  - влажный
+  - свежий
+
+similars:
+  - S13-5
+  - C12-7
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

@@ -1,0 +1,31 @@
+name: S12-4
+description: свежий сухой снег t −5 −10
+website_url: ""
+
+snow_type:
+  - fresh
+  - dry
+snow_temperature:
+  - min: -10
+  - max: -5
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - сухой
+  - холодный
+
+similars:
+  - S12-3
+  - S11-1
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

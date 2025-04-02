@@ -1,0 +1,29 @@
+name: S12-2-07
+description: для свежего снега и мягкой лыжни 0 −10
+website_url: ""
+
+snow_type:
+  - fresh
+snow_temperature:
+  - min: -10
+  - max: 0
+condition: "мягкая лыжня"
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - мягкая лыжня
+
+similars:
+  - S12-2
+  - S12-3
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

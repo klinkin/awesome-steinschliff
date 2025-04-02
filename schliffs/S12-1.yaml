@@ -1,0 +1,32 @@
+name: S12-1
+description: свежий натуральный и искусственный снег t 0 −15
+website_url: ""
+
+snow_type:
+  - fresh
+  - natural
+  - artificial
+snow_temperature:
+  - min: -15
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - натуральный снег
+  - искусственный снег
+
+similars:
+  - S12-2
+  - S12-7
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

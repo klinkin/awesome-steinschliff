@@ -1,0 +1,30 @@
+name: B3312
+description:
+website_url: "https://www.bemesports.com/en/skiservice"
+
+snow_type:
+  -
+snow_temperature:
+  - min: -10
+  - max: 0
+condition:
+manufactory: "all"
+house: "Beme"
+author: "Benjamin Eder"
+country: "Austria"
+
+tags:
+  - переходка
+  - тепло
+  -
+
+similars:
+  - S13-5
+  - S13-4
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

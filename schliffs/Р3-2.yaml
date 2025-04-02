@@ -1,0 +1,31 @@
+name: Р3-2
+description: на старый мокрый снег при t 0 с переходом в плюс
+website_url: ""
+
+snow_type:
+  - old
+  - wet
+snow_temperature:
+  - min: 0
+  - max: null
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - старый снег
+  - мокрый
+  - плюсовая температура
+
+similars:
+  - Р3-1
+  - Р5-9
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

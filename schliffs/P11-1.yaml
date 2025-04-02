@@ -1,0 +1,29 @@
+name: P11-1
+description: чуть холоднее чем P11-2
+website_url: ""
+
+snow_type:
+  - all
+snow_temperature:
+  - min: -10
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - универсальный
+  - средняя температура
+
+similars:
+  - P11-2
+  - P5-1
+
+features:
+  - чуть холоднее чем P11-2
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

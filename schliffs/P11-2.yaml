@@ -1,0 +1,30 @@
+name: P11-2
+description: все типы снега от +2 до −8
+website_url: ""
+
+snow_type:
+  - all
+snow_temperature:
+  - min: -8
+  - max: 2
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - универсальный
+  - широкий диапазон
+
+similars:
+  - P11-1
+  - P5-1
+  - P22-6
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

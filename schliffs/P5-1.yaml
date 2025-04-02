@@ -1,0 +1,29 @@
+name: P5-1
+description: универсальная структура на температуру от +5 до −10, любой тип снега
+website_url: ""
+
+snow_type:
+  - all
+snow_temperature:
+  - min: -10
+  - max: 5
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - универсальный
+  - широкий диапазон
+
+similars:
+  - P11-2
+  - P22-6
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

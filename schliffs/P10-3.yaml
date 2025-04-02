@@ -1,0 +1,31 @@
+name: P10-3
+description: падающий, свежий снег, t от 0 до −5
+website_url: ""
+
+snow_type:
+  - fresh
+  - falling
+snow_temperature:
+  - min: -5
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - падающий снег
+  - свежий
+  - легкий мороз
+
+similars:
+  - S12-6
+  - P1-1
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

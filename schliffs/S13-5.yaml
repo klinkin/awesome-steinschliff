@@ -1,0 +1,33 @@
+name: S13-5
+description: свежий падающий мокрый снег, t 0 с переходом в плюс
+website_url: ""
+
+snow_type:
+  - fresh
+  - falling
+  - wet
+snow_temperature:
+  - min: 0
+  - max: null
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - свежий снег
+  - падающий снег
+  - мокрый
+  - плюсовая температура
+
+similars:
+  - S12-6
+  - Р3-1
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

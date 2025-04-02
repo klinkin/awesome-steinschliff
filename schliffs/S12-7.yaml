@@ -1,0 +1,29 @@
+name: S12-7
+description: искусственный снег, t −2 −12
+website_url: ""
+
+snow_type:
+  - artificial
+snow_temperature:
+  - min: -12
+  - max: -2
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - искусственный снег
+  - широкий диапазон
+
+similars:
+  - С8-1
+  - S11-3
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

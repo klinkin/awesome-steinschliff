@@ -1,0 +1,29 @@
+name: С1-1
+description: все типы снега, включая свежий, температура ниже −5
+website_url: ""
+
+snow_type:
+  - all
+  - fresh
+snow_temperature:
+  - min: -5
+  - max: null
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - холодный
+  - универсальный
+
+similars:
+  - С12-1
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

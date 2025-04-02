@@ -1,0 +1,28 @@
+name: C12-7
+description: мелкозернистый снег на t от 0 до −10
+website_url: ""
+
+snow_type:
+  - fine_grained
+snow_temperature:
+  - min: -10
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - мелкозернистый
+  - средняя температура
+
+similars:
+  - S13-5-08
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

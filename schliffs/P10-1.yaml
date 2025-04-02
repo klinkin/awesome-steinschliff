@@ -1,0 +1,29 @@
+name: P10-1
+description: для сухого снега при температуре ниже 0
+website_url: ""
+
+snow_type:
+  - dry
+snow_temperature:
+  - min: null
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - сухой снег
+  - минусовая температура
+
+similars:
+  - S11-1
+  - Р5-0
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

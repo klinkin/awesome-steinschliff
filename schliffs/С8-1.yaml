@@ -1,0 +1,29 @@
+name: С8-1
+description: более узкая структура для искусственного снега от 0 до −10
+website_url: ""
+
+snow_type:
+  - artificial
+snow_temperature:
+  - min: -10
+  - max: 0
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - искусственный снег
+  - узкая структура
+
+similars:
+  - С3-1
+  - S12-7
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

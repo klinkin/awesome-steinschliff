@@ -1,0 +1,29 @@
+name: С3-1
+description: для искусственного снега, температура ниже −5
+website_url: ""
+
+snow_type:
+  - artificial
+snow_temperature:
+  - min: -5
+    max: null
+condition: ""
+manufactory: "Fischer"
+house: "Fischer"
+author: ""
+country: "Austria"
+
+tags:
+  - холодный
+  - искусственный снег
+
+similars:
+  - С8-1
+  - S12-7
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: ""
+archived: false

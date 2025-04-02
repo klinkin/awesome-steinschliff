@@ -1,0 +1,29 @@
+name: B227
+description:
+website_url: "https://www.bemesports.com/en/skiservice"
+
+snow_type:
+  - cold
+snow_temperature:
+  - min: -10
+  - max: 0
+condition: green
+manufactory: "all"
+house: "Beme"
+author: "Benjamin Eder"
+country: "Austria"
+
+tags:
+  -
+  -
+  -
+
+similars:
+  -
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false
