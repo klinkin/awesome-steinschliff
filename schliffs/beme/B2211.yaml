@@ -1,13 +1,13 @@
-name: B227
-description:
+name: B2211
+description: популярная универсальная структура на нормальном снегу
 website_url: "https://www.bemesports.com/en/skiservice"
 
 snow_type:
-  - cold
+  - fresh
 snow_temperature:
   - min: -10
   - max: 0
-condition: green
+condition: blue
 manufactory: "all"
 house: "Beme"
 author: "Benjamin Eder"
@@ -19,7 +19,8 @@ tags:
   -
 
 similars:
-  -
+  - P5-1
+  - S12-16
 
 features:
   - ""

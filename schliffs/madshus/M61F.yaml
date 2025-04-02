@@ -1,0 +1,33 @@
+name: M61F
+description: структура для нового и трансформированного сухого снега при температуре воздуха от -2 до -14, температуре снега -3 и холоднее.
+website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
+
+snow_type:
+  - dry
+  - frozen
+  - new
+  - transformed
+snow_temperature:
+  - min: -20
+  - max: -3
+condition: green
+manufactory: "Madshus"
+house: "Madshus"
+author: ""
+country: "Norway"
+
+tags:
+  - сухой снег
+  - трансформированный
+  - перемороженый
+
+similars:
+  - G1
+  - B227
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

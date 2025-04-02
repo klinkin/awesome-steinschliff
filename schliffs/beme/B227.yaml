@@ -5,8 +5,8 @@ website_url: "https://www.bemesports.com/en/skiservice"
 snow_type:
   - cold
 snow_temperature:
-  - min: -10
-  - max: 0
+  - min: -20
+  - max: -5
 condition: green
 manufactory: "all"
 house: "Beme"
@@ -19,7 +19,8 @@ tags:
   -
 
 similars:
-  -
+  - РL1
+  - S11-3
 
 features:
   - ""
