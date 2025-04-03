@@ -1,12 +1,13 @@
 name: B2211
-description: популярная универсальная структура на нормальном снегу
+description: универсальная структура на все типы снега, особенно на свеже выпавший снег
 website_url: "https://www.bemesports.com/en/skiservice"
 
 snow_type:
+  - all
   - fresh
 snow_temperature:
-  - min: -10
-  - max: 0
+  - min: -12
+  - max: -1
 condition: blue
 manufactory: "all"
 house: "Beme"
@@ -14,9 +15,9 @@ author: "Benjamin Eder"
 country: "Austria"
 
 tags:
-  -
-  -
-  -
+  - универсальная
+  - свежий снег
+  - все типы снега
 
 similars:
   - P5-1

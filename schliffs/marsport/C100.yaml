@@ -1,0 +1,29 @@
+name: C100
+description:
+website_url: https://marsport.ru/service/
+
+snow_type:
+  - frozen
+  - fresh
+snow_temperature:
+  - min: -25
+  - max: -10
+condition: green
+manufactory: ""
+house: "MarSport"
+author: "Alexandr Veselov "
+country: "Russia"
+
+tags:
+  - перемороженный
+
+similars:
+  - S11-3
+  - B227
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

@@ -1,13 +1,13 @@
 name: S13-6
-description: мокрый снег с дождем, дождь
+description: мокрый снег с дождем, температура от 0 до +10
 website_url: ""
 
 snow_type:
   - wet
 snow_temperature:
   - min: 0
-  - max: null
-condition: "дождь"
+  - max: +10
+condition: yellow
 manufactory: "Fischer"
 house: "Ramsau"
 author: ""
@@ -19,8 +19,8 @@ tags:
   - плюсовая температура
 
 similars:
-  - Р3-3
-  - S13-5
+  - F1
+  - M63
 
 features:
   - ""

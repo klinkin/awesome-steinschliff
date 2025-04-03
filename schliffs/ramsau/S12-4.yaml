@@ -1,5 +1,5 @@
 name: S12-4
-description: свежий сухой снег t −5 −10
+description: свежий сухой снег, температура от -10 до -5
 website_url: ""
 
 snow_type:
@@ -22,6 +22,7 @@ tags:
 similars:
   - S12-3
   - S11-1
+  - SM15-5
 
 features:
   - ""

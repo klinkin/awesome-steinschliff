@@ -1,0 +1,31 @@
+name: F1
+description:
+website_url: https://marsport.ru/service/
+
+snow_type:
+  - wet
+  - old
+  - dirty
+snow_temperature:
+  - min: -5
+  - max: +5
+condition: yellow
+manufactory: ""
+house: "MarSport"
+author: "Alexandr Veselov "
+country: "Russia"
+
+tags:
+  - влажный
+  - старый
+  - грязный
+
+similars:
+  - S13-5
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

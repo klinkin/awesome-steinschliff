@@ -1,0 +1,34 @@
+name: SL32
+description: from humid natural to wet and very wet old and dirty snow, from medium to soft conditions
+description_ru: от влажного до мокрого и очень мокрого старого и грязного снега при средней и мягкой жесткости трассы
+
+website_url: ""
+
+snow_type:
+  - wet
+  - transformed
+  - dirty
+snow_temperature:
+  - min: 0
+  - max: +10
+condition: yellow
+manufactory: "Salomon"
+house: "Salomon"
+author: ""
+country: "Austria"
+
+tags:
+  - влажный
+  - мокрый
+  - грязный
+  - старый
+similars:
+  - S13-5
+  - S13-4
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

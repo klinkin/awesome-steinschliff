@@ -1,5 +1,5 @@
 name: S11-2
-description: холодный сухой натуральный снег, t −10 −20
+description: структура для холодного сухого натурального снега, температура от -10 до -20
 website_url: ""
 
 snow_type:
@@ -9,7 +9,7 @@ snow_type:
 snow_temperature:
   - min: -20
   - max: -10
-condition: ""
+condition: green
 manufactory: "Fischer"
 house: "Ramsau"
 author: ""
@@ -21,8 +21,8 @@ tags:
   - натуральный снег
 
 similars:
-  - S11-1
-  - S11-3
+  - B227
+  - C100
 
 features:
   - ""
