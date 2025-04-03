@@ -1,1 +1,39 @@
-спецзаказ SLRGL (структура на переменную от холода на тепло и на жесткую трассу и искусственный снег) )
+name: SLRGL
+description:
+description_ru: структура на переменную от холода на тепло и на жесткую трассу и искусственный снег
+
+website_url: ""
+
+snow_type:
+  - natural
+  - artificial
+  - wet
+
+snow_temperature:
+  - min: -3
+  - max: +5
+condition: yellow
+manufactory: "Salomon"
+house: "Salomon"
+author: ""
+country: "Austria"
+
+tags:
+  - влажный
+  - мокрый
+  - грязный
+  - старый
+  - искусственный
+
+similars:
+  - S13-5
+  - S13-4
+  - B3312
+  - SV100
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

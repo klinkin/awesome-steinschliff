@@ -1,0 +1,37 @@
+name: SL21
+description:
+description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от +1 до -7
+
+website_url: ""
+
+snow_type:
+  - natural
+  - artificial
+
+snow_temperature:
+  - min: -7
+  - max: +1
+condition: blue
+manufactory: "Salomon"
+house: "Salomon"
+author: ""
+country: "Austria"
+
+tags:
+  - натуральный
+  - искусственный
+  - смешеный
+
+similars:
+  - S12-16
+  - S12-6
+  - B2211
+  - SV600
+  - M100
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

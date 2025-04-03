@@ -1,1 +1,40 @@
-спецзаказ SL1 ( очень холодная структура)
+name: SL1
+description:
+description_ru: структура для натурального холодного и сухого снега, допустима в смесь натурального и искусственного при низкой влажности от -10 и холоднее
+
+website_url: ""
+
+snow_type:
+  - natural
+  - artificial
+  - dry
+  - frozen
+snow_temperature:
+  - min: -30
+  - max: -10
+condition: green
+manufactory: "Salomon"
+house: "Salomon"
+author: ""
+country: "Austria"
+
+tags:
+  - сухой
+  - холодный
+  - перемороженный
+  - натуральный
+  - искусственный
+  - смешеный
+
+similars:
+  - С11-3
+  - B227
+  - SV700
+  - C100
+
+features:
+  - ""
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false
