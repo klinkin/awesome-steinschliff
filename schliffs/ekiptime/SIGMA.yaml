@@ -1,6 +1,8 @@
 name: SIGMA
 description:
 description_ru: структура для трансформированного старого весеннего снега с водой
+images:
+  - schliffs/ekiptime/sigma/sigma.jpg
 
 website_url: https://ekiptime.ru/services/base_tuning.php
 

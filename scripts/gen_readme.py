@@ -97,6 +97,8 @@ class SchliffStructure(BaseModel):
     country: Optional[str] = ""
     tags: Optional[List[str]] = []
     similars: Optional[List[str]] = []
+    image: Optional[str] = None  # Путь к одиночному изображению шлифта
+    images: Optional[List[str]] = None  # Путь к множественным изображениям шлифта
 
     class Config:
         """Конфигурация модели Pydantic"""
@@ -435,6 +437,8 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
                 "country": data.get("country", ""),
                 "tags": data.get("tags", []),
                 "similars": data.get("similars", []),
+                "image": data.get("image", ""),  # Добавляем поле изображения
+                "images": data.get("images", []),  # Добавляем поле множественных изображений
                 "file_path": file_path,
             }
 
@@ -539,6 +543,73 @@ def format_temperature_range(snow_temperature: Union[List[Dict[str, Any]], None]
         return ""
 
 
+def format_image_link(image_data: Union[str, List[str], None], name: str, output_dir: str) -> str:
+    """
+    Форматирует путь к изображению (или изображениям) как Markdown-ссылку с изображением.
+
+    Args:
+        image_data: Путь к изображению или список путей.
+        name: Название структуры (используется как alt-текст).
+        output_dir: Директория, относительно которой вычисляются относительные пути.
+
+    Returns:
+        Markdown-разметка для изображения или пустая строка, если путь отсутствует.
+    """
+    if not image_data:
+        return ""
+
+    # Обработка одиночного изображения (str)
+    if isinstance(image_data, str):
+        return _format_single_image(image_data, name, output_dir)
+
+    # Обработка массива изображений (list)
+    if isinstance(image_data, list) and image_data:
+        # Берем только первое изображение для таблицы, чтобы не перегружать ее
+        return _format_single_image(image_data[0], name, output_dir)
+
+    return ""
+
+def _format_single_image(image_path: str, name: str, output_dir: str) -> str:
+    """
+    Вспомогательная функция для форматирования одиночного изображения.
+
+    Args:
+        image_path: Путь к изображению.
+        name: Название структуры (используется как alt-текст).
+        output_dir: Директория, относительно которой вычисляются относительные пути.
+
+    Returns:
+        Markdown-разметка для изображения или пустая строка.
+    """
+    try:
+        # Проверяем существование файла
+        if os.path.exists(image_path):
+            # Используем полный путь
+            path_to_use = image_path
+        else:
+            # Проверяем относительный путь от корня проекта
+            relative_path = os.path.join(SCHLIFFS_DIR, image_path)
+            if os.path.exists(relative_path):
+                path_to_use = relative_path
+            else:
+                # Проверяем, не указан ли путь относительно корня репозитория
+                repo_relative_path = image_path
+                if os.path.exists(repo_relative_path):
+                    path_to_use = repo_relative_path
+                else:
+                    logger.warning(f"Изображение не найдено: {image_path}")
+                    return ""
+
+        # Создаем относительный путь от README
+        rel_path = os.path.relpath(path_to_use, start=output_dir)
+
+        # Для изображений используем синтаксис ![alt](url)
+        return f"![{name}]({rel_path})"
+    except Exception as e:
+        logger.warning(f"Ошибка при форматировании пути к изображению {image_path}: {e}")
+        return ""
+
+
 def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
                 sort_by: str = "name", filter_pattern: Optional[str] = None) -> None:
@@ -562,7 +633,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "toc": "Table of Contents",
             "website": "Website",
             "video": "Video Overview",
-            "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Tags", "Similar Structures"],
+            "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Image", "Tags", "Similar Structures"],
         }
         description_field = "description"
     else:  # ru
@@ -573,7 +644,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "toc": "Оглавление",
             "website": "Сайт",
             "video": "Обзор",
-            "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Теги", "Похожие структуры"],
+            "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Изображение", "Теги", "Похожие структуры"],
         }
         description_field = "description_ru"
 
@@ -638,8 +709,8 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
 
             # Таблица со структурами
             table_headers = titles["table_headers"]
-            f.write(f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} |\n")
-            f.write("|------|------------|-----------|------------|------|-------------------|\n")
+            f.write(f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} |\n")
+            f.write("|------|------------|-----------|------------|------|-------------------|-------------------|\n")
 
             # Используем генератор для потоковой обработки данных без хранения всего в памяти
             def stream_sorted_structures(section_data, sort_field, pattern=None):
@@ -687,7 +758,14 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 # Форматируем диапазон температуры
                 temp_range = format_temperature_range(structure.get('snow_temperature', []))
 
-                f.write(f"| {name_with_link} | {description} | {structure['snow_type']} | {temp_range} | {tags} | {similars} |\n")
+                # Форматируем изображение - сначала проверяем images, затем image
+                image_link = ""
+                if structure.get('images'):
+                    image_link = format_image_link(structure.get('images'), structure['name'], output_dir)
+                elif structure.get('image'):
+                    image_link = format_image_link(structure.get('image'), structure['name'], output_dir)
+
+                f.write(f"| {name_with_link} | {description} | {structure['snow_type']} | {temp_range} | {image_link} | {tags} | {similars} |\n")
 
             f.write("\n")
 

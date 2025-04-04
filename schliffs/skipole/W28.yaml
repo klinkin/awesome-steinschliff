@@ -1,6 +1,12 @@
 name: W28
 description:
 description_ru: переходная структура на любой тип снега при температуре от +3 до -3
+image: schliffs/skipole/W28/skipole_w28.jpeg
+images:
+  - schliffs/skipole/W28/skipole_w28.jpeg
+  - schliffs/skipole/W28/skipole_w28_1.jpeg
+  - schliffs/skipole/W28/skipole_w28_2.jpeg
+  - schliffs/skipole/W28/skipole_w28_x.jpeg
 
 website_url: https://skipole.ru/shtainshlift-romashkovo/
 
