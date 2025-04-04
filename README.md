@@ -51,7 +51,7 @@
 
 ## Fischer
 
-Структуры для беговых лыж от компании Fischer
+Стандартные структуры Fischer
 
 Сайт: [Fischer](https://www.fischersports.com)
 
@@ -154,9 +154,9 @@
 
 ## Serviccer
 
-Структуры для беговых лыж от компании Serviccer
+Структуры для беговых лыж от лыжного сервиса SERVICCER
 
-Сайт: [Serviccer](https://www.serviccer.com)
+Сайт: [Serviccer](https://serviccer.ru/strukturyi.html)
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
@@ -169,7 +169,7 @@
 
 Структуры для беговых лыж от компании Skipole
 
-Сайт: [Skipole](https://www.skipole.com)
+Сайт: [Skipole](https://skipole.ru/shtainshlift-romashkovo/)
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|

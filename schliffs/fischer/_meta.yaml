@@ -1,10 +1,12 @@
-name: "Fischer"
-description: "Структуры для беговых лыж от компании Fischer"
-description_ru: "Структуры для беговых лыж от компании Fischer"
-description_en: "Cross-country ski structures from Fischer"
-website_url: "https://www.fischersports.com"
-country: "Austria"
+name: Fischer
+description: Default Fischer structures
+description_ru: Стандартные структуры Fischer
+
+website_url: https://www.fischersports.com
+
+country: Austria
 logo: ""
+
 contact:
   email: ""
   phone: ""

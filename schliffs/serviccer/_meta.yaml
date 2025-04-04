@@ -1,12 +1,15 @@
-name: "Serviccer"
-description: "Структуры для беговых лыж от компании Serviccer"
-description_ru: "Структуры для беговых лыж от компании Serviccer"
-description_en: "Cross-country ski structures from Serviccer"
-website_url: "https://www.serviccer.com"
-country: "Europe"
-logo: ""
+name: Serviccer
+description:
+description_ru: Структуры для беговых лыж от лыжного сервиса SERVICCER
+
+
+website_url: https://serviccer.ru/strukturyi.html
+
+country: Russia
+logo:
+
 contact:
-  email: ""
-  phone: ""
-  address: ""
+  email: email:servicerski@yandex.ru
+  phone: tel:+79104316887
+  address: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER
 updated_at: 2024-04-04

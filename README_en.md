@@ -41,7 +41,7 @@ Website: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
 
 ## Fischer
 
-Cross-country ski structures from Fischer
+Default Fischer structures
 
 Website: [Fischer](https://www.fischersports.com)
 
@@ -144,9 +144,9 @@ Website: [Salomon](https://www.salomon.com)
 
 ## Serviccer
 
-Cross-country ski structures from Serviccer
+None
 
-Website: [Serviccer](https://www.serviccer.com)
+Website: [Serviccer](https://serviccer.ru/strukturyi.html)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -157,9 +157,9 @@ Website: [Serviccer](https://www.serviccer.com)
 
 ## Skipole
 
-Cross-country ski structures from Skipole
+Структуры для беговых лыж от компании Skipole
 
-Website: [Skipole](https://www.skipole.com)
+Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo/)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
