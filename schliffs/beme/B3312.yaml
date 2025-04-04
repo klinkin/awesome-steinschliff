@@ -9,7 +9,7 @@ snow_type:
   - transformed
 snow_temperature:
   - min: -5
-  - max: +5
+    max: +5
 condition: yellow
 manufactory: "all"
 house: "Beme"

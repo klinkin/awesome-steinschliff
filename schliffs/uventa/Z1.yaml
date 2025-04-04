@@ -9,7 +9,7 @@ snow_type:
   - glazed
 snow_temperature:
   - min: -5
-  - max: 0
+    max: 0
 condition: "жесткая трасса, глянец"
 manufactory: "Uventa"
 house: "Uventa"

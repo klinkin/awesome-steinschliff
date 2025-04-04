@@ -10,7 +10,7 @@ snow_type:
   - dirty
 snow_temperature:
   - min: 0
-  - max: +15
+    max: +15
 condition: yellow
 manufactory: "Salomon"
 house: "Salomon"

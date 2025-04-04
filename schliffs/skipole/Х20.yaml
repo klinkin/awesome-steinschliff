@@ -10,7 +10,7 @@ snow_type:
   - old
 snow_temperature:
   - min: -5
-  - max: 15
+    max: 15
 condition: blue
 manufactory: ""
 house: "Skipole"

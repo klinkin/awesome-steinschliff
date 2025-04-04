@@ -10,7 +10,7 @@ snow_type:
   - transformed
 snow_temperature:
   - min: -20
-  - max: -3
+    max: -3
 condition: green
 manufactory: "Madshus"
 house: "Madshus"

@@ -10,7 +10,7 @@ snow_type:
   - artificial
 snow_temperature:
   - min: null
-  - max: null
+    max: null
 condition: "переменчивая погода"
 manufactory: "Fischer"
 house: "Ramsau"

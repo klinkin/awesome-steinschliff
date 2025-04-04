@@ -11,7 +11,7 @@ snow_type:
   - frozen
 snow_temperature:
   - min: -30
-  - max: -10
+    max: -10
 condition: green
 manufactory: "Salomon"
 house: "Salomon"

@@ -7,7 +7,7 @@ snow_type:
   - wet
 snow_temperature:
   - min: 0
-  - max: +10
+    max: +10
 condition: yellow
 manufactory: "Fischer"
 house: "Ramsau"

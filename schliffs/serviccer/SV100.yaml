@@ -10,7 +10,7 @@ snow_type:
   - glossy
 snow_temperature:
   - min: -3
-  - max: +3
+    max: +3
 condition: yellow
 manufactory: ""
 house: "Serviccer"

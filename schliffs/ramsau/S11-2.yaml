@@ -9,7 +9,7 @@ snow_type:
   - cold
 snow_temperature:
   - min: -20
-  - max: -10
+    max: -10
 condition: green
 manufactory: "Fischer"
 house: "Ramsau"

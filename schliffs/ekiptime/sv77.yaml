@@ -11,7 +11,7 @@ snow_type:
   - fresh
 snow_temperature:
   - min: -20
-  - max: -0
+    max: -0
 condition: blue
 manufactory: ""
 house: "ekiptime"

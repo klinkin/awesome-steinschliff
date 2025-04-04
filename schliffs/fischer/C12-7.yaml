@@ -7,7 +7,7 @@ snow_type:
   - fine_grained
 snow_temperature:
   - min: -10
-  - max: 0
+    max: 0
 condition: ""
 manufactory: "Fischer"
 house: "Fischer"

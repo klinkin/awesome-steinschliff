@@ -9,7 +9,7 @@ snow_type:
   - wet
 snow_temperature:
   - min: -3
-  - max: +3
+    max: +3
 condition: "Ю?Ю?"
 manufactory: "Madshus"
 house: "Madshus"

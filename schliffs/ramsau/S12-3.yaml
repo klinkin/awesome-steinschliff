@@ -7,7 +7,7 @@ snow_type:
   - fresh
 snow_temperature:
   - min: -6
-  - max: -2
+    max: -2
 condition: ""
 manufactory: "Fischer"
 house: "Ramsau"

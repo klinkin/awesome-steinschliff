@@ -11,7 +11,7 @@ snow_type:
 
 snow_temperature:
   - min: 0
-  - max: +5
+    max: +5
 condition: ""
 manufactory: "Fischer"
 house: "Ramsau"

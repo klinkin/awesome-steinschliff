@@ -7,7 +7,7 @@ snow_type:
   - fresh
 snow_temperature:
   - min: -10
-  - max: 0
+    max: 0
 condition: blue
 manufactory: ""
 house: "MarSport"

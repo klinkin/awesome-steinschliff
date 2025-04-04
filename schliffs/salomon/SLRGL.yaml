@@ -11,7 +11,7 @@ snow_type:
 
 snow_temperature:
   - min: -3
-  - max: +5
+    max: +5
 condition: yellow
 manufactory: "Salomon"
 house: "Salomon"

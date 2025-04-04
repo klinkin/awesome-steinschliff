@@ -10,7 +10,7 @@ snow_type:
   -
 snow_temperature:
   - min: -2
-  - max: +10
+    max: +10
 condition: yellow
 manufactory: "Madshus"
 house: "Madshus"

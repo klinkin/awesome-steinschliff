@@ -8,7 +8,7 @@ snow_type:
   - transformed
 snow_temperature:
   - min: -20
-  - max: -10
+    max: -10
 condition: ""
 manufactory: "Uventa"
 house: "Uventa"

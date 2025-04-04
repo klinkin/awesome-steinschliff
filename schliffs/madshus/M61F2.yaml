@@ -8,7 +8,7 @@ snow_type:
   - frozen
 snow_temperature:
   - min: -25
-  - max: -6
+    max: -6
 condition: green
 manufactory: "Madshus"
 house: "Madshus"

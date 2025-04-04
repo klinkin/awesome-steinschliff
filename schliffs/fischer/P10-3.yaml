@@ -9,7 +9,7 @@ snow_type:
   - falling
 snow_temperature:
   - min: -5
-  - max: 0
+    max: 0
 condition: ""
 manufactory: "Fischer"
 house: "Fischer"

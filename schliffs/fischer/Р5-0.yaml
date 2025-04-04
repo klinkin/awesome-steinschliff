@@ -11,7 +11,7 @@ snow_type:
 
 snow_temperature:
   - min: -5
-  - max: 0
+    max: 0
 condition: blue
 manufactory: "Fischer"
 house: "Fischer"

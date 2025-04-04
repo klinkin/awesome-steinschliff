@@ -7,7 +7,7 @@ snow_type:
   - all
 snow_temperature:
   - min: -5
-  - max: 5
+    max: 5
 condition: ""
 manufactory: "Uventa"
 house: "Uventa"

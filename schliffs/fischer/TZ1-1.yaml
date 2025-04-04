@@ -7,7 +7,7 @@ snow_type:
   - fresh
 snow_temperature:
   - min: null
-  - max: 0
+    max: 0
 condition: ""
 manufactory: "Fischer"
 house: "Fischer"
