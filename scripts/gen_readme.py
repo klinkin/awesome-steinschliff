@@ -430,6 +430,7 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
                 "description": data.get("description", ""),
                 "description_ru": data.get("description_ru", ""),
                 "snow_type": format_snow_types(data.get("snow_type", [])),
+                "snow_temperature": data.get("snow_temperature", []),
                 "house": data.get("house", ""),
                 "country": data.get("country", ""),
                 "tags": data.get("tags", []),
