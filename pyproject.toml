@@ -1,0 +1,21 @@
+[project]
+name = "awesome-steinschliff"
+version = "0.1.0"
+description = "A curated list of amazingly awesome nordic ski SteinSchliff"
+authors = [
+    {name = "Mihail Klimin",email = "klinkin@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyyaml (>=6.0.2,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
