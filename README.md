@@ -100,7 +100,7 @@
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
-| [C100](schliffs/marsport/C100.yaml) |  | frozen, fresh | MarSport | Russia |
+| [C100](schliffs/marsport/C100.yaml) | мелкая холодная структура на мороз | frozen, fresh | MarSport | Russia |
 | [F1](schliffs/marsport/F1.yaml) | стуктура для весеннего влажного снега | wet, old, dirty | MarSport | Russia |
 | [M100](schliffs/marsport/M100.yaml) | структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10 | fresh | MarSport | Russia |
 | [SM15-5](schliffs/marsport/SM15-5.yaml) | универсальная структура для среднего холода и низкой влажности при температуре от -15 до -5 | fresh, transformed | MarSport | Russia |

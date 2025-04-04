@@ -90,7 +90,7 @@ Website: [Марспорт](https://marsport.ru/service)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
-| [C100](schliffs/marsport/C100.yaml) | мелкая холодная структура на мороз | frozen, fresh | MarSport | Russia |
+| [C100](schliffs/marsport/C100.yaml) | None | frozen, fresh | MarSport | Russia |
 | [F1](schliffs/marsport/F1.yaml) | None | wet, old, dirty | MarSport | Russia |
 | [M100](schliffs/marsport/M100.yaml) | None | fresh | MarSport | Russia |
 | [SM15-5](schliffs/marsport/SM15-5.yaml) | None | fresh, transformed | MarSport | Russia |

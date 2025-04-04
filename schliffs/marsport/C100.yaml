@@ -1,5 +1,6 @@
 name: C100
-description: мелкая холодная структура на мороз
+description:
+description_ru: мелкая холодная структура на мороз
 website_url: https://marsport.ru/service
 
 snow_type:
