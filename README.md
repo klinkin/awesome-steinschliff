@@ -4,16 +4,14 @@
 
 ## Оглавление
 
-- [Структуры Steinschliff](#структуры-steinschliff)
-  - [Оглавление](#оглавление)
-  - [Beme](#beme)
-  - [Fischer](#fischer)
-  - [Madshus](#madshus)
-  - [Marsport](#marsport)
-  - [Ramsau](#ramsau)
-  - [Salomon](#salomon)
-  - [Serviccer](#serviccer)
-  - [Skipole](#skipole)
+- [Beme](#beme)
+- [Fischer](#fischer)
+- [Madshus](#madshus)
+- [Marsport](#marsport)
+- [Ramsau](#ramsau)
+- [Salomon](#salomon)
+- [Serviccer](#serviccer)
+- [Skipole](#skipole)
 
 ## Beme
 
@@ -63,18 +61,18 @@
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | C100 |  | frozen, fresh | MarSport | Russia |
-| F1 |  | wet, old, dirty | MarSport | Russia |
+| F1 | None | wet, old, dirty | MarSport | Russia |
 | M100 | структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10 | fresh | MarSport | Russia |
-| SM15-5 |  | fresh, transformed | MarSport | Russia |
+| SM15-5 | None | fresh, transformed | MarSport | Russia |
 
 ## Ramsau
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | OH3 |  | all | Ramsau | Germany |
-| Pl1 |  | all | Ramsau | Germany |
-| Pl2 |  | all | Ramsau | Germany |
-| R2 |  | all | Ramsau | Germany |
+| Pl1 | None | all | Ramsau | Germany |
+| Pl2 | None | all | Ramsau | Germany |
+| R2 | None | all | Ramsau | Germany |
 | S11-1 | сухой снег на температуре от -10 до -20 | dry | Ramsau | Germany |
 | S11-2 | структура для холодного сухого натурального снега, температура от -10 до -20 | dry, natural, cold | Ramsau | Germany |
 | S11-3 | структура под натуральный и искусственный перемороженный снег, температура от -10 до -20 | frozen, natural, artificial | Ramsau | Germany |
@@ -94,7 +92,7 @@
 | S13-6 | мокрый снег с дождем, температура от 0 до +10 | wet | Ramsau | Germany |
 | T1 | стуктура для крупнозернистого снега, весеннего старого снега и температуры от 0 до +5 | old, wet, dirty | Ramsau | Germany |
 | T4 | стуктура для морозного снега и температуры ниже -5 | frozen, dry | Ramsau | Germany |
-| V1 |  | all | Ramsau | Germany |
+| V1 | None | all | Ramsau | Germany |
 
 ## Salomon
 
@@ -121,3 +119,4 @@
 | Х20 | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | Skipole | Russia |
 | Х25 | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | Skipole | Russia |
 | ХО | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | Skipole | Russia |
+
