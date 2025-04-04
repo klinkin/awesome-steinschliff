@@ -14,8 +14,13 @@ This repository contains information about various ski grinding structures.
 * [Salomon](#salomon)
 * [Serviccer](#serviccer)
 * [Skipole](#skipole)
+* [Uventa](#uventa)
 
 ## Beme
+
+Cross-country ski structures from Beme
+
+Website: [Beme](https://www.beme.com)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -25,12 +30,20 @@ This repository contains information about various ski grinding structures.
 
 ## Ekiptime
 
+Структуры для беговых лыж от компании Ekiptime
+
+Website: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
-| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | None |  | ekiptime | Russia |
-| [SV77](schliffs/ekiptime/SV77.yaml) | None |  | ekiptime | Russia |
+| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | None | wet, old, dirty, transformed | ekiptime | Russia |
+| [SV77](schliffs/ekiptime/SV77.yaml) | None | cold, dry, old, fresh | ekiptime | Russia |
 
 ## Fischer
+
+Cross-country ski structures from Fischer
+
+Website: [Fischer](https://www.fischersports.com)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -56,6 +69,10 @@ This repository contains information about various ski grinding structures.
 
 ## Madshus
 
+Cross-country ski structures from Madshus
+
+Website: [Madshus](https://www.madshus.com)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [M61](schliffs/madshus/M61.yaml) | None | fresh, universal, transformed | Madshus | Norway |
@@ -67,6 +84,10 @@ This repository contains information about various ski grinding structures.
 
 ## Marsport
 
+Cross-country ski structures from Marsport
+
+Website: [Марспорт](https://www.marsport.ru)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [C100](schliffs/marsport/C100.yaml) | None | frozen, fresh | MarSport | Russia |
@@ -75,6 +96,10 @@ This repository contains information about various ski grinding structures.
 | [SM15-5](schliffs/marsport/SM15-5.yaml) | None | fresh, transformed | MarSport | Russia |
 
 ## Ramsau
+
+Cross-country ski structures from Ramsau service center
+
+Website: [Ramsau](https://www.ramsau.com)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -105,6 +130,10 @@ This repository contains information about various ski grinding structures.
 
 ## Salomon
 
+Cross-country ski structures from Salomon
+
+Website: [Salomon](https://www.salomon.com)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [G1](schliffs/salomon/G1.yaml) | None | natural, cold, dry | Salomon | Austria |
@@ -115,6 +144,10 @@ This repository contains information about various ski grinding structures.
 
 ## Serviccer
 
+Cross-country ski structures from Serviccer
+
+Website: [Serviccer](https://www.serviccer.com)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [R10-3](schliffs/serviccer/R10-3.yaml) | None |  | Serviccer | Russia |
@@ -124,6 +157,10 @@ This repository contains information about various ski grinding structures.
 
 ## Skipole
 
+Cross-country ski structures from Skipole
+
+Website: [Skipole](https://www.skipole.com)
+
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [W28](schliffs/skipole/W28.yaml) | None | all | Skipole | Russia |
@@ -131,4 +168,21 @@ This repository contains information about various ski grinding structures.
 | [Х20](schliffs/skipole/Х20.yaml) | None | all, fresh, old | Skipole | Russia |
 | [Х25](schliffs/skipole/X25.yaml) | None | all | Skipole | Russia |
 | [ХО](schliffs/skipole/ХО.yaml) | None | frozen, dry, natural | Skipole | Russia |
+
+## Uventa
+
+Cross-country ski structures from Uventa Sport service center
+
+Website: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
+
+| Name | Description | Snow Type | House | Country |
+|------|------------|-----------|-------|--------|
+| [330](schliffs/uventa/330.yaml) | None | frozen, cold, transformed | Uventa | Russia |
+| [729](schliffs/uventa/729.yaml) | Universal structure for fresh and old snow, temperature range +2°C to -12°C | fresh, old, universal | Uventa | Russia |
+| [C110X](schliffs/uventa/C110X.yaml) | Cold structure for new and transformed snow, temperature range -10°C to -20°C | fresh, transformed | Uventa | Russia |
+| [N33](schliffs/uventa/N33.yaml) | Transition structure for all snow types, temperature range +5°C to -5°C | all | Uventa | Russia |
+| [SL7](schliffs/uventa/SL7.yaml) | For fresh and slightly transformed snow, temperature range -3°C to -10°C | fresh, slightly_transformed | Uventa | Russia |
+| [X1W](schliffs/uventa/X1W.yaml) | Transition structure for all snow types, temperature range +2°C to -2°C | all | Uventa | Russia |
+| [X3LS](schliffs/uventa/X3LS.yaml) | For wet old, transformed and dirty snow, temperature range +10°C to -2°C | wet, old, transformed, dirty | Uventa | Russia |
+| [Z1](schliffs/uventa/Z1.yaml) | For glazed surface, hard track and heavily transformed snow, temperature range 0°C to -5°C | transformed, hard, glazed | Uventa | Russia |
 

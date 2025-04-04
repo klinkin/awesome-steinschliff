@@ -1,7 +1,7 @@
 name: SM15-5
 description:
-description_ru:
-website_url: https://marsport.ru/service/
+description_ru: универсальная структура для среднего холода и низкой влажности при температуре от -15 до -5
+website_url: https://marsport.ru/service
 
 snow_type:
   - fresh
@@ -17,8 +17,7 @@ country: "Russia"
 
 tags:
   - свежий снег
-  -
-  -
+  - средний холод
 
 similars:
   - S12-4

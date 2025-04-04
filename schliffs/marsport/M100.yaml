@@ -1,7 +1,7 @@
 name: M100
 description:
 description_ru: структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10
-website_url: https://marsport.ru/service/
+website_url: https://marsport.ru/service
 
 snow_type:
   - fresh

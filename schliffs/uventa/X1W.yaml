@@ -1,0 +1,30 @@
+name: X1W
+description: "Transition structure for all snow types, temperature range +2°C to -2°C"
+description_ru: "Переходная структура для любого типа снега, температурный диапазон от +2°C до -2°C"
+website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
+
+snow_type:
+  - all
+snow_temperature:
+  - min: -2
+  - max: 2
+condition: ""
+manufactory: "Uventa"
+house: "Uventa"
+author: ""
+country: "Russia"
+
+tags:
+  - переходная
+  - универсальная
+  - любой снег
+
+similars:
+  - N33
+
+features:
+  - ""
+
+updated_at: 2024-04-04
+updated_by: ""
+archived: false

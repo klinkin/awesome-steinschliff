@@ -1,0 +1,30 @@
+name: SL7
+description: "For fresh and slightly transformed snow, temperature range -3°C to -10°C"
+description_ru: "Для свежего и слабо преобразованного снега, температурный диапазон от -3°C до -10°C"
+website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
+
+snow_type:
+  - fresh
+  - slightly_transformed
+snow_temperature:
+  - min: -10
+  - max: -3
+condition: ""
+manufactory: "Uventa"
+house: "Uventa"
+author: ""
+country: "Russia"
+
+tags:
+  - свежий снег
+  - слабо преобразованный снег
+
+similars:
+  - 729
+
+features:
+  - ""
+
+updated_at: 2024-04-04
+updated_by: ""
+archived: false

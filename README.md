@@ -9,6 +9,7 @@
 
 * [процесс шлифования на сервисе Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
 * [обзор редких стрктур Рамзау](https://vkvideo.ru/video-220482174_456239484)
+* [обзор штайншлифта в ЭкипТайме](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 ## Оглавление
 
@@ -21,8 +22,13 @@
 * [Salomon](#salomon)
 * [Serviccer](#serviccer)
 * [Skipole](#skipole)
+* [Uventa](#uventa)
 
 ## Beme
+
+Структуры для беговых лыж от компании Beme
+
+Сайт: [Beme](https://www.beme.com)
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
@@ -32,12 +38,22 @@
 
 ## Ekiptime
 
+Структуры для беговых лыж от компании Ekiptime
+
+Сайт: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
+
+Обзор: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
-| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | None |  | ekiptime | Russia |
-| [SV77](schliffs/ekiptime/SV77.yaml) | None |  | ekiptime | Russia |
+| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | структура для трансформированного старого весеннего снега с водой | wet, old, dirty, transformed | ekiptime | Russia |
+| [SV77](schliffs/ekiptime/SV77.yaml) | универсальная структура на средний холод и низкой влажности при температуре от -0 до -20 | cold, dry, old, fresh | ekiptime | Russia |
 
 ## Fischer
+
+Структуры для беговых лыж от компании Fischer
+
+Сайт: [Fischer](https://www.fischersports.com)
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
@@ -63,6 +79,10 @@
 
 ## Madshus
 
+Структуры для беговых лыж от компании Madshus
+
+Сайт: [Madshus](https://www.madshus.com)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | [M61](schliffs/madshus/M61.yaml) | структура для свежего, универсального и трансформированного снега при температуре снега от -1 до -6 | fresh, universal, transformed | Madshus | Norway |
@@ -74,6 +94,10 @@
 
 ## Marsport
 
+Структуры для беговых лыж от компании Марспорт
+
+Сайт: [Марспорт](https://www.marsport.ru)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | [C100](schliffs/marsport/C100.yaml) |  | frozen, fresh | MarSport | Russia |
@@ -82,6 +106,10 @@
 | [SM15-5](schliffs/marsport/SM15-5.yaml) | None | fresh, transformed | MarSport | Russia |
 
 ## Ramsau
+
+Структуры для беговых лыж от сервисного центра Ramsau
+
+Сайт: [Ramsau](https://www.ramsau.com)
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
@@ -112,6 +140,10 @@
 
 ## Salomon
 
+Структуры для беговых лыж от компании Salomon
+
+Сайт: [Salomon](https://www.salomon.com)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | [G1](schliffs/salomon/G1.yaml) | натуральный холодный снег на температуру -5 и холоднее | natural, cold, dry | Salomon | Austria |
@@ -122,6 +154,10 @@
 
 ## Serviccer
 
+Структуры для беговых лыж от компании Serviccer
+
+Сайт: [Serviccer](https://www.serviccer.com)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | [R10-3](schliffs/serviccer/R10-3.yaml) | None |  | Serviccer | Russia |
@@ -131,6 +167,10 @@
 
 ## Skipole
 
+Структуры для беговых лыж от компании Skipole
+
+Сайт: [Skipole](https://www.skipole.com)
+
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
 | [W28](schliffs/skipole/W28.yaml) | переходная структура на любой тип снега при температуре от +3 до -3 | all | Skipole | Russia |
@@ -138,4 +178,21 @@
 | [Х20](schliffs/skipole/Х20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | Skipole | Russia |
 | [Х25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | Skipole | Russia |
 | [ХО](schliffs/skipole/ХО.yaml) | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | Skipole | Russia |
+
+## Uventa
+
+Структуры для беговых лыж от сервисного центра Ювента спорт
+
+Сайт: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
+
+| Название | Описание | Тип снега | Компания | Страна |
+|----------|----------|-----------|----------|--------|
+| [330](schliffs/uventa/330.yaml) | Холодная структура для утрамбованного, преобразованного и жесткого снега, температурный диапазон от -5°C до -20°C | frozen, cold, transformed | Uventa | Russia |
+| [729](schliffs/uventa/729.yaml) | Универсальная структура для свежего и старого снега, температурный диапазон от +2°C до -12°C | fresh, old, universal | Uventa | Russia |
+| [C110X](schliffs/uventa/C110X.yaml) | Холодная структура для нового и преобразованного снега, температурный диапазон от -10°C до -20°C | fresh, transformed | Uventa | Russia |
+| [N33](schliffs/uventa/N33.yaml) | Переходная структура для любого типа снега, температурный диапазон от +5°C до -5°C | all | Uventa | Russia |
+| [SL7](schliffs/uventa/SL7.yaml) | Для свежего и слабо преобразованного снега, температурный диапазон от -3°C до -10°C | fresh, slightly_transformed | Uventa | Russia |
+| [X1W](schliffs/uventa/X1W.yaml) | Переходная структура для любого типа снега, температурный диапазон от +2°C до -2°C | all | Uventa | Russia |
+| [X3LS](schliffs/uventa/X3LS.yaml) | На влажный старый, преобразованный и грязный снег, температурный диапазон от +10°C до -2°C | wet, old, transformed, dirty | Uventa | Russia |
+| [Z1](schliffs/uventa/Z1.yaml) | Для глянца, жесткой трассы и сильно преобразованного снега, температурный диапазон от 0°C до -5°C | transformed, hard, glazed | Uventa | Russia |
 

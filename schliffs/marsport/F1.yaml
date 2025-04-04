@@ -1,7 +1,7 @@
 name: F1
 description:
-description_ru:
-website_url: https://marsport.ru/service/
+description_ru: стуктура для весеннего влажного снега
+website_url: https://marsport.ru/service
 
 snow_type:
   - wet
@@ -25,7 +25,7 @@ similars:
   - S13-5
 
 features:
-  - ""
+  -
 
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin

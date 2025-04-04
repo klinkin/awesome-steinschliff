@@ -113,6 +113,11 @@ def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
     logger.info(f"Found {len(yaml_files)} YAML files")
 
     for file_path in yaml_files:
+        # Skip _meta.yaml files
+        if os.path.basename(file_path) == "_meta.yaml":
+            logger.debug(f"Skipping metadata file: {file_path}")
+            continue
+
         data = read_yaml_file(file_path)
         if not data:
             continue
@@ -138,13 +143,40 @@ def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
     return sections
 
 
-def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str) -> None:
+def collect_section_metadata() -> Dict[str, Dict[str, Any]]:
+    """
+    Collects metadata for all sections from _meta.yaml files.
+
+    Returns:
+        Dictionary with section names as keys and their metadata as values.
+    """
+    section_metadata = {}
+
+    # Find all _meta.yaml files in section directories
+    meta_files = glob.glob(f"{SCHLIFFS_DIR}/*/_meta.yaml")
+    logger.info(f"Found {len(meta_files)} section metadata files")
+
+    for meta_file in meta_files:
+        # Extract section name from directory path
+        section = os.path.basename(os.path.dirname(meta_file))
+
+        # Read metadata
+        metadata = read_yaml_file(meta_file)
+        if metadata:
+            section_metadata[section] = metadata
+            logger.debug(f"Loaded metadata for section: {section}")
+
+    return section_metadata
+
+
+def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str, section_metadata: Dict[str, Dict[str, Any]]) -> None:
     """
     Generates English README.md file.
 
     Args:
         sections: Dictionary with sections and their structure data.
         header_file: Path to the header template file.
+        section_metadata: Metadata for all sections.
     """
     # Read the header content
     header_content = read_header_file(header_file)
@@ -173,14 +205,33 @@ def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
         # Sections with structures
         for section in sorted(sections.keys()):
             section_title = section.capitalize()
-            f.write(f"## {section_title}\n\n")
+
+            # Add section metadata if available
+            if section in section_metadata:
+                meta = section_metadata[section]
+                if "description_en" in meta and meta["description_en"]:
+                    section_description = meta["description_en"]
+                else:
+                    section_description = meta.get("description", "")
+
+                # Add website link if available
+                website_url = meta.get("website_url", "")
+                if website_url:
+                    f.write(f"## {section_title}\n\n")
+                    f.write(f"{section_description}\n\n")
+                    f.write(f"Website: [{meta.get('name', section_title)}]({website_url})\n\n")
+                else:
+                    f.write(f"## {section_title}\n\n")
+                    f.write(f"{section_description}\n\n")
+            else:
+                f.write(f"## {section_title}\n\n")
 
             # Table with structures
             f.write("| Name | Description | Snow Type | House | Country |\n")
             f.write("|------|------------|-----------|-------|--------|\n")
 
             # Sort structures by name
-            structures = sorted(sections[section], key=lambda x: x["name"])
+            structures = sorted(sections[section], key=lambda x: str(x["name"]))
 
             for structure in structures:
                 # Create link from name to the YAML file
@@ -193,13 +244,14 @@ def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
     logger.info(f"English README.md generated successfully at {os.path.abspath(README_FILE)}")
 
 
-def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str) -> None:
+def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str, section_metadata: Dict[str, Dict[str, Any]]) -> None:
     """
     Generates Russian README_ru.md file.
 
     Args:
         sections: Dictionary with sections and their structure data.
         header_file: Path to the header template file.
+        section_metadata: Metadata for all sections.
     """
     # Read the header content
     header_content = read_header_file(header_file)
@@ -228,14 +280,37 @@ def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
         # Sections with structures
         for section in sorted(sections.keys()):
             section_title = section.capitalize()
-            f.write(f"## {section_title}\n\n")
+
+            # Add section metadata if available
+            if section in section_metadata:
+                meta = section_metadata[section]
+                if "description_ru" in meta and meta["description_ru"]:
+                    section_description = meta["description_ru"]
+                else:
+                    section_description = meta.get("description", "")
+
+                # Add website link if available
+                website_url = meta.get("website_url", "")
+                video_url = meta.get("video_url", "")
+
+                f.write(f"## {section_title}\n\n")
+                f.write(f"{section_description}\n\n")
+
+                if website_url:
+                    f.write(f"Сайт: [{meta.get('name', section_title)}]({website_url})\n\n")
+
+                if video_url:
+                    f.write(f"Обзор: [{meta.get('name', section_title)}]({video_url})\n\n")
+
+            else:
+                f.write(f"## {section_title}\n\n")
 
             # Table with structures
             f.write("| Название | Описание | Тип снега | Компания | Страна |\n")
             f.write("|----------|----------|-----------|----------|--------|\n")
 
             # Sort structures by name
-            structures = sorted(sections[section], key=lambda x: x["name"])
+            structures = sorted(sections[section], key=lambda x: str(x["name"]))
 
             for structure in structures:
                 # Create link from name to the YAML file
@@ -292,9 +367,12 @@ def main() -> None:
     sections = collect_structure_data()
     logger.info(f"Collected data for {sum(len(structures) for structures in sections.values())} structures in {len(sections)} sections")
 
+    # Collect section metadata
+    section_metadata = collect_section_metadata()
+
     # Generate README files
-    generate_english_readme(sections, en_header_file)
-    generate_russian_readme(sections, ru_header_file)
+    generate_english_readme(sections, en_header_file, section_metadata)
+    generate_russian_readme(sections, ru_header_file, section_metadata)
 
     logger.info("README generation completed successfully")
 

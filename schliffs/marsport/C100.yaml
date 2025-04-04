@@ -1,6 +1,6 @@
 name: C100
-description:
-website_url: https://marsport.ru/service/
+description: мелкая холодная структура на мороз
+website_url: https://marsport.ru/service
 
 snow_type:
   - frozen
@@ -16,10 +16,13 @@ country: "Russia"
 
 tags:
   - перемороженный
+  - холодный
 
 similars:
   - S11-3
   - B227
+  - G1
+  - Х20
 
 features:
   - ""

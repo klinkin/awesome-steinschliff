@@ -1,0 +1,15 @@
+name: "Марспорт"
+description: "Структуры для беговых лыж от компании Марспорт"
+description_ru: "Структуры для беговых лыж от компании Марспорт"
+
+website_url: https://marsport.ru/service
+
+country: "Russia"
+logo: ""
+
+contact:
+  email: ""
+  phone: tel:+79250464773
+  address: "г. Одинцово ул. Манжосовская 1"
+
+updated_at: 2024-04-04

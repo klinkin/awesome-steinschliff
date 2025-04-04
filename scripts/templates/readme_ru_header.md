@@ -9,3 +9,4 @@
 
 * [процесс шлифования на сервисе Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
 * [обзор редких стрктур Рамзау](https://vkvideo.ru/video-220482174_456239484)
+* [обзор штайншлифта в ЭкипТайме](https://www.youtube.com/watch?v=IN1FKSIZT2I)

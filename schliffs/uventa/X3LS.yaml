@@ -1,0 +1,34 @@
+name: X3LS
+description: "For wet old, transformed and dirty snow, temperature range +10°C to -2°C"
+description_ru: "На влажный старый, преобразованный и грязный снег, температурный диапазон от +10°C до -2°C"
+website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
+
+snow_type:
+  - wet
+  - old
+  - transformed
+  - dirty
+snow_temperature:
+  - min: -2
+  - max: 10
+condition: ""
+manufactory: "Uventa"
+house: "Uventa"
+author: ""
+country: "Russia"
+
+tags:
+  - влажный снег
+  - старый снег
+  - преобразованный снег
+  - грязный снег
+
+similars:
+  - Z1
+
+features:
+  - ""
+
+updated_at: 2024-04-04
+updated_by: ""
+archived: false
