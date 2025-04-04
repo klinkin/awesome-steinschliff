@@ -101,6 +101,59 @@ def format_snow_types(snow_types: Union[List[str], str, None]) -> str:
     return str(snow_types)
 
 
+def format_list_for_display(items: Union[List[str], str, None]) -> str:
+    """
+    Formats a list of items for display in README tables.
+
+    Args:
+        items: List of items or string.
+
+    Returns:
+        Formatted string with comma-separated items.
+    """
+    if not items:
+        return ""
+
+    if isinstance(items, list):
+        # Filter out None values and empty strings, then convert to string
+        valid_items = [str(item) for item in items if item is not None and str(item).strip() != ""]
+        return ", ".join(valid_items)
+
+    return str(items)
+
+
+def format_similars_with_links(similars: Union[List[str], str, None], name_to_path: Dict[str, str]) -> str:
+    """
+    Formats the list of similar structures with links to their files.
+
+    Args:
+        similars: List of similar structure names or string.
+        name_to_path: Dictionary mapping structure names to file paths.
+
+    Returns:
+        Formatted string with comma-separated linked similar structures.
+    """
+    if not similars:
+        return ""
+
+    result = []
+    if isinstance(similars, list):
+        for item in similars:
+            if item is None or str(item).strip() == "":
+                continue
+
+            # Create link if path exists, otherwise just use the name
+            if item in name_to_path:
+                result.append(f"[{item}]({name_to_path[item]})")
+            else:
+                result.append(str(item))
+    else:
+        # If it's a single string, just return it
+        return str(similars)
+
+    return ", ".join(result)
+
+
 def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
     """
     Collects data from all structure YAML files.
@@ -112,6 +165,23 @@ def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
     yaml_files = glob.glob(f"{SCHLIFFS_DIR}/**/*.yaml", recursive=True)
     logger.info(f"Found {len(yaml_files)} YAML files")
 
+    # First pass: collect all structure names and their file paths
+    name_to_path = {}
+    for file_path in yaml_files:
+        # Skip _meta.yaml files
+        if os.path.basename(file_path) == "_meta.yaml":
+            continue
+
+        data = read_yaml_file(file_path)
+        if not data:
+            continue
+
+        name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
+        name_to_path[name] = file_path
+
+    logger.debug(f"Built name to path mapping for {len(name_to_path)} structures")
+
+    # Second pass: collect all structure data
     for file_path in yaml_files:
         # Skip _meta.yaml files
         if os.path.basename(file_path) == "_meta.yaml":
@@ -135,7 +205,10 @@ def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
             "snow_type": format_snow_types(data.get("snow_type", [])),
             "house": data.get("house", ""),
             "country": data.get("country", ""),
-            "file_path": file_path
+            "tags": data.get("tags", []),
+            "similars": data.get("similars", []),
+            "file_path": file_path,
+            "name_to_path": name_to_path  # Add the mapping to each structure
         }
 
         sections[section].append(structure_info)
@@ -227,8 +300,8 @@ def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
                 f.write(f"## {section_title}\n\n")
 
             # Table with structures
-            f.write("| Name | Description | Snow Type | House | Country |\n")
-            f.write("|------|------------|-----------|-------|--------|\n")
+            f.write("| Name | Description | Snow Type | Tags | Similar Structures |\n")
+            f.write("|------|------------|-----------|------|-------------------|\n")
 
             # Sort structures by name
             structures = sorted(sections[section], key=lambda x: str(x["name"]))
@@ -237,7 +310,12 @@ def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
                 # Create link from name to the YAML file
                 file_path = structure['file_path']
                 name_with_link = f"[{structure['name']}]({file_path})"
-                f.write(f"| {name_with_link} | {structure['description']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
+
+                # Format tags and similars
+                tags = format_list_for_display(structure.get('tags', []))
+                similars = format_similars_with_links(structure.get('similars', []), structure['name_to_path'])
+
+                f.write(f"| {name_with_link} | {structure['description']} | {structure['snow_type']} | {tags} | {similars} |\n")
 
             f.write("\n")
 
@@ -306,8 +384,8 @@ def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
                 f.write(f"## {section_title}\n\n")
 
             # Table with structures
-            f.write("| Название | Описание | Тип снега | Компания | Страна |\n")
-            f.write("|----------|----------|-----------|----------|--------|\n")
+            f.write("| Название | Описание | Тип снега | Теги | Похожие структуры |\n")
+            f.write("|----------|----------|-----------|------|------------------|\n")
 
             # Sort structures by name
             structures = sorted(sections[section], key=lambda x: str(x["name"]))
@@ -316,7 +394,12 @@ def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]], header_fi
                 # Create link from name to the YAML file
                 file_path = structure['file_path']
                 name_with_link = f"[{structure['name']}]({file_path})"
-                f.write(f"| {name_with_link} | {structure['description_ru']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
+
+                # Format tags and similars
+                tags = format_list_for_display(structure.get('tags', []))
+                similars = format_similars_with_links(structure.get('similars', []), structure['name_to_path'])
+
+                f.write(f"| {name_with_link} | {structure['description_ru']} | {structure['snow_type']} | {tags} | {similars} |\n")
 
             f.write("\n")
 
