@@ -1,12 +1,14 @@
-name: "Ювента Спорт"
-description: "Структуры для беговых лыж от сервисного центра Ювента спорт"
-description_ru: "Структуры для беговых лыж от сервисного центра Ювента спорт"
-description_en: "Cross-country ski structures from Uventa Sport service center"
+name: Ювента Спорт
+description:
+description_ru: Кастомные структуры для беговых лыж от сервисного центра Ювента Спорт
+
 website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
-country: "Russia"
-logo: ""
+
+country: Russia
+logo:
+
 contact:
-  email: "info@uventasport.ru"
-  phone: ""
+  email:
+  phone:
   address: "Москва"
 updated_at: 2024-04-04

@@ -1,9 +1,11 @@
-name: "Madshus"
-description: "Структуры для беговых лыж от компании Madshus"
-description_ru: "Структуры для беговых лыж от компании Madshus"
-description_en: "Cross-country ski structures from Madshus"
-website_url: "https://www.madshus.com"
-country: "Norway"
+name: Madshus
+description:
+description_ru: Стандартные структуры для беговых лыж от компании Madshus
+
+website_url: https://www.madshus.com
+
+country: Norway
+
 logo: ""
 contact:
   email: ""

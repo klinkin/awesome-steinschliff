@@ -69,7 +69,7 @@ Website: [Fischer](https://www.fischersports.com)
 
 ## Madshus
 
-Cross-country ski structures from Madshus
+None
 
 Website: [Madshus](https://www.madshus.com)
 
@@ -97,9 +97,7 @@ Website: [Марспорт](https://marsport.ru/service)
 
 ## Ramsau
 
-Cross-country ski structures from Ramsau service center
-
-Website: [Ramsau](https://www.ramsau.com)
+None
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -130,7 +128,7 @@ Website: [Ramsau](https://www.ramsau.com)
 
 ## Salomon
 
-Cross-country ski structures from Salomon
+Default Salomon structures
 
 Website: [Salomon](https://www.salomon.com)
 
@@ -157,9 +155,9 @@ Website: [Serviccer](https://serviccer.ru/strukturyi.html)
 
 ## Skipole
 
-Структуры для беговых лыж от компании Skipole
+None
 
-Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo/)
+Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
@@ -171,7 +169,7 @@ Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo/)
 
 ## Uventa
 
-Cross-country ski structures from Uventa Sport service center
+None
 
 Website: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 

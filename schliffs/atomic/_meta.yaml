@@ -1,10 +1,12 @@
-name: "Atomic"
-description: "Структуры для беговых лыж от компании Atomic"
-description_ru: "Структуры для беговых лыж от компании Atomic"
-description_en: "Cross-country ski structures from Atomic"
-website_url: "https://www.atomic.com"
+name: Atomic
+description:
+description_ru: Стандартные структуры для беговых лыж от компании Atomic
+
+website_url: https://www.atomic.com
+
 country: "Austria"
 logo: ""
+
 contact:
   email: ""
   phone: ""

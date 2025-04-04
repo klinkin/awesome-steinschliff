@@ -1,10 +1,11 @@
-name: "Rossignol"
-description: "Структуры для беговых лыж от компании Rossignol"
-description_ru: "Структуры для беговых лыж от компании Rossignol"
-description_en: "Cross-country ski structures from Rossignol"
-website_url: "https://www.rossignol.com"
-country: "France"
+name: Rossignol
+description:
+description_ru: Стандартные структуры для беговых лыж от компании Rossignol
+
+website_url: https://www.rossignol.com
+country: France
 logo: ""
+
 contact:
   email: ""
   phone: ""

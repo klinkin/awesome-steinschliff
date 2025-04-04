@@ -1,12 +1,14 @@
-name: "Ramsau"
-description: "Структуры для беговых лыж от сервисного центра Ramsau"
-description_ru: "Структуры для беговых лыж от сервисного центра Ramsau"
-description_en: "Cross-country ski structures from Ramsau service center"
-website_url: "https://www.ramsau.com"
-country: "Germany"
+name: Ramsau
+description:
+description_ru: "Широко известные структуры для беговых лыж от сервисного центра Ramsau"
+
+website_url:
+country: Germany
 logo: ""
+
 contact:
   email: ""
   phone: ""
   address: ""
+
 updated_at: 2024-04-04
