@@ -1,0 +1,32 @@
+name: SV700
+description:
+description_ru:
+
+website_url: https://serviccer.ru/strukturyi.html
+
+snow_type:
+  -
+  -
+  -
+snow_temperature:
+  - min:
+  - max:
+condition:
+manufactory: ""
+house: "Serviccer"
+author: "Victor Golovin"
+country: "Russia"
+
+tags:
+  -
+  -
+
+similars:
+  -
+
+features:
+  -
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

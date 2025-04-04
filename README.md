@@ -5,6 +5,7 @@
 ## Оглавление
 
 - [Beme](#beme)
+- [Ekiptime](#ekiptime)
 - [Fischer](#fischer)
 - [Madshus](#madshus)
 - [Marsport](#marsport)
@@ -20,6 +21,13 @@
 | [B2211](schliffs/beme/B2211.yaml) | универсальная структура на все типы снега, особенно на свеже выпавший снег | all, fresh | Beme | Austria |
 | [B227](schliffs/beme/B227.yaml) | стуктура для морозного снега и температуры ниже -5 | cold | Beme | Austria |
 | [B3312](schliffs/beme/B3312.yaml) | струтура на переходку и тепло, на влажный, но не жидкий снег | wet, transformed | Beme | Austria |
+
+## Ekiptime
+
+| Название | Описание | Тип снега | Компания | Страна |
+|----------|----------|-----------|----------|--------|
+| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | None |  | ekiptime | Russia |
+| [SV77](schliffs/ekiptime/SV77.yaml) | None |  | ekiptime | Russia |
 
 ## Fischer
 
@@ -69,10 +77,10 @@
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
-| [OH3](schliffs/ramsau/OH3.yaml) |  | all | Ramsau | Germany |
-| [Pl1](schliffs/ramsau/Pl1.yaml) | None | all | Ramsau | Germany |
-| [Pl2](schliffs/ramsau/Pl2.yaml) | None | all | Ramsau | Germany |
-| [R2](schliffs/ramsau/R2.yaml) | None | all | Ramsau | Germany |
+| [OH3](schliffs/ramsau/OH3.yaml) | структура на переходку и тепло при температуре от +5 до -7 | all | Ramsau | Germany |
+| [PL1](schliffs/ramsau/PL1.yaml) | структура на средний холод и мороз при температуре -5 и холоднее | all, frozen | Ramsau | Germany |
+| [PL2](schliffs/ramsau/PL2.yaml) | универсальный шлифт как для свежего снега так и для трансформированого при температуре от 0 до -10 | all, fresh, transformed | Ramsau | Germany |
+| [R2](schliffs/ramsau/R2.yaml) | структура на средний холод при температуре от -5 до -15 | all, frozen | Ramsau | Germany |
 | [S11-1](schliffs/ramsau/S11-1.yaml) | сухой снег на температуре от -10 до -20 | dry | Ramsau | Germany |
 | [S11-2](schliffs/ramsau/S11-2.yaml) | структура для холодного сухого натурального снега, температура от -10 до -20 | dry, natural, cold | Ramsau | Germany |
 | [S11-3](schliffs/ramsau/S11-3.yaml) | структура под натуральный и искусственный перемороженный снег, температура от -10 до -20 | frozen, natural, artificial | Ramsau | Germany |
@@ -92,7 +100,7 @@
 | [S13-6](schliffs/ramsau/S13-6.yaml) | мокрый снег с дождем, температура от 0 до +10 | wet | Ramsau | Germany |
 | [T1](schliffs/ramsau/T1.yaml) | стуктура для крупнозернистого снега, весеннего старого снега и температуры от 0 до +5 | old, wet, dirty | Ramsau | Germany |
 | [T4](schliffs/ramsau/T4.yaml) | стуктура для морозного снега и температуры ниже -5 | frozen, dry | Ramsau | Germany |
-| [V1](schliffs/ramsau/V1.yaml) | None | all | Ramsau | Germany |
+| [V1](schliffs/ramsau/V1.yaml) | морозная структура для натурального снега при -5 и холоднее | all, fresh, frozen, natural | Ramsau | Germany |
 
 ## Salomon
 
@@ -108,7 +116,10 @@
 
 | Название | Описание | Тип снега | Компания | Страна |
 |----------|----------|-----------|----------|--------|
+| [R10-3](schliffs/serviccer/R10-3.yaml) | None |  | Serviccer | Russia |
 | [SV100](schliffs/serviccer/SV100.yaml) | стурктура для глянца, старого и свежего снег, замыленный снега и температуры от +3 до -3 | fresh, old, glossy | Serviccer | Russia |
+| [SV600](schliffs/serviccer/SV600.yaml) | None |  | Serviccer | Russia |
+| [SV700](schliffs/serviccer/SV700.yaml) | None |  | Serviccer | Russia |
 
 ## Skipole
 

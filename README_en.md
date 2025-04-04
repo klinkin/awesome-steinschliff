@@ -5,6 +5,7 @@ This repository contains information about various ski grinding structures.
 ## Table of Contents
 
 - [Beme](#beme)
+- [Ekiptime](#ekiptime)
 - [Fischer](#fischer)
 - [Madshus](#madshus)
 - [Marsport](#marsport)
@@ -20,6 +21,13 @@ This repository contains information about various ski grinding structures.
 | [B2211](schliffs/beme/B2211.yaml) | None | all, fresh | Beme | Austria |
 | [B227](schliffs/beme/B227.yaml) | None | cold | Beme | Austria |
 | [B3312](schliffs/beme/B3312.yaml) | None | wet, transformed | Beme | Austria |
+
+## Ekiptime
+
+| Name | Description | Snow Type | House | Country |
+|------|------------|-----------|-------|--------|
+| [SIGMA](schliffs/ekiptime/SIGMA.yaml) | None |  | ekiptime | Russia |
+| [SV77](schliffs/ekiptime/SV77.yaml) | None |  | ekiptime | Russia |
 
 ## Fischer
 
@@ -70,9 +78,9 @@ This repository contains information about various ski grinding structures.
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
 | [OH3](schliffs/ramsau/OH3.yaml) | None | all | Ramsau | Germany |
-| [Pl1](schliffs/ramsau/Pl1.yaml) | None | all | Ramsau | Germany |
-| [Pl2](schliffs/ramsau/Pl2.yaml) | None | all | Ramsau | Germany |
-| [R2](schliffs/ramsau/R2.yaml) | None | all | Ramsau | Germany |
+| [PL1](schliffs/ramsau/PL1.yaml) | None | all, frozen | Ramsau | Germany |
+| [PL2](schliffs/ramsau/PL2.yaml) | None | all, fresh, transformed | Ramsau | Germany |
+| [R2](schliffs/ramsau/R2.yaml) | None | all, frozen | Ramsau | Germany |
 | [S11-1](schliffs/ramsau/S11-1.yaml) | None | dry | Ramsau | Germany |
 | [S11-2](schliffs/ramsau/S11-2.yaml) | None | dry, natural, cold | Ramsau | Germany |
 | [S11-3](schliffs/ramsau/S11-3.yaml) | None | frozen, natural, artificial | Ramsau | Germany |
@@ -92,7 +100,7 @@ This repository contains information about various ski grinding structures.
 | [S13-6](schliffs/ramsau/S13-6.yaml) | None | wet | Ramsau | Germany |
 | [T1](schliffs/ramsau/T1.yaml) | None | old, wet, dirty | Ramsau | Germany |
 | [T4](schliffs/ramsau/T4.yaml) | None | frozen, dry | Ramsau | Germany |
-| [V1](schliffs/ramsau/V1.yaml) | None | all | Ramsau | Germany |
+| [V1](schliffs/ramsau/V1.yaml) | None | all, fresh, frozen, natural | Ramsau | Germany |
 
 ## Salomon
 
@@ -108,7 +116,10 @@ This repository contains information about various ski grinding structures.
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|
+| [R10-3](schliffs/serviccer/R10-3.yaml) | None |  | Serviccer | Russia |
 | [SV100](schliffs/serviccer/SV100.yaml) | None | fresh, old, glossy | Serviccer | Russia |
+| [SV600](schliffs/serviccer/SV600.yaml) | None |  | Serviccer | Russia |
+| [SV700](schliffs/serviccer/SV700.yaml) | None |  | Serviccer | Russia |
 
 ## Skipole
 

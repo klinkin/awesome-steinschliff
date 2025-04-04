@@ -1,14 +1,19 @@
 name: V1
 description:
-description_ru:
-website_url: ""
+description_ru: морозная структура для натурального снега при -5 и холоднее
+
+website_url: https://vk.com/video-220482174_456239484
 
 snow_type:
   - all
+  - fresh
+  - frozen
+  - natural
+
 snow_temperature:
-  - min: null
-  - max: null
-condition: ""
+  - min: -20
+  - max: -5
+condition: green
 manufactory: "Fischer"
 house: "Ramsau"
 author: ""
@@ -18,7 +23,7 @@ tags:
   - ramsau
 
 similars:
-  - ""
+  - B227
 
 features:
   - ""
