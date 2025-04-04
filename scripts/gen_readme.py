@@ -149,7 +149,10 @@ def generate_english_readme(sections: Dict[str, List[Dict[str, Any]]]) -> None:
             structures = sorted(sections[section], key=lambda x: x["name"])
 
             for structure in structures:
-                f.write(f"| {structure['name']} | {structure['description']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
+                # Create link from name to the YAML file
+                file_path = structure['file_path']
+                name_with_link = f"[{structure['name']}]({file_path})"
+                f.write(f"| {name_with_link} | {structure['description']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
 
             f.write("\n")
 
@@ -188,7 +191,10 @@ def generate_russian_readme(sections: Dict[str, List[Dict[str, Any]]]) -> None:
             structures = sorted(sections[section], key=lambda x: x["name"])
 
             for structure in structures:
-                f.write(f"| {structure['name']} | {structure['description_ru']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
+                # Create link from name to the YAML file
+                file_path = structure['file_path']
+                name_with_link = f"[{structure['name']}]({file_path})"
+                f.write(f"| {name_with_link} | {structure['description_ru']} | {structure['snow_type']} | {structure['house']} | {structure['country']} |\n")
 
             f.write("\n")
 
