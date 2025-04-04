@@ -2,17 +2,18 @@
 
 This repository contains information about various ski grinding structures.
 
+
 ## Table of Contents
 
-- [Beme](#beme)
-- [Ekiptime](#ekiptime)
-- [Fischer](#fischer)
-- [Madshus](#madshus)
-- [Marsport](#marsport)
-- [Ramsau](#ramsau)
-- [Salomon](#salomon)
-- [Serviccer](#serviccer)
-- [Skipole](#skipole)
+* [Beme](#beme)
+* [Ekiptime](#ekiptime)
+* [Fischer](#fischer)
+* [Madshus](#madshus)
+* [Marsport](#marsport)
+* [Ramsau](#ramsau)
+* [Salomon](#salomon)
+* [Serviccer](#serviccer)
+* [Skipole](#skipole)
 
 ## Beme
 

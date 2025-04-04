@@ -2,17 +2,25 @@
 
 Этот репозиторий содержит информацию о различных структурах для шлифовки лыж.
 
+* [чатик в телеграм](https://t.me/+wddxUugE0gwxMGU6)
+* [тема форума на скиспорте](https://www.skisport.ru/forum/cross-country/104594)
+
+Полезные видое:
+
+* [процесс шлифования на сервисе Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
+* [обзор редких стрктур Рамзау](https://vkvideo.ru/video-220482174_456239484)
+
 ## Оглавление
 
-- [Beme](#beme)
-- [Ekiptime](#ekiptime)
-- [Fischer](#fischer)
-- [Madshus](#madshus)
-- [Marsport](#marsport)
-- [Ramsau](#ramsau)
-- [Salomon](#salomon)
-- [Serviccer](#serviccer)
-- [Skipole](#skipole)
+* [Beme](#beme)
+* [Ekiptime](#ekiptime)
+* [Fischer](#fischer)
+* [Madshus](#madshus)
+* [Marsport](#marsport)
+* [Ramsau](#ramsau)
+* [Salomon](#salomon)
+* [Serviccer](#serviccer)
+* [Skipole](#skipole)
 
 ## Beme
 
