@@ -1,7 +1,7 @@
 name: S11-3
 description:
 description_ru: структура под натуральный и искусственный перемороженный снег, температура от -10 до -20
-website_url: ""
+website_url:
 
 snow_type:
   - frozen

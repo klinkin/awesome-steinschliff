@@ -2,7 +2,7 @@ name: SL21
 description:
 description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от +1 до -7
 
-website_url: ""
+website_url:
 
 snow_type:
   - natural

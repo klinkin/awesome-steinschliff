@@ -1,7 +1,7 @@
 name: S12-1
 description:
 description_ru: свежий натуральный и искусственный снег, температура от -15 до 0
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

@@ -1,7 +1,7 @@
 name: Р3-1
 description:
 description_ru: структура на свежий влажный снег, на 0 градусов с переходом в плюсовую
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

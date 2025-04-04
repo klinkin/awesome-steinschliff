@@ -2,7 +2,7 @@ name: S12-12
 description:
 description_ru: старый снег при температуре от 0 до -5
 
-website_url: ""
+website_url:
 
 snow_type:
   - old

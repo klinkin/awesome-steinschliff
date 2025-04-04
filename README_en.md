@@ -18,9 +18,9 @@ This repository contains information about various ski grinding structures.
 
 ## Beme
 
-Cross-country ski structures from Beme
+None
 
-Website: [Beme](https://www.beme.com)
+Website: [Beme](https://www.bemesports.com/en/skiservice)
 
 | Name | Description | Snow Type | House | Country |
 |------|------------|-----------|-------|--------|

@@ -1,7 +1,7 @@
 name: Р5-9
 description:
 description_ru: структура для классических лыж на старый мокрый снег, температура от 0 и выше
-website_url: ""
+website_url:
 
 snow_type:
   - old

@@ -1,7 +1,7 @@
 name: P1-1
 description:
 description_ru: структура для свежего снега при температуре +3 до -5
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

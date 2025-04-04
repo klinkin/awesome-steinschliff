@@ -1,7 +1,7 @@
 name: P5-1
 description:
 description_ru: универсальная структура для любого типа снега на температуру от +5 до -10
-website_url: ""
+website_url:
 
 snow_type:
   - all

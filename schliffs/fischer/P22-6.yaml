@@ -1,7 +1,7 @@
 name: P22-6
 description:
 description_ru: переходная структура на любой тип снега, температура от +5 до -5
-website_url: ""
+website_url:
 
 snow_type:
   - all

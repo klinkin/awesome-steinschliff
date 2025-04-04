@@ -2,7 +2,7 @@ name: SL1
 description:
 description_ru: структура для натурального холодного и сухого снега, допустима в смесь натурального и искусственного при низкой влажности от -10 и холоднее
 
-website_url: ""
+website_url:
 
 snow_type:
   - natural

@@ -1,7 +1,7 @@
 name: S12-3
 description:
 description_ru: свежий снег под t -2 -6
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

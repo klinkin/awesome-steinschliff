@@ -1,7 +1,7 @@
 name: S12-4
 description:
 description_ru: универсальная структура для всех трасс с сухим снегом, температура от -2 до -15
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

@@ -1,10 +1,12 @@
-name: "Beme"
-description: "Структуры для беговых лыж от компании Beme"
-description_ru: "Структуры для беговых лыж от компании Beme"
-description_en: "Cross-country ski structures from Beme"
-website_url: "https://www.beme.com"
-country: "Europe"
+name: Beme
+description:
+description_ru: Структуры для беговых лыж от Бенжамина Эдера, сервис Beme
+
+website_url: https://www.bemesports.com/en/skiservice
+
+country: Austria
 logo: ""
+
 contact:
   email: ""
   phone: ""

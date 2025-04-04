@@ -1,7 +1,7 @@
 name: S12-6
 description:
 description_ru: универсальная структура для всех трасс со свежим снегом, падающим и мокрым снегом, температура от 0 до -15
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

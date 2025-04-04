@@ -1,7 +1,7 @@
 name: Р3-3
 description:
 description_ru: водянистый снег от +3 до +15
-website_url: ""
+website_url:
 
 snow_type:
   - watery

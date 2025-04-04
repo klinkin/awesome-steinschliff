@@ -1,7 +1,7 @@
 name: S13-5
 description:
 description_ru: свежий падающий мокрый снег, температура от 0 до +5
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

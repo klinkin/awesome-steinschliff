@@ -1,7 +1,7 @@
 name: C12-7
 description:
 description_ru: мелкозернистый снег на температуре от 0 до -10
-website_url: ""
+website_url:
 
 snow_type:
   - fine_grained

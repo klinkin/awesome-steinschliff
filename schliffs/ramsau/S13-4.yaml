@@ -2,7 +2,7 @@ name: S13-4
 description:
 description_ru: влажный снег, натуральный и искусственный, переменчивая погода, большой диапазон
 
-website_url: ""
+website_url:
 
 snow_type:
   - wet

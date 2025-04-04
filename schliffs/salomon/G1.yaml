@@ -2,7 +2,7 @@ name: G1
 description:
 description_ru: натуральный холодный снег на температуру -5 и холоднее
 
-website_url: ""
+website_url:
 
 snow_type:
   - natural

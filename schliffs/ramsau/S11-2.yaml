@@ -1,7 +1,7 @@
 name: S11-2
 description:
 description_ru: структура для холодного сухого натурального снега, температура от -10 до -20
-website_url: ""
+website_url:
 
 snow_type:
   - dry

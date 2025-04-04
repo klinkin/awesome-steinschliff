@@ -1,7 +1,7 @@
 name: P11-1
 description:
 description_ru: чуть холоднее чем P11-2
-website_url: ""
+website_url:
 
 snow_type:
   - all

@@ -1,7 +1,7 @@
 name: S12-2-07
 description:
 description_ru: для свежего снега и мягкой лыжни 0 -10
-website_url: ""
+website_url:
 
 snow_type:
   - fresh

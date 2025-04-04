@@ -2,7 +2,7 @@ name: SL32
 description: from humid natural to wet and very wet old and dirty snow, from medium to soft conditions
 description_ru: структура для влажного и очень мокрого старого снега, а также для грязного снега при средней и мягкой жесткости трассы
 
-website_url: ""
+website_url:
 
 snow_type:
   - wet

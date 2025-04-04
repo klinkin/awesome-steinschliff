@@ -2,7 +2,7 @@ name: SLRGL
 description:
 description_ru: структура на переменную от холода на тепло и на жесткую трассу и искусственный снег
 
-website_url: ""
+website_url:
 
 snow_type:
   - natural

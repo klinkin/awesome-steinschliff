@@ -1,7 +1,7 @@
 name: S13-5-08
 description:
 description_ru: влажный мелкозернистый свежий снег
-website_url: ""
+website_url:
 
 snow_type:
   - wet

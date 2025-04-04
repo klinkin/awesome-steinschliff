@@ -1,7 +1,7 @@
 name: S13-6
 description:
 description_ru: мокрый снег с дождем, температура от 0 до +10
-website_url: ""
+website_url:
 
 snow_type:
   - wet
