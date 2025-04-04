@@ -1,5 +1,7 @@
 name: P10-3
-description: падающий, свежий снег, t от 0 до -5
+description:
+description_ru: структура для падающего свежего снега, температура от 0 до -5
+
 website_url: ""
 
 snow_type:

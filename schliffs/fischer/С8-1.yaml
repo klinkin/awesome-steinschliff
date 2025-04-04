@@ -1,5 +1,6 @@
 name: С8-1
-description: более узкая структура для искусственного снега от 0 до -10
+description:
+description_ru: более узкая структура для искусственного снега от 0 до -10
 website_url: ""
 
 snow_type:
@@ -18,8 +19,8 @@ tags:
   - узкая структура
 
 similars:
-  - С3-1
-  - S12-7
+  -
+  -
 
 features:
   - ""

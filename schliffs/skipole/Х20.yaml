@@ -1,0 +1,32 @@
+name: Х20
+description:
+description_ru: структура для свежего и старого снега при температуре от -5 до 15
+
+website_url: https://skipole.ru/shtainshlift-romashkovo/
+
+snow_type:
+  - all
+  - fresh
+  - old
+snow_temperature:
+  - min: -5
+  - max: 15
+condition: blue
+manufactory: ""
+house: "Skipole"
+author: "Fedor Nikolaev"
+country: "Russia"
+
+tags:
+  - свежий снег
+
+similars:
+  -
+  -
+
+features:
+  -
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

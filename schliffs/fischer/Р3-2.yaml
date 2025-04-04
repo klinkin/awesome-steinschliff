@@ -1,5 +1,6 @@
 name: Р3-2
-description: на старый мокрый снег при t 0 с переходом в плюс
+description:
+description_ru: на старый мокрый снег при t 0 с переходом в плюс
 website_url: ""
 
 snow_type:

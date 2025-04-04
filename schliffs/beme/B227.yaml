@@ -1,5 +1,7 @@
 name: B227
 description:
+description_ru: стуктура для морозного снега и температуры ниже -5
+
 website_url: "https://www.bemesports.com/en/skiservice"
 
 snow_type:

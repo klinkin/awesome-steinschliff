@@ -1,0 +1,33 @@
+name: T1
+description:
+description_ru: стуктура для крупнозернистого снега, весеннего старого снега и температуры от 0 до +5
+
+website_url:
+
+snow_type:
+  - old
+  - wet
+  - dirty
+
+snow_temperature:
+  - min: 0
+  - max: +5
+condition: ""
+manufactory: "Fischer"
+house: "Ramsau"
+author: ""
+country: "Germany"
+
+tags:
+  - крупнозернистый
+
+similars:
+  - S13-5
+  - B3312
+
+features:
+  - ""
+
+updated_at: 2024-04-04
+updated_by: ""
+archived: false

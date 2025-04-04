@@ -1,13 +1,14 @@
 name: S12-4
-description: свежий сухой снег, температура от -10 до -5
+description:
+description_ru: универсальная структура для всех трасс с сухим снегом, температура от -2 до -15
 website_url: ""
 
 snow_type:
   - fresh
   - dry
 snow_temperature:
-  - min: -10
-  - max: -5
+  - min: -15
+  - max: -2
 condition: ""
 manufactory: "Fischer"
 house: "Ramsau"
@@ -20,8 +21,6 @@ tags:
   - холодный
 
 similars:
-  - S12-3
-  - S11-1
   - SM15-5
 
 features:

@@ -1,0 +1,36 @@
+name: M62
+description:
+description_ru: структура для для нового, перемешанного и крупнозернистого снега при высокой влажности, при температуре от -2 и теплее
+
+website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
+
+snow_type:
+  -
+  -
+  -
+snow_temperature:
+  - min: -2
+  - max: +10
+condition: yellow
+manufactory: "Madshus"
+house: "Madshus"
+author: ""
+country: "Norway"
+
+tags:
+  - высокая влажность
+  - свежий
+  - перемешанный
+  - крупнозернистый
+
+similars:
+  -
+
+features:
+  - не крупная, за счет чего практически не набирает грязь
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false
+
+

@@ -1,5 +1,6 @@
 name: B2211
-description: универсальная структура на все типы снега, особенно на свеже выпавший снег
+description:
+description_ru: универсальная структура на все типы снега, особенно на свеже выпавший снег
 website_url: "https://www.bemesports.com/en/skiservice"
 
 snow_type:

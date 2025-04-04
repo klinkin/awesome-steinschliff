@@ -1,5 +1,6 @@
 name: M61
-description: Cтруктура для свежего, универсального и трансформированного снега при температуре воздуха от +1 до -8, температуре снега -1/-6.
+description:
+description_ru: структура для свежего, универсального и трансформированного снега при температуре снега от -1 до -6
 website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
 
 snow_type:

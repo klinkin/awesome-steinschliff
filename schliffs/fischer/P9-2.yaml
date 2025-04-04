@@ -1,5 +1,6 @@
 name: P9-2
-description: влажный снег, t выше 0
+description:
+description_ru: влажный снег, t выше 0
 website_url: ""
 
 snow_type:

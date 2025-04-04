@@ -1,12 +1,15 @@
 name: Р3-3
-description: водянистый снег, от +5 и выше
+description:
+description_ru: водянистый снег от +3 до +15
 website_url: ""
 
 snow_type:
   - watery
+  - wet
+
 snow_temperature:
-  - min: 5
-  - max: null
+  - min: +3
+  - max: +15
 condition: ""
 manufactory: "Fischer"
 house: "Fischer"
@@ -18,8 +21,8 @@ tags:
   - высокая температура
 
 similars:
-  - S13-6
-  - P9-2
+  -
+  -
 
 features:
   - ""

@@ -1,5 +1,6 @@
 name: S12-7
-description: искусственный снег, t -2 -12
+description:
+description_ru: искусственный снег, температура от -2 до -12
 website_url: ""
 
 snow_type:

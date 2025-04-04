@@ -1,5 +1,6 @@
 name: S12-6
-description: свежий падающий мокрый снег t 0 -5
+description:
+description_ru: универсальная структура для всех трасс со свежим снегом, падающим и мокрым снегом, температура от 0 до -15
 website_url: ""
 
 snow_type:
@@ -7,7 +8,7 @@ snow_type:
   - falling
   - wet
 snow_temperature:
-  - min: -5
+  - min: -15
   - max: 0
 condition: ""
 manufactory: "Fischer"
@@ -21,11 +22,11 @@ tags:
   - мокрый
 
 similars:
-  - S13-5
-  - P10-3
+  -
+  -
 
 features:
-  - ""
+  -
 
 updated_at: 2024-04-01
 updated_by: ""

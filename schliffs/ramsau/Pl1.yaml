@@ -1,13 +1,13 @@
-name: S12-3
+name: Pl1
 description:
-description_ru: свежий снег под t -2 -6
+description_ru:
 website_url: ""
 
 snow_type:
-  - fresh
+  - all
 snow_temperature:
-  - min: -6
-  - max: -2
+  - min: null
+  - max: null
 condition: ""
 manufactory: "Fischer"
 house: "Ramsau"
@@ -15,16 +15,14 @@ author: ""
 country: "Germany"
 
 tags:
-  - свежий снег
-  - узкий диапазон
+  - ramsau
 
 similars:
-  - S12-2
-  - S12-4
+  - Pl2
 
 features:
   - ""
 
-updated_at: 2024-04-01
+updated_at: 2024-04-04
 updated_by: ""
 archived: false

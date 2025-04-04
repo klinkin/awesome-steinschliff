@@ -1,5 +1,6 @@
 name: TZ1-1
-description: на свежий снег при температуре ниже 0
+description:
+description_ru: на свежий снег при температуре ниже 0
 website_url: ""
 
 snow_type:

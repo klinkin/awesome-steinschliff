@@ -1,5 +1,7 @@
 name: P10-1
-description: для сухого снега при температуре ниже 0
+description:
+description_ru: для сухого снега при температуре ниже 0
+
 website_url: ""
 
 snow_type:

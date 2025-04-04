@@ -1,5 +1,6 @@
 name: S12-2
-description: свежий мокрый снег, температура от -5 до 0
+description:
+description_ru: свежий мокрый снег, температура от -5 до 0
 website_url: ""
 
 snow_type:

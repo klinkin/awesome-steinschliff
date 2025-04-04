@@ -1,0 +1,38 @@
+name: M63
+description:
+description_ru: стуктура для мокрого снега при температуре от 0 и теплее
+
+website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
+
+snow_type:
+  - wet
+
+snow_temperature:
+  - min: 0
+  - max: +10
+condition: yellow
+manufactory: "Madshus"
+house: "Madshus"
+author: ""
+country: "Norway"
+
+tags:
+  - мокрый снег
+  - перемешанный
+  - крупнозернистый
+
+similars:
+  -
+
+features:
+  -
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false
+
+
+
+
+
+M 63 - для мокрого снега при температуре воздуха от 0 и теплее, температуре снега -0,1/-1.

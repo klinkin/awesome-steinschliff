@@ -1,0 +1,32 @@
+name: W30
+description:
+description_ru: стуктура для мокрого снега с дождём
+
+website_url: https://skipole.ru/shtainshlift-romashkovo/
+
+snow_type:
+  - wet
+
+snow_temperature:
+  - min: 0
+  - max: +10
+condition:
+manufactory: ""
+house: "Skipole"
+author: "Fedor Nikolaev"
+country: "Russia"
+
+tags:
+  - мокрый снег
+  - дождь
+
+similars:
+  -
+  -
+
+features:
+  -
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

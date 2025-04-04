@@ -1,5 +1,6 @@
 name: M61F2
-description: новая мелкая структура для холодного и сухого снега при температуре воздуха от -6 и холоднее.
+description:
+description_ru: новая мелкая структура для холодного и сухого снега при температуре от -6 и холоднее
 website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
 
 snow_type:

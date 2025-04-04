@@ -1,5 +1,6 @@
 name: С12-1
-description: любой тип снега, -5-15
+description:
+description_ru: любой тип снега, температура от -15 до -5
 website_url: ""
 
 snow_type:

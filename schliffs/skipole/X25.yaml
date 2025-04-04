@@ -1,0 +1,31 @@
+name: Х25
+description:
+description_ru: стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8
+
+website_url: https://skipole.ru/shtainshlift-romashkovo/
+
+snow_type:
+  - all
+snow_temperature:
+  - min: -8
+  - max: 0
+condition: yellow
+manufactory: ""
+house: "Skipole"
+author: "Fedor Nikolaev"
+country: "Russia"
+
+tags:
+  - свежий снег
+  - глянец
+
+similars:
+  - SV100
+  - F1
+
+features:
+  -
+
+updated_at: 2024-04-01
+updated_by: https://github.com/klinkin
+archived: false

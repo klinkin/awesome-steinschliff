@@ -1,5 +1,6 @@
 name: С1-1
-description: все типы снега, включая свежий, температура ниже -5
+description:
+description_ru: все типы снега, включая свежий, температура ниже -5
 website_url: ""
 
 snow_type:
