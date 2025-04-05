@@ -776,9 +776,9 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                     # Добавляем телефоны, если доступны
                     phones = contact_info.get("phones", [])
                     if phones:
-                        # Преобразуем все элементы в строки для безопасного соединения
-                        phones_str = [str(phone) for phone in phones]
-                        f.write(f"Phones: {', '.join(phones_str)}\n\n")
+                        # Преобразуем все элементы в строки и делаем кликабельными ссылками
+                        phones_links = [f"[{str(phone)}](tel:{str(phone)})" for phone in phones]
+                        f.write(f"Phones: {', '.join(phones_links)}\n\n")
             else:
                 f.write(f"## {section_title}\n\n")
 

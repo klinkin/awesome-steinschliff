@@ -45,7 +45,7 @@ Video Overview: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 ### Contact Information
 
-Phones: +74997043525
+Phones: [+74997043525](tel:+74997043525)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -113,7 +113,7 @@ Location: Одинцово, Россия
 
 ### Contact Information
 
-Phones: +79250464773
+Phones: [+79250464773](tel:+79250464773)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -187,7 +187,7 @@ Location: Красногорск, Россия
 
 Email: servicerski@yandex.ru
 
-Phones: +79104316887, +79779055104
+Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -208,7 +208,7 @@ Location: Москва, Россия
 
 Telegram: [Nikfedval](https://t.me/Nikfedval)
 
-Phones: +79261489013, +79032181881
+Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -230,7 +230,7 @@ Location: Новосибирск, Россия
 
 Telegram: [svecky](https://t.me/svecky)
 
-Phones: +7(9I3)478-29-59, +7(9I3)ООО-О4-ОО
+Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+7(9I3)ООО-О4-ОО)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
