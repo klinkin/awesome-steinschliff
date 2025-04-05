@@ -166,7 +166,7 @@ Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo)
 | [W28](schliffs/skipole/W28.yaml) |  | all | +3 -3 | ![W28](schliffs/skipole/W28/skipole_w28.jpeg) | переходная | [SV100](schliffs/serviccer/SV100.yaml), [F1](schliffs/marsport/F1.yaml) |
 | [W30](schliffs/skipole/W30.yaml) |  | wet | +10 0 |  | мокрый снег, дождь |  |
 | [Х20](schliffs/skipole/Х20.yaml) |  | all, fresh, old | +15 -5 |  | свежий снег |  |
-| [Х25](schliffs/skipole/X25.yaml) |  | all | 0 -8 |  | свежий снег, глянец | [SV100](schliffs/serviccer/SV100.yaml), [F1](schliffs/marsport/F1.yaml) |
+| [Х25](schliffs/skipole/X25.yaml) |  | all | 0 -8 |  | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml) |
 | [ХО](schliffs/skipole/ХО.yaml) |  | frozen, dry, natural | -12 -25 |  | сухой снег, натуральный снег |  |
 
 ## Uventa
