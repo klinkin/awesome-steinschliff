@@ -1,16 +1,19 @@
 name: W30
 description:
 description_ru: стуктура для мокрого снега с дождём
+images:
+  - schliffs/skipole/W30/W30.jpg
 
 website_url: https://skipole.ru/shtainshlift-romashkovo/
 
 snow_type:
   - wet
+  - rain
 
 snow_temperature:
   - min: 0
     max: +10
-condition:
+condition: yellow
 manufactory: ""
 house: "Skipole"
 author: "Fedor Nikolaev"

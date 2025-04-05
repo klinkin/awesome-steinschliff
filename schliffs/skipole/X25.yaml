@@ -1,6 +1,8 @@
 name: Х25
 description:
 description_ru: стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8
+images:
+  - schliffs/skipole/X25/X25.jpg
 
 website_url: https://skipole.ru/shtainshlift-romashkovo/
 
@@ -22,6 +24,7 @@ tags:
 similars:
   - S12-6
   - B2211
+  - SV100
 
 features:
   -

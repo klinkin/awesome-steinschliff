@@ -1,6 +1,8 @@
 name: Х20
 description:
 description_ru: структура для свежего и старого снега при температуре от -5 до 15
+images:
+  - schliffs/skipole/X20/X20.jpg
 
 website_url: https://skipole.ru/shtainshlift-romashkovo/
 

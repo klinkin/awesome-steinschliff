@@ -1,6 +1,8 @@
-name: ХО
+name: Х0
 description:
 description_ru: структура для натурального сухого снега при температуре ниже -12
+images:
+  - schliffs/skipole/X0/X0.jpg
 
 website_url: https://skipole.ru/shtainshlift-romashkovo/
 

@@ -208,7 +208,7 @@ Phones: +79104316887, +79779055104
 
 Кастомные структуры от Федора Николаева
 
-Сайт: [Skipole](https://skipole.ru/shtainshlift-romashkovo)
+Сайт: [Skipole](https://shtainshlift.ru)
 
 Location: Москва, Россия
 
@@ -221,10 +221,10 @@ Phones: +79261489013, +79032181881
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [W28](schliffs/skipole/W28.yaml) | переходная структура на любой тип снега при температуре от +3 до -3 | all | +3 -3 | ![W28](schliffs/skipole/W28/skipole_w28.jpeg) | переходная | [SV100](schliffs/serviccer/SV100.yaml), [F1](schliffs/marsport/F1.yaml) |
-| [W30](schliffs/skipole/W30.yaml) | стуктура для мокрого снега с дождём | wet | +10 0 |  | мокрый снег, дождь |  |
-| [Х20](schliffs/skipole/Х20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | +15 -5 |  | свежий снег |  |
-| [Х25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | 0 -8 |  | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml) |
-| [ХО](schliffs/skipole/ХО.yaml) | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | -12 -25 |  | сухой снег, натуральный снег |  |
+| [W30](schliffs/skipole/W30.yaml) | стуктура для мокрого снега с дождём | wet, rain | +10 0 | ![W30](schliffs/skipole/W30/W30.jpg) | мокрый снег, дождь |  |
+| [Х0](schliffs/skipole/Х0.yaml) | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | -12 -25 | ![Х0](schliffs/skipole/X0/X0.jpg) | сухой снег, натуральный снег |  |
+| [Х20](schliffs/skipole/Х20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | +15 -5 | ![Х20](schliffs/skipole/X20/X20.jpg) | свежий снег |  |
+| [Х25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | 0 -8 | ![Х25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |
 
 ## Svecky
 
