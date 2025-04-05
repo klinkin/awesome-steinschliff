@@ -1,6 +1,6 @@
 name: P51-33
 description: Universal structure for varied conditions, except fine fresh snow
-description_ru: Универсальная структура, не любит мелкий свежий снег
+description_ru: Универсальная структура
 
 snow_type:
   - all
@@ -21,7 +21,6 @@ tags:
 
 features:
   - Не подходит для мелкого свежего снега
-  - Универсальная для большинства условий
 
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin

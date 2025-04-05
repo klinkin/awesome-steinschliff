@@ -93,10 +93,14 @@ class SchliffStructure(BaseModel):
     description_ru: Optional[str] = ""
     snow_type: Union[List[str], str] = []
     snow_temperature: Optional[List[TemperatureRange]] = []
+    condition: Optional[str] = ""
+    manufactory: Optional[str] = ""
     house: Optional[str] = ""
+    author: Optional[str] = ""
     country: Optional[str] = ""
     tags: Optional[List[str]] = []
     similars: Optional[List[str]] = []
+    features: Optional[List[str]] = []  # Особенности структуры
     image: Optional[str] = None  # Путь к одиночному изображению шлифта
     images: Optional[List[str]] = None  # Путь к множественным изображениям шлифта
 
@@ -450,6 +454,7 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
                 "country": data.get("country", ""),
                 "tags": data.get("tags", []),
                 "similars": data.get("similars", []),
+                "features": data.get("features", []),  # Добавляем поле особенностей
                 "image": data.get("image", ""),  # Добавляем поле изображения
                 "images": data.get("images", []),  # Добавляем поле множественных изображений
                 "file_path": file_path,
@@ -623,6 +628,28 @@ def _format_single_image(image_path: str, name: str, output_dir: str) -> str:
         return ""
 
 
+def format_features(features: Union[List[str], None]) -> str:
+    """
+    Форматирует список особенностей структуры для отображения в таблицах README.
+
+    Args:
+        features: Список особенностей.
+
+    Returns:
+        Отформатированная строка с особенностями, разделенными запятыми.
+    """
+    if not features:
+        return ""
+
+    if isinstance(features, list):
+        # Фильтруем значения None и пустые строки, затем конвертируем в строки
+        valid_features = [str(item) for item in features if item is not None and str(item).strip() != ""]
+        return ", ".join(valid_features)
+
+    # Если это строка, просто возвращаем ее
+    return str(features)
+
+
 def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
                 sort_by: str = "name", filter_pattern: Optional[str] = None) -> None:
@@ -647,7 +674,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "website": "Website",
             "video": "Video Overview",
             "contact": "Contact Information",
-            "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Image", "Tags", "Similar Structures"],
+            "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Image", "Tags", "Similar Structures", "Features"],
         }
         description_field = "description"
     else:  # ru
@@ -659,7 +686,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "website": "Сайт",
             "video": "Обзор",
             "contact": "Контактная информация",
-            "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Изображение", "Теги", "Похожие структуры"],
+            "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Изображение", "Теги", "Похожие структуры", "Особенности"],
         }
         description_field = "description_ru"
 
@@ -757,8 +784,8 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
 
             # Таблица со структурами
             table_headers = titles["table_headers"]
-            f.write(f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} |\n")
-            f.write("|------|------------|-----------|------------|------|-------------------|-------------------|\n")
+            f.write(f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} | {table_headers[7]} |\n")
+            f.write("|------|------------|-----------|------------|------|------|-------------------|-------------------|\n")
 
             # Используем генератор для потоковой обработки данных без хранения всего в памяти
             def stream_sorted_structures(section_data, sort_field, pattern=None):
@@ -813,7 +840,10 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 elif structure.get('image'):
                     image_link = format_image_link(structure.get('image'), structure['name'], output_dir)
 
-                f.write(f"| {name_with_link} | {description} | {structure['snow_type']} | {temp_range} | {image_link} | {tags} | {similars} |\n")
+                # Форматируем особенности
+                features = format_features(structure.get('features', []))
+
+                f.write(f"| {name_with_link} | {description} | {structure['snow_type']} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n")
 
             f.write("\n")
 

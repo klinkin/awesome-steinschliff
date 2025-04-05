@@ -8,7 +8,7 @@ snow_type:
 snow_temperature:
   - min: -16
     max: 0
-condition: cold
+condition: blue
 manufactory: ""
 house: "Svecky"
 author: ""
@@ -20,8 +20,8 @@ tags:
   - свежий снег
 
 features:
-  - Специально для классического стиля
-  - Для мелкозернистого и свежего снега
+  - cпециально для классического стиля
+
 
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin

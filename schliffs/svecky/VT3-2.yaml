@@ -8,7 +8,7 @@ snow_type:
 snow_temperature:
   - min: -12
     max: -3
-condition: cold
+condition: green
 manufactory: ""
 house: "Svecky"
 author: ""
@@ -17,11 +17,9 @@ country: "Россия"
 tags:
   - свежий снег
   - холодная
-  - новый снег
 
 features:
-  - Оптимизирована для свежего снега
-  - Для холодных температур
+  -
 
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
