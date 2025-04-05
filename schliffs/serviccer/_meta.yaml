@@ -2,14 +2,16 @@ name: Serviccer
 description:
 description_ru: Структуры для беговых лыж от лыжного сервиса SERVICCER
 
-
 website_url: https://serviccer.ru/strukturyi.html
 
-country: Russia
+country: Россия
+city: Красногорск
 logo:
 
 contact:
-  email: email:servicerski@yandex.ru
-  phone: tel:+79104316887
-  address: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER
+  email: servicerski@yandex.ru
+  phones:
+    - "+79104316887"
+    - "+79779055104"
+  address: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER"
 updated_at: 2024-04-04

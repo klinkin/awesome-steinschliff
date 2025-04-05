@@ -1,0 +1,28 @@
+name: 16-4
+description: Universal warm structure for high humidity conditions
+description_ru: Универсальная тёплая структура в том числе на очень влажные условия
+
+snow_type:
+  - all
+  - wet
+snow_temperature:
+  - min: -1
+    max: 10
+condition: warm
+manufactory: ""
+house: "Svecky"
+author: ""
+country: "Россия"
+
+tags:
+  - универсальная
+  - тёплая
+  - влажные условия
+
+features:
+  - Для условий высокой влажности >80%
+  - Универсальная
+
+updated_at: 2024-04-05
+updated_by: https://github.com/klinkin
+archived: false

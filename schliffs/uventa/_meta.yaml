@@ -4,11 +4,12 @@ description_ru: Кастомные структуры для беговых лы
 
 website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
 
-country: Russia
+country: Россия
+city: Москва
 logo:
 
 contact:
   email:
-  phone:
+  phones: []
   address: "Москва"
 updated_at: 2024-04-04

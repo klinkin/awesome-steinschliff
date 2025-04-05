@@ -9,6 +9,6 @@ country: Norway
 logo: ""
 contact:
   email: ""
-  phone: ""
+  phones: []
   address: ""
 updated_at: 2024-04-04

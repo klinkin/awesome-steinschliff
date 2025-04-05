@@ -5,10 +5,12 @@ description_ru: Структуры для беговых лыж от компа�
 website_url: https://ekiptime.ru/services/base_tuning.php
 video_url: https://www.youtube.com/watch?v=IN1FKSIZT2I
 
-country: Russia
+country: Россия
+city: Москва
 logo:
 contact:
   email:
-  phone: tel:+74997043525
+  phones:
+    - "+74997043525"
   address: Москва, стадион Динамо, ВТБ Арена Плаза, Ленинградский проспект, 36
 updated_at: 2024-04-04

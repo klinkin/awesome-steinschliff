@@ -16,7 +16,7 @@ snow_temperature:
   - min: -25
     max: -10
 house: Uventa
-country: Russia
+country: Россия
 tags:
   - cold
   - race
@@ -104,6 +104,16 @@ class SchliffStructure(BaseModel):
         """Конфигурация модели Pydantic"""
         extra = "allow"  # Разрешаем дополнительные поля
 
+class ContactInfo(BaseModel):
+    """Модель контактной информации"""
+    email: Optional[str] = None
+    phones: Optional[List[str]] = None  # Массив телефонных номеров
+    telegram: Optional[str] = None
+
+    class Config:
+        """Конфигурация модели Pydantic"""
+        extra = "allow"  # Разрешаем дополнительные поля
+
 class SectionMetadata(BaseModel):
     """Модель метаданных секции (производителя)"""
     name: Optional[str] = ""
@@ -111,6 +121,9 @@ class SectionMetadata(BaseModel):
     description_ru: Optional[str] = ""
     website_url: Optional[str] = ""
     video_url: Optional[str] = ""
+    country: Optional[str] = ""
+    city: Optional[str] = ""
+    contact: Optional[ContactInfo] = None
 
     class Config:
         """Конфигурация модели Pydantic"""
@@ -633,6 +646,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "toc": "Table of Contents",
             "website": "Website",
             "video": "Video Overview",
+            "contact": "Contact Information",
             "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Image", "Tags", "Similar Structures"],
         }
         description_field = "description"
@@ -644,6 +658,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             "toc": "Оглавление",
             "website": "Сайт",
             "video": "Обзор",
+            "contact": "Контактная информация",
             "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Изображение", "Теги", "Похожие структуры"],
         }
         description_field = "description_ru"
@@ -700,10 +715,43 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 if website_url:
                     f.write(f"{titles['website']}: [{meta.get('name', section_title)}]({website_url})\n\n")
 
+                # Добавляем местоположение (город и страну), если доступны
+                country = meta.get("country", "")
+                city = meta.get("city", "")
+                location = []
+                if city:
+                    location.append(city)
+                if country:
+                    location.append(country)
+                if location:
+                    f.write(f"Location: {', '.join(location)}\n\n")
+
                 # Добавляем ссылку на видео, если доступна
                 video_url = meta.get("video_url", "")
                 if video_url:
                     f.write(f"{titles['video']}: [{meta.get('name', section_title)}]({video_url})\n\n")
+
+                # Добавляем контактную информацию, если доступна
+                contact_info = meta.get("contact", {})
+                if contact_info:
+                    f.write(f"### {titles['contact']}\n\n")
+
+                    # Добавляем Telegram, если доступен
+                    telegram = contact_info.get("telegram")
+                    if telegram:
+                        f.write(f"Telegram: [{telegram}](https://t.me/{telegram.lstrip('@')})\n\n")
+
+                    # Добавляем email, если доступен
+                    email = contact_info.get("email")
+                    if email:
+                        f.write(f"Email: {email}\n\n")
+
+                    # Добавляем телефоны, если доступны
+                    phones = contact_info.get("phones", [])
+                    if phones:
+                        # Преобразуем все элементы в строки для безопасного соединения
+                        phones_str = [str(phone) for phone in phones]
+                        f.write(f"Phones: {', '.join(phones_str)}\n\n")
             else:
                 f.write(f"## {section_title}\n\n")
 

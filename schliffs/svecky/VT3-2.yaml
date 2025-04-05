@@ -1,0 +1,28 @@
+name: VT3-2
+description: Structure designed for fresh snow in cold conditions
+description_ru: Структура на свежий снег при холодных температурах
+
+snow_type:
+  - fresh
+  - new
+snow_temperature:
+  - min: -12
+    max: -3
+condition: cold
+manufactory: ""
+house: "Svecky"
+author: ""
+country: "Россия"
+
+tags:
+  - свежий снег
+  - холодная
+  - новый снег
+
+features:
+  - Оптимизирована для свежего снега
+  - Для холодных температур
+
+updated_at: 2024-04-05
+updated_by: https://github.com/klinkin
+archived: false

@@ -1,0 +1,28 @@
+name: TP50
+description: Structure for extremely wet conditions and rain
+description_ru: Для мокрых кондиций, хорошо проявила себе под проливным дождем
+
+snow_type:
+  - wet
+  - rain
+snow_temperature:
+  - min: 0
+    max: 10
+condition: wet
+manufactory: ""
+house: "Svecky"
+author: ""
+country: "Россия"
+
+tags:
+  - дождь
+  - мокрый снег
+  - влажные условия
+
+features:
+  - Превосходно работает при сильном дожде
+  - Оптимизирована для очень влажных условий
+
+updated_at: 2024-04-05
+updated_by: https://github.com/klinkin
+archived: false

@@ -1,0 +1,20 @@
+name: Svecky Racing
+description:
+description_ru: Cервис оказывает услуги по нанесению штайншлифа на беговые лыжи используя машину [Delta](https://www.svecomski.com/en/products/machines/delta-research-160-2) от фирмы [SVECOM SKI](http://www.svecomski.com).
+
+
+website_url: http://svecky.racing/
+country: Россия
+city: Новосибирск
+
+logo:
+
+contact:
+  email:
+  phones:
+    - "+7(9I3)478-29-59"
+    - "+7(9I3)ООО-О4-ОО"
+  telegram: svecky
+  address: Новосибирск, Академгородок, ул. Ионосферная 3
+
+updated_at: 2024-04-05

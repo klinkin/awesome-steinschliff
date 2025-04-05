@@ -14,6 +14,7 @@ This repository contains information about various ski grinding structures.
 * [Salomon](#salomon)
 * [Serviccer](#serviccer)
 * [Skipole](#skipole)
+* [Svecky](#svecky)
 * [Uventa](#uventa)
 
 ## Beme
@@ -21,6 +22,10 @@ This repository contains information about various ski grinding structures.
 None
 
 Website: [Beme](https://www.bemesports.com/en/skiservice)
+
+Location: Austria
+
+### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
@@ -34,7 +39,13 @@ Website: [Beme](https://www.bemesports.com/en/skiservice)
 
 Website: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
 
+Location: Москва, Россия
+
 Video Overview: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
+
+### Contact Information
+
+Phones: +74997043525
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
@@ -46,6 +57,10 @@ Video Overview: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 Default Fischer structures
 
 Website: [Fischer](https://www.fischersports.com)
+
+Location: Austria
+
+### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
@@ -75,6 +90,10 @@ None
 
 Website: [Madshus](https://www.madshus.com)
 
+Location: Norway
+
+### Contact Information
+
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [M61](schliffs/madshus/M61.yaml) |  | fresh, universal, transformed | -1 -6 |  | свежий снег, универсальный, трансформированный |  |
@@ -90,6 +109,12 @@ Website: [Madshus](https://www.madshus.com)
 
 Website: [Марспорт](https://marsport.ru/service)
 
+Location: Одинцово, Россия
+
+### Contact Information
+
+Phones: +79250464773
+
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [C100](schliffs/marsport/C100.yaml) |  | frozen, fresh | -10 -25 |  | перемороженный, холодный | [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml), [G1](schliffs/salomon/G1.yaml), [Х20](schliffs/skipole/Х20.yaml) |
@@ -100,6 +125,10 @@ Website: [Марспорт](https://marsport.ru/service)
 ## Ramsau
 
 None
+
+Location: Germany
+
+### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
@@ -134,6 +163,10 @@ Default Salomon structures
 
 Website: [Salomon](https://www.salomon.com)
 
+Location: Austria
+
+### Contact Information
+
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [G1](schliffs/salomon/G1.yaml) |  | natural, cold, dry | -5 -20 |  | сухой, холодный, натуральный | С12-4 |
@@ -148,6 +181,14 @@ None
 
 Website: [Serviccer](https://serviccer.ru/strukturyi.html)
 
+Location: Красногорск, Россия
+
+### Contact Information
+
+Email: servicerski@yandex.ru
+
+Phones: +79104316887, +79779055104
+
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [R10-3](schliffs/serviccer/R10-3.yaml) |  |  |  |  |  |  |
@@ -161,6 +202,14 @@ None
 
 Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo)
 
+Location: Москва, Россия
+
+### Contact Information
+
+Telegram: [Nikfedval](https://t.me/Nikfedval)
+
+Phones: +79261489013, +79032181881
+
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|
 | [W28](schliffs/skipole/W28.yaml) |  | all | +3 -3 | ![W28](schliffs/skipole/W28/skipole_w28.jpeg) | переходная | [SV100](schliffs/serviccer/SV100.yaml), [F1](schliffs/marsport/F1.yaml) |
@@ -169,11 +218,40 @@ Website: [Skipole](https://skipole.ru/shtainshlift-romashkovo)
 | [Х25](schliffs/skipole/X25.yaml) |  | all | 0 -8 |  | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml) |
 | [ХО](schliffs/skipole/ХО.yaml) |  | frozen, dry, natural | -12 -25 |  | сухой снег, натуральный снег |  |
 
+## Svecky
+
+None
+
+Website: [Svecky Racing](http://svecky.racing/)
+
+Location: Новосибирск, Россия
+
+### Contact Information
+
+Telegram: [svecky](https://t.me/svecky)
+
+Phones: +7(9I3)478-29-59, +7(9I3)ООО-О4-ОО
+
+| Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
+|------|------------|-----------|------------|------|-------------------|-------------------|
+| [16-4](schliffs/svecky/16-4.yaml) | Universal warm structure for high humidity conditions | all, wet | +10 -1 |  | универсальная, тёплая, влажные условия |  |
+| [LiB](schliffs/svecky/LiB.yaml) | Warm structure for fresh snow, high humidity conditions | fresh, new | +5 -4 |  | тёплая, свежий снег, высокая влажность |  |
+| [P51-33](schliffs/svecky/P51-33.yaml) | Universal structure for varied conditions, except fine fresh snow | all, transformed, old | +2 -9 |  | универсальная, трансформированный снег |  |
+| [PRG](schliffs/svecky/PRG.yaml) | Structure for transformed, groomed snow in cold conditions | transformed, groomed | -5 -13 |  | трансформированный снег, ратрачный снег, холодная |  |
+| [TP50](schliffs/svecky/TP50.yaml) | Structure for extremely wet conditions and rain | wet, rain | +10 0 |  | дождь, мокрый снег, влажные условия |  |
+| [VT1.3](schliffs/svecky/VT1.3.yaml) | Cold structure optimized for well-used tracks | used, transformed | -4 -16 |  | холодная, раскат, трансформированный снег |  |
+| [VT3-2](schliffs/svecky/VT3-2.yaml) | Structure designed for fresh snow in cold conditions | fresh, new | -3 -12 |  | свежий снег, холодная, новый снег |  |
+| [VT322](schliffs/svecky/VT322.yaml) | Classic skiing structure for fine-grained and fresh snow | fine, fresh | 0 -16 |  | классический стиль, мелкозернистый снег, свежий снег |  |
+
 ## Uventa
 
 None
 
 Website: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
+
+Location: Москва, Россия
+
+### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures |
 |------|------------|-----------|------------|------|-------------------|-------------------|

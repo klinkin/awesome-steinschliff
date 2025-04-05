@@ -3,16 +3,17 @@ description:
 description_ru: Кастомные структуры от Федора Николаева
 
 website_url: https://skipole.ru/shtainshlift-romashkovo
-country: Russia
+country: Россия
+city: Москва
 
 logo:
 
 contact:
   email:
-  phone:
-    - tel:+79261489013
-    - tel:+79032181881
-  address: Москва, село Ромашково ул.Советская, д.113
+  phones:
+    - "+79261489013"
+    - "+79032181881"
+  telegram: Nikfedval
   address: Москва, село Ромашково ул.Советская, д.113
 
 updated_at: 2024-04-04

@@ -1,0 +1,28 @@
+name: VT322
+description: Classic skiing structure for fine-grained and fresh snow
+description_ru: Структура для классики на мелкозернистый и свежий снег
+
+snow_type:
+  - fine
+  - fresh
+snow_temperature:
+  - min: -16
+    max: 0
+condition: cold
+manufactory: ""
+house: "Svecky"
+author: ""
+country: "Россия"
+
+tags:
+  - классический стиль
+  - мелкозернистый снег
+  - свежий снег
+
+features:
+  - Специально для классического стиля
+  - Для мелкозернистого и свежего снега
+
+updated_at: 2024-04-05
+updated_by: https://github.com/klinkin
+archived: false
