@@ -113,6 +113,7 @@ class ContactInfo(BaseModel):
     email: Optional[str] = None
     phones: Optional[List[str]] = None  # Массив телефонных номеров
     telegram: Optional[str] = None
+    address: Optional[str] = None  # Адрес
 
     class Config:
         """Конфигурация модели Pydantic"""
@@ -128,6 +129,28 @@ class SectionMetadata(BaseModel):
     country: Optional[str] = ""
     city: Optional[str] = ""
     contact: Optional[ContactInfo] = None
+
+    class Config:
+        """Конфигурация модели Pydantic"""
+        extra = "allow"  # Разрешаем дополнительные поля
+
+# Добавляем модель для обработанной информации о структуре
+class StructureInfo(BaseModel):
+    """Модель обработанной информации о структуре для вывода в README"""
+    name: str
+    description: Optional[str] = ""
+    description_ru: Optional[str] = ""
+    snow_type: Optional[str] = ""
+    snow_temperature: List[Dict[str, Any]] = Field(default_factory=list)
+    house: Optional[str] = ""
+    country: Optional[str] = ""
+    tags: List[Union[str, int, None]] = Field(default_factory=list)
+    similars: List[Union[str, int, None]] = Field(default_factory=list)
+    features: List[Union[str, int, None]] = Field(default_factory=list)
+    image: Optional[str] = ""
+    images: List[str] = Field(default_factory=list)
+    file_path: str
+    name_to_path: Dict[str, str] = Field(default_factory=dict)
 
     class Config:
         """Конфигурация модели Pydantic"""
@@ -315,12 +338,12 @@ def format_snow_types(snow_types: Union[List[str], str, None]) -> str:
     return str(snow_types)
 
 
-def format_list_for_display(items: Union[List[str], str, None]) -> str:
+def format_list_for_display(items: Union[List[Union[str, int, None]], str, None]) -> str:
     """
     Форматирует список элементов для отображения в таблицах README.
 
     Args:
-        items: Список элементов или строка.
+        items: Список элементов, строка или None.
 
     Returns:
         Отформатированная строка с элементами, разделенными запятыми.
@@ -336,12 +359,12 @@ def format_list_for_display(items: Union[List[str], str, None]) -> str:
     return str(items)
 
 
-def format_similars_with_links(similars: Union[List[str], str, None], name_to_path: Dict[str, str], output_dir: str) -> str:
+def format_similars_with_links(similars: Union[List[Union[str, int, None]], str, None], name_to_path: Dict[str, str], output_dir: str) -> str:
     """
     Форматирует список похожих структур со ссылками на их файлы.
 
     Args:
-        similars: Список названий похожих структур или строка.
+        similars: Список названий похожих структур, строка или None.
         name_to_path: Словарь, сопоставляющий названия структур с путями к файлам.
         output_dir: Директория, в которой будет сохранен файл README.
 
@@ -351,19 +374,23 @@ def format_similars_with_links(similars: Union[List[str], str, None], name_to_pa
     if not similars:
         return ""
 
+    # Конвертируем все ключи в словаре name_to_path в строки для безопасного поиска
+    str_name_to_path = {str(k): v for k, v in name_to_path.items()}
+
     result = []
     if isinstance(similars, list):
         for item in similars:
             if item is None or str(item).strip() == "":
                 continue
 
-            # Создаем ссылку, если путь существует, иначе просто используем название
-            if item in name_to_path:
+            # Конвертируем элемент в строку для поиска
+            str_item = str(item)
+            if str_item in str_name_to_path:
                 # Конвертируем в относительный путь от файла README
-                rel_path = os.path.relpath(name_to_path[item], start=output_dir)
-                result.append(f"[{item}]({rel_path})")
+                rel_path = os.path.relpath(str_name_to_path[str_item], start=output_dir)
+                result.append(f"[{str_item}]({rel_path})")
             else:
-                result.append(str(item))
+                result.append(str_item)
     else:
         # Если это одиночная строка, просто возвращаем ее
         return str(similars)
@@ -419,7 +446,8 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
                 continue
 
             name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
-            name_to_path[name] = file_path
+            # Преобразуем имя в строку, чтобы обеспечить единый тип ключей
+            name_to_path[str(name)] = file_path
             valid_files += 1
         except Exception as e:
             error_count += 1
@@ -442,23 +470,29 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
             if not section:
                 section = "main"
 
-            # Создаем информацию о структуре
+            # Создаем информацию о структуре используя StructureInfo вместо словаря
             name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
-            structure_info = {
-                "name": name,
-                "description": data.get("description", ""),
-                "description_ru": data.get("description_ru", ""),
-                "snow_type": format_snow_types(data.get("snow_type", [])),
-                "snow_temperature": data.get("snow_temperature", []),
-                "house": data.get("house", ""),
-                "country": data.get("country", ""),
-                "tags": data.get("tags", []),
-                "similars": data.get("similars", []),
-                "features": data.get("features", []),  # Добавляем поле особенностей
-                "image": data.get("image", ""),  # Добавляем поле изображения
-                "images": data.get("images", []),  # Добавляем поле множественных изображений
-                "file_path": file_path,
-            }
+
+            # Обрабатываем snow_type для форматированного вывода
+            formatted_snow_type = format_snow_types(data.get("snow_type", []))
+
+            # Создаем объект StructureInfo
+            structure_info = StructureInfo(
+                name=str(name),  # Конвертируем name в строку
+                description=data.get("description", ""),
+                description_ru=data.get("description_ru", ""),
+                snow_type=formatted_snow_type,
+                snow_temperature=data.get("snow_temperature", []),
+                house=data.get("house", ""),
+                country=data.get("country", ""),
+                tags=data.get("tags", []),
+                similars=data.get("similars", []),
+                features=data.get("features", []),
+                image=data.get("image", ""),
+                images=data.get("images", []) if data.get("images") else [],
+                file_path=file_path,
+                name_to_path={}  # Будет заполнено позже
+            )
 
             sections[section].append(structure_info)
             processed_count += 1
@@ -474,22 +508,25 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
     return sections, name_to_path
 
 
-def collect_structure_data() -> Dict[str, List[Dict[str, Any]]]:
+def collect_structure_data() -> Dict[str, List[StructureInfo]]:
     """
     Собирает данные из всех YAML-файлов структур.
 
     Returns:
-        Словарь с секциями в качестве ключей и списками информации о структурах в качестве значений.
+        Словарь с секциями в качестве ключей и списками объектов StructureInfo в качестве значений.
     """
     yaml_files = find_yaml_files(SCHLIFFS_DIR)
     logger.info(f"Найдено {len(yaml_files)} YAML-файлов")
 
     sections, name_to_path = process_yaml_files(yaml_files)
 
-    # Добавляем ссылку на name_to_path где необходимо
-    for section_structures in sections.values():
-        for structure in section_structures:
-            structure["name_to_path"] = name_to_path
+    # Добавляем ссылку на name_to_path для каждой структуры
+    for section_name, section_structures in sections.items():
+        for i, structure in enumerate(section_structures):
+            # Обновляем поле name_to_path для каждой структуры
+            # Создаем копию структуры с обновленным полем
+            updated_structure = structure.model_copy(update={"name_to_path": name_to_path})
+            sections[section_name][i] = updated_structure
 
     return sections
 
@@ -650,14 +687,14 @@ def format_features(features: Union[List[str], None]) -> str:
     return str(features)
 
 
-def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
+def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
                 section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
                 sort_by: str = "name", filter_pattern: Optional[str] = None) -> None:
     """
     Генерирует файл README для указанного языка.
 
     Args:
-        sections: Словарь с секциями и данными их структур.
+        sections: Словарь с секциями и данными их структур (объекты StructureInfo).
         header_file: Путь к файлу-шаблону заголовка.
         section_metadata: Метаданные для всех секций.
         language: Целевой язык ('en' или 'ru').
@@ -778,8 +815,8 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                     # Обновляем якорь с учетом города
                     section_anchor = f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
 
-                # Записываем заголовок секции с id для правильной работы якорей
-                f.write(f"## {section_title} {{#{section_anchor}}}\n\n")
+
+                f.write(f"## {section_title}\n\n")
                 f.write(f"{section_description}\n\n")
 
                 # Добавляем ссылку на сайт, если доступна
@@ -787,7 +824,6 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 if website_url:
                     f.write(f"{titles['website']}: [{meta.get('name', section_title)}]({website_url})\n\n")
 
-                # Заменяем блок Location на вывод адреса
                 address = meta.get("contact", {}).get("address")
                 if address:
                     f.write(f"Адрес: {address}\n\n")
@@ -819,7 +855,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                         phones_links = [f"[{str(phone)}](tel:{str(phone)})" for phone in phones]
                         f.write(f"Phones: {', '.join(phones_links)}\n\n")
             else:
-                f.write(f"## {section_title} {{#{section_anchor}}}\n\n")
+                f.write(f"## {section_title}\n\n")
 
             # Таблица со структурами
             table_headers = titles["table_headers"]
@@ -831,13 +867,13 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 """Функция-генератор для выдачи отсортированных и отфильтрованных структур."""
                 # Создаем функцию для получения ключа сортировки
                 if sort_field == "name":
-                    key_func = lambda x: str(x["name"])
+                    key_func = lambda x: str(x.name)
                 elif sort_field == "snow_type":
-                    key_func = lambda x: str(x["snow_type"])
+                    key_func = lambda x: str(x.snow_type)
                 elif sort_field == "house":
-                    key_func = lambda x: str(x["house"])
+                    key_func = lambda x: str(x.house)
                 else:
-                    key_func = lambda x: str(x["name"])
+                    key_func = lambda x: str(x.name)
 
                 # Сортируем структуры
                 structures = sorted(section_data, key=key_func)
@@ -846,9 +882,9 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 if pattern:
                     regex = re.compile(pattern, re.IGNORECASE)
                     for structure in structures:
-                        if (regex.search(str(structure["name"])) or
-                            regex.search(str(structure[description_field])) or
-                            regex.search(str(structure["snow_type"]))):
+                        if (regex.search(str(structure.name)) or
+                            regex.search(str(getattr(structure, description_field))) or
+                            regex.search(str(structure.snow_type))):
                             yield structure
                 else:
                     # Выдаем все структуры
@@ -858,31 +894,31 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
             # Потоковая обработка отсортированных и отфильтрованных структур
             for structure in stream_sorted_structures(sections[section], sort_by, filter_pattern):
                 # Создаем ссылку от имени к YAML-файлу используя относительный путь
-                file_path = structure['file_path']
+                file_path = structure.file_path
                 rel_path = os.path.relpath(file_path, start=output_dir)
-                name_with_link = f"[{structure['name']}]({rel_path})"
+                name_with_link = f"[{structure.name}]({rel_path})"
 
                 # Форматируем теги и похожие структуры
-                tags = format_list_for_display(structure.get('tags', []))
-                similars = format_similars_with_links(structure.get('similars', []), structure['name_to_path'], output_dir)
+                tags = format_list_for_display(structure.tags)
+                similars = format_similars_with_links(structure.similars, structure.name_to_path, output_dir)
 
                 # Получаем описание на нужном языке
-                description = structure[description_field] if structure[description_field] else ""
+                description = getattr(structure, description_field) if getattr(structure, description_field) else ""
 
                 # Форматируем диапазон температуры
-                temp_range = format_temperature_range(structure.get('snow_temperature', []))
+                temp_range = format_temperature_range(structure.snow_temperature)
 
                 # Форматируем изображение - сначала проверяем images, затем image
                 image_link = ""
-                if structure.get('images'):
-                    image_link = format_image_link(structure.get('images'), structure['name'], output_dir)
-                elif structure.get('image'):
-                    image_link = format_image_link(structure.get('image'), structure['name'], output_dir)
+                if structure.images:
+                    image_link = format_image_link(structure.images, structure.name, output_dir)
+                elif structure.image:
+                    image_link = format_image_link(structure.image, structure.name, output_dir)
 
                 # Форматируем особенности
-                features = format_features(structure.get('features', []))
+                features = format_features(structure.features)
 
-                f.write(f"| {name_with_link} | {description} | {structure['snow_type']} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n")
+                f.write(f"| {name_with_link} | {description} | {structure.snow_type} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n")
 
             f.write("\n")
 
