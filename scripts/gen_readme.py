@@ -713,11 +713,46 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
 
         # Оглавление
         f.write(f"## {titles['toc']}\n\n")
+
+        # Группировка секций по странам
+        countries_sections = {}
         for section in sorted(sections.keys()):
-            section_title = section.capitalize()
-            section_anchor = section.lower().replace(" ", "-")
-            f.write(f"* [{section_title}](#{section_anchor})\n")
-        f.write("\n")
+            country = "Other"
+            if section in section_metadata and section_metadata[section].get("country"):
+                country = section_metadata[section].get("country")
+
+            if country not in countries_sections:
+                countries_sections[country] = []
+            countries_sections[country].append(section)
+
+        # Вывод оглавления, сгруппированного по странам
+        # Сначала Россия, затем все остальные страны в алфавитном порядке
+        # Создаем упорядоченный список стран
+        ordered_countries = []
+
+        # Сначала добавляем Россию, если она есть в списке стран
+        if "Россия" in countries_sections:
+            ordered_countries.append("Россия")
+
+        # Затем добавляем все остальные страны в алфавитном порядке
+        for country in sorted(countries_sections.keys()):
+            if country != "Россия":
+                ordered_countries.append(country)
+
+        # Выводим страны в нужном порядке
+        for country in ordered_countries:
+            # Выводим страну в виде заголовка
+            f.write(f"### {country}\n\n")
+
+            # Выводим список производителей для этой страны
+            for section in sorted(countries_sections[country]):
+                section_title = section.capitalize()
+                # Добавляем город в заголовок, если он указан в метаданных
+                if section in section_metadata and section_metadata[section].get("city"):
+                    section_title = f"{section_title} ({section_metadata[section]['city']})"
+                section_anchor = section.lower().replace(" ", "-")
+                f.write(f"* [{section_title}](#{section_anchor})\n")
+            f.write("\n")
 
         # Секции со структурами
         for section in sorted(sections.keys()):
@@ -733,6 +768,10 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 else:
                     section_description = meta.get("description", "")
 
+                # Добавляем город в заголовок, если он указан в метаданных
+                if meta.get("city"):
+                    section_title = f"{section_title} ({meta.get('city')})"
+
                 # Записываем заголовок секции и описание
                 f.write(f"## {section_title}\n\n")
                 f.write(f"{section_description}\n\n")
@@ -742,16 +781,10 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 if website_url:
                     f.write(f"{titles['website']}: [{meta.get('name', section_title)}]({website_url})\n\n")
 
-                # Добавляем местоположение (город и страну), если доступны
-                country = meta.get("country", "")
-                city = meta.get("city", "")
-                location = []
-                if city:
-                    location.append(city)
-                if country:
-                    location.append(country)
-                if location:
-                    f.write(f"Location: {', '.join(location)}\n\n")
+                # Заменяем блок Location на вывод адреса
+                address = meta.get("contact", {}).get("address")
+                if address:
+                    f.write(f"Адрес: {address}\n\n")
 
                 # Добавляем ссылку на видео, если доступна
                 video_url = meta.get("video_url", "")

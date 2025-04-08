@@ -5,25 +5,34 @@ This repository contains information about various ski grinding structures.
 
 ## Table of Contents
 
+### Россия
+
+* [Ekiptime (Москва)](#ekiptime)
+* [Marsport (Одинцово)](#marsport)
+* [Serviccer (Красногорск)](#serviccer)
+* [Skipole (Москва)](#skipole)
+* [Svecky (Новосибирск)](#svecky)
+* [Uventa (Москва)](#uventa)
+
+### Austria
+
 * [Beme](#beme)
-* [Ekiptime](#ekiptime)
 * [Fischer](#fischer)
-* [Madshus](#madshus)
-* [Marsport](#marsport)
-* [Ramsau](#ramsau)
 * [Salomon](#salomon)
-* [Serviccer](#serviccer)
-* [Skipole](#skipole)
-* [Svecky](#svecky)
-* [Uventa](#uventa)
+
+### Germany
+
+* [Ramsau](#ramsau)
+
+### Norway
+
+* [Madshus](#madshus)
 
 ## Beme
 
 None
 
 Website: [Beme](https://www.bemesports.com/en/skiservice)
-
-Location: Austria
 
 ### Contact Information
 
@@ -33,13 +42,13 @@ Location: Austria
 | [B227](schliffs/beme/B227.yaml) |  | cold | -5 -20 |  |  | РL1, [S11-3](schliffs/ramsau/S11-3.yaml) |  |
 | [B3312](schliffs/beme/B3312.yaml) |  | wet, transformed | +5 -5 |  | переходка, тепло, влажный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 
-## Ekiptime
+## Ekiptime (Москва)
 
 Структуры для беговых лыж от компании Ekiptime
 
 Website: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
 
-Location: Москва, Россия
+Адрес: Москва, стадион Динамо, ВТБ Арена Плаза, Ленинградский проспект, 36
 
 Video Overview: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
@@ -57,8 +66,6 @@ Phones: [+74997043525](tel:+74997043525)
 Default Fischer structures
 
 Website: [Fischer](https://www.fischersports.com)
-
-Location: Austria
 
 ### Contact Information
 
@@ -90,8 +97,6 @@ None
 
 Website: [Madshus](https://www.madshus.com)
 
-Location: Norway
-
 ### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
@@ -103,13 +108,13 @@ Location: Norway
 | [M62](schliffs/madshus/M62.yaml) |  |  | +10 -2 |  | высокая влажность, свежий, перемешанный, крупнозернистый |  | не крупная, за счет чего практически не набирает грязь |
 | [M63](schliffs/madshus/M63.yaml) |  | wet | +10 0 |  | мокрый снег, перемешанный, крупнозернистый |  |  |
 
-## Marsport
+## Marsport (Одинцово)
 
 Структуры для беговых лыж от компании Марспорт
 
 Website: [Марспорт](https://marsport.ru/service)
 
-Location: Одинцово, Россия
+Адрес: г. Одинцово ул. Манжосовская 1
 
 ### Contact Information
 
@@ -125,8 +130,6 @@ Phones: [+79250464773](tel:+79250464773)
 ## Ramsau
 
 None
-
-Location: Germany
 
 ### Contact Information
 
@@ -163,8 +166,6 @@ Default Salomon structures
 
 Website: [Salomon](https://www.salomon.com)
 
-Location: Austria
-
 ### Contact Information
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
@@ -175,13 +176,13 @@ Location: Austria
 | [SL32](schliffs/salomon/SL32.yaml) | from humid natural to wet and very wet old and dirty snow, from medium to soft conditions | wet, transformed, dirty | +15 0 |  | влажный, мокрый, грязный, старый | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 | [SLRGL](schliffs/salomon/SLRGL.yaml) |  | natural, artificial, wet | +5 -3 |  | влажный, мокрый, грязный, старый, искусственный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml), [B3312](schliffs/beme/B3312.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Serviccer
+## Serviccer (Красногорск)
 
 None
 
 Website: [Serviccer](https://serviccer.ru/strukturyi.html)
 
-Location: Красногорск, Россия
+Адрес: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER"
 
 ### Contact Information
 
@@ -196,13 +197,13 @@ Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
 | [SV600](schliffs/serviccer/SV600.yaml) |  |  |  |  |  |  |  |
 | [SV700](schliffs/serviccer/SV700.yaml) |  |  |  |  |  |  |  |
 
-## Skipole
+## Skipole (Москва)
 
 None
 
 Website: [Skipole](https://shtainshlift.ru)
 
-Location: Москва, Россия
+Адрес: Москва, село Ромашково ул.Советская, д.113
 
 ### Contact Information
 
@@ -218,13 +219,13 @@ Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
 | [Х20](schliffs/skipole/Х20.yaml) |  | all, fresh, old | +15 -5 | ![Х20](schliffs/skipole/X20/X20.jpg) | свежий снег |  | При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C. |
 | [Х25](schliffs/skipole/X25.yaml) |  | all | 0 -8 | ![Х25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Svecky
+## Svecky (Новосибирск)
 
 None
 
 Website: [Svecky Racing](http://svecky.racing/)
 
-Location: Новосибирск, Россия
+Адрес: Новосибирск, Академгородок, ул. Ионосферная 3
 
 ### Contact Information
 
@@ -243,13 +244,13 @@ Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+
 | [VT3-2](schliffs/svecky/VT3-2.yaml) | Structure designed for fresh snow in cold conditions | fresh, new | -3 -12 |  | свежий снег, холодная |  |  |
 | [VT322](schliffs/svecky/VT322.yaml) | Classic skiing structure for fine-grained and fresh snow | fine, fresh | 0 -16 |  | классический стиль, мелкозернистый снег, свежий снег |  | cпециально для классического стиля |
 
-## Uventa
+## Uventa (Москва)
 
 None
 
 Website: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 
-Location: Москва, Россия
+Адрес: Москва
 
 ### Contact Information
 

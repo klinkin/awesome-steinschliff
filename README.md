@@ -16,25 +16,34 @@
 
 ## Оглавление
 
+### Россия
+
+* [Ekiptime (Москва)](#ekiptime)
+* [Marsport (Одинцово)](#marsport)
+* [Serviccer (Красногорск)](#serviccer)
+* [Skipole (Москва)](#skipole)
+* [Svecky (Новосибирск)](#svecky)
+* [Uventa (Москва)](#uventa)
+
+### Austria
+
 * [Beme](#beme)
-* [Ekiptime](#ekiptime)
 * [Fischer](#fischer)
-* [Madshus](#madshus)
-* [Marsport](#marsport)
-* [Ramsau](#ramsau)
 * [Salomon](#salomon)
-* [Serviccer](#serviccer)
-* [Skipole](#skipole)
-* [Svecky](#svecky)
-* [Uventa](#uventa)
+
+### Germany
+
+* [Ramsau](#ramsau)
+
+### Norway
+
+* [Madshus](#madshus)
 
 ## Beme
 
 Структуры для беговых лыж от Бенжамина Эдера, сервис Beme
 
 Сайт: [Beme](https://www.bemesports.com/en/skiservice)
-
-Location: Austria
 
 ### Контактная информация
 
@@ -44,13 +53,13 @@ Location: Austria
 | [B227](schliffs/beme/B227.yaml) | стуктура для морозного снега и температуры ниже -5 | cold | -5 -20 |  |  | РL1, [S11-3](schliffs/ramsau/S11-3.yaml) |  |
 | [B3312](schliffs/beme/B3312.yaml) | струтура на переходку и тепло, на влажный, но не жидкий снег | wet, transformed | +5 -5 |  | переходка, тепло, влажный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 
-## Ekiptime
+## Ekiptime (Москва)
 
 Структуры для беговых лыж от компании Ekiptime
 
 Сайт: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
 
-Location: Москва, Россия
+Адрес: Москва, стадион Динамо, ВТБ Арена Плаза, Ленинградский проспект, 36
 
 Обзор: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
@@ -68,8 +77,6 @@ Phones: [+74997043525](tel:+74997043525)
 Стандартные структуры Fischer
 
 Сайт: [Fischer](https://www.fischersports.com)
-
-Location: Austria
 
 ### Контактная информация
 
@@ -101,8 +108,6 @@ Location: Austria
 
 Сайт: [Madshus](https://www.madshus.com)
 
-Location: Norway
-
 ### Контактная информация
 
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
@@ -114,13 +119,13 @@ Location: Norway
 | [M62](schliffs/madshus/M62.yaml) | структура для для нового, перемешанного и крупнозернистого снега при высокой влажности, при температуре от -2 и теплее |  | +10 -2 |  | высокая влажность, свежий, перемешанный, крупнозернистый |  | не крупная, за счет чего практически не набирает грязь |
 | [M63](schliffs/madshus/M63.yaml) | стуктура для мокрого снега при температуре от 0 и теплее | wet | +10 0 |  | мокрый снег, перемешанный, крупнозернистый |  |  |
 
-## Marsport
+## Marsport (Одинцово)
 
 Кастомные структуры для беговых лыж от компании Марспорт
 
 Сайт: [Марспорт](https://marsport.ru/service)
 
-Location: Одинцово, Россия
+Адрес: г. Одинцово ул. Манжосовская 1
 
 ### Контактная информация
 
@@ -136,8 +141,6 @@ Phones: [+79250464773](tel:+79250464773)
 ## Ramsau
 
 Широко известные структуры для беговых лыж от сервисного центра Ramsau
-
-Location: Germany
 
 ### Контактная информация
 
@@ -174,8 +177,6 @@ Location: Germany
 
 Сайт: [Salomon](https://www.salomon.com)
 
-Location: Austria
-
 ### Контактная информация
 
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
@@ -186,13 +187,13 @@ Location: Austria
 | [SL32](schliffs/salomon/SL32.yaml) | структура для влажного и очень мокрого старого снега, а также для грязного снега при средней и мягкой жесткости трассы | wet, transformed, dirty | +15 0 |  | влажный, мокрый, грязный, старый | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 | [SLRGL](schliffs/salomon/SLRGL.yaml) | структура на переменную от холода на тепло и на жесткую трассу и искусственный снег | natural, artificial, wet | +5 -3 |  | влажный, мокрый, грязный, старый, искусственный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml), [B3312](schliffs/beme/B3312.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Serviccer
+## Serviccer (Красногорск)
 
 Структуры для беговых лыж от лыжного сервиса SERVICCER
 
 Сайт: [Serviccer](https://serviccer.ru/strukturyi.html)
 
-Location: Красногорск, Россия
+Адрес: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER"
 
 ### Контактная информация
 
@@ -207,13 +208,13 @@ Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
 | [SV600](schliffs/serviccer/SV600.yaml) |  |  |  |  |  |  |  |
 | [SV700](schliffs/serviccer/SV700.yaml) |  |  |  |  |  |  |  |
 
-## Skipole
+## Skipole (Москва)
 
 Кастомные структуры от Федора Николаева
 
 Сайт: [Skipole](https://shtainshlift.ru)
 
-Location: Москва, Россия
+Адрес: Москва, село Ромашково ул.Советская, д.113
 
 ### Контактная информация
 
@@ -229,13 +230,13 @@ Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
 | [Х20](schliffs/skipole/Х20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | +15 -5 | ![Х20](schliffs/skipole/X20/X20.jpg) | свежий снег |  | При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C. |
 | [Х25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | 0 -8 | ![Х25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Svecky
+## Svecky (Новосибирск)
 
 Cервис оказывает услуги по нанесению штайншлифа на беговые лыжи используя машину [Delta](https://www.svecomski.com/en/products/machines/delta-research-160-2) от фирмы [SVECOM SKI](http://www.svecomski.com).
 
 Сайт: [Svecky Racing](http://svecky.racing/)
 
-Location: Новосибирск, Россия
+Адрес: Новосибирск, Академгородок, ул. Ионосферная 3
 
 ### Контактная информация
 
@@ -254,13 +255,13 @@ Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+
 | [VT3-2](schliffs/svecky/VT3-2.yaml) | Структура на свежий снег при холодных температурах | fresh, new | -3 -12 |  | свежий снег, холодная |  |  |
 | [VT322](schliffs/svecky/VT322.yaml) | Структура для классики на мелкозернистый и свежий снег | fine, fresh | 0 -16 |  | классический стиль, мелкозернистый снег, свежий снег |  | cпециально для классического стиля |
 
-## Uventa
+## Uventa (Москва)
 
 Кастомные структуры для беговых лыж от сервисного центра Ювента Спорт
 
 Сайт: [Ювента Спорт](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 
-Location: Москва, Россия
+Адрес: Москва
 
 ### Контактная информация
 
