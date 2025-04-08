@@ -750,13 +750,17 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 # Добавляем город в заголовок, если он указан в метаданных
                 if section in section_metadata and section_metadata[section].get("city"):
                     section_title = f"{section_title} ({section_metadata[section]['city']})"
-                section_anchor = section.lower().replace(" ", "-")
+                    # Создаем якорь с учетом города для соответствия ID заголовка
+                    section_anchor = f"{section}-{section_metadata[section]['city']}".lower().replace(" ", "-").replace("(", "").replace(")", "")
+                else:
+                    section_anchor = section.lower().replace(" ", "-")
                 f.write(f"* [{section_title}](#{section_anchor})\n")
             f.write("\n")
 
         # Секции со структурами
         for section in sorted(sections.keys()):
             section_title = section.capitalize()
+            section_anchor = section.lower().replace(" ", "-")
 
             # Добавляем метаданные секции, если доступны
             if section in section_metadata:
@@ -771,9 +775,11 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                 # Добавляем город в заголовок, если он указан в метаданных
                 if meta.get("city"):
                     section_title = f"{section_title} ({meta.get('city')})"
+                    # Обновляем якорь с учетом города
+                    section_anchor = f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
 
-                # Записываем заголовок секции и описание
-                f.write(f"## {section_title}\n\n")
+                # Записываем заголовок секции с id для правильной работы якорей
+                f.write(f"## {section_title} {{#{section_anchor}}}\n\n")
                 f.write(f"{section_description}\n\n")
 
                 # Добавляем ссылку на сайт, если доступна
@@ -813,7 +819,7 @@ def generate_readme(sections: Dict[str, List[Dict[str, Any]]], header_file: str,
                         phones_links = [f"[{str(phone)}](tel:{str(phone)})" for phone in phones]
                         f.write(f"Phones: {', '.join(phones_links)}\n\n")
             else:
-                f.write(f"## {section_title}\n\n")
+                f.write(f"## {section_title} {{#{section_anchor}}}\n\n")
 
             # Таблица со структурами
             table_headers = titles["table_headers"]

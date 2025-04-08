@@ -7,12 +7,12 @@ This repository contains information about various ski grinding structures.
 
 ### Россия
 
-* [Ekiptime (Москва)](#ekiptime)
-* [Marsport (Одинцово)](#marsport)
-* [Serviccer (Красногорск)](#serviccer)
-* [Skipole (Москва)](#skipole)
-* [Svecky (Новосибирск)](#svecky)
-* [Uventa (Москва)](#uventa)
+* [Ekiptime (Москва)](#ekiptime-москва)
+* [Marsport (Одинцово)](#marsport-одинцово)
+* [Serviccer (Красногорск)](#serviccer-красногорск)
+* [Skipole (Москва)](#skipole-москва)
+* [Svecky (Новосибирск)](#svecky-новосибирск)
+* [Uventa (Москва)](#uventa-москва)
 
 ### Austria
 
@@ -28,7 +28,7 @@ This repository contains information about various ski grinding structures.
 
 * [Madshus](#madshus)
 
-## Beme
+## Beme {#beme}
 
 None
 
@@ -42,7 +42,7 @@ Website: [Beme](https://www.bemesports.com/en/skiservice)
 | [B227](schliffs/beme/B227.yaml) |  | cold | -5 -20 |  |  | РL1, [S11-3](schliffs/ramsau/S11-3.yaml) |  |
 | [B3312](schliffs/beme/B3312.yaml) |  | wet, transformed | +5 -5 |  | переходка, тепло, влажный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 
-## Ekiptime (Москва)
+## Ekiptime (Москва) {#ekiptime-москва}
 
 Структуры для беговых лыж от компании Ekiptime
 
@@ -61,7 +61,7 @@ Phones: [+74997043525](tel:+74997043525)
 | [SIGMA](schliffs/ekiptime/SIGMA.yaml) |  | wet, old, dirty, transformed | +15 0 | ![SIGMA](schliffs/ekiptime/sigma/sigma.jpg) | мокрый, старый, грязный, трансформированный, весенний |  |  |
 | [SV77](schliffs/ekiptime/SV77.yaml) |  | cold, dry, old, fresh | 0 -20 |  | холодный, сухой, свежий, старый |  |  |
 
-## Fischer
+## Fischer {#fischer}
 
 Default Fischer structures
 
@@ -91,7 +91,7 @@ Website: [Fischer](https://www.fischersports.com)
 | [С3-1](schliffs/fischer/С3-1.yaml) |  | artificial | -25 -5 |  | холодный, искусственный снег | [С8-1](schliffs/fischer/С8-1.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
 | [С8-1](schliffs/fischer/С8-1.yaml) |  | artificial | 0 -10 |  | искусственный снег, узкая структура |  |  |
 
-## Madshus
+## Madshus {#madshus}
 
 None
 
@@ -108,7 +108,7 @@ Website: [Madshus](https://www.madshus.com)
 | [M62](schliffs/madshus/M62.yaml) |  |  | +10 -2 |  | высокая влажность, свежий, перемешанный, крупнозернистый |  | не крупная, за счет чего практически не набирает грязь |
 | [M63](schliffs/madshus/M63.yaml) |  | wet | +10 0 |  | мокрый снег, перемешанный, крупнозернистый |  |  |
 
-## Marsport (Одинцово)
+## Marsport (Одинцово) {#marsport-одинцово}
 
 Структуры для беговых лыж от компании Марспорт
 
@@ -127,7 +127,7 @@ Phones: [+79250464773](tel:+79250464773)
 | [M100](schliffs/marsport/M100.yaml) |  | fresh | 0 -10 |  | свежий снег, высокая влажность, глянец | [P5-1](schliffs/fischer/P5-1.yaml), [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml), [SV77](schliffs/ekiptime/SV77.yaml), X25 |  |
 | [SM15-5](schliffs/marsport/SM15-5.yaml) |  | fresh, transformed | -5 -15 |  | свежий снег, средний холод | [S12-4](schliffs/ramsau/S12-4.yaml), [B227](schliffs/beme/B227.yaml) |  |
 
-## Ramsau
+## Ramsau {#ramsau}
 
 None
 
@@ -160,7 +160,7 @@ None
 | [T4](schliffs/ramsau/T4.yaml) |  | frozen, dry | -5 -20 |  |  | [B227](schliffs/beme/B227.yaml) |  |
 | [V1](schliffs/ramsau/V1.yaml) |  | all, fresh, frozen, natural | -5 -20 |  | ramsau | [B227](schliffs/beme/B227.yaml) |  |
 
-## Salomon
+## Salomon {#salomon}
 
 Default Salomon structures
 
@@ -176,7 +176,7 @@ Website: [Salomon](https://www.salomon.com)
 | [SL32](schliffs/salomon/SL32.yaml) | from humid natural to wet and very wet old and dirty snow, from medium to soft conditions | wet, transformed, dirty | +15 0 |  | влажный, мокрый, грязный, старый | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 | [SLRGL](schliffs/salomon/SLRGL.yaml) |  | natural, artificial, wet | +5 -3 |  | влажный, мокрый, грязный, старый, искусственный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml), [B3312](schliffs/beme/B3312.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Serviccer (Красногорск)
+## Serviccer (Красногорск) {#serviccer-красногорск}
 
 None
 
@@ -197,7 +197,7 @@ Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
 | [SV600](schliffs/serviccer/SV600.yaml) |  |  |  |  |  |  |  |
 | [SV700](schliffs/serviccer/SV700.yaml) |  |  |  |  |  |  |  |
 
-## Skipole (Москва)
+## Skipole (Москва) {#skipole-москва}
 
 None
 
@@ -219,7 +219,7 @@ Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
 | [Х20](schliffs/skipole/Х20.yaml) |  | all, fresh, old | +15 -5 | ![Х20](schliffs/skipole/X20/X20.jpg) | свежий снег |  | При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C. |
 | [Х25](schliffs/skipole/X25.yaml) |  | all | 0 -8 | ![Х25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 
-## Svecky (Новосибирск)
+## Svecky (Новосибирск) {#svecky-новосибирск}
 
 None
 
@@ -244,7 +244,7 @@ Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+
 | [VT3-2](schliffs/svecky/VT3-2.yaml) | Structure designed for fresh snow in cold conditions | fresh, new | -3 -12 |  | свежий снег, холодная |  |  |
 | [VT322](schliffs/svecky/VT322.yaml) | Classic skiing structure for fine-grained and fresh snow | fine, fresh | 0 -16 |  | классический стиль, мелкозернистый снег, свежий снег |  | cпециально для классического стиля |
 
-## Uventa (Москва)
+## Uventa (Москва) {#uventa-москва}
 
 None
 
