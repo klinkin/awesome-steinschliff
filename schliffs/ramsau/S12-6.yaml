@@ -1,8 +1,8 @@
 name: S12-6
-description:
-description_ru: универсальная структура для всех трасс со свежим снегом, падающим и мокрым снегом, температура от 0 до -15
-website_url:
-
+description: null
+description_ru: универсальная структура для всех трасс со свежим снегом, падающим
+  и мокрым снегом, температура от 0 до -15
+website_url: null
 snow_type:
   - fresh
   - falling
@@ -10,24 +10,21 @@ snow_type:
 snow_temperature:
   - min: -15
     max: 0
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - падающий снег
   - свежий
   - мокрый
-
 similars:
-  -
-  -
-
+  - null
+  - null
 features:
-  -
-
+  - null
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

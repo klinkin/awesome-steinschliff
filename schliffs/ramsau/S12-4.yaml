@@ -1,31 +1,28 @@
 name: S12-4
-description:
-description_ru: универсальная структура для всех трасс с сухим снегом, температура от -2 до -15
-website_url:
-
+description: null
+description_ru: универсальная структура для всех трасс с сухим снегом, температура
+  от -2 до -15
+website_url: null
 snow_type:
   - fresh
   - dry
 snow_temperature:
   - min: -15
     max: -2
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - свежий снег
   - сухой
   - холодный
-
 similars:
   - SM15-5
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

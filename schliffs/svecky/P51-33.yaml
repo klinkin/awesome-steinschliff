@@ -1,7 +1,6 @@
 name: P51-33
 description: Universal structure for varied conditions, except fine fresh snow
 description_ru: Универсальная структура
-
 snow_type:
   - all
   - transformed
@@ -10,18 +9,16 @@ snow_temperature:
   - min: -9
     max: 2
 condition: universal
-manufactory: ""
-house: "Svecky"
-author: ""
-country: "Россия"
-
+manufactory: ''
+author: ''
+country: Россия
 tags:
   - универсальная
   - трансформированный снег
-
 features:
   - Не подходит для мелкого свежего снега
-
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Svecky

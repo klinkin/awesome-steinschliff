@@ -1,36 +1,30 @@
 name: Х0
-description:
+description: null
 description_ru: структура для натурального сухого снега при температуре ниже -12
 images:
   - schliffs/skipole/X0/X0.jpg
-
 website_url: https://skipole.ru/shtainshlift-romashkovo/
-
 snow_type:
   - frozen
   - dry
   - natural
-
 snow_temperature:
   - min: -25
     max: -12
-condition:
-manufactory: ""
-house: "Skipole"
-author: "Fedor Nikolaev"
-country: "Россия"
-
+condition: null
+manufactory: ''
+author: Fedor Nikolaev
+country: Россия
 tags:
   - сухой снег
   - натуральный снег
-
 similars:
-  -
-  -
-
+  - null
+  - null
 features:
-  -
-
+  - null
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Skipole

@@ -1,8 +1,9 @@
 name: Z1
-description: "For glazed surface, hard track and heavily transformed snow, temperature range 0°C to -5°C"
-description_ru: "Для глянца, жесткой трассы и сильно преобразованного снега, температурный диапазон от 0°C до -5°C"
-website_url: "https://www.uventasport.ru/company/servis-centr/shtaynshlift/"
-
+description: For glazed surface, hard track and heavily transformed snow, temperature
+  range 0°C to -5°C
+description_ru: Для глянца, жесткой трассы и сильно преобразованного снега, температурный
+  диапазон от 0°C до -5°C
+website_url: https://www.uventasport.ru/company/servis-centr/shtaynshlift/
 snow_type:
   - transformed
   - hard
@@ -10,23 +11,20 @@ snow_type:
 snow_temperature:
   - min: -5
     max: 0
-condition: "жесткая трасса, глянец"
-manufactory: "Uventa"
-house: "Uventa"
-author: ""
-country: "Россия"
-
+condition: жесткая трасса, глянец
+manufactory: Uventa
+author: ''
+country: Россия
 tags:
   - глянец
   - жесткая трасса
   - преобразованный снег
-
 similars:
   - X3LS
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Uventa

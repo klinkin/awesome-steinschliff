@@ -1,35 +1,29 @@
 name: Р5-0
-description:
+description: null
 description_ru: сухой мелкий снег от 0 до -5
-
-website_url:
-
+website_url: null
 snow_type:
   - dry
   - old
   - fine
-
 snow_temperature:
   - min: -5
     max: 0
 condition: blue
-manufactory: "Fischer"
-house: "Fischer"
-author: ""
-country: "Austria"
-
+manufactory: Fischer
+author: ''
+country: Austria
 tags:
   - сухой
   - старый
   - мелкозернистый
   - мелкий снег
-
 similars:
   - S12-6
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Fischer

@@ -1,30 +1,27 @@
 name: S12-16
-description:
-description_ru: универсальная структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10
-website_url:
-
+description: null
+description_ru: универсальная структура для высокой влажности и свежего снега, подходит
+  под глянец, температура от 0 до -10
+website_url: null
 snow_type:
   - fresh
 snow_temperature:
   - min: -10
     max: 0
 condition: blue
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - свежий снег
   - высокая влажность
   - глянец
-
 similars:
   - B2211
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Ramsau

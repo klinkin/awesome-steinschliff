@@ -1,11 +1,9 @@
 name: SIGMA
-description:
+description: null
 description_ru: структура для трансформированного старого весеннего снега с водой
 images:
   - schliffs/ekiptime/sigma/sigma.jpg
-
 website_url: https://ekiptime.ru/services/base_tuning.php
-
 snow_type:
   - wet
   - old
@@ -13,26 +11,23 @@ snow_type:
   - transformed
 snow_temperature:
   - min: 0
-    max: +15
+    max: 15
 condition: yellow
-manufactory: ""
-house: "ekiptime"
-author: "Artur"
-country: "Россия"
-
+manufactory: ''
+author: Artur
+country: Россия
 tags:
   - мокрый
   - старый
   - грязный
   - трансформированный
   - весенний
-
 similars:
-  -
-
+  - null
 features:
-  -
-
+  - null
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: ekiptime

@@ -1,31 +1,25 @@
 name: R2
-description:
+description: null
 description_ru: структура на средний холод при температуре от -5 до -15
-
 website_url: https://vk.com/video-220482174_456239484
-
 snow_type:
   - all
   - frozen
-
 snow_temperature:
   - min: -15
     max: -5
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - ramsau
-
 similars:
-  - ""
-
+  - ''
 features:
   - создавалась под ЧМ по биатлону в Антхольце
-
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

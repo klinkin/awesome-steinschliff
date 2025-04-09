@@ -1,32 +1,28 @@
 name: Р3-1
-description:
+description: null
 description_ru: структура на свежий влажный снег, на 0 градусов с переходом в плюсовую
-website_url:
-
+website_url: null
 snow_type:
   - fresh
   - wet
 snow_temperature:
   - min: 0
     max: null
-condition: ""
-manufactory: "Fischer"
-house: "Fischer"
-author: ""
-country: "Austria"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
 tags:
   - свежий снег
   - влажный
   - плюсовая температура
-
 similars:
   - Р3-2
   - S13-5
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Fischer

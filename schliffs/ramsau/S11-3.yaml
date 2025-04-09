@@ -1,8 +1,8 @@
 name: S11-3
-description:
-description_ru: структура под натуральный и искусственный перемороженный снег, температура от -10 до -20
-website_url:
-
+description: null
+description_ru: структура под натуральный и искусственный перемороженный снег, температура
+  от -10 до -20
+website_url: null
 snow_type:
   - frozen
   - natural
@@ -10,23 +10,20 @@ snow_type:
 snow_temperature:
   - min: -20
     max: -10
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - перемороженый
   - искусственный снег
   - холодный
-
 similars:
   - B227
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

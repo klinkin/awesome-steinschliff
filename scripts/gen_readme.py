@@ -15,7 +15,7 @@ snow_type:
 snow_temperature:
   - min: -25
     max: -10
-house: Uventa
+
 country: Россия
 tags:
   - cold
@@ -23,6 +23,8 @@ tags:
 similars:
   - C2-1
   - F1
+service
+  name: Uventa
 ```
 
 Использование:
@@ -37,7 +39,7 @@ import argparse
 import re
 import json
 from collections import defaultdict
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional, Union, Iterator
 
 # Константы для цветного вывода в терминал
 RESET = "\033[0m"
@@ -76,7 +78,6 @@ DEFAULT_CONFIG = {
         "ru": "scripts/templates/readme_ru_header.md"
     },
     "sort_field": "name",
-    "filter_pattern": None,
     "exclude_empty_sections": False
 }
 
@@ -85,6 +86,14 @@ class TemperatureRange(BaseModel):
     """Диапазон температуры снега"""
     min: float
     max: float
+
+class Service(BaseModel):
+    """Модель сервиса по обработке лыж"""
+    name: Optional[str] = ""
+
+    class Config:
+        """Конфигурация модели Pydantic"""
+        extra = "allow"  # Разрешаем дополнительные поля
 
 class SchliffStructure(BaseModel):
     """Модель структуры"""
@@ -95,7 +104,7 @@ class SchliffStructure(BaseModel):
     snow_temperature: Optional[List[TemperatureRange]] = []
     condition: Optional[str] = ""
     manufactory: Optional[str] = ""
-    house: Optional[str] = ""
+    service: Optional[Service] = None
     author: Optional[str] = ""
     country: Optional[str] = ""
     tags: Optional[List[str]] = []
@@ -119,7 +128,7 @@ class ContactInfo(BaseModel):
         """Конфигурация модели Pydantic"""
         extra = "allow"  # Разрешаем дополнительные поля
 
-class SectionMetadata(BaseModel):
+class ServiceMetadata(BaseModel):
     """Модель метаданных секции (производителя)"""
     name: Optional[str] = ""
     description: Optional[str] = ""
@@ -142,7 +151,7 @@ class StructureInfo(BaseModel):
     description_ru: Optional[str] = ""
     snow_type: Optional[str] = ""
     snow_temperature: List[Dict[str, Any]] = Field(default_factory=list)
-    house: Optional[str] = ""
+    service: Optional[str] = ""
     country: Optional[str] = ""
     tags: List[Union[str, int, None]] = Field(default_factory=list)
     similars: List[Union[str, int, None]] = Field(default_factory=list)
@@ -257,7 +266,7 @@ def read_yaml_file(file_path: str) -> Optional[Dict[str, Any]]:
             if filename == "_meta.yaml":
                 try:
                     # Валидируем метаданные секции
-                    validated_data = SectionMetadata.model_validate(data).model_dump(exclude_unset=True)
+                    validated_data = ServiceMetadata.model_validate(data).model_dump(exclude_unset=True)
                     return validated_data
                 except ValidationError as e:
                     # Подробный вывод ошибок валидации
@@ -483,7 +492,7 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
                 description_ru=data.get("description_ru", ""),
                 snow_type=formatted_snow_type,
                 snow_temperature=data.get("snow_temperature", []),
-                house=data.get("house", ""),
+                service=data.get("service", {}).get("name", "") or data.get("house", ""),
                 country=data.get("country", ""),
                 tags=data.get("tags", []),
                 similars=data.get("similars", []),
@@ -688,18 +697,17 @@ def format_features(features: Union[List[str], None]) -> str:
 
 
 def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
-                section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
-                sort_by: str = "name", filter_pattern: Optional[str] = None) -> None:
+                   section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
+                   sort_by: str = "name") -> None:
     """
-    Генерирует файл README для указанного языка.
+    Генерирует README файл на основе данных о структурах и шаблонов.
 
     Args:
-        sections: Словарь с секциями и данными их структур (объекты StructureInfo).
-        header_file: Путь к файлу-шаблону заголовка.
-        section_metadata: Метаданные для всех секций.
-        language: Целевой язык ('en' или 'ru').
+        sections: Словарь с секциями и списками структур.
+        header_file: Путь к файлу заголовка.
+        section_metadata: Метаданные секций.
+        language: Язык генерации ('en' или 'ru').
         sort_by: Поле для сортировки структур.
-        filter_pattern: Регулярное выражение для фильтрации структур.
     """
     # Настраиваем языко-зависимые параметры
     if language == "en":
@@ -863,36 +871,27 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
             f.write("|------|------------|-----------|------------|------|------|-------------------|-------------------|\n")
 
             # Используем генератор для потоковой обработки данных без хранения всего в памяти
-            def stream_sorted_structures(section_data, sort_field, pattern=None):
-                """Функция-генератор для выдачи отсортированных и отфильтрованных структур."""
-                # Создаем функцию для получения ключа сортировки
-                if sort_field == "name":
-                    key_func = lambda x: str(x.name)
-                elif sort_field == "snow_type":
-                    key_func = lambda x: str(x.snow_type)
-                elif sort_field == "house":
-                    key_func = lambda x: str(x.house)
-                else:
-                    key_func = lambda x: str(x.name)
+            def stream_sorted_structures(structures: List[StructureInfo], sort_by: str = "name") -> Iterator[StructureInfo]:
+                """
+                Сортирует структуры по указанному полю.
 
+                Args:
+                    structures: Список структур для сортировки.
+                    sort_by: Поле для сортировки.
+                    filter_pattern: Регулярное выражение для фильтрации (опционально).
+
+                Yields:
+                    Отсортированные структуры, соответствующие фильтру.
+                """
                 # Сортируем структуры
-                structures = sorted(section_data, key=key_func)
+                structures_sorted = sorted(structures, key=lambda s: getattr(s, sort_by, "") or "")
 
-                # Фильтруем при необходимости
-                if pattern:
-                    regex = re.compile(pattern, re.IGNORECASE)
-                    for structure in structures:
-                        if (regex.search(str(structure.name)) or
-                            regex.search(str(getattr(structure, description_field))) or
-                            regex.search(str(structure.snow_type))):
-                            yield structure
-                else:
-                    # Выдаем все структуры
-                    for structure in structures:
-                        yield structure
+                # Возвращаем все структуры
+                for structure in structures_sorted:
+                    yield structure
 
             # Потоковая обработка отсортированных и отфильтрованных структур
-            for structure in stream_sorted_structures(sections[section], sort_by, filter_pattern):
+            for structure in stream_sorted_structures(sections[section], sort_by):
                 # Создаем ссылку от имени к YAML-файлу используя относительный путь
                 file_path = structure.file_path
                 rel_path = os.path.relpath(file_path, start=output_dir)
@@ -947,10 +946,10 @@ def validate_yaml_files(directory: str) -> None:
         try:
             filename = os.path.basename(file_path)
 
-            # Для метаданных секций используем модель SectionMetadata
+            # Для метаданных секций используем модель ServiceMetadata
             if filename == "_meta.yaml":
                 try:
-                    SectionMetadata.model_validate(yaml.safe_load(open(file_path, 'r', encoding='utf-8')))
+                    ServiceMetadata.model_validate(yaml.safe_load(open(file_path, 'r', encoding='utf-8')))
                     valid_files += 1
                     logger.debug(f"{GREEN}✓{RESET} Файл {file_path} успешно прошел валидацию")
                 except ValidationError as e:
@@ -1001,9 +1000,8 @@ def main() -> None:
     parser.add_argument("--config", dest="config_file", help="Путь к файлу конфигурации")
     parser.add_argument("--en-header", dest="en_header_file", help="Путь к шаблону заголовка английского README")
     parser.add_argument("--ru-header", dest="ru_header_file", help="Путь к шаблону заголовка русского README")
-    parser.add_argument("--sort-by", choices=["name", "snow_type", "house"], default="name",
+    parser.add_argument("--sort-by", choices=["name", "snow_type", "service"], default="name",
                         help="Поле для сортировки структур")
-    parser.add_argument("--filter", dest="filter_pattern", help="Фильтрация структур по регулярному выражению")
     parser.add_argument("--exclude-empty", action="store_true", help="Исключить секции без структур")
     parser.add_argument("--validate", action="store_true", help="Только проверить YAML-файлы без генерации README")
     args = parser.parse_args()
@@ -1036,8 +1034,6 @@ def main() -> None:
         config["header_templates"]["ru"] = args.ru_header_file
     if args.sort_by:
         config["sort_field"] = args.sort_by
-    if args.filter_pattern:
-        config["filter_pattern"] = args.filter_pattern
     if args.exclude_empty:
         config["exclude_empty_sections"] = True
 
@@ -1075,8 +1071,8 @@ def main() -> None:
     section_metadata = collect_section_metadata()
 
     # Генерация файлов README
-    generate_readme(sections, en_header_file, section_metadata, "en", config["sort_field"], config["filter_pattern"])
-    generate_readme(sections, ru_header_file, section_metadata, "ru", config["sort_field"], config["filter_pattern"])
+    generate_readme(sections, en_header_file, section_metadata, "en", config["sort_field"])
+    generate_readme(sections, ru_header_file, section_metadata, "ru", config["sort_field"])
 
     logger.info("Генерация README успешно завершена")
 

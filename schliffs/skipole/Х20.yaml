@@ -1,11 +1,9 @@
 name: Х20
-description:
+description: null
 description_ru: структура для свежего и старого снега при температуре от -5 до 15
 images:
   - schliffs/skipole/X20/X20.jpg
-
 website_url: https://skipole.ru/shtainshlift-romashkovo/
-
 snow_type:
   - all
   - fresh
@@ -14,21 +12,20 @@ snow_temperature:
   - min: -5
     max: 15
 condition: blue
-manufactory: ""
-house: "Skipole"
-author: "Fedor Nikolaev"
-country: "Россия"
-
+manufactory: ''
+author: Fedor Nikolaev
+country: Россия
 tags:
   - свежий снег
-
 similars:
-  -
-  -
-
+  - null
+  - null
 features:
-  - При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C.
-
+  - При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой
+    влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг
+    на +5–7°C.
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Skipole

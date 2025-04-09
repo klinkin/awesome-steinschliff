@@ -1,33 +1,28 @@
 name: B3312
-description:
+description: null
 description_ru: струтура на переходку и тепло, на влажный, но не жидкий снег
-
 website_url: https://www.bemesports.com/en/skiservice
-
 snow_type:
   - wet
   - transformed
 snow_temperature:
   - min: -5
-    max: +5
+    max: 5
 condition: yellow
-manufactory: "all"
-house: "Beme"
-author: "Benjamin Eder"
-country: "Austria"
-
+manufactory: all
+author: Benjamin Eder
+country: Austria
 tags:
   - переходка
   - тепло
   - влажный
-
 similars:
   - S13-5
   - S13-4
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Beme

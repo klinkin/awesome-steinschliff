@@ -1,31 +1,25 @@
 name: T4
-description:
+description: null
 description_ru: стуктура для морозного снега и температуры ниже -5
-
 website_url: https://vk.com/video-220482174_456239484
-
 snow_type:
   - frozen
   - dry
-
 snow_temperature:
   - min: -20
     max: -5
 condition: green
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
-  -
-
+  - null
 similars:
   - B227
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

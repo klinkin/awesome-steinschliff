@@ -1,7 +1,6 @@
 name: VT1.3
 description: Cold structure optimized for well-used tracks
 description_ru: Холодная структура, хорошо работает в раскат
-
 snow_type:
   - used
   - transformed
@@ -9,18 +8,16 @@ snow_temperature:
   - min: -16
     max: -4
 condition: cold
-manufactory: ""
-house: "Svecky"
-author: ""
-country: "Россия"
-
+manufactory: ''
+author: ''
+country: Россия
 tags:
   - холодная
   - трансформированный снег
-
 features:
-  -
-
+  - null
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Svecky

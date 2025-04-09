@@ -1,7 +1,6 @@
 name: LiB
 description: Warm structure for fresh snow, high humidity conditions
 description_ru: Тёплая структура на свежий снег, высокая влажность
-
 snow_type:
   - fresh
   - new
@@ -9,19 +8,17 @@ snow_temperature:
   - min: -4
     max: 5
 condition: warm
-manufactory: ""
-house: "Svecky"
-author: ""
-country: "Россия"
-
+manufactory: ''
+author: ''
+country: Россия
 tags:
   - тёплая
   - свежий снег
   - высокая влажность
-
 features:
-  -
-
+  - null
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Svecky

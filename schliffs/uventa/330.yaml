@@ -1,8 +1,8 @@
 name: 330
-description:
-description_ru: Холодная структура для утрамбованного, преобразованного и жесткого снега, температурный диапазон от -5°C до -20°C
+description: null
+description_ru: Холодная структура для утрамбованного, преобразованного и жесткого
+  снега, температурный диапазон от -5°C до -20°C
 website_url: https://www.uventasport.ru/company/servis-centr/shtaynshlift
-
 snow_type:
   - frozen
   - cold
@@ -11,23 +11,20 @@ snow_temperature:
   - min: -20
     max: -5
 condition: green
-manufactory: ""
-house: "Uventa"
-author: ""
-country: "Россия"
-
+manufactory: ''
+author: ''
+country: Россия
 tags:
   - холодная
   - утрамбованный снег
   - преобразованный снег
   - жесткий снег
-
 similars:
   - C110X
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Uventa

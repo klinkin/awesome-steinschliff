@@ -1,29 +1,24 @@
 name: OH3
-description:
+description: null
 description_ru: структура на переходку и тепло при температуре от +5 до -7
-
-website_url:  https://vk.com/video-220482174_456239484
-
+website_url: https://vk.com/video-220482174_456239484
 snow_type:
   - all
 snow_temperature:
   - min: -7
-    max: +5
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+    max: 5
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
-  -
-
+  - null
 similars:
   - B3312
-
 features:
   - появился шлифт относительно недавно, сильно позднее S-шлифтов
-
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

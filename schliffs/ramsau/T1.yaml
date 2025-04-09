@@ -1,33 +1,28 @@
 name: T1
-description:
-description_ru: стуктура для крупнозернистого снега, весеннего старого снега и температуры от 0 до +5
-
+description: null
+description_ru: стуктура для крупнозернистого снега, весеннего старого снега и температуры
+  от 0 до +5
 website_url: https://vk.com/video-220482174_456239484
-
 snow_type:
   - old
   - wet
   - dirty
-
 snow_temperature:
   - min: 0
-    max: +5
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+    max: 5
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - крупнозернистый
-
 similars:
   - S13-5
   - B3312
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

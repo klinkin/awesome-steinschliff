@@ -1,7 +1,7 @@
 name: PRG
 description: Structure for transformed, groomed snow in cold conditions
-description_ru: Структура на трансформированный, ратрачный снег на средне-холодные температуры
-
+description_ru: Структура на трансформированный, ратрачный снег на средне-холодные
+  температуры
 snow_type:
   - transformed
   - groomed
@@ -9,19 +9,17 @@ snow_temperature:
   - min: -13
     max: -5
 condition: cold
-manufactory: ""
-house: "Svecky"
-author: ""
-country: "Россия"
-
+manufactory: ''
+author: ''
+country: Россия
 tags:
   - трансформированный снег
   - ратрачный снег
   - холодная
-
 features:
   - Для хорошо подготовленных трасс
-
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Svecky

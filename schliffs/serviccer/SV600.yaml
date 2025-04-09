@@ -1,32 +1,27 @@
 name: SV600
-description:
-description_ru:
-
+description: null
+description_ru: null
 website_url: https://serviccer.ru/strukturyi.html
-
 snow_type:
-  -
-  -
-  -
+  - null
+  - null
+  - null
 snow_temperature:
-  - min:
-  - max:
-condition:
-manufactory: ""
-house: "Serviccer"
-author: "Victor Golovin"
-country: "Россия"
-
+  - min: null
+  - max: null
+condition: null
+manufactory: ''
+author: Victor Golovin
+country: Россия
 tags:
-  -
-  -
-
+  - null
+  - null
 similars:
-  -
-
+  - null
 features:
-  -
-
+  - null
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Serviccer

@@ -1,35 +1,30 @@
 name: M61B
-description:
-description_ru: универсальная структура для различных видов снега, в том числе и нового,  при температуре воздуха от +3 до -3
+description: null
+description_ru: универсальная структура для различных видов снега, в том числе и нового,  при
+  температуре воздуха от +3 до -3
 website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
-
 snow_type:
   - all
   - universal
   - wet
 snow_temperature:
   - min: -3
-    max: +3
-condition: "Ю?Ю?"
-manufactory: "Madshus"
-house: "Madshus"
-author: ""
-country: "Norway"
-
+    max: 3
+condition: Ю?Ю?
+manufactory: Madshus
+author: ''
+country: Norway
 tags:
   - свежий снег
   - универсальный
   - трансформированный
-
 similars:
   - SV100
-
 features:
   - оптимальна, когда снег становится немного влажным
   - хорошо подходит для классических лыж ZERO
-
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
-
-
+service:
+  name: Madshus

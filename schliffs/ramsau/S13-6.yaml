@@ -1,31 +1,27 @@
 name: S13-6
-description:
+description: null
 description_ru: мокрый снег с дождем, температура от 0 до +10
-website_url:
-
+website_url: null
 snow_type:
   - wet
 snow_temperature:
   - min: 0
-    max: +10
+    max: 10
 condition: yellow
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - мокрый снег
   - дождь
   - плюсовая температура
-
 similars:
   - F1
   - M63
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

@@ -1,32 +1,29 @@
 name: S12-14
-description:
-description_ru: на перемороженный снег в период потепления, свежий снег, температура от -2 до -10
-website_url:
-
+description: null
+description_ru: на перемороженный снег в период потепления, свежий снег, температура
+  от -2 до -10
+website_url: null
 snow_type:
   - frozen
   - fresh
 snow_temperature:
   - min: -10
     max: -2
-condition: "период потепления"
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: период потепления
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - перемороженный снег
   - свежий снег
   - потепление
-
 similars:
   - S12-4
   - S12-16
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

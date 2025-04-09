@@ -1,34 +1,30 @@
 name: S13-5
-description:
+description: null
 description_ru: свежий падающий мокрый снег, температура от 0 до +5
-website_url:
-
+website_url: null
 snow_type:
   - fresh
   - falling
   - wet
 snow_temperature:
   - min: 0
-    max: +5
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+    max: 5
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
   - свежий снег
   - падающий снег
   - мокрый
   - плюсовая температура
-
 similars:
   - F1
   - M63
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

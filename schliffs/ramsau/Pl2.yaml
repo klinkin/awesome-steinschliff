@@ -1,33 +1,28 @@
 name: PL2
-description:
-description_ru: универсальный шлифт как для свежего снега так и для трансформированого при температуре от 0 до -10
-
+description: null
+description_ru: универсальный шлифт как для свежего снега так и для трансформированого
+  при температуре от 0 до -10
 website_url: https://vk.com/video-220482174_456239484
-
 snow_type:
   - all
   - fresh
   - transformed
-
 snow_temperature:
   - min: -10
     max: 0
-condition: ""
-manufactory: "Fischer"
-house: "Ramsau"
-author: ""
-country: "Germany"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Germany
 tags:
-  -
-
+  - null
 similars:
   - S12-16
   - B2211
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-04
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Ramsau

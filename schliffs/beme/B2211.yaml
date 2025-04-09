@@ -1,9 +1,8 @@
 name: B2211
-description:
-description_ru: универсальная структура на все типы снега, особенно на свеже выпавший снег
-
+description: null
+description_ru: универсальная структура на все типы снега, особенно на свеже выпавший
+  снег
 website_url: https://www.bemesports.com/en/skiservice
-
 snow_type:
   - all
   - fresh
@@ -11,23 +10,20 @@ snow_temperature:
   - min: -12
     max: -1
 condition: blue
-manufactory: "all"
-house: "Beme"
-author: "Benjamin Eder"
-country: "Austria"
-
+manufactory: all
+author: Benjamin Eder
+country: Austria
 tags:
   - универсальная
   - свежий снег
   - все типы снега
-
 similars:
   - P5-1
   - S12-16
-
 features:
-  - ""
-
+  - ''
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false
+service:
+  name: Beme

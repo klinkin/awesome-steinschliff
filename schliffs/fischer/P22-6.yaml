@@ -1,31 +1,27 @@
 name: P22-6
-description:
+description: null
 description_ru: переходная структура на любой тип снега, температура от +5 до -5
-website_url:
-
+website_url: null
 snow_type:
   - all
 snow_temperature:
   - min: -5
     max: 5
-condition: ""
-manufactory: "Fischer"
-house: "Fischer"
-author: ""
-country: "Austria"
-
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
 tags:
   - универсальный
   - переходная структура
   - широкий диапазон
-
 similars:
   - P5-1
   - P11-2
-
 features:
   - переходная структура
-
 updated_at: 2024-04-01
-updated_by: ""
+updated_by: ''
 archived: false
+service:
+  name: Fischer
