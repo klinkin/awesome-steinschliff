@@ -63,7 +63,7 @@ class ReadmeGenerator:
         self.jinja_env.globals["getattr"] = getattr
 
         # Регистрируем фильтры для шаблонов
-        self.jinja_env.filters["format_image"] = format_image_link
+        self.jinja_env.filters["format_image_link"] = format_image_link
         self.jinja_env.filters["format_list"] = format_list_for_display
         self.jinja_env.filters["format_similars"] = format_similars_with_links
         self.jinja_env.filters["format_temperature"] = format_temperature_range
@@ -89,6 +89,7 @@ class ReadmeGenerator:
     def _process_yaml_files(self, yaml_files: List[str]) -> None:
         """
         Обрабатывает YAML-файлы для извлечения информации о структурах.
+        Оптимизированная версия - обработка выполняется за один проход.
 
         Args:
             yaml_files: Список путей к YAML-файлам.
@@ -103,7 +104,7 @@ class ReadmeGenerator:
         error_files = 0
         warning_files = 0
 
-        # Первый проход - создаем отображение имен на пути
+        # Один проход по всем файлам - одновременно создаем name_to_path и обрабатываем структуры
         for file_path in yaml_files:
             try:
                 # Пропускаем файлы _meta.yaml
@@ -118,31 +119,15 @@ class ReadmeGenerator:
 
                 name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
                 # Преобразуем имя в строку, чтобы обеспечить единый тип ключей
-                name_to_path[str(name)] = file_path
+                name_str = str(name)
+                name_to_path[name_str] = file_path
                 valid_files += 1
-            except Exception as e:
-                error_count += 1
-                error_files += 1
-                logger.error(f"Непредвиденная ошибка при обработке {file_path}: {e}")
 
-        # Второй проход - обрабатываем структуры с полным отображением
-        for file_path in yaml_files:
-            try:
-                # Пропускаем файлы _meta.yaml
-                if os.path.basename(file_path) == "_meta.yaml":
-                    continue
-
-                data = read_yaml_file(file_path)
-                if not data:
-                    continue
-
+                # Далее обрабатываем структуру и создаем StructureInfo
                 # Определяем сервис
                 service = os.path.dirname(file_path).replace(f"{self.schliffs_dir}/", "")
                 if not service:
                     service = "main"
-
-                # Создаем информацию о структуре используя StructureInfo
-                name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
 
                 # Обрабатываем snow_type для форматированного вывода
                 formatted_snow_type = format_snow_types(data.get("snow_type", []))
@@ -154,9 +139,9 @@ class ReadmeGenerator:
                 else:
                     service_obj = Service(name=service_data or "")
 
-                # Создаем объект StructureInfo
+                # Сохраняем структуру в соответствующий сервис
                 structure_info = StructureInfo(
-                    name=str(name),  # Конвертируем name в строку
+                    name=name_str,
                     description=data.get("description", ""),
                     description_ru=data.get("description_ru", ""),
                     snow_type=formatted_snow_type,
@@ -168,22 +153,14 @@ class ReadmeGenerator:
                     features=data.get("features", []),
                     images=data.get("images", []),
                     file_path=file_path,
-                    name_to_path={},  # Будет заполнено позже
                 )
 
                 services[service].append(structure_info)
                 processed_count += 1
             except Exception as e:
                 error_count += 1
+                error_files += 1
                 logger.error(f"Непредвиденная ошибка при обработке {file_path}: {e}")
-
-        # Добавляем ссылку на name_to_path для каждой структуры
-        for service_name, service_structures in services.items():
-            for i, structure in enumerate(service_structures):
-                # Обновляем поле name_to_path для каждой структуры
-                # Создаем копию структуры с обновленным полем
-                updated_structure = structure.model_copy(update={"name_to_path": name_to_path})
-                services[service_name][i] = updated_structure
 
         logger.info(f"Успешно обработано {processed_count} файлов с {error_count} ошибками")
         self.services = services
@@ -191,6 +168,18 @@ class ReadmeGenerator:
 
         # Выводим статистику валидации
         print_validation_summary(valid_files, error_files, warning_files)
+
+    def get_path_by_name(self, name: str) -> Optional[str]:
+        """
+        Возвращает путь к файлу структуры по её имени.
+
+        Args:
+            name: Имя структуры
+
+        Returns:
+            Путь к файлу или None, если структура не найдена
+        """
+        return self.name_to_path.get(str(name))
 
     def _prepare_countries_data(self) -> Dict[str, Any]:
         """Подготавливает иерархические данные о странах, сервисах и структурах."""
@@ -202,28 +191,44 @@ class ReadmeGenerator:
             country = "Other"
             if service_name in self.service_metadata:
                 service_meta = self.service_metadata[service_name]
-                if service_meta.get("country"):
-                    country = service_meta.get("country")
+                if service_meta.country:
+                    country = service_meta.country
 
             # Извлекаем метаданные сервиса, если они есть
-            service_meta = self.service_metadata.get(service_name, {})
+            service_meta = self.service_metadata.get(service_name, None)
 
             # Если страны еще нет в словаре, создаем её
             if country not in countries:
                 countries[country] = {"services": {}}
 
             # Добавляем сервис в страну
-            countries[country]["services"][service_name] = {
+            service_data = {
                 "name": service_name,
-                "title": service_meta.get("name", service_name.capitalize()),
-                "city": service_meta.get("city", ""),
-                "description": service_meta.get("description", ""),
-                "description_ru": service_meta.get("description_ru", ""),
-                "website_url": service_meta.get("website_url", ""),
-                "video_url": service_meta.get("video_url", ""),
-                "contact": service_meta.get("contact", {}),
                 "structures": structures,
             }
+
+            if service_meta:
+                service_data.update({
+                    "title": service_meta.name or service_name.capitalize(),
+                    "city": service_meta.city or "",
+                    "description": service_meta.description or "",
+                    "description_ru": service_meta.description_ru or "",
+                    "website_url": service_meta.website_url or "",
+                    "video_url": service_meta.video_url or "",
+                    "contact": service_meta.contact or {},
+                })
+            else:
+                service_data.update({
+                    "title": service_name.capitalize(),
+                    "city": "",
+                    "description": "",
+                    "description_ru": "",
+                    "website_url": "",
+                    "video_url": "",
+                    "contact": {},
+                })
+
+            countries[country]["services"][service_name] = service_data
 
         # Определяем порядок стран
         ordered_countries = []
@@ -264,16 +269,15 @@ class ReadmeGenerator:
         # Компилируем шаблон
         template = self.jinja_env.get_template("readme.jinja2")
 
+        # Обновляем функцию форматирования similars, чтобы она получала self, а не name_to_path
+        self.jinja_env.filters["format_similars"] = lambda similars, output_dir: format_similars_with_links(
+            similars, self, output_dir
+        )
+
         # Генерируем README для каждого языка
         locales = {
-            "en": {
-                "output_file": self.readme_file,
-                "description_field": "description"
-            },
-            "ru": {
-                "output_file": self.readme_ru_file,
-                "description_field": "description_ru"
-            },
+            "en": {"output_file": self.readme_file, "description_field": "description"},
+            "ru": {"output_file": self.readme_ru_file, "description_field": "description_ru"},
         }
 
         for locale, locale_data in locales.items():

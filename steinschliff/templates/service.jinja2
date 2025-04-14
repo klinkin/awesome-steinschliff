@@ -19,7 +19,7 @@
 {{ gettext("website") }}: [{{ service.title }}]({{ service.website_url }})
 {% endif %}
 
-{% if service.contact.address %}
+{% if service.contact and service.contact.address %}
 {{ gettext("address") }}: {{ service.contact.address }}
 {% endif %}
 
@@ -30,16 +30,16 @@
 {% if service.contact %}
 ### {{ gettext("contact") }}
 
-{% if service.contact.get('telegram') %}
-* {{ gettext("telegram") }}: [{{ service.contact.get('telegram') }}](https://t.me/{{ service.contact.get('telegram') | replace('@', '') }})
+{% if service.contact.telegram %}
+* {{ gettext("telegram") }}: [{{ service.contact.telegram }}](https://t.me/{{ service.contact.telegram | replace('@', '') }})
 {% endif %}
 
-{% if service.contact.get('email') %}
-* {{ gettext("email") }}: {{ service.contact.get('email') }}
+{% if service.contact.email %}
+* {{ gettext("email") }}: {{ service.contact.email }}
 {% endif %}
 
-{% if service.contact.get('phones') %}
-* {{ gettext("phones") }}: {{ service.contact.get('phones') | map('phone_link') | join(', ') }}
+{% if service.contact.phones %}
+* {{ gettext("phones") }}: {{ service.contact.phones | map('phone_link') | join(', ') }}
 {% endif %}
 
 {% endif %}

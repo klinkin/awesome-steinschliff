@@ -3,6 +3,7 @@ PROJECT_PATH := steinschliff
 help:
 	@echo "make lint                  - Syntax check"
 	@echo "make format                - Format project with ruff and black"
+	@echo "make test                  - Run tests"
 	@echo "make i18n-extract          - Extract translatable strings"
 	@echo "make i18n-init LOCALE=xx   - Initialize new locale (e.g. LOCALE=de)"
 	@echo "make i18n-update LOCALE=xx - Update existing locale"
@@ -17,6 +18,9 @@ lint:
 	poetry run mypy $(PROJECT_PATH)
 	poetry run ruff check $(PROJECT_PATH)
 	poetry run black --check $(PROJECT_PATH)
+
+test:
+	poetry run pytest -v
 
 format:
 	poetry run black $(PROJECT_PATH)

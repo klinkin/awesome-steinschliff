@@ -9,35 +9,13 @@ from typing import Any, Dict, List, Optional, Union
 logger = logging.getLogger("steinschliff.formatters")
 
 
-def format_snow_types(snow_types: Union[List[str], str, None]) -> str:
+def format_list(items: Union[List[Union[str, int, None]], str, None], allow_empty: bool = False) -> str:
     """
-    Форматирует список типов снега для отображения в таблицах README.
-
-    Args:
-        snow_types: Список типов снега или строка.
-
-    Returns:
-        Отформатированная строка с типами снега, разделенными запятыми.
-    """
-    if not snow_types:
-        return ""
-
-    if isinstance(snow_types, list):
-        # Фильтруем значения None и конвертируем в строки
-        valid_types = [str(item) for item in snow_types if item is not None]
-        return ", ".join(valid_types)
-
-    return str(snow_types)
-
-
-def format_list_for_display(
-    items: Union[List[Union[str, int, None]], str, None],
-) -> str:
-    """
-    Форматирует список элементов для отображения в таблицах README.
+    Универсальная функция для форматирования списков элементов в строку.
 
     Args:
         items: Список элементов, строка или None.
+        allow_empty: Разрешать ли пустые строки в списке.
 
     Returns:
         Отформатированная строка с элементами, разделенными запятыми.
@@ -46,16 +24,24 @@ def format_list_for_display(
         return ""
 
     if isinstance(items, list):
-        # Фильтруем значения None и пустые строки, затем конвертируем в строки
-        valid_items = [str(item) for item in items if item is not None and str(item).strip() != ""]
+        if allow_empty:
+            valid_items = [str(item) for item in items if item is not None]
+        else:
+            valid_items = [str(item) for item in items if item is not None and str(item).strip() != ""]
         return ", ".join(valid_items)
 
     return str(items)
 
 
+# Для обратной совместимости определяем функции через универсальную
+format_snow_types = lambda items: format_list(items, allow_empty=True)
+format_list_for_display = format_list
+format_features = format_list
+
+
 def format_similars_with_links(
     similars: Union[List[Union[str, int, None]], str, None],
-    name_to_path: Dict[str, str],
+    generator,
     output_dir: str,
 ) -> str:
     """
@@ -63,7 +49,7 @@ def format_similars_with_links(
 
     Args:
         similars: Список названий похожих структур, строка или None.
-        name_to_path: Словарь, сопоставляющий названия структур с путями к файлам.
+        generator: Экземпляр ReadmeGenerator для получения путей по именам.
         output_dir: Директория, в которой будет сохранен файл README.
 
     Returns:
@@ -72,26 +58,25 @@ def format_similars_with_links(
     if not similars:
         return ""
 
-    # Конвертируем все ключи в словаре name_to_path в строки для безопасного поиска
-    str_name_to_path = {str(k): v for k, v in name_to_path.items()}
+    # Если это не список, просто возвращаем строковое представление
+    if not isinstance(similars, list):
+        return str(similars)
 
     result = []
-    if isinstance(similars, list):
-        for item in similars:
-            if item is None or str(item).strip() == "":
-                continue
+    for item in similars:
+        if item is None or str(item).strip() == "":
+            continue
 
-            # Конвертируем элемент в строку для поиска
-            str_item = str(item)
-            if str_item in str_name_to_path:
-                # Конвертируем в относительный путь от файла README
-                rel_path = os.path.relpath(str_name_to_path[str_item], start=output_dir)
-                result.append(f"[{str_item}]({rel_path})")
-            else:
-                result.append(str_item)
-    else:
-        # Если это одиночная строка, просто возвращаем ее
-        return str(similars)
+        # Конвертируем элемент в строку для поиска
+        str_item = str(item)
+        path = generator.get_path_by_name(str_item)
+
+        if path:
+            # Конвертируем в относительный путь от файла README
+            rel_path = os.path.relpath(path, start=output_dir)
+            result.append(f"[{str_item}]({rel_path})")
+        else:
+            result.append(str_item)
 
     return ", ".join(result)
 
@@ -109,7 +94,7 @@ def format_temperature_range(
     Returns:
         Отформатированная строка с диапазоном температуры в формате "max min".
     """
-    if not snow_temperature:
+    if not snow_temperature or not isinstance(snow_temperature, list) or not snow_temperature[0]:
         return ""
 
     try:
@@ -131,66 +116,46 @@ def format_temperature_range(
         max_temp_str = max_temp_str.replace(".0", "")
 
         # Форматируем как "max min"
-        result = f"{max_temp_str} {min_temp_str}"
-        logger.debug(f"Отформатированный диапазон температуры: {result}")
-        return result
+        return f"{max_temp_str} {min_temp_str}"
     except Exception as e:
         logger.warning(f"Ошибка при форматировании температурного диапазона: {e}")
         return ""
 
 
-def format_image_link(image_value, structure_name: str, output_dir: str) -> str:
+def format_image_link(image_value: Union[str, List[str]], structure_name: str, output_dir: str) -> str:
     """
-    Форматирует ссылку на изображение для отображения в таблице.
+    Форматирует изображение для отображения в Markdown.
 
     Args:
-        image_value: Значение поля image (может быть строкой или списком строк)
-        structure_name: Название структуры
-        output_dir: Директория, относительно которой вычисляются относительные пути
+        image_value: Путь к изображению или список путей к изображениям
+        structure_name: Имя структуры (используется как alt-текст для изображения)
+        output_dir: Директория для вывода (используется для создания относительных путей)
 
     Returns:
-        Отформатированная ссылка на изображение
+        Форматированная строка Markdown для изображения
     """
-    if not image_value:
-        return ""
-
-    # Если передан список изображений, обрабатываем его
-    if isinstance(image_value, list):
-        # Возвращаем список в формате строки, как в оригинальном скрипте
-        return str(image_value)
-
-    # Если передана одна строка, обрабатываем ее
     try:
-        # Вычисляем относительный путь
-        if output_dir:
-            relative_path = os.path.relpath(image_value, output_dir)
+        # Проверка на пустое значение
+        if not image_value:
+            return ""
+
+        # Если image_value это список, берём первый элемент, если список не пустой
+        if isinstance(image_value, list):
+            if not image_value:  # Проверка на пустой список
+                return ""
+            path = image_value[0]
         else:
-            relative_path = image_value
+            path = image_value
 
-        # Форматируем HTML с изображением
-        return f'<img src="{relative_path}" alt="{structure_name}" width="100">'
+        # Проверяем, что путь не пустой и является строкой
+        if not path or not isinstance(path, str):
+            return ""
+
+        # Создаём относительный путь
+        relative_path = os.path.relpath(path, output_dir)
+
+        # Возвращаем форматированную ссылку в синтаксисе Markdown
+        return f"![{structure_name}]({relative_path})"
     except Exception as e:
-        logger.error(f"Ошибка форматирования ссылки на изображение: {e}")
-        return image_value
-
-
-def format_features(features: Union[List[str], None]) -> str:
-    """
-    Форматирует список особенностей структуры для отображения в таблицах README.
-
-    Args:
-        features: Список особенностей.
-
-    Returns:
-        Отформатированная строка с особенностями, разделенными запятыми.
-    """
-    if not features:
+        logger.error(f"Ошибка при форматировании изображения {image_value}: {e}")
         return ""
-
-    if isinstance(features, list):
-        # Фильтруем значения None и пустые строки, затем конвертируем в строки
-        valid_features = [str(item) for item in features if item is not None and str(item).strip() != ""]
-        return ", ".join(valid_features)
-
-    # Если это строка, просто возвращаем ее
-    return str(features)

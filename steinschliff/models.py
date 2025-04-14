@@ -4,7 +4,7 @@
 
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TemperatureRange(BaseModel):
@@ -13,16 +13,15 @@ class TemperatureRange(BaseModel):
     min: float
     max: float
 
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
+
 
 class Service(BaseModel):
     """Модель сервиса по обработке лыж"""
 
     name: Optional[str] = ""
 
-    class Config:
-        """Конфигурация модели Pydantic"""
-
-        extra = "allow"  # Разрешаем дополнительные поля
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
 
 class SchliffStructure(BaseModel):
@@ -43,10 +42,7 @@ class SchliffStructure(BaseModel):
     features: Optional[List[Union[str, int, None]]] = []  # Особенности структуры
     images: Optional[List[str]] = None  # Путь к множественным изображениям шлифта
 
-    class Config:
-        """Конфигурация модели Pydantic"""
-
-        extra = "allow"  # Разрешаем дополнительные поля
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
 
 class ContactInfo(BaseModel):
@@ -57,10 +53,7 @@ class ContactInfo(BaseModel):
     telegram: Optional[str] = None
     address: Optional[str] = None  # Адрес
 
-    class Config:
-        """Конфигурация модели Pydantic"""
-
-        extra = "allow"  # Разрешаем дополнительные поля
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
 
 class ServiceMetadata(BaseModel):
@@ -75,10 +68,7 @@ class ServiceMetadata(BaseModel):
     city: Optional[str] = ""
     contact: Optional[ContactInfo] = None
 
-    class Config:
-        """Конфигурация модели Pydantic"""
-
-        extra = "allow"  # Разрешаем дополнительные поля
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
 
 class StructureInfo(BaseModel):
@@ -96,9 +86,5 @@ class StructureInfo(BaseModel):
     features: List[Union[str, int, None]] = Field(default_factory=list)
     images: List[str] = Field(default_factory=list)
     file_path: str
-    name_to_path: Dict[str, str] = Field(default_factory=dict)
 
-    class Config:
-        """Конфигурация модели Pydantic"""
-
-        extra = "allow"  # Разрешаем дополнительные поля
+    model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля

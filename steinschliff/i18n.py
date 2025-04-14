@@ -47,9 +47,9 @@ def extract_messages():
     Запускает извлечение сообщений для перевода.
     Использует subprocess для вызова pybabel напрямую.
     """
-    import subprocess
-    import os
     import glob
+    import os
+    import subprocess
 
     try:
         # Определяем пути
@@ -66,8 +66,7 @@ def extract_messages():
         logger.info(f"Найдено {len(templates)} шаблонов в {templates_dir}")
 
         # Запускаем pybabel через subprocess, явно указывая пути к шаблонам
-        cmd = ["pybabel", "extract", "-F", babel_cfg,
-              "-k", "gettext", "-k", "_", "-o", output_pot]
+        cmd = ["pybabel", "extract", "-F", babel_cfg, "-k", "gettext", "-k", "_", "-o", output_pot]
         cmd.extend(templates)  # Добавляем пути ко всем шаблонам
 
         logger.info(f"Выполнение команды: {' '.join(cmd)}")

@@ -5,7 +5,7 @@
 import glob
 import logging
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import yaml
 from pydantic import ValidationError
@@ -75,7 +75,7 @@ def print_validation_summary(valid_files: int, error_files: int, warning_files: 
     logger.info("\n" + "\n".join(report))
 
 
-def read_yaml_file(file_path: str) -> Optional[Dict[str, Any]]:
+def read_yaml_file(file_path: str) -> Union[Dict[str, Any], ServiceMetadata, None]:
     """
     Читает и разбирает YAML-файл с помощью PyYAML и валидирует с помощью Pydantic.
 
@@ -83,7 +83,9 @@ def read_yaml_file(file_path: str) -> Optional[Dict[str, Any]]:
         file_path: Путь к YAML-файлу.
 
     Returns:
-        Словарь с разобранным содержимым YAML или None, если произошла ошибка.
+        Для _meta.yaml - объект ServiceMetadata,
+        для других файлов - словарь с разобранным содержимым YAML,
+        или None, если произошла ошибка.
     """
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -93,9 +95,8 @@ def read_yaml_file(file_path: str) -> Optional[Dict[str, Any]]:
             filename = os.path.basename(file_path)
             if filename == "_meta.yaml":
                 try:
-                    # Валидируем метаданные сервиса
-                    validated_data = ServiceMetadata.model_validate(data).model_dump(exclude_unset=True)
-                    return validated_data
+                    # Валидируем метаданные сервиса и возвращаем объект модели
+                    return ServiceMetadata.model_validate(data)
                 except ValidationError as e:
                     # Подробный вывод ошибок валидации
                     error_report = format_validation_error(e, file_path)
@@ -147,7 +148,7 @@ def find_yaml_files(directory: str) -> List[str]:
     return glob.glob(pattern, recursive=True)
 
 
-def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, Dict[str, Any]]:
+def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, ServiceMetadata]:
     """
     Читает метаданные сервисов из файлов _meta.yaml.
 
@@ -156,7 +157,7 @@ def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, D
         services: Список сервисов.
 
     Returns:
-        Словарь метаданных сервисов.
+        Словарь объектов ServiceMetadata, проиндексированных по имени сервиса.
     """
     metadata = {}
 
@@ -174,12 +175,24 @@ def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, D
             try:
                 service_meta = read_yaml_file(metadata_file)
                 if service_meta:
+                    # Если вернулся словарь (из-за ошибки валидации), преобразуем его в ServiceMetadata
+                    if isinstance(service_meta, dict):
+                        try:
+                            service_meta = ServiceMetadata.model_validate(service_meta)
+                        except ValidationError:
+                            # Если и это не удалось, создаем пустой объект
+                            service_meta = ServiceMetadata(name=service)
+
                     metadata[service] = service_meta
                     logger.debug(f"Прочитаны метаданные для сервиса {service}")
                 else:
+                    # Создаем пустой объект метаданных
+                    metadata[service] = ServiceMetadata(name=service)
                     logger.warning(f"Пустой файл метаданных для сервиса {service}")
             except Exception as e:
                 logger.error(f"Ошибка чтения метаданных для сервиса {service}: {e}")
+                # Создаем пустой объект метаданных при ошибке
+                metadata[service] = ServiceMetadata(name=service)
 
     logger.info(f"Найдено {len(metadata)} файлов метаданных сервисов")
     return metadata

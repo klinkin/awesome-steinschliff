@@ -1,11 +1,20 @@
-# Steinschliff Structures
+# ❄️ Awesome Steinschliff
 
-This repository contains information about various ski grinding structures.
+A comprehensive guide to ski structures for various weather and snow conditions.
+The goal is to collect experience and make it easier to choose the right structure next season.
 
+* [Telegram chat](https://t.me/+wddxUugE0gwxMGU6)
+* [Forum thread on skisport.ru](https://www.skisport.ru/forum/cross-country/104594)
+
+Useful videos:
+
+* [Stone grinding process at Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
+* [Review of rare Ramsau structures](https://vkvideo.ru/video-220482174_456239484)
+* [Steinschliff overview at EkipTime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 ## Table of Contents
 
-### Россия
+### Russia
 
 * [Ekiptime (Москва)](#ekiptime-москва)
 * [Marsport (Одинцово)](#marsport-одинцово)
@@ -28,19 +37,25 @@ This repository contains information about various ski grinding structures.
 
 * [Madshus](#madshus)
 
+
+## Structures
+
 ## Ekiptime (Москва)
 
 Структуры для беговых лыж от компании Ekiptime
 
 Website: [Ekiptime](https://ekiptime.ru/services/base_tuning.php)
 
-Адрес: Москва, стадион Динамо, ВТБ Арена Плаза, Ленинградский проспект, 36
+Address: Москва, стадион Динамо, ВТБ Арена Плаза, Ленинградский проспект, 36
 
-Video Overview: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
+Video: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 ### Contact Information
 
-Phones: [+74997043525](tel:+74997043525)
+
+
+* phones: [+74997043525](tel:+74997043525)
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -53,11 +68,15 @@ Phones: [+74997043525](tel:+74997043525)
 
 Website: [Marsport](https://marsport.ru/service)
 
-Адрес: г. Одинцово ул. Манжосовская 1
+Address: г. Одинцово ул. Манжосовская 1
+
 
 ### Contact Information
 
-Phones: [+79250464773](tel:+79250464773)
+
+
+* phones: [+79250464773](tel:+79250464773)
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -68,17 +87,20 @@ Phones: [+79250464773](tel:+79250464773)
 
 ## Serviccer (Красногорск)
 
-None
+
 
 Website: [Serviccer](https://serviccer.ru/strukturyi.html)
 
-Адрес: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER"
+Address: МО, г.Красногорск, ул.Речная д.37 за зданием спортивной школы Waх-кабина "SERVICCER"
+
 
 ### Contact Information
 
-Email: servicerski@yandex.ru
 
-Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
+* email: servicerski@yandex.ru
+
+* phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -89,17 +111,20 @@ Phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
 
 ## Skipole (Москва)
 
-None
+
 
 Website: [Skipole](https://shtainshlift.ru)
 
-Адрес: Москва, село Ромашково, ул.Советская, д.113
+Address: Москва, село Ромашково, ул.Советская, д.113
+
 
 ### Contact Information
 
-Telegram: [Nikfedval](https://t.me/Nikfedval)
+* telegram: [Nikfedval](https://t.me/Nikfedval)
 
-Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
+
+* phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -111,17 +136,20 @@ Phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
 
 ## Svecky (Новосибирск)
 
-None
+
 
 Website: [Svecky](http://svecky.racing/)
 
-Адрес: Новосибирск, Академгородок, ул. Ионосферная 3
+Address: Новосибирск, Академгородок, ул. Ионосферная 3
+
 
 ### Contact Information
 
-Telegram: [svecky](https://t.me/svecky)
+* telegram: [svecky](https://t.me/svecky)
 
-Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+7(9I3)ООО-О4-ОО)
+
+* phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+7(9I3)ООО-О4-ОО)
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -136,13 +164,18 @@ Phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+
 
 ## Uventa (Москва)
 
-None
+
 
 Website: [Uventa](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 
-Адрес: Москва
+Address: Москва
+
 
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -157,11 +190,17 @@ Website: [Uventa](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 
 ## Beme
 
-None
+
 
 Website: [Beme](https://www.bemesports.com/en/skiservice)
 
+
+
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -175,7 +214,13 @@ Default Fischer structures
 
 Website: [Fischer](https://www.fischersports.com)
 
+
+
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -205,7 +250,13 @@ Default Salomon structures
 
 Website: [Salomon](https://www.salomon.com)
 
+
+
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -217,9 +268,16 @@ Website: [Salomon](https://www.salomon.com)
 
 ## Ramsau
 
-None
+
+
+
+
 
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -250,11 +308,17 @@ None
 
 ## Madshus
 
-None
+
 
 Website: [Madshus](https://www.madshus.com)
 
+
+
 ### Contact Information
+
+
+
+
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
