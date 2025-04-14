@@ -1,9 +1,28 @@
 {# Шаблон для оглавления (Table of Contents) #}
 {% import 'macros.jinja2' as macros %}
 {% for country_name in ordered_countries %}
-### {{ gettext("countries." + country_name|lower|replace(" ", "_")) }}
+{# Используем статичные ключи для названий стран #}
+{% if country_name|lower == "россия" %}
+### {{ gettext("countries.russia") }}
+
+{% elif country_name|lower == "германия" %}
+### {{ gettext("countries.germany") }}
+
+{% elif country_name|lower == "австрия" %}
+### {{ gettext("countries.austria") }}
+
+{% elif country_name|lower == "норвегия" %}
+### {{ gettext("countries.norway") }}
+
+{% elif country_name|lower == "другие" %}
+### {{ gettext("countries.other") }}
+
+{% else %}
+### {{ country_name }}
+
+{% endif %}
 {% for service_name, service in countries[country_name].services|dictsort -%}
-{%- set service_title = service.title -%}
+{%- set service_title = service_name|capitalize -%}
 {%- if service.city -%}
 {%- set service_title = service_title + " (" + service.city + ")" -%}
 {%- endif -%}

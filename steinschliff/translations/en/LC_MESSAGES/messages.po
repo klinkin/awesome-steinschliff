@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 16:52+0300\n"
+"POT-Creation-Date: 2025-04-14 18:08+0300\n"
 "PO-Revision-Date: 2025-04-10 22:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,114 +18,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
+#: steinschliff/templates/service.jinja2:19
 msgid "website"
-msgstr ""
+msgstr "Website"
 
+#: steinschliff/templates/service.jinja2:23
 msgid "address"
-msgstr ""
+msgstr "Address"
 
+#: steinschliff/templates/service.jinja2:27
 msgid "video"
-msgstr ""
+msgstr "Video"
 
+#: steinschliff/templates/service.jinja2:31
 msgid "contact"
-msgstr ""
+msgstr "Contact Information"
 
+#: steinschliff/templates/service.jinja2:34
 msgid "telegram"
-msgstr ""
+msgstr "telegram"
 
+#: steinschliff/templates/service.jinja2:38
 msgid "email"
-msgstr ""
+msgstr "email"
 
+#: steinschliff/templates/service.jinja2:42
 msgid "phones"
-msgstr ""
+msgstr "phones"
 
+#: steinschliff/templates/toc.jinja2:6
+msgid "countries.russia"
+msgstr "Russia"
+
+#: steinschliff/templates/toc.jinja2:8
+msgid "countries.germany"
+msgstr "Germany"
+
+#: steinschliff/templates/toc.jinja2:10
+msgid "countries.austria"
+msgstr "Austria"
+
+#: steinschliff/templates/toc.jinja2:12
+msgid "countries.norway"
+msgstr "Norway"
+
+#: steinschliff/templates/toc.jinja2:14
+msgid "countries.other"
+msgstr "Other"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.name"
+msgstr "Name"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.description"
+msgstr "Description"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.snow_type"
+msgstr "Snow Type"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.temp_range"
+msgstr "Temp Range"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.image"
+msgstr "Image"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.tags"
+msgstr "Tags"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.similar"
+msgstr "Similar Structures"
+
+#: steinschliff/templates/table.jinja2:2
+msgid "table.features"
+msgstr "Features"
+
+#: steinschliff/templates/readme.jinja2:2
 msgid "main_title"
 msgstr "❄️ Awesome Steinschliff"
 
-msgid "table.name"
-msgstr ""
-
-msgid "table.description"
-msgstr ""
-
-msgid "table.snow_type"
-msgstr ""
-
-msgid "table.temp_range"
-msgstr ""
-
-msgid "table.image"
-msgstr ""
-
-msgid "table.tags"
-msgstr ""
-
-msgid "table.similar"
-msgstr ""
-
-msgid "table.features"
-msgstr ""
-
+#: steinschliff/templates/readme.jinja2:8
 msgid "toc"
-msgstr ""
+msgstr "Table of Contents"
 
+#: steinschliff/templates/readme.jinja2:14
 msgid "main_content"
-msgstr ""
-
-
-#~ msgid "toc"
-#~ msgstr ""
-
-#~ msgid "website"
-#~ msgstr ""
-
-#~ msgid "video"
-#~ msgstr ""
-
-#~ msgid "contact"
-#~ msgstr ""
-
-# Заголовки таблицы
-#~ msgid "table.name"
-#~ msgstr ""
-
-#~ msgid "table.description"
-#~ msgstr ""
-
-#~ msgid "table.snow_type"
-#~ msgstr ""
-
-#~ msgid "table.temp_range"
-#~ msgstr ""
-
-#~ msgid "table.image"
-#~ msgstr ""
-
-#~ msgid "table.tags"
-#~ msgstr ""
-
-#~ msgid "table.similar"
-#~ msgstr ""
-
-#~ msgid "table.features"
-#~ msgstr ""
-
-# Страны
-#~ msgid "countries.russia"
-#~ msgstr ""
-
-#~ msgid "countries.germany"
-#~ msgstr ""
-
-#~ msgid "countries.austria"
-#~ msgstr ""
-
-#~ msgid "countries.norway"
-#~ msgstr ""
-
-#~ msgid "countries.other"
-#~ msgstr ""
-
-#~ msgid "main_content"
-#~ msgstr ""
-
+msgstr "Structures"

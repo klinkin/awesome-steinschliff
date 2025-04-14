@@ -7,7 +7,7 @@
 {%- set service_title = service_title + " (" + service.city + ")" -%}
 {%- endif -%}
 
-<h2 id="{{ service_anchor }}">{{ service_title }}</h2>
+## {{ service_title }}
 
 {% if service.get(description_field) %}
 {{ service.get(description_field) }}

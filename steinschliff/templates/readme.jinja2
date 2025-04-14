@@ -17,6 +17,7 @@
     {% for country_name in ordered_countries %}
         {% for service_name, service in countries[country_name].services|dictsort %}
             {% include "service.jinja2" %}
+
         {% endfor %}
     {% endfor %}
 {% endblock %}

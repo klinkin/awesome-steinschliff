@@ -848,131 +848,132 @@ def generate_readme(
                 f.write(f"* [{section_title}](#{section_anchor})\n")
             f.write("\n")
 
-        # Секции со структурами
-        for section in sorted(sections.keys()):
-            section_title = section.capitalize()
-            section_anchor = section.lower().replace(" ", "-")
+        # Секции со структурами - используем тот же порядок, что и в оглавлении
+        for country in ordered_countries:
+            for section in sorted(countries_sections[country]):
+                section_title = section.capitalize()
+                section_anchor = section.lower().replace(" ", "-")
 
-            # Добавляем метаданные секции, если доступны
-            if section in section_metadata:
-                meta = section_metadata[section]
+                # Добавляем метаданные секции, если доступны
+                if section in section_metadata:
+                    meta = section_metadata[section]
 
-                # Получаем описание на соответствующем языке
-                if f"{description_field}" in meta and meta[f"{description_field}"]:
-                    section_description = meta[f"{description_field}"]
+                    # Получаем описание на соответствующем языке
+                    if f"{description_field}" in meta and meta[f"{description_field}"]:
+                        section_description = meta[f"{description_field}"]
+                    else:
+                        section_description = meta.get("description", "")
+
+                    # Добавляем город в заголовок, если он указан в метаданных
+                    if meta.get("city"):
+                        section_title = f"{section_title} ({meta.get('city')})"
+                        # Обновляем якорь с учетом города
+                        section_anchor = (
+                            f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
+                        )
+
+                    f.write(f"## {section_title}\n\n")
+                    f.write(f"{section_description}\n\n")
+
+                    # Добавляем ссылку на сайт, если доступна
+                    website_url = meta.get("website_url", "")
+                    if website_url:
+                        f.write(f"{titles['website']}: [{meta.get('name', section_title)}]({website_url})\n\n")
+
+                    address = meta.get("contact", {}).get("address")
+                    if address:
+                        f.write(f"Адрес: {address}\n\n")
+
+                    # Добавляем ссылку на видео, если доступна
+                    video_url = meta.get("video_url", "")
+                    if video_url:
+                        f.write(f"{titles['video']}: [{meta.get('name', section_title)}]({video_url})\n\n")
+
+                    # Добавляем контактную информацию, если доступна
+                    contact_info = meta.get("contact", {})
+                    if contact_info:
+                        f.write(f"### {titles['contact']}\n\n")
+
+                        # Добавляем Telegram, если доступен
+                        telegram = contact_info.get("telegram")
+                        if telegram:
+                            f.write(f"Telegram: [{telegram}](https://t.me/{telegram.lstrip('@')})\n\n")
+
+                        # Добавляем email, если доступен
+                        email = contact_info.get("email")
+                        if email:
+                            f.write(f"Email: {email}\n\n")
+
+                        # Добавляем телефоны, если доступны
+                        phones = contact_info.get("phones", [])
+                        if phones:
+                            # Преобразуем все элементы в строки и делаем кликабельными ссылками
+                            phones_links = [f"[{str(phone)}](tel:{str(phone)})" for phone in phones]
+                            f.write(f"Phones: {', '.join(phones_links)}\n\n")
                 else:
-                    section_description = meta.get("description", "")
+                    f.write(f"## {section_title}\n\n")
 
-                # Добавляем город в заголовок, если он указан в метаданных
-                if meta.get("city"):
-                    section_title = f"{section_title} ({meta.get('city')})"
-                    # Обновляем якорь с учетом города
-                    section_anchor = (
-                        f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
-                    )
-
-                f.write(f"## {section_title}\n\n")
-                f.write(f"{section_description}\n\n")
-
-                # Добавляем ссылку на сайт, если доступна
-                website_url = meta.get("website_url", "")
-                if website_url:
-                    f.write(f"{titles['website']}: [{meta.get('name', section_title)}]({website_url})\n\n")
-
-                address = meta.get("contact", {}).get("address")
-                if address:
-                    f.write(f"Адрес: {address}\n\n")
-
-                # Добавляем ссылку на видео, если доступна
-                video_url = meta.get("video_url", "")
-                if video_url:
-                    f.write(f"{titles['video']}: [{meta.get('name', section_title)}]({video_url})\n\n")
-
-                # Добавляем контактную информацию, если доступна
-                contact_info = meta.get("contact", {})
-                if contact_info:
-                    f.write(f"### {titles['contact']}\n\n")
-
-                    # Добавляем Telegram, если доступен
-                    telegram = contact_info.get("telegram")
-                    if telegram:
-                        f.write(f"Telegram: [{telegram}](https://t.me/{telegram.lstrip('@')})\n\n")
-
-                    # Добавляем email, если доступен
-                    email = contact_info.get("email")
-                    if email:
-                        f.write(f"Email: {email}\n\n")
-
-                    # Добавляем телефоны, если доступны
-                    phones = contact_info.get("phones", [])
-                    if phones:
-                        # Преобразуем все элементы в строки и делаем кликабельными ссылками
-                        phones_links = [f"[{str(phone)}](tel:{str(phone)})" for phone in phones]
-                        f.write(f"Phones: {', '.join(phones_links)}\n\n")
-            else:
-                f.write(f"## {section_title}\n\n")
-
-            # Таблица со структурами
-            table_headers = titles["table_headers"]
-            f.write(
-                f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} | {table_headers[7]} |\n"
-            )
-            f.write(
-                "|------|------------|-----------|------------|------|------|-------------------|-------------------|\n"
-            )
-
-            # Используем генератор для потоковой обработки данных без хранения всего в памяти
-            def stream_sorted_structures(
-                structures: List[StructureInfo], sort_by: str = "name"
-            ) -> Iterator[StructureInfo]:
-                """
-                Сортирует структуры по указанному полю.
-
-                Args:
-                    structures: Список структур для сортировки.
-                    sort_by: Поле для сортировки.
-                    filter_pattern: Регулярное выражение для фильтрации (опционально).
-
-                Yields:
-                    Отсортированные структуры, соответствующие фильтру.
-                """
-                # Сортируем структуры
-                structures_sorted = sorted(structures, key=lambda s: getattr(s, sort_by, "") or "")
-
-                # Возвращаем все структуры
-                for structure in structures_sorted:
-                    yield structure
-
-            # Потоковая обработка отсортированных и отфильтрованных структур
-            for structure in stream_sorted_structures(sections[section], sort_by):
-                # Создаем ссылку от имени к YAML-файлу используя относительный путь
-                file_path = structure.file_path
-                rel_path = os.path.relpath(file_path, start=output_dir)
-                name_with_link = f"[{structure.name}]({rel_path})"
-
-                # Форматируем теги и похожие структуры
-                tags = format_list_for_display(structure.tags)
-                similars = format_similars_with_links(structure.similars, structure.name_to_path, output_dir)
-
-                # Получаем описание на нужном языке
-                description = getattr(structure, description_field) if getattr(structure, description_field) else ""
-
-                # Форматируем диапазон температуры
-                temp_range = format_temperature_range(structure.snow_temperature)
-
-                # Форматируем изображение - сначала проверяем images, затем image
-                image_link = ""
-                if structure.images:
-                    image_link = format_image_link(structure.images, structure.name, output_dir)
-
-                # Форматируем особенности
-                features = format_features(structure.features)
-
+                # Таблица со структурами
+                table_headers = titles["table_headers"]
                 f.write(
-                    f"| {name_with_link} | {description} | {structure.snow_type} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n"
+                    f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} | {table_headers[7]} |\n"
+                )
+                f.write(
+                    "|------|------------|-----------|------------|------|------|-------------------|-------------------|\n"
                 )
 
-            f.write("\n")
+                # Используем генератор для потоковой обработки данных без хранения всего в памяти
+                def stream_sorted_structures(
+                    structures: List[StructureInfo], sort_by: str = "name"
+                ) -> Iterator[StructureInfo]:
+                    """
+                    Сортирует структуры по указанному полю.
+
+                    Args:
+                        structures: Список структур для сортировки.
+                        sort_by: Поле для сортировки.
+                        filter_pattern: Регулярное выражение для фильтрации (опционально).
+
+                    Yields:
+                        Отсортированные структуры, соответствующие фильтру.
+                    """
+                    # Сортируем структуры
+                    structures_sorted = sorted(structures, key=lambda s: getattr(s, sort_by, "") or "")
+
+                    # Возвращаем все структуры
+                    for structure in structures_sorted:
+                        yield structure
+
+                # Потоковая обработка отсортированных и отфильтрованных структур
+                for structure in stream_sorted_structures(sections[section], sort_by):
+                    # Создаем ссылку от имени к YAML-файлу используя относительный путь
+                    file_path = structure.file_path
+                    rel_path = os.path.relpath(file_path, start=output_dir)
+                    name_with_link = f"[{structure.name}]({rel_path})"
+
+                    # Форматируем теги и похожие структуры
+                    tags = format_list_for_display(structure.tags)
+                    similars = format_similars_with_links(structure.similars, structure.name_to_path, output_dir)
+
+                    # Получаем описание на нужном языке
+                    description = getattr(structure, description_field) if getattr(structure, description_field) else ""
+
+                    # Форматируем диапазон температуры
+                    temp_range = format_temperature_range(structure.snow_temperature)
+
+                    # Форматируем изображение - сначала проверяем images, затем image
+                    image_link = ""
+                    if structure.images:
+                        image_link = format_image_link(structure.images, structure.name, output_dir)
+
+                    # Форматируем особенности
+                    features = format_features(structure.features)
+
+                    f.write(
+                        f"| {name_with_link} | {description} | {structure.snow_type} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n"
+                    )
+
+                f.write("\n")
 
     logger.info(f"README для языка {language.upper()} успешно сгенерирован в {os.path.abspath(output_file)}")
 
