@@ -32,14 +32,14 @@ service
                     [--sort-by FIELD] [--filter PATTERN]
 """
 
-import os
-import glob
-import logging
 import argparse
-import re
+import glob
 import json
+import logging
+import os
+import re
 from collections import defaultdict
-from typing import Dict, List, Any, Optional, Union, Iterator
+from typing import Any, Dict, Iterator, List, Optional, Union
 
 # Константы для цветного вывода в терминал
 RESET = "\033[0m"
@@ -63,8 +63,8 @@ except ImportError:
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger("readme_generator")
 
@@ -75,28 +75,34 @@ DEFAULT_CONFIG = {
     "readme_ru_file": "README.md",
     "header_templates": {
         "en": "scripts/templates/readme_en_header.md",
-        "ru": "scripts/templates/readme_ru_header.md"
+        "ru": "scripts/templates/readme_ru_header.md",
     },
     "sort_field": "name",
-    "exclude_empty_sections": False
 }
+
 
 # Определение Pydantic-моделей для валидации
 class TemperatureRange(BaseModel):
     """Диапазон температуры снега"""
+
     min: float
     max: float
 
+
 class Service(BaseModel):
     """Модель сервиса по обработке лыж"""
+
     name: Optional[str] = ""
 
     class Config:
         """Конфигурация модели Pydantic"""
+
         extra = "allow"  # Разрешаем дополнительные поля
+
 
 class SchliffStructure(BaseModel):
     """Модель структуры"""
+
     name: str
     description: str
     description_ru: Optional[str] = ""
@@ -110,15 +116,17 @@ class SchliffStructure(BaseModel):
     tags: Optional[List[str]] = []
     similars: Optional[List[str]] = []
     features: Optional[List[str]] = []  # Особенности структуры
-    image: Optional[str] = None  # Путь к одиночному изображению шлифта
     images: Optional[List[str]] = None  # Путь к множественным изображениям шлифта
 
     class Config:
         """Конфигурация модели Pydantic"""
+
         extra = "allow"  # Разрешаем дополнительные поля
+
 
 class ContactInfo(BaseModel):
     """Модель контактной информации"""
+
     email: Optional[str] = None
     phones: Optional[List[str]] = None  # Массив телефонных номеров
     telegram: Optional[str] = None
@@ -126,10 +134,13 @@ class ContactInfo(BaseModel):
 
     class Config:
         """Конфигурация модели Pydantic"""
+
         extra = "allow"  # Разрешаем дополнительные поля
+
 
 class ServiceMetadata(BaseModel):
     """Модель метаданных секции (производителя)"""
+
     name: Optional[str] = ""
     description: Optional[str] = ""
     description_ru: Optional[str] = ""
@@ -141,11 +152,14 @@ class ServiceMetadata(BaseModel):
 
     class Config:
         """Конфигурация модели Pydantic"""
+
         extra = "allow"  # Разрешаем дополнительные поля
+
 
 # Добавляем модель для обработанной информации о структуре
 class StructureInfo(BaseModel):
     """Модель обработанной информации о структуре для вывода в README"""
+
     name: str
     description: Optional[str] = ""
     description_ru: Optional[str] = ""
@@ -156,13 +170,13 @@ class StructureInfo(BaseModel):
     tags: List[Union[str, int, None]] = Field(default_factory=list)
     similars: List[Union[str, int, None]] = Field(default_factory=list)
     features: List[Union[str, int, None]] = Field(default_factory=list)
-    image: Optional[str] = ""
     images: List[str] = Field(default_factory=list)
     file_path: str
     name_to_path: Dict[str, str] = Field(default_factory=dict)
 
     class Config:
         """Конфигурация модели Pydantic"""
+
         extra = "allow"  # Разрешаем дополнительные поля
 
 
@@ -180,7 +194,7 @@ def load_config(config_file: Optional[str] = None) -> Dict[str, Any]:
 
     if config_file and os.path.exists(config_file):
         try:
-            with open(config_file, 'r', encoding='utf-8') as f:
+            with open(config_file, "r", encoding="utf-8") as f:
                 user_config = yaml.safe_load(f)
                 if user_config and isinstance(user_config, dict):
                     # Обновляем только существующие ключи, чтобы предотвратить неожиданные настройки
@@ -238,7 +252,7 @@ def print_validation_summary(valid_files: int, error_files: int, warning_files: 
         f"{BOLD}===== РЕЗУЛЬТАТЫ ВАЛИДАЦИИ YAML-ФАЙЛОВ ====={RESET}",
         f"{GREEN}✓ Успешно:{RESET}       {valid_files} из {total} ({valid_files/total*100:.1f}%)",
         f"{YELLOW}⚠ Предупреждения:{RESET} {warning_files} из {total} ({warning_files/total*100:.1f}%)",
-        f"{RED}✗ Ошибки:{RESET}         {error_files} из {total} ({error_files/total*100:.1f}%)"
+        f"{RED}✗ Ошибки:{RESET}         {error_files} из {total} ({error_files/total*100:.1f}%)",
     ]
 
     logger.info("\n" + "\n".join(report))
@@ -258,7 +272,7 @@ def read_yaml_file(file_path: str) -> Optional[Dict[str, Any]]:
         Exception: Если файл не может быть прочитан или разобран.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
 
             # Пропускаем валидацию для метафайлов или используем специальную модель
@@ -316,7 +330,7 @@ def read_header_file(file_path: str) -> str:
         Строка с содержимым заголовка или пустая строка, если файл не найден.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
         logger.warning(f"Файл заголовка {file_path} не найден, используется пустой заголовок")
@@ -347,7 +361,9 @@ def format_snow_types(snow_types: Union[List[str], str, None]) -> str:
     return str(snow_types)
 
 
-def format_list_for_display(items: Union[List[Union[str, int, None]], str, None]) -> str:
+def format_list_for_display(
+    items: Union[List[Union[str, int, None]], str, None],
+) -> str:
     """
     Форматирует список элементов для отображения в таблицах README.
 
@@ -368,7 +384,11 @@ def format_list_for_display(items: Union[List[Union[str, int, None]], str, None]
     return str(items)
 
 
-def format_similars_with_links(similars: Union[List[Union[str, int, None]], str, None], name_to_path: Dict[str, str], output_dir: str) -> str:
+def format_similars_with_links(
+    similars: Union[List[Union[str, int, None]], str, None],
+    name_to_path: Dict[str, str],
+    output_dir: str,
+) -> str:
     """
     Форматирует список похожих структур со ссылками на их файлы.
 
@@ -479,28 +499,24 @@ def process_yaml_files(yaml_files: List[str]) -> tuple:
             if not section:
                 section = "main"
 
-            # Создаем информацию о структуре используя StructureInfo вместо словаря
-            name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
-
             # Обрабатываем snow_type для форматированного вывода
             formatted_snow_type = format_snow_types(data.get("snow_type", []))
 
             # Создаем объект StructureInfo
             structure_info = StructureInfo(
-                name=str(name),  # Конвертируем name в строку
+                name=data.get("name", ""),
                 description=data.get("description", ""),
                 description_ru=data.get("description_ru", ""),
                 snow_type=formatted_snow_type,
                 snow_temperature=data.get("snow_temperature", []),
-                service=data.get("service", {}).get("name", "") or data.get("house", ""),
+                service=data.get("service", {}).get("name", ""),
                 country=data.get("country", ""),
                 tags=data.get("tags", []),
                 similars=data.get("similars", []),
                 features=data.get("features", []),
-                image=data.get("image", ""),
-                images=data.get("images", []) if data.get("images") else [],
+                images=data.get("images", []),
                 file_path=file_path,
-                name_to_path={}  # Будет заполнено позже
+                name_to_path={},  # Будет заполнено позже
             )
 
             sections[section].append(structure_info)
@@ -566,7 +582,9 @@ def collect_section_metadata() -> Dict[str, Dict[str, Any]]:
     return section_metadata
 
 
-def format_temperature_range(snow_temperature: Union[List[Dict[str, Any]], None]) -> str:
+def format_temperature_range(
+    snow_temperature: Union[List[Dict[str, Any]], None],
+) -> str:
     """
     Форматирует диапазон температуры снега для отображения в таблице в формате "max min".
     Пример: "+3 -3" или "-1 -6"
@@ -595,8 +613,8 @@ def format_temperature_range(snow_temperature: Union[List[Dict[str, Any]], None]
         max_temp_str = f"+{max_temp}" if float(max_temp) > 0 else str(max_temp)
 
         # Убираем .0 в конце для целых чисел
-        min_temp_str = min_temp_str.replace('.0', '')
-        max_temp_str = max_temp_str.replace('.0', '')
+        min_temp_str = min_temp_str.replace(".0", "")
+        max_temp_str = max_temp_str.replace(".0", "")
 
         # Форматируем как "max min"
         result = f"{max_temp_str} {min_temp_str}"
@@ -632,6 +650,7 @@ def format_image_link(image_data: Union[str, List[str], None], name: str, output
         return _format_single_image(image_data[0], name, output_dir)
 
     return ""
+
 
 def _format_single_image(image_path: str, name: str, output_dir: str) -> str:
     """
@@ -696,9 +715,13 @@ def format_features(features: Union[List[str], None]) -> str:
     return str(features)
 
 
-def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
-                   section_metadata: Dict[str, Dict[str, Any]], language: str = "en",
-                   sort_by: str = "name") -> None:
+def generate_readme(
+    sections: Dict[str, List[StructureInfo]],
+    header_file: str,
+    section_metadata: Dict[str, Dict[str, Any]],
+    language: str = "en",
+    sort_by: str = "name",
+) -> None:
     """
     Генерирует README файл на основе данных о структурах и шаблонов.
 
@@ -719,7 +742,16 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
             "website": "Website",
             "video": "Video Overview",
             "contact": "Contact Information",
-            "table_headers": ["Name", "Description", "Snow Type", "Temp Range", "Image", "Tags", "Similar Structures", "Features"],
+            "table_headers": [
+                "Name",
+                "Description",
+                "Snow Type",
+                "Temp Range",
+                "Image",
+                "Tags",
+                "Similar Structures",
+                "Features",
+            ],
         }
         description_field = "description"
     else:  # ru
@@ -731,7 +763,16 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
             "website": "Сайт",
             "video": "Обзор",
             "contact": "Контактная информация",
-            "table_headers": ["Название", "Описание", "Тип снега", "Температура", "Изображение", "Теги", "Похожие структуры", "Особенности"],
+            "table_headers": [
+                "Название",
+                "Описание",
+                "Тип снега",
+                "Температура",
+                "Изображение",
+                "Теги",
+                "Похожие структуры",
+                "Особенности",
+            ],
         }
         description_field = "description_ru"
 
@@ -743,12 +784,12 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
     # Читаем содержимое заголовка
     header_content = read_header_file(header_file)
 
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         # Записываем содержимое заголовка
         if header_content:
             f.write(header_content)
             # Добавляем перевод строки, если его нет в конце
-            if not header_content.endswith('\n'):
+            if not header_content.endswith("\n"):
                 f.write("\n")
             f.write("\n")
         else:
@@ -796,7 +837,12 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
                 if section in section_metadata and section_metadata[section].get("city"):
                     section_title = f"{section_title} ({section_metadata[section]['city']})"
                     # Создаем якорь с учетом города для соответствия ID заголовка
-                    section_anchor = f"{section}-{section_metadata[section]['city']}".lower().replace(" ", "-").replace("(", "").replace(")", "")
+                    section_anchor = (
+                        f"{section}-{section_metadata[section]['city']}".lower()
+                        .replace(" ", "-")
+                        .replace("(", "")
+                        .replace(")", "")
+                    )
                 else:
                     section_anchor = section.lower().replace(" ", "-")
                 f.write(f"* [{section_title}](#{section_anchor})\n")
@@ -821,8 +867,9 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
                 if meta.get("city"):
                     section_title = f"{section_title} ({meta.get('city')})"
                     # Обновляем якорь с учетом города
-                    section_anchor = f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
-
+                    section_anchor = (
+                        f"{section}-{meta.get('city')}".lower().replace(" ", "-").replace("(", "").replace(")", "")
+                    )
 
                 f.write(f"## {section_title}\n\n")
                 f.write(f"{section_description}\n\n")
@@ -867,11 +914,17 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
 
             # Таблица со структурами
             table_headers = titles["table_headers"]
-            f.write(f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} | {table_headers[7]} |\n")
-            f.write("|------|------------|-----------|------------|------|------|-------------------|-------------------|\n")
+            f.write(
+                f"| {table_headers[0]} | {table_headers[1]} | {table_headers[2]} | {table_headers[3]} | {table_headers[4]} | {table_headers[5]} | {table_headers[6]} | {table_headers[7]} |\n"
+            )
+            f.write(
+                "|------|------------|-----------|------------|------|------|-------------------|-------------------|\n"
+            )
 
             # Используем генератор для потоковой обработки данных без хранения всего в памяти
-            def stream_sorted_structures(structures: List[StructureInfo], sort_by: str = "name") -> Iterator[StructureInfo]:
+            def stream_sorted_structures(
+                structures: List[StructureInfo], sort_by: str = "name"
+            ) -> Iterator[StructureInfo]:
                 """
                 Сортирует структуры по указанному полю.
 
@@ -911,13 +964,13 @@ def generate_readme(sections: Dict[str, List[StructureInfo]], header_file: str,
                 image_link = ""
                 if structure.images:
                     image_link = format_image_link(structure.images, structure.name, output_dir)
-                elif structure.image:
-                    image_link = format_image_link(structure.image, structure.name, output_dir)
 
                 # Форматируем особенности
                 features = format_features(structure.features)
 
-                f.write(f"| {name_with_link} | {description} | {structure.snow_type} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n")
+                f.write(
+                    f"| {name_with_link} | {description} | {structure.snow_type} | {temp_range} | {image_link} | {tags} | {similars} | {features} |\n"
+                )
 
             f.write("\n")
 
@@ -949,7 +1002,7 @@ def validate_yaml_files(directory: str) -> None:
             # Для метаданных секций используем модель ServiceMetadata
             if filename == "_meta.yaml":
                 try:
-                    ServiceMetadata.model_validate(yaml.safe_load(open(file_path, 'r', encoding='utf-8')))
+                    ServiceMetadata.model_validate(yaml.safe_load(open(file_path, "r", encoding="utf-8")))
                     valid_files += 1
                     logger.debug(f"{GREEN}✓{RESET} Файл {file_path} успешно прошел валидацию")
                 except ValidationError as e:
@@ -960,7 +1013,7 @@ def validate_yaml_files(directory: str) -> None:
             # Для остальных файлов используем модель SchliffStructure
             else:
                 try:
-                    data = yaml.safe_load(open(file_path, 'r', encoding='utf-8'))
+                    data = yaml.safe_load(open(file_path, "r", encoding="utf-8"))
                     SchliffStructure.model_validate(data)
                     valid_files += 1
                     logger.debug(f"{GREEN}✓{RESET} Файл {file_path} успешно прошел валидацию")
@@ -998,12 +1051,28 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Генерация файлов README из структур Steinschliff")
     parser.add_argument("--debug", action="store_true", help="Включить подробное логирование")
     parser.add_argument("--config", dest="config_file", help="Путь к файлу конфигурации")
-    parser.add_argument("--en-header", dest="en_header_file", help="Путь к шаблону заголовка английского README")
-    parser.add_argument("--ru-header", dest="ru_header_file", help="Путь к шаблону заголовка русского README")
-    parser.add_argument("--sort-by", choices=["name", "snow_type", "service"], default="name",
-                        help="Поле для сортировки структур")
-    parser.add_argument("--exclude-empty", action="store_true", help="Исключить секции без структур")
-    parser.add_argument("--validate", action="store_true", help="Только проверить YAML-файлы без генерации README")
+    parser.add_argument(
+        "--en-header",
+        dest="en_header_file",
+        help="Путь к шаблону заголовка английского README",
+    )
+    parser.add_argument(
+        "--ru-header",
+        dest="ru_header_file",
+        help="Путь к шаблону заголовка русского README",
+    )
+    parser.add_argument(
+        "--sort-by",
+        choices=["name", "snow_type", "service"],
+        default="name",
+        help="Поле для сортировки структур",
+    )
+
+    parser.add_argument(
+        "--validate",
+        action="store_true",
+        help="Только проверить YAML-файлы без генерации README",
+    )
     args = parser.parse_args()
 
     if args.debug:
@@ -1034,8 +1103,6 @@ def main() -> None:
         config["header_templates"]["ru"] = args.ru_header_file
     if args.sort_by:
         config["sort_field"] = args.sort_by
-    if args.exclude_empty:
-        config["exclude_empty_sections"] = True
 
     # Устанавливаем файлы заголовков
     en_header_file = DEFAULT_EN_HEADER_FILE
@@ -1046,14 +1113,16 @@ def main() -> None:
 
     # Создаем файлы шаблонов по умолчанию, если они не существуют
     if not os.path.exists(DEFAULT_EN_HEADER_FILE):
-        with open(DEFAULT_EN_HEADER_FILE, 'w', encoding='utf-8') as f:
+        with open(DEFAULT_EN_HEADER_FILE, "w", encoding="utf-8") as f:
             f.write("# Steinschliff Structures\n\n")
             f.write("This repository contains information about various ski grinding structures.\n\n")
             f.write("*This header content is static and won't be overwritten during README generation.*\n\n")
-        logger.info(f"Создан шаблон заголовка английского README по умолчанию в {os.path.abspath(DEFAULT_EN_HEADER_FILE)}")
+        logger.info(
+            f"Создан шаблон заголовка английского README по умолчанию в {os.path.abspath(DEFAULT_EN_HEADER_FILE)}"
+        )
 
     if not os.path.exists(DEFAULT_RU_HEADER_FILE):
-        with open(DEFAULT_RU_HEADER_FILE, 'w', encoding='utf-8') as f:
+        with open(DEFAULT_RU_HEADER_FILE, "w", encoding="utf-8") as f:
             f.write("# Структуры Steinschliff\n\n")
             f.write("Этот репозиторий содержит информацию о различных структурах для шлифовки лыж.\n\n")
             f.write("*Это статический заголовок, который не будет перезаписан при генерации README.*\n\n")
@@ -1065,7 +1134,9 @@ def main() -> None:
 
     # Сбор данных о структурах
     sections = collect_structure_data()
-    logger.info(f"Собраны данные для {sum(len(structures) for structures in sections.values())} структур в {len(sections)} секциях")
+    logger.info(
+        f"Собраны данные для {sum(len(structures) for structures in sections.values())} структур в {len(sections)} секциях"
+    )
 
     # Сбор метаданных секций
     section_metadata = collect_section_metadata()

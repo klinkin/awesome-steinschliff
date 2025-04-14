@@ -1,0 +1,14 @@
+{# Шаблон для оглавления (Table of Contents) #}
+{% import 'macros.jinja2' as macros %}
+{% for country_name in ordered_countries %}
+### {{ gettext("countries." + country_name|lower|replace(" ", "_")) }}
+{% for service_name, service in countries[country_name].services|dictsort -%}
+{%- set service_title = service.title -%}
+{%- if service.city -%}
+{%- set service_title = service_title + " (" + service.city + ")" -%}
+{%- endif -%}
+{%- set service_anchor = macros.service_anchor(service_name, service.city) -%}
+* [{{ service_title }}](#{{ service_anchor }})
+{% endfor %}
+
+{% endfor %}

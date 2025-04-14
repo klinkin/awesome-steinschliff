@@ -1,0 +1,21 @@
+{# Файл с общими макросами для использования в шаблонах #}
+
+{# Макрос для генерации якоря сервиса #}
+{% macro service_anchor(service_name, city=None) -%}
+{% if city -%}
+{{- (service_name + '-' + city) | lower | replace(' ', '-') | replace('(', '') | replace(')', '') -}}
+{% else -%}
+{{- service_name | lower | replace(' ', '-') -}}
+{% endif -%}
+{%- endmacro %}
+
+{# Макрос для форматирования заголовка сервиса #}
+{% macro service_title(service_name, city=None) -%}
+{%- set title = service_name.capitalize() -%}
+
+{%- if city -%}
+{{ title }} ({{ city }})
+{%- else -%}
+{{ title }}
+{%- endif -%}
+{%- endmacro %}

@@ -1,0 +1,16 @@
+{# Шаблон заголовка в зависимости от языка #}
+{% if language == "ru" %}
+{% include "intro_ru.jinja2" %}
+{% else %}
+A comprehensive guide to ski structures for various weather and snow conditions.
+The goal is to collect experience and make it easier to choose the right structure next season.
+
+* [Telegram chat](https://t.me/+wddxUugE0gwxMGU6)
+* [Forum thread on skisport.ru](https://www.skisport.ru/forum/cross-country/104594)
+
+Useful videos:
+
+* [Stone grinding process at Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
+* [Review of rare Ramsau structures](https://vkvideo.ru/video-220482174_456239484)
+* [Steinschliff overview at EkipTime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
+{% endif %}

@@ -1,0 +1,47 @@
+{# Шаблон для Сервиса #}
+{% import 'macros.jinja2' as macros %}
+
+{%- set service_anchor = macros.service_anchor(service_name, service.city) -%}
+{%- set service_title = service.title -%}
+{%- if service.city -%}
+{%- set service_title = service_title + " (" + service.city + ")" -%}
+{%- endif -%}
+
+<h2 id="{{ service_anchor }}">{{ service_title }}</h2>
+
+{% if service.get(description_field) %}
+{{ service.get(description_field) }}
+{% else %}
+{{ service.description }}
+{% endif %}
+
+{% if service.website_url %}
+{{ gettext("website") }}: [{{ service.title }}]({{ service.website_url }})
+{% endif %}
+
+{% if service.contact.address %}
+{{ gettext("address") }}: {{ service.contact.address }}
+{% endif %}
+
+{% if service.video_url %}
+{{ gettext("video") }}: [{{ service.title }}]({{ service.video_url }})
+{% endif %}
+
+{% if service.contact %}
+### {{ gettext("contact") }}
+
+{% if service.contact.get('telegram') %}
+* {{ gettext("telegram") }}: [{{ service.contact.get('telegram') }}](https://t.me/{{ service.contact.get('telegram') | replace('@', '') }})
+{% endif %}
+
+{% if service.contact.get('email') %}
+* {{ gettext("email") }}: {{ service.contact.get('email') }}
+{% endif %}
+
+{% if service.contact.get('phones') %}
+* {{ gettext("phones") }}: {{ service.contact.get('phones') | map('phone_link') | join(', ') }}
+{% endif %}
+
+{% endif %}
+
+{% include 'table.jinja2' %}

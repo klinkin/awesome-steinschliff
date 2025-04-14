@@ -256,7 +256,7 @@ Website: [Ювента Спорт](https://www.uventasport.ru/company/servis-cen
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
-| [330](schliffs/uventa/330.yaml) |  | frozen, cold, transformed | -5 -20 |  | холодная, утрамбованный снег, преобразованный снег, жесткий снег | [C110X](schliffs/uventa/C110X.yaml) |  |
+| [330](schliffs/uventa/330.yaml) | Cold structure for packed, transformed and hard snow, temperature range from -5°C to -20°C | frozen, cold, transformed | -5 -20 |  | холодная, утрамбованный снег, преобразованный снег, жесткий снег | [C110X](schliffs/uventa/C110X.yaml) |  |
 | [729](schliffs/uventa/729.yaml) | Universal structure for fresh and old snow, temperature range +2°C to -12°C | fresh, old, universal | +2 -12 |  | универсальная, свежий снег, старый снег | [N33](schliffs/uventa/N33.yaml) |  |
 | [C110X](schliffs/uventa/C110X.yaml) | Cold structure for new and transformed snow, temperature range -10°C to -20°C | fresh, transformed | -10 -20 |  | холодная, новый снег, преобразованный снег | [330](schliffs/uventa/330.yaml) |  |
 | [N33](schliffs/uventa/N33.yaml) | Transition structure for all snow types, temperature range +5°C to -5°C | all | +5 -5 |  | переходная, универсальная, любой снег | [X1W](schliffs/uventa/X1W.yaml), [729](schliffs/uventa/729.yaml) |  |

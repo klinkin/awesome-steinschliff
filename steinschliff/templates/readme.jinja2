@@ -1,0 +1,22 @@
+
+# {{ gettext("main_title") }}
+
+{% block header %}
+    {% include "header.jinja2" %}
+{% endblock %}
+
+## {{ gettext("toc") }}
+
+{% block toc %}
+    {% include "toc.jinja2" %}
+{% endblock %}
+
+## {{ gettext("main_content") }}
+
+{% block content %}
+    {% for country_name in ordered_countries %}
+        {% for service_name, service in countries[country_name].services|dictsort %}
+            {% include "service.jinja2" %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
