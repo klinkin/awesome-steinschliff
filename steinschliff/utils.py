@@ -2,9 +2,8 @@
 Вспомогательные функции для Steinschliff.
 """
 
-import glob
 import logging
-import os
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 import yaml
@@ -65,42 +64,55 @@ def print_validation_summary(valid_files: int, error_files: int, warning_files: 
     """
     total = valid_files + error_files + warning_files
 
+    # Проверяем, включен ли уровень INFO
+    if not logger.isEnabledFor(logging.INFO):
+        return
+
+    valid_percent = valid_files / total * 100 if total > 0 else 0
+    warning_percent = warning_files / total * 100 if total > 0 else 0
+    error_percent = error_files / total * 100 if total > 0 else 0
+
     report = [
         f"{BOLD}===== РЕЗУЛЬТАТЫ ВАЛИДАЦИИ YAML-ФАЙЛОВ ====={RESET}",
-        f"{GREEN}✓ Успешно:{RESET}       {valid_files} из {total} ({valid_files/total*100:.1f}%)",
-        f"{YELLOW}⚠ Предупреждения:{RESET} {warning_files} из {total} ({warning_files/total*100:.1f}%)",
-        f"{RED}✗ Ошибки:{RESET}         {error_files} из {total} ({error_files/total*100:.1f}%)",
+        f"{GREEN}✓ Успешно:{RESET}       {valid_files} из {total} ({valid_percent:.1f}%)",
+        f"{YELLOW}⚠ Предупреждения:{RESET} {warning_files} из {total} ({warning_percent:.1f}%)",
+        f"{RED}✗ Ошибки:{RESET}         {error_files} из {total} ({error_percent:.1f}%)",
     ]
 
-    logger.info("\n" + "\n".join(report))
+    # Используем параметризованное логирование вместо конкатенации
+    report_str = "\n".join(report)
+    logger.info("\n%s", report_str)
 
 
-def read_yaml_file(file_path: str) -> Union[Dict[str, Any], ServiceMetadata, None]:
+def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], ServiceMetadata, None]:
     """
     Читает и разбирает YAML-файл с помощью PyYAML и валидирует с помощью Pydantic.
 
     Args:
-        file_path: Путь к YAML-файлу.
+        file_path: Путь к YAML-файлу (строка или Path).
 
     Returns:
         Для _meta.yaml - объект ServiceMetadata,
         для других файлов - словарь с разобранным содержимым YAML,
         или None, если произошла ошибка.
     """
+    # Преобразуем строку в Path, если нужно
+    path = Path(file_path) if not isinstance(file_path, Path) else file_path
+
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with path.open("r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
 
             # Пропускаем валидацию для метафайлов или используем специальную модель
-            filename = os.path.basename(file_path)
-            if filename == "_meta.yaml":
+            if path.name == "_meta.yaml":
                 try:
                     # Валидируем метаданные сервиса и возвращаем объект модели
                     return ServiceMetadata.model_validate(data)
                 except ValidationError as e:
-                    # Подробный вывод ошибок валидации
-                    error_report = format_validation_error(e, file_path)
-                    logger.warning(f"\n{error_report}")
+                    # Подробный вывод ошибок валидации только если включен WARNING
+                    if logger.isEnabledFor(logging.WARNING):
+                        error_report = format_validation_error(e, str(path))
+                        logger.warning("\n%s", error_report)
                     return data  # Возвращаем оригинальные данные, если валидация не прошла
 
             # Валидация структуры с помощью Pydantic
@@ -108,29 +120,30 @@ def read_yaml_file(file_path: str) -> Union[Dict[str, Any], ServiceMetadata, Non
                 validated_data = SchliffStructure.model_validate(data).model_dump(exclude_unset=True)
                 return validated_data
             except ValidationError as e:
-                # Подробный вывод ошибок валидации
-                error_report = format_validation_error(e, file_path)
-                logger.warning(f"\n{error_report}")
+                # Подробный вывод ошибок валидации только если включен WARNING
+                if logger.isEnabledFor(logging.WARNING):
+                    error_report = format_validation_error(e, str(path))
+                    logger.warning("\n%s", error_report)
 
                 # Если есть минимальные обязательные поля, используем исходные данные
                 if "name" in data and "description" in data:
-                    logger.info(f"Файл {file_path} содержит обязательные поля, используем с неполной валидацией")
+                    logger.info("Файл %s содержит обязательные поля, используем с неполной валидацией", path)
                     return data
 
-                logger.error(f"Файл {file_path} не содержит обязательных полей и не может быть использован")
+                logger.error("Файл %s не содержит обязательных полей и не может быть использован", path)
                 return None
 
     except yaml.YAMLError as e:
-        logger.error(f"Ошибка разбора YAML в {file_path}: {e}")
+        logger.error("Ошибка разбора YAML в %s: %s", path, e)
         return None
     except FileNotFoundError:
-        logger.error(f"Файл не найден: {file_path}")
+        logger.error("Файл не найден: %s", path)
         return None
     except PermissionError:
-        logger.error(f"Отказано в доступе: {file_path}")
+        logger.error("Отказано в доступе: %s", path)
         return None
     except Exception as e:
-        logger.error(f"Ошибка чтения файла {file_path}: {e}")
+        logger.error("Ошибка чтения файла %s: %s", path, e)
         return None
 
 
@@ -144,8 +157,14 @@ def find_yaml_files(directory: str) -> List[str]:
     Returns:
         Список путей к файлам.
     """
-    pattern = os.path.join(directory, "**", "*.yaml")
-    return glob.glob(pattern, recursive=True)
+    # Создаем объект Path из директории
+    dir_path = Path(directory)
+
+    # Используем метод .glob() объекта Path для рекурсивного поиска
+    yaml_files = list(dir_path.glob("**/*.yaml"))
+
+    # Преобразуем объекты Path в строковые пути для совместимости
+    return [str(path) for path in yaml_files]
 
 
 def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, ServiceMetadata]:
@@ -160,18 +179,23 @@ def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, S
         Словарь объектов ServiceMetadata, проиндексированных по имени сервиса.
     """
     metadata = {}
+    metadata_warnings = []
+    metadata_errors = []
+
+    # Создаем Path-объект для директории метаданных
+    metadata_path = Path(metadata_dir)
 
     # Проверяем существование директории
-    if not os.path.exists(metadata_dir) or not os.path.isdir(metadata_dir):
-        logger.warning(f"Директория с метаданными не найдена: {metadata_dir}")
+    if not metadata_path.exists() or not metadata_path.is_dir():
+        logger.warning("Директория с метаданными не найдена: %s", metadata_dir)
         return metadata
 
     # Для каждого сервиса проверяем наличие файла метаданных
     for service in services:
         # Ищем _meta.yaml внутри директории сервиса
-        metadata_file = os.path.join(metadata_dir, service, "_meta.yaml")
+        metadata_file = metadata_path / service / "_meta.yaml"
 
-        if os.path.exists(metadata_file):
+        if metadata_file.exists():
             try:
                 service_meta = read_yaml_file(metadata_file)
                 if service_meta:
@@ -184,30 +208,56 @@ def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, S
                             service_meta = ServiceMetadata(name=service)
 
                     metadata[service] = service_meta
-                    logger.debug(f"Прочитаны метаданные для сервиса {service}")
+                    if logger.isEnabledFor(logging.DEBUG):
+                        logger.debug("Прочитаны метаданные для сервиса %s", service)
                 else:
                     # Создаем пустой объект метаданных
                     metadata[service] = ServiceMetadata(name=service)
-                    logger.warning(f"Пустой файл метаданных для сервиса {service}")
+                    metadata_warnings.append(service)
             except Exception as e:
-                logger.error(f"Ошибка чтения метаданных для сервиса {service}: {e}")
+                metadata_errors.append((service, str(e)))
                 # Создаем пустой объект метаданных при ошибке
                 metadata[service] = ServiceMetadata(name=service)
 
-    logger.info(f"Найдено {len(metadata)} файлов метаданных сервисов")
+    # Логируем предупреждения и ошибки один раз после всей обработки
+    if metadata_warnings and logger.isEnabledFor(logging.WARNING):
+        logger.warning("Пустые файлы метаданных для сервисов: %s", ", ".join(metadata_warnings))
+
+    if metadata_errors and logger.isEnabledFor(logging.ERROR):
+        for service, error in metadata_errors:
+            logger.error("Ошибка чтения метаданных для сервиса %s: %s", service, error)
+
+    logger.info("Найдено %d файлов метаданных сервисов", len(metadata))
     return metadata
 
 
 def setup_logging(level: int = logging.INFO) -> None:
     """
-    Настраивает логирование для приложения.
+    Настраивает логирование для приложения с использованием лучших практик.
+    Настраивает только консольное логирование, без ротации.
 
     Args:
         level: Уровень логирования.
     """
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    logger.info(f"Логирование настроено с уровнем {logging.getLevelName(level)}")
+    # Удаляем все существующие обработчики, чтобы избежать дублирования
+    root_logger = logging.getLogger()
+    for handler in root_logger.handlers[:]:
+        root_logger.removeHandler(handler)
+
+    # Создаем консольный обработчик
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(level)
+
+    # Создаем форматтер для более информативного вывода
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    console_handler.setFormatter(formatter)
+
+    # Добавляем обработчик к корневому логгеру
+    root_logger.setLevel(level)
+    root_logger.addHandler(console_handler)
+
+    # Настраиваем наш основной логгер
+    logger.setLevel(level)
+
+    # Используем параметризованное логирование вместо f-строк
+    logger.info("Логирование настроено с уровнем %s", logging.getLevelName(level))

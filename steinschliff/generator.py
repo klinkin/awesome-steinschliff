@@ -208,25 +208,29 @@ class ReadmeGenerator:
             }
 
             if service_meta:
-                service_data.update({
-                    "title": service_meta.name or service_name.capitalize(),
-                    "city": service_meta.city or "",
-                    "description": service_meta.description or "",
-                    "description_ru": service_meta.description_ru or "",
-                    "website_url": service_meta.website_url or "",
-                    "video_url": service_meta.video_url or "",
-                    "contact": service_meta.contact or {},
-                })
+                service_data.update(
+                    {
+                        "title": service_meta.name or service_name.capitalize(),
+                        "city": service_meta.city or "",
+                        "description": service_meta.description or "",
+                        "description_ru": service_meta.description_ru or "",
+                        "website_url": service_meta.website_url or "",
+                        "video_url": service_meta.video_url or "",
+                        "contact": service_meta.contact or {},
+                    }
+                )
             else:
-                service_data.update({
-                    "title": service_name.capitalize(),
-                    "city": "",
-                    "description": "",
-                    "description_ru": "",
-                    "website_url": "",
-                    "video_url": "",
-                    "contact": {},
-                })
+                service_data.update(
+                    {
+                        "title": service_name.capitalize(),
+                        "city": "",
+                        "description": "",
+                        "description_ru": "",
+                        "website_url": "",
+                        "video_url": "",
+                        "contact": {},
+                    }
+                )
 
             countries[country]["services"][service_name] = service_data
 
@@ -269,7 +273,6 @@ class ReadmeGenerator:
         # Компилируем шаблон
         template = self.jinja_env.get_template("readme.jinja2")
 
-        # Обновляем функцию форматирования similars, чтобы она получала self, а не name_to_path
         self.jinja_env.filters["format_similars"] = lambda similars, output_dir: format_similars_with_links(
             similars, self, output_dir
         )

@@ -4,6 +4,8 @@
 
 import logging
 import os
+from functools import partial
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 logger = logging.getLogger("steinschliff.formatters")
@@ -34,8 +36,15 @@ def format_list(items: Union[List[Union[str, int, None]], str, None], allow_empt
 
 
 # Для обратной совместимости определяем функции через универсальную
-format_snow_types = lambda items: format_list(items, allow_empty=True)
+def format_snow_types(items: Union[List[Union[str, int, None]], str, None]) -> str:
+    """Форматирует список типов снега, разрешая пустые строки."""
+    return format_list(items, allow_empty=True)
+
+
+# Алиас для format_list
 format_list_for_display = format_list
+
+# Алиас для format_list
 format_features = format_list
 
 
@@ -63,6 +72,8 @@ def format_similars_with_links(
         return str(similars)
 
     result = []
+    output_path = Path(output_dir)
+
     for item in similars:
         if item is None or str(item).strip() == "":
             continue
@@ -73,7 +84,16 @@ def format_similars_with_links(
 
         if path:
             # Конвертируем в относительный путь от файла README
-            rel_path = os.path.relpath(path, start=output_dir)
+            path_obj = Path(path)
+            try:
+                # Создаем относительный путь если возможно
+                if path_obj.is_relative_to(output_path):
+                    rel_path = path_obj.relative_to(output_path)
+                else:
+                    rel_path = path_obj.relative_to(Path.cwd())
+            except ValueError:
+                # Если не удалось создать относительный путь, используем os.path.relpath
+                rel_path = os.path.relpath(path, output_dir)
             result.append(f"[{str_item}]({rel_path})")
         else:
             result.append(str_item)
@@ -151,8 +171,22 @@ def format_image_link(image_value: Union[str, List[str]], structure_name: str, o
         if not path or not isinstance(path, str):
             return ""
 
-        # Создаём относительный путь
-        relative_path = os.path.relpath(path, output_dir)
+        # Создаём объекты Path
+        path_obj = Path(path)
+        output_path = Path(output_dir)
+
+        # Создаём относительный путь (безопасно, с обработкой ошибок)
+        try:
+            # Пробуем создать относительный путь напрямую
+            if path_obj.is_absolute() and output_path.is_absolute():
+                # Для абсолютных путей пробуем создать относительный путь
+                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
+            else:
+                # Для относительных путей
+                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
+        except ValueError:
+            # Если не удалось создать относительный путь, возвращаемся к os.path.relpath
+            relative_path = Path(os.path.relpath(path, output_dir))
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
         return f"![{structure_name}]({relative_path})"
