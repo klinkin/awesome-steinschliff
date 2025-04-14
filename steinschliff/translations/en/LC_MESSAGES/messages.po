@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 18:08+0300\n"
+"POT-Creation-Date: 2025-04-14 23:12+0300\n"
 "PO-Revision-Date: 2025-04-10 22:47+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -50,19 +50,19 @@ msgstr "phones"
 msgid "countries.russia"
 msgstr "Russia"
 
-#: steinschliff/templates/toc.jinja2:8
+#: steinschliff/templates/toc.jinja2:9
 msgid "countries.germany"
 msgstr "Germany"
 
-#: steinschliff/templates/toc.jinja2:10
+#: steinschliff/templates/toc.jinja2:12
 msgid "countries.austria"
 msgstr "Austria"
 
-#: steinschliff/templates/toc.jinja2:12
+#: steinschliff/templates/toc.jinja2:15
 msgid "countries.norway"
 msgstr "Norway"
 
-#: steinschliff/templates/toc.jinja2:14
+#: steinschliff/templates/toc.jinja2:18
 msgid "countries.other"
 msgstr "Other"
 
@@ -98,14 +98,15 @@ msgstr "Similar Structures"
 msgid "table.features"
 msgstr "Features"
 
-#: steinschliff/templates/readme.jinja2:2
+#: steinschliff/templates/readme.jinja2:1
 msgid "main_title"
 msgstr "❄️ Awesome Steinschliff"
 
-#: steinschliff/templates/readme.jinja2:8
+#: steinschliff/templates/readme.jinja2:7
 msgid "toc"
 msgstr "Table of Contents"
 
-#: steinschliff/templates/readme.jinja2:14
+#: steinschliff/templates/readme.jinja2:13
 msgid "main_content"
 msgstr "Structures"
+
