@@ -27,21 +27,18 @@
 {{ gettext("video") }}: [{{ service.title }}]({{ service.video_url }})
 {% endif %}
 
-{% if service.contact %}
+{% if service.contact and (service.contact.telegram or service.contact.email or service.contact.phones) %}
 ### {{ gettext("contact") }}
 
 {% if service.contact.telegram %}
 * {{ gettext("telegram") }}: [{{ service.contact.telegram }}](https://t.me/{{ service.contact.telegram | replace('@', '') }})
 {% endif %}
-
 {% if service.contact.email %}
-* {{ gettext("email") }}: {{ service.contact.email }}
+* {{ gettext("email") }}: <{{ service.contact.email }}>
 {% endif %}
-
 {% if service.contact.phones %}
 * {{ gettext("phones") }}: {{ service.contact.phones | map('phone_link') | join(', ') }}
 {% endif %}
-
 {% endif %}
 
 {% include 'table.jinja2' %}

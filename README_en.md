@@ -52,10 +52,7 @@ Video: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 ### Contact Information
 
-
-
 * phones: [+74997043525](tel:+74997043525)
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -73,10 +70,7 @@ Address: г. Одинцово ул. Манжосовская 1
 
 ### Contact Information
 
-
-
 * phones: [+79250464773](tel:+79250464773)
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -96,11 +90,8 @@ Address: МО, г.Красногорск, ул.Речная д.37 за здан�
 
 ### Contact Information
 
-
-* email: servicerski@yandex.ru
-
+* email: <servicerski@yandex.ru>
 * phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -121,10 +112,7 @@ Address: Москва, село Ромашково, ул.Советская, д.
 ### Contact Information
 
 * telegram: [Nikfedval](https://t.me/Nikfedval)
-
-
 * phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -146,10 +134,7 @@ Address: Новосибирск, Академгородок, ул. Ионосф�
 ### Contact Information
 
 * telegram: [svecky](https://t.me/svecky)
-
-
 * phones: [+7(9I3)478-29-59](tel:+7(9I3)478-29-59), [+7(9I3)ООО-О4-ОО](tel:+7(9I3)ООО-О4-ОО)
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -169,11 +154,6 @@ Address: Новосибирск, Академгородок, ул. Ионосф�
 Website: [Uventa](https://www.uventasport.ru/company/servis-centr/shtaynshlift/)
 
 Address: Москва
-
-
-### Contact Information
-
-
 
 
 
@@ -196,11 +176,6 @@ Website: [Beme](https://www.bemesports.com/en/skiservice)
 
 
 
-### Contact Information
-
-
-
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -213,11 +188,6 @@ Website: [Beme](https://www.bemesports.com/en/skiservice)
 Default Fischer structures
 
 Website: [Fischer](https://www.fischersports.com)
-
-
-
-### Contact Information
-
 
 
 
@@ -252,11 +222,6 @@ Website: [Salomon](https://www.salomon.com)
 
 
 
-### Contact Information
-
-
-
-
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
@@ -269,11 +234,6 @@ Website: [Salomon](https://www.salomon.com)
 ## Ramsau
 
 
-
-
-
-
-### Contact Information
 
 
 
@@ -311,11 +271,6 @@ Website: [Salomon](https://www.salomon.com)
 
 
 Website: [Madshus](https://www.madshus.com)
-
-
-
-### Contact Information
-
 
 
 
