@@ -1,0 +1,25 @@
+name: UGOL13
+description: null
+description_ru: структура для воды +2/+15
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - watery
+  - water
+snow_temperature:
+  - min: 2
+    max: 15
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - вода
+  - мокрый
+  - горячий
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

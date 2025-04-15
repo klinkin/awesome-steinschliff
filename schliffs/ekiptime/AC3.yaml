@@ -1,0 +1,25 @@
+name: AC3
+description: null
+description_ru: скандинавская холодная структура
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - cold
+  - old
+  - scandinavian
+snow_temperature:
+  - min: -17
+    max: -8
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - холодный
+  - скандинавский
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

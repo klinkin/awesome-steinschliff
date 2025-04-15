@@ -1,0 +1,24 @@
+name: AW1
+description: null
+description_ru: структура для влажного и мокрого снега на 0/-4
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - wet
+  - damp
+snow_temperature:
+  - min: -4
+    max: 0
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - влажный
+  - мокрый
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

@@ -1,0 +1,27 @@
+name: G1
+description: null
+description_ru: реплика структуры для экстремально холодного снега -5/-30
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - cold
+  - extremely_cold
+  - dry
+snow_temperature:
+  - min: -30
+    max: -5
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - холодный
+  - экстремально холодный
+  - сухой
+  - реплика
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

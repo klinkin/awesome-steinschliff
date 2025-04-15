@@ -56,8 +56,26 @@ Video: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
+| [AC3](schliffs/ekiptime/AC3.yaml) |  | cold, old, scandinavian | -8 -17 |  | холодный, скандинавский |  |  |
+| [AC4](schliffs/ekiptime/AC4.yaml) |  | all, cold | -5 -20 |  | холодный, универсальный |  |  |
+| [AC5](schliffs/ekiptime/AC5.yaml) |  | all, cold | -8 -25 |  | холодный, универсальный, Russia |  |  |
+| [AM2](schliffs/ekiptime/AM2.yaml) |  | fresh, wet, frozen | -1 -8 |  | свежий, влажный, подмороженный |  |  |
+| [AM26](schliffs/ekiptime/AM26.yaml) |  | natural, high_humidity | -5 -12 |  | натуральный, высокая влажность |  |  |
+| [AM3](schliffs/ekiptime/AM3.yaml) |  | all, natural, artificial | -2 -10 |  | натуральный, искусственный |  |  |
+| [AM6](schliffs/ekiptime/AM6.yaml) |  | all, coarse, thawed | +1 -8 |  | универсальный, крупнозернистый, оттепель |  |  |
+| [AM7](schliffs/ekiptime/AM7.yaml) |  | all, fresh, cold | -4 -12 |  | универсальный, свежий, холодный, Russia |  |  |
+| [AM7-2](schliffs/ekiptime/AM7-2.yaml) |  | fresh, high_humidity | 0 -6 |  | свежий, высокая влажность | [AM7](schliffs/ekiptime/AM7.yaml) |  |
+| [AW1](schliffs/ekiptime/AW1.yaml) |  | wet, damp | 0 -4 |  | влажный, мокрый |  |  |
+| [AW2](schliffs/ekiptime/AW2.yaml) |  | wet, watery, high_humidity | +2 -2 |  | влажный, водянистый, высокая влажность |  |  |
+| [AW22](schliffs/ekiptime/AW22.yaml) |  | extreme_humidity, wet | +15 0 |  | экстремальная влажность, мокрый | [AW2](schliffs/ekiptime/AW2.yaml) |  |
+| [AW4](schliffs/ekiptime/AW4.yaml) |  | coarse, spring | 0 -2 |  | крупнозернистый, весенний, Russia, накатка |  | ручная накатка |
+| [AW7](schliffs/ekiptime/AW7.yaml) |  | coarse, wet, falling, spring | +5 -5 |  | крупнозернистый, мокрый, падающий, весенний, Russia |  | накатка для водянистого снега |
+| [AW8](schliffs/ekiptime/AW8.yaml) |  | spring, wet | +10 -5 |  | весенний, теплый |  |  |
+| [G1](schliffs/ekiptime/G1.yaml) |  | cold, extremely_cold, dry | -5 -30 |  | холодный, экстремально холодный, сухой, реплика |  |  |
 | [SIGMA](schliffs/ekiptime/SIGMA.yaml) |  | wet, old, dirty, transformed | +15 0 | ![SIGMA](schliffs/ekiptime/sigma/sigma.jpg) | мокрый, старый, грязный, трансформированный, весенний |  |  |
 | [SV77](schliffs/ekiptime/SV77.yaml) |  | cold, dry, old, fresh | 0 -20 |  | холодный, сухой, свежий, старый |  |  |
+| [UGOL1](schliffs/ekiptime/UGOL1.yaml) |  | warm, wet | +5 0 |  | теплый, мокрый | [UGOL13](schliffs/ekiptime/UGOL13.yaml) |  |
+| [UGOL13](schliffs/ekiptime/UGOL13.yaml) |  | watery, water | +15 +2 |  | вода, мокрый, горячий |  |  |
 
 ## Marsport (Одинцово)
 

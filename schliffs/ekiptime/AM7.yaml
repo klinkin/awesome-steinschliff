@@ -1,0 +1,27 @@
+name: AM7
+description: null
+description_ru: универсальная структура на -4/-12, хорошо работает на свежем холодном снегу, подходит для большинства регионов России
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - all
+  - fresh
+  - cold
+snow_temperature:
+  - min: -12
+    max: -4
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - универсальный
+  - свежий
+  - холодный
+  - Russia
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

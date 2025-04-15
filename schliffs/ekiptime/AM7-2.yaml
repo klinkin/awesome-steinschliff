@@ -1,0 +1,25 @@
+name: AM7-2
+description: null
+description_ru: структура для большой влажности, свеже выпавшего снега 0/-6
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - fresh
+  - high_humidity
+snow_temperature:
+  - min: -6
+    max: 0
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - свежий
+  - высокая влажность
+similars:
+  - AM7
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

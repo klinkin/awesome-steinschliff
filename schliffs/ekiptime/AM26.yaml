@@ -1,0 +1,24 @@
+name: AM26
+description: null
+description_ru: структура для большой влажности, натурального снега -5/-12
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - natural
+  - high_humidity
+snow_temperature:
+  - min: -12
+    max: -5
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - натуральный
+  - высокая влажность
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

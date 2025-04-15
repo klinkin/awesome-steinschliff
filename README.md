@@ -79,10 +79,13 @@ Awesome Steinschliff — это не просто таблица с штайнш
 
 ## Полезные видео и статьи
 
-* [процесс шлифования на сервисе Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
-* [обзор редких структур Рамзау](https://vkvideo.ru/video-220482174_456239484)
-* [обзор штайншлифта в ЭкипТайме](https://www.youtube.com/watch?v=IN1FKSIZT2I)
-* [статья про штайншлифт и структуры](https://training365.ru/shtajnshlift-i-struktury/)
+* [Сегей Лопухин в Эстонии](https://vkvideo.ru/video-220482174_456239484)
+* [Заводской штайншлифт Salomon Atomic в ЭКИПИОН!](https://www.youtube.com/watch?v=txEHphQSFjk)
+* [Процесс шлифования на сервисе Vuerich Service](https://youtu.be/YPfnXsF2QJg?si=CDNXJfvW0YkthP9a)
+* [Обзор редких структур Рамзау](https://vkvideo.ru/video-220482174_456239484)
+* [Обзор штайншлифта в ЭкипТайме](https://www.youtube.com/watch?v=IN1FKSIZT2I)
+* [Статья про штайншлифт и структуры](https://training365.ru/shtajnshlift-i-struktury/)
+
 
 ## Оглавление
 
@@ -128,8 +131,26 @@ Awesome Steinschliff — это не просто таблица с штайнш
 
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
 |------|------------|-----------|------------|------|------|-------------------|-------------------|
+| [AC3](schliffs/ekiptime/AC3.yaml) | скандинавская холодная структура | cold, old, scandinavian | -8 -17 |  | холодный, скандинавский |  |  |
+| [AC4](schliffs/ekiptime/AC4.yaml) | структура для всех типов снега на -5 и ниже | all, cold | -5 -20 |  | холодный, универсальный |  |  |
+| [AC5](schliffs/ekiptime/AC5.yaml) | структура для всех типов снега от -8 и холоднее, подходит для регионов России | all, cold | -8 -25 |  | холодный, универсальный, Russia |  |  |
+| [AM2](schliffs/ekiptime/AM2.yaml) | структура для свежего, влажного или подмороженного снега при -1/-8 | fresh, wet, frozen | -1 -8 |  | свежий, влажный, подмороженный |  |  |
+| [AM26](schliffs/ekiptime/AM26.yaml) | структура для большой влажности, натурального снега -5/-12 | natural, high_humidity | -5 -12 |  | натуральный, высокая влажность |  |  |
+| [AM3](schliffs/ekiptime/AM3.yaml) | структура для всех типов натурального и искусственного снега -2/-10 | all, natural, artificial | -2 -10 |  | натуральный, искусственный |  |  |
+| [AM6](schliffs/ekiptime/AM6.yaml) | структура на +1/-8, подходит на все типы снега, отлично работает на крупнозернистом снегу после оттепели | all, coarse, thawed | +1 -8 |  | универсальный, крупнозернистый, оттепель |  |  |
+| [AM7](schliffs/ekiptime/AM7.yaml) | универсальная структура на -4/-12, хорошо работает на свежем холодном снегу, подходит для большинства регионов России | all, fresh, cold | -4 -12 |  | универсальный, свежий, холодный, Russia |  |  |
+| [AM7-2](schliffs/ekiptime/AM7-2.yaml) | структура для большой влажности, свеже выпавшего снега 0/-6 | fresh, high_humidity | 0 -6 |  | свежий, высокая влажность | [AM7](schliffs/ekiptime/AM7.yaml) |  |
+| [AW1](schliffs/ekiptime/AW1.yaml) | структура для влажного и мокрого снега на 0/-4 | wet, damp | 0 -4 |  | влажный, мокрый |  |  |
+| [AW2](schliffs/ekiptime/AW2.yaml) | структура на высокую влажность и водянистый снег | wet, watery, high_humidity | +2 -2 |  | влажный, водянистый, высокая влажность |  |  |
+| [AW22](schliffs/ekiptime/AW22.yaml) | структура для влажности 100%, 0/+15 | extreme_humidity, wet | +15 0 |  | экстремальная влажность, мокрый | [AW2](schliffs/ekiptime/AW2.yaml) |  |
+| [AW4](schliffs/ekiptime/AW4.yaml) | структура для крупнозернистого снега при 0/-2, хорошо работает поздней весной в России, дополняется ручной накаткой | coarse, spring | 0 -2 |  | крупнозернистый, весенний, Russia, накатка |  | ручная накатка |
+| [AW7](schliffs/ekiptime/AW7.yaml) | структура для крупнозернистого, падающего мокрого снега при -5/+5, хорошо работает поздней весной в России, на водянистый снег дополняется накаткой | coarse, wet, falling, spring | +5 -5 |  | крупнозернистый, мокрый, падающий, весенний, Russia |  | накатка для водянистого снега |
+| [AW8](schliffs/ekiptime/AW8.yaml) | весенняя структура на -5/+10 | spring, wet | +10 -5 |  | весенний, теплый |  |  |
+| [G1](schliffs/ekiptime/G1.yaml) | реплика структуры для экстремально холодного снега -5/-30 | cold, extremely_cold, dry | -5 -30 |  | холодный, экстремально холодный, сухой, реплика |  |  |
 | [SIGMA](schliffs/ekiptime/SIGMA.yaml) | структура для трансформированного старого весеннего снега с водой | wet, old, dirty, transformed | +15 0 | ![SIGMA](schliffs/ekiptime/sigma/sigma.jpg) | мокрый, старый, грязный, трансформированный, весенний |  |  |
 | [SV77](schliffs/ekiptime/SV77.yaml) | универсальная структура на средний холод и низкой влажности при температуре от -0 до -20 | cold, dry, old, fresh | 0 -20 |  | холодный, сухой, свежий, старый |  |  |
+| [UGOL1](schliffs/ekiptime/UGOL1.yaml) | тёплая структура 0/+5 | warm, wet | +5 0 |  | теплый, мокрый | [UGOL13](schliffs/ekiptime/UGOL13.yaml) |  |
+| [UGOL13](schliffs/ekiptime/UGOL13.yaml) | структура для воды +2/+15 | watery, water | +15 +2 |  | вода, мокрый, горячий |  |  |
 
 ## Marsport (Одинцово)
 

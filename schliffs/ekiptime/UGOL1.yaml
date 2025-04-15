@@ -1,0 +1,25 @@
+name: UGOL1
+description: null
+description_ru: тёплая структура 0/+5
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - warm
+  - wet
+snow_temperature:
+  - min: 0
+    max: 5
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - теплый
+  - мокрый
+similars:
+  - UGOL13
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime

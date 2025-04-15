@@ -1,0 +1,26 @@
+name: AW2
+description: null
+description_ru: структура на высокую влажность и водянистый снег
+website_url: https://ekiptime.ru/services/base_tuning.php
+snow_type:
+  - wet
+  - watery
+  - high_humidity
+snow_temperature:
+  - min: -2
+    max: 2
+condition: blue
+manufactory: ''
+author: Artur
+country: Россия
+tags:
+  - влажный
+  - водянистый
+  - высокая влажность
+similars: []
+features: []
+updated_at: 2024-05-08
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: ekiptime
