@@ -1,16 +1,15 @@
 name: S13-4
 description: null
-description_ru: влажный снег, натуральный и искусственный, переменчивая погода, большой
-  диапазон
+description_ru: влажный снег, натуральный и искусственный, переменчивая погода, большой диапазон
 website_url: null
 snow_type:
   - wet
   - natural
   - artificial
 snow_temperature:
-  - min: null
-    max: null
-condition: переменчивая погода
+  - min: -5
+    max: 5
+condition: yellow
 manufactory: Fischer
 author: ''
 country: Germany

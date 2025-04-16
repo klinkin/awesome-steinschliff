@@ -7,9 +7,9 @@ snow_type:
   - fine_grained
   - fresh
 snow_temperature:
-  - min: null
-    max: null
-condition: ''
+  - min: -3
+    max: 3
+condition: yellow
 manufactory: Fischer
 author: ''
 country: Germany

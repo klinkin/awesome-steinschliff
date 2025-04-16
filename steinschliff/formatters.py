@@ -105,14 +105,15 @@ def format_temperature_range(
     snow_temperature: Union[List[Dict[str, Any]], None],
 ) -> str:
     """
-    Форматирует диапазон температуры снега для отображения в таблице в формате "max min".
-    Пример: "+3 -3" или "-1 -6"
+    Форматирует диапазон температуры снега для отображения в таблице в формате "max °C … min °C".
+    В соответствии с предметной областью, сначала указывается более теплая температура, затем более холодная.
+    Пример: "+1 °C … –8 °C" или "–3 °C … –5 °C"
 
     Args:
         snow_temperature: Список диапазонов температуры снега.
 
     Returns:
-        Отформатированная строка с диапазоном температуры в формате "max min".
+        Отформатированная строка с диапазоном температуры в формате "max °C … min °C".
     """
     if not snow_temperature or not isinstance(snow_temperature, list) or not snow_temperature[0]:
         return ""
@@ -127,18 +128,33 @@ def format_temperature_range(
         if min_temp is None or max_temp is None:
             return ""
 
-        # Форматируем числа, добавляя + к положительным
-        min_temp_str = f"+{min_temp}" if float(min_temp) > 0 else str(min_temp)
-        max_temp_str = f"+{max_temp}" if float(max_temp) > 0 else str(max_temp)
-
         # Убираем .0 в конце для целых чисел
-        min_temp_str = min_temp_str.replace(".0", "")
-        max_temp_str = max_temp_str.replace(".0", "")
+        if isinstance(min_temp, (int, float)):
+            min_temp_str = str(int(min_temp)) if min_temp == int(min_temp) else str(min_temp)
+        else:
+            min_temp_str = str(min_temp)
 
-        # Форматируем как "max min"
-        return f"{max_temp_str} {min_temp_str}"
+        if isinstance(max_temp, (int, float)):
+            max_temp_str = str(int(max_temp)) if max_temp == int(max_temp) else str(max_temp)
+        else:
+            max_temp_str = str(max_temp)
+
+        # Заменяем минус на типографский
+        if min_temp_str.startswith('-'):
+            min_temp_str = '–' + min_temp_str[1:]
+        elif float(min_temp) > 0:
+            min_temp_str = '+' + min_temp_str
+
+        if max_temp_str.startswith('-'):
+            max_temp_str = '–' + max_temp_str[1:]
+        elif float(max_temp) > 0:
+            max_temp_str = '+' + max_temp_str
+
+        # Форматируем в виде диапазона с градусами и многоточием
+        # В соответствии с предметной областью: сначала более теплая температура, затем более холодная
+        return f"{max_temp_str} °C … {min_temp_str} °C"
     except Exception as e:
-        logger.warning(f"Ошибка при форматировании температурного диапазона: {e}")
+        logger.warning("Ошибка при форматировании температурного диапазона: %s", e)
         return ""
 
 
