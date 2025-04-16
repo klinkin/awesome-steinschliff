@@ -28,7 +28,7 @@ def main():
     parser.add_argument(
         "--sort",
         default="name",
-        choices=["name", "rating", "country"],
+        choices=["name", "rating", "country", "temperature"],
         help="Поле для сортировки структур (по умолчанию: name)",
     )
     parser.add_argument(

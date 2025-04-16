@@ -77,7 +77,7 @@ DEFAULT_CONFIG = {
         "en": "scripts/templates/readme_en_header.md",
         "ru": "scripts/templates/readme_ru_header.md",
     },
-    "sort_field": "name",
+    "sort_field": "name",  # Поддерживаемые значения: name, snow_type, service, temperature
 }
 
 
@@ -938,7 +938,22 @@ def generate_readme(
                         Отсортированные структуры, соответствующие фильтру.
                     """
                     # Сортируем структуры
-                    structures_sorted = sorted(structures, key=lambda s: getattr(s, sort_by, "") or "")
+                    if sort_by == "temperature":
+                        # Сортировка по температуре (сначала самые теплые)
+                        def get_temperature_sort_key(structure: StructureInfo) -> float:
+                            if structure.snow_temperature and isinstance(structure.snow_temperature, list) and structure.snow_temperature[0]:
+                                temp_range = structure.snow_temperature[0]
+                                max_temp = temp_range.get("max")
+                                if max_temp is not None:
+                                    try:
+                                        return -float(max_temp)  # Негативное значение для сортировки по убыванию
+                                    except (ValueError, TypeError):
+                                        pass
+                            return float('-inf')  # Для структур без температуры ставим их в конец
+
+                        structures_sorted = sorted(structures, key=get_temperature_sort_key)
+                    else:
+                        structures_sorted = sorted(structures, key=lambda s: getattr(s, sort_by, "") or "")
 
                     # Возвращаем все структуры
                     for structure in structures_sorted:
@@ -1064,7 +1079,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--sort-by",
-        choices=["name", "snow_type", "service"],
+        choices=["name", "snow_type", "service", "temperature"],
         default="name",
         help="Поле для сортировки структур",
     )

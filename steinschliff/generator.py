@@ -181,6 +181,31 @@ class ReadmeGenerator:
         """
         return self.name_to_path.get(str(name))
 
+    def _get_structure_sort_key(self, structure: StructureInfo) -> Any:
+        """
+        Возвращает ключ для сортировки структуры в зависимости от выбранного поля сортировки.
+
+        Args:
+            structure: Информация о структуре
+
+        Returns:
+            Ключ для сортировки
+        """
+        if self.sort_field == "temperature":
+            # Сортировка по температуре (сначала самые теплые)
+            if structure.snow_temperature and isinstance(structure.snow_temperature, list) and structure.snow_temperature[0]:
+                temp_range = structure.snow_temperature[0]
+                max_temp = temp_range.get("max")
+                if max_temp is not None:
+                    try:
+                        return -float(max_temp)  # Негативное значение для сортировки по убыванию
+                    except (ValueError, TypeError):
+                        pass
+            return float('-inf')  # Для структур без температуры ставим их в конец
+        else:
+            # Сортировка по имени или другому полю
+            return getattr(structure, self.sort_field, "") or ""
+
     def _prepare_countries_data(self) -> Dict[str, Any]:
         """Подготавливает иерархические данные о странах, сервисах и структурах."""
         countries = {}
@@ -276,6 +301,15 @@ class ReadmeGenerator:
         self.jinja_env.filters["format_similars"] = lambda similars, output_dir: format_similars_with_links(
             similars, self, output_dir
         )
+
+        # Добавляем функцию для сортировки по температуре
+        if self.sort_field == "temperature":
+            # Подготавливаем отсортированные структуры для каждого сервиса
+            for country in countries_data["countries"].values():
+                for service_name, service_data in country["services"].items():
+                    structures = service_data["structures"]
+                    # Сортируем структуры по максимальной температуре (сначала теплые)
+                    service_data["structures"] = sorted(structures, key=self._get_structure_sort_key)
 
         # Генерируем README для каждого языка
         locales = {

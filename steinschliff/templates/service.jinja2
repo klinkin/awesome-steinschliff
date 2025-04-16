@@ -41,4 +41,6 @@
 {% endif %}
 {% endif %}
 
+{# Сортируем структуры по выбранному параметру #}
+{% set structures_sorted = service.structures|sort(attribute=sort_by) if sort_by != "temperature" else service.structures %}
 {% include 'table.jinja2' %}

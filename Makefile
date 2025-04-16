@@ -10,8 +10,8 @@ help:
 	@echo "make i18n-update-all       - Update all existing locales"
 	@echo "make i18n-compile          - Compile all translations"
 	@echo "make i18n-list             - List available locales"
-	@echo "make readme                - Generate README.md"
-	@echo "make readme_new            - Generate README.md (new)"
+	@echo "make readme [SORT=field]   - Generate README.md (sort by name, snow_type, service, temperature)"
+	@echo "make readme_new [SORT=field] - Generate README.md (new, sort by name, rating, country, temperature)"
 	@exit 0
 
 lint:
@@ -55,7 +55,7 @@ i18n-list:
 	python scripts/manage_translations.py list
 
 readme_new:
-	poetry run python scripts/gen_readme_new.py
+	poetry run python scripts/gen_readme_new.py $(if $(SORT),--sort $(SORT),)
 
 readme:
-	poetry run python scripts/gen_readme.py
+	poetry run python scripts/gen_readme.py $(if $(SORT),--sort-by $(SORT),)
