@@ -92,9 +92,12 @@ def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], Service
         file_path: Путь к YAML-файлу (строка или Path).
 
     Returns:
-        Для _meta.yaml - объект ServiceMetadata,
-        для других файлов - словарь с разобранным содержимым YAML,
-        или None, если произошла ошибка.
+        Для `_meta.yaml` – объект :class:`ServiceMetadata` при успешной валидации,
+        либо исходный словарь при ошибках валидации.
+        Для других файлов – словарь с разобранным содержимым YAML при успешной
+        валидации, либо исходные данные при наличии обязательных полей.
+        Возвращает ``None``, если файл пуст, не содержит требуемых полей или
+        произошла ошибка.
     """
     # Преобразуем строку в Path, если нужно
     path = Path(file_path) if not isinstance(file_path, Path) else file_path
@@ -102,6 +105,17 @@ def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], Service
     try:
         with path.open("r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
+
+            if data is None:
+                data = {}
+
+            if not isinstance(data, dict):
+                logger.error(
+                    "Файл %s должен содержать YAML-объект (mapping), получен %s",
+                    path,
+                    type(data).__name__,
+                )
+                return None
 
             # Пропускаем валидацию для метафайлов или используем специальную модель
             if path.name == "_meta.yaml":

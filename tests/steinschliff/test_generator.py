@@ -147,3 +147,54 @@ class TestProcessYamlFiles:
         for name, path in generator.name_to_path.items():
             assert generator.get_path_by_name(name) == path
             assert os.path.exists(path)
+
+
+class TestGenerate:
+    @pytest.fixture
+    def setup_generate_files(self):
+        """Создает временную директорию с сервисом и метаданными для теста generate."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            service_dir = os.path.join(temp_dir, "service1")
+            os.makedirs(service_dir)
+
+            structures = {
+                os.path.join(service_dir, "z.yaml"): {"name": "Zeta", "description": "Z"},
+                os.path.join(service_dir, "a.yaml"): {"name": "Alpha", "description": "A"},
+            }
+
+            for path, content in structures.items():
+                with open(path, "w", encoding="utf-8") as f:
+                    yaml.safe_dump(content, f, allow_unicode=True)
+
+            meta = {
+                "name": "Service 1",
+                "description": "Some description",
+                "country": "Россия",
+                "contact": {"email": "info@example.com"},
+            }
+            with open(os.path.join(service_dir, "_meta.yaml"), "w", encoding="utf-8") as f:
+                yaml.safe_dump(meta, f, allow_unicode=True)
+
+            yield temp_dir
+
+    def test_generate_creates_readme_and_uses_metadata(self, setup_generate_files):
+        config = {
+            "schliffs_dir": setup_generate_files,
+            "readme_file": os.path.join(setup_generate_files, "README.md"),
+            "readme_ru_file": os.path.join(setup_generate_files, "README_ru.md"),
+        }
+        generator = ReadmeGenerator(config)
+        generator.load_structures()
+        generator.load_service_metadata()
+        generator.generate()
+
+        readme_path = os.path.join(setup_generate_files, "README.md")
+        assert os.path.exists(readme_path)
+        with open(readme_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        assert "Some description" in content
+        assert "info@example.com" in content
+        assert content.index("Alpha") < content.index("Zeta")
+
+
