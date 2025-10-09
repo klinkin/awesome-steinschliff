@@ -2,7 +2,7 @@
 Модели данных для Steinschliff.
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -19,7 +19,7 @@ class TemperatureRange(BaseModel):
 class Service(BaseModel):
     """Модель сервиса по обработке лыж"""
 
-    name: Optional[str] = ""
+    name: str | None = ""
 
     model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
@@ -27,20 +27,20 @@ class Service(BaseModel):
 class SchliffStructure(BaseModel):
     """Модель структуры"""
 
-    name: Union[str, int]
-    description: Union[str, None]
-    description_ru: Optional[str] = ""
-    snow_type: Union[List[Union[str, int, None]], str, None] = []
-    snow_temperature: Optional[List[TemperatureRange]] = []
-    condition: Optional[str] = ""
-    manufactory: Optional[str] = ""
-    service: Optional[Service] = None
-    author: Optional[str] = ""
-    country: Optional[str] = ""
-    tags: Optional[List[Union[str, int, None]]] = []
-    similars: Optional[List[Union[str, int, None]]] = []
-    features: Optional[List[Union[str, int, None]]] = []  # Особенности структуры
-    images: Optional[List[str]] = None  # Путь к множественным изображениям шлифта
+    name: str | int
+    description: str | None
+    description_ru: str | None = ""
+    snow_type: list[str | int | None] | str | None = []
+    snow_temperature: list[TemperatureRange] | None = []
+    condition: str | None = ""
+    manufactory: str | None = ""
+    service: Service | None = None
+    author: str | None = ""
+    country: str | None = ""
+    tags: list[str | int | None] | None = []
+    similars: list[str | int | None] | None = []
+    features: list[str | int | None] | None = []  # Особенности структуры
+    images: list[str] | None = None  # Путь к множественным изображениям шлифта
 
     model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
@@ -48,10 +48,10 @@ class SchliffStructure(BaseModel):
 class ContactInfo(BaseModel):
     """Модель контактной информации"""
 
-    email: Optional[str] = None
-    phones: Optional[List[str]] = None  # Массив телефонных номеров
-    telegram: Optional[str] = None
-    address: Optional[str] = None  # Адрес
+    email: str | None = None
+    phones: list[str] | None = None  # Массив телефонных номеров
+    telegram: str | None = None
+    address: str | None = None  # Адрес
 
     model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
@@ -59,14 +59,14 @@ class ContactInfo(BaseModel):
 class ServiceMetadata(BaseModel):
     """Модель метаданных сервиса обработки лыж"""
 
-    name: Optional[str] = ""
-    description: Optional[str] = ""
-    description_ru: Optional[str] = ""
-    website_url: Optional[str] = ""
-    video_url: Optional[str] = ""
-    country: Optional[str] = ""
-    city: Optional[str] = ""
-    contact: Optional[ContactInfo] = None
+    name: str | None = ""
+    description: str | None = ""
+    description_ru: str | None = ""
+    website_url: str | None = ""
+    video_url: str | None = ""
+    country: str | None = ""
+    city: str | None = ""
+    contact: ContactInfo | None = None
 
     model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля
 
@@ -75,16 +75,16 @@ class StructureInfo(BaseModel):
     """Модель обработанной информации о структуре для вывода в README"""
 
     name: str
-    description: Optional[str] = ""
-    description_ru: Optional[str] = ""
-    snow_type: Optional[str] = ""
-    snow_temperature: List[Dict[str, Any]] = Field(default_factory=list)
-    service: Optional[Service] = None
-    country: Optional[str] = ""
-    tags: List[Union[str, int, None]] = Field(default_factory=list)
-    similars: List[Union[str, int, None]] = Field(default_factory=list)
-    features: List[Union[str, int, None]] = Field(default_factory=list)
-    images: List[str] = Field(default_factory=list)
+    description: str | None = ""
+    description_ru: str | None = ""
+    snow_type: str | None = ""
+    snow_temperature: list[dict[str, Any]] = Field(default_factory=list)
+    service: Service | None = None
+    country: str | None = ""
+    tags: list[str | int | None] = Field(default_factory=list)
+    similars: list[str | int | None] = Field(default_factory=list)
+    features: list[str | int | None] = Field(default_factory=list)
+    images: list[str] = Field(default_factory=list)
     file_path: str
 
     model_config = ConfigDict(extra="allow")  # Разрешаем дополнительные поля

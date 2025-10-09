@@ -4,7 +4,7 @@
 
 import logging
 import os
-from typing import Any, Dict, Optional
+from gettext import NullTranslations
 
 from babel.support import Translations
 
@@ -21,7 +21,7 @@ def get_translation_directory() -> str:
     return os.path.abspath(os.path.join(os.path.dirname(__file__), "translations"))
 
 
-def load_translations(locale: str) -> Translations:
+def load_translations(locale: str) -> Translations | NullTranslations:
     """
     Загружает переводы для указанной локали.
 
@@ -35,10 +35,11 @@ def load_translations(locale: str) -> Translations:
 
     try:
         translations = Translations.load(translations_dir, [locale])
-        logger.info(f"Загружены переводы для локали {locale}")
+        logger.info("Загружены переводы для локали %s", locale)
         return translations
-    except Exception as e:
-        logger.warning(f"Не удалось загрузить переводы для локали {locale}: {e}")
+    except OSError as e:
+        logger.warning("Не удалось загрузить переводы для локали %s: %s", locale, e)
+        # Возвращаем пустые переводы корректного типа
         return Translations()
 
 
@@ -60,16 +61,16 @@ def extract_messages():
         # Находим все шаблоны .jinja2
         templates = glob.glob(os.path.join(templates_dir, "*.jinja2"))
         if not templates:
-            logger.error(f"Не найдены шаблоны в директории {templates_dir}")
+            logger.error("Не найдены шаблоны в директории %s", templates_dir)
             return
 
-        logger.info(f"Найдено {len(templates)} шаблонов в {templates_dir}")
+        logger.info("Найдено %d шаблонов в %s", len(templates), templates_dir)
 
         # Запускаем pybabel через subprocess, явно указывая пути к шаблонам
         cmd = ["pybabel", "extract", "-F", babel_cfg, "-k", "gettext", "-k", "_", "-o", output_pot]
         cmd.extend(templates)  # Добавляем пути ко всем шаблонам
 
-        logger.info(f"Выполнение команды: {' '.join(cmd)}")
+        logger.info("Выполнение команды: %s", " ".join(cmd))
         result = subprocess.run(
             cmd,
             capture_output=True,
@@ -77,20 +78,20 @@ def extract_messages():
         )
 
         if result.returncode != 0:
-            logger.error(f"Ошибка извлечения сообщений: {result.stderr}")
+            logger.error("Ошибка извлечения сообщений: %s", result.stderr)
         else:
-            logger.info(f"Сообщения успешно извлечены в {output_pot}")
+            logger.info("Сообщения успешно извлечены в %s", output_pot)
 
             # Проверка, что файл не пустой
-            with open(output_pot, "r", encoding="utf-8") as f:
+            with open(output_pot, encoding="utf-8") as f:
                 content = f.read()
 
             if "msgid" not in content or len(content.strip()) < 50:
                 logger.warning("Файл messages.pot пустой или содержит мало строк.")
-                logger.debug(f"Содержимое файла: {content[:200]}")
+                logger.debug("Содержимое файла: %s", content[:200])
 
-    except Exception as e:
-        logger.error(f"Ошибка при извлечении сообщений: {e}")
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.error("Ошибка при извлечении сообщений: %s", e)
 
 
 def init_locale(locale: str):
@@ -110,12 +111,12 @@ def init_locale(locale: str):
         )
 
         if result.returncode != 0:
-            logger.error(f"Ошибка инициализации локали {locale}: {result.stderr}")
+            logger.error("Ошибка инициализации локали %s: %s", locale, result.stderr)
         else:
-            logger.info(f"Локаль {locale} успешно инициализирована")
+            logger.info("Локаль %s успешно инициализирована", locale)
 
-    except Exception as e:
-        logger.error(f"Ошибка при инициализации локали {locale}: {e}")
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.error("Ошибка при инициализации локали %s: %s", locale, e)
 
 
 def update_locale(locale: str):
@@ -135,12 +136,12 @@ def update_locale(locale: str):
         )
 
         if result.returncode != 0:
-            logger.error(f"Ошибка обновления локали {locale}: {result.stderr}")
+            logger.error("Ошибка обновления локали %s: %s", locale, result.stderr)
         else:
-            logger.info(f"Локаль {locale} успешно обновлена")
+            logger.info("Локаль %s успешно обновлена", locale)
 
-    except Exception as e:
-        logger.error(f"Ошибка при обновлении локали {locale}: {e}")
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.error("Ошибка при обновлении локали %s: %s", locale, e)
 
 
 def compile_translations():
@@ -155,9 +156,9 @@ def compile_translations():
         )
 
         if result.returncode != 0:
-            logger.error(f"Ошибка компиляции переводов: {result.stderr}")
+            logger.error("Ошибка компиляции переводов: %s", result.stderr)
         else:
             logger.info("Переводы успешно скомпилированы")
 
-    except Exception as e:
-        logger.error(f"Ошибка при компиляции переводов: {e}")
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.error("Ошибка при компиляции переводов: %s", e)

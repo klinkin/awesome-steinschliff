@@ -11,7 +11,7 @@ snow_temperature:
     max: -5
 condition: green
 manufactory: ''
-author: 'Alexandr Veselov '
+author: 'Alexandr Veselov'
 country: Россия
 tags:
   - свежий снег

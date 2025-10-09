@@ -4,9 +4,8 @@
 
 import logging
 import os
-import re
 from collections import defaultdict
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any
 
 from jinja2 import Environment, FileSystemLoader
 from jinja2.ext import i18n
@@ -46,9 +45,9 @@ class ReadmeGenerator:
         self.sort_field = config.get("sort_field", "name")
 
         # Инициализируем пустые структуры данных
-        self.services = defaultdict(list)
-        self.name_to_path = {}
-        self.service_metadata = {}
+        self.services: defaultdict[str, list[StructureInfo]] = defaultdict(list)
+        self.name_to_path: dict[str, str] = {}
+        self.service_metadata: dict[str, ServiceMetadata] = {}
 
         # Устанавливаем окружение Jinja2
         self.jinja_env = Environment(
@@ -74,7 +73,7 @@ class ReadmeGenerator:
     def load_structures(self) -> None:
         """Загружает структуры из YAML-файлов."""
         yaml_files = find_yaml_files(self.schliffs_dir)
-        logger.info(f"Найдено {len(yaml_files)} YAML-файлов")
+        logger.info("Найдено %d YAML-файлов", len(yaml_files))
 
         self._process_yaml_files(yaml_files)
 
@@ -86,7 +85,7 @@ class ReadmeGenerator:
         # Загружаем метаданные - передаем корневую директорию schliffs
         self.service_metadata = read_service_metadata(self.schliffs_dir, services)
 
-    def _process_yaml_files(self, yaml_files: List[str]) -> None:
+    def _process_yaml_files(self, yaml_files: list[str]) -> None:
         """
         Обрабатывает YAML-файлы для извлечения информации о структурах.
         Оптимизированная версия - обработка выполняется за один проход.
@@ -94,8 +93,8 @@ class ReadmeGenerator:
         Args:
             yaml_files: Список путей к YAML-файлам.
         """
-        services = defaultdict(list)
-        name_to_path = {}
+        services: defaultdict[str, list[StructureInfo]] = defaultdict(list)
+        name_to_path: dict[str, str] = {}
         processed_count = 0
         error_count = 0
 
@@ -117,6 +116,8 @@ class ReadmeGenerator:
                     error_files += 1
                     continue
 
+                # data может быть только dict из read_yaml_file для обычных файлов
+                assert isinstance(data, dict)
                 name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
                 # Преобразуем имя в строку, чтобы обеспечить единый тип ключей
                 name_str = str(name)
@@ -157,19 +158,19 @@ class ReadmeGenerator:
 
                 services[service].append(structure_info)
                 processed_count += 1
-            except Exception as e:
+            except (OSError, ValueError, TypeError) as e:
                 error_count += 1
                 error_files += 1
-                logger.error(f"Непредвиденная ошибка при обработке {file_path}: {e}")
+                logger.error("Непредвиденная ошибка при обработке %s: %s", file_path, e)
 
-        logger.info(f"Успешно обработано {processed_count} файлов с {error_count} ошибками")
+        logger.info("Успешно обработано %d файлов с %d ошибками", processed_count, error_count)
         self.services = services
         self.name_to_path = name_to_path
 
         # Выводим статистику валидации
         print_validation_summary(valid_files, error_files, warning_files)
 
-    def get_path_by_name(self, name: str) -> Optional[str]:
+    def get_path_by_name(self, name: str) -> str | None:
         """
         Возвращает путь к файлу структуры по её имени.
 
@@ -193,7 +194,11 @@ class ReadmeGenerator:
         """
         if self.sort_field == "temperature":
             # Сортировка по температуре (сначала самые теплые)
-            if structure.snow_temperature and isinstance(structure.snow_temperature, list) and structure.snow_temperature[0]:
+            if (
+                structure.snow_temperature
+                and isinstance(structure.snow_temperature, list)
+                and structure.snow_temperature[0]
+            ):
                 temp_range = structure.snow_temperature[0]
                 max_temp = temp_range.get("max")
                 if max_temp is not None:
@@ -201,14 +206,14 @@ class ReadmeGenerator:
                         return -float(max_temp)  # Негативное значение для сортировки по убыванию
                     except (ValueError, TypeError):
                         pass
-            return float('-inf')  # Для структур без температуры ставим их в конец
+            return float("-inf")  # Для структур без температуры ставим их в конец
         else:
             # Сортировка по имени или другому полю
             return getattr(structure, self.sort_field, "") or ""
 
-    def _prepare_countries_data(self) -> Dict[str, Any]:
+    def _prepare_countries_data(self) -> dict[str, Any]:
         """Подготавливает иерархические данные о странах, сервисах и структурах."""
-        countries = {}
+        countries: dict[str, dict[str, Any]] = {}
 
         # Сначала группируем сервисы по странам
         for service_name, structures in self.services.items():
@@ -219,29 +224,29 @@ class ReadmeGenerator:
                 if service_meta.country:
                     country = service_meta.country
 
-            # Извлекаем метаданные сервиса, если они есть
-            service_meta = self.service_metadata.get(service_name, None)
+            # Извлекаем метаданные сервиса, если они есть (отдельно от переменной выше)
+            service_meta_opt: ServiceMetadata | None = self.service_metadata.get(service_name)
 
             # Если страны еще нет в словаре, создаем её
             if country not in countries:
                 countries[country] = {"services": {}}
 
             # Добавляем сервис в страну
-            service_data = {
+            service_data: dict[str, Any] = {
                 "name": service_name,
                 "structures": structures,
             }
 
-            if service_meta:
+            if service_meta_opt:
                 service_data.update(
                     {
-                        "title": service_meta.name or service_name.capitalize(),
-                        "city": service_meta.city or "",
-                        "description": service_meta.description or "",
-                        "description_ru": service_meta.description_ru or "",
-                        "website_url": service_meta.website_url or "",
-                        "video_url": service_meta.video_url or "",
-                        "contact": service_meta.contact or {},
+                        "title": service_meta_opt.name or service_name.capitalize(),
+                        "city": service_meta_opt.city or "",
+                        "description": service_meta_opt.description or "",
+                        "description_ru": service_meta_opt.description_ru or "",
+                        "website_url": service_meta_opt.website_url or "",
+                        "video_url": service_meta_opt.video_url or "",
+                        "contact": service_meta_opt.contact or {},
                     }
                 )
             else:
@@ -260,7 +265,7 @@ class ReadmeGenerator:
             countries[country]["services"][service_name] = service_data
 
         # Определяем порядок стран
-        ordered_countries = []
+        ordered_countries: list[str] = []
 
         # Сначала добавляем Россию, если она есть
         if "Россия" in countries:
@@ -328,10 +333,11 @@ class ReadmeGenerator:
 
             # Загружаем переводы для текущей локали
             translations = load_translations(locale)
-
-            # Устанавливаем переводы для Jinja2
-            # Используем новый стиль gettext для лучшей работы с форматированием строк
-            self.jinja_env.install_gettext_translations(translations, newstyle=True)
+            # Устанавливаем переводы для Jinja2 через globals, чтобы избежать проблем с типами
+            self.jinja_env.add_extension("jinja2.ext.i18n")
+            self.jinja_env.globals.update(
+                _=translations.gettext, gettext=translations.gettext, ngettext=translations.ngettext
+            )
 
             # Подготавливаем данные для шаблона
             template_data = {
@@ -350,7 +356,7 @@ class ReadmeGenerator:
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(rendered_content)
 
-            logger.info(f"README для языка {locale.upper()} успешно сгенерирован в {os.path.abspath(output_file)}")
+            logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), os.path.abspath(output_file))
 
     def run(self) -> None:
         """Запускает процесс генерации README."""

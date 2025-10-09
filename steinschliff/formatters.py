@@ -4,14 +4,13 @@
 
 import logging
 import os
-from functools import partial
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 logger = logging.getLogger("steinschliff.formatters")
 
 
-def format_list(items: Union[List[Union[str, int, None]], str, None], allow_empty: bool = False) -> str:
+def format_list(items: list[str | int | None] | str | None, allow_empty: bool = False) -> str:
     """
     Универсальная функция для форматирования списков элементов в строку.
 
@@ -36,7 +35,7 @@ def format_list(items: Union[List[Union[str, int, None]], str, None], allow_empt
 
 
 # Для обратной совместимости определяем функции через универсальную
-def format_snow_types(items: Union[List[Union[str, int, None]], str, None]) -> str:
+def format_snow_types(items: list[str | int | None] | str | None) -> str:
     """Форматирует список типов снега, разрешая пустые строки."""
     return format_list(items, allow_empty=True)
 
@@ -49,7 +48,7 @@ format_features = format_list
 
 
 def format_similars_with_links(
-    similars: Union[List[Union[str, int, None]], str, None],
+    similars: list[str | int | None] | str | None,
     generator,
     output_dir: str,
 ) -> str:
@@ -93,7 +92,7 @@ def format_similars_with_links(
                     rel_path = path_obj.relative_to(Path.cwd())
             except ValueError:
                 # Если не удалось создать относительный путь, используем os.path.relpath
-                rel_path = os.path.relpath(path, output_dir)
+                rel_path = Path(os.path.relpath(path, output_dir))
             result.append(f"[{str_item}]({rel_path})")
         else:
             result.append(str_item)
@@ -102,7 +101,7 @@ def format_similars_with_links(
 
 
 def format_temperature_range(
-    snow_temperature: Union[List[Dict[str, Any]], None],
+    snow_temperature: list[dict[str, Any]] | None,
 ) -> str:
     """
     Форматирует диапазон температуры снега для отображения в таблице в формате "max °C … min °C".
@@ -129,36 +128,36 @@ def format_temperature_range(
             return ""
 
         # Убираем .0 в конце для целых чисел
-        if isinstance(min_temp, (int, float)):
+        if isinstance(min_temp, int | float):
             min_temp_str = str(int(min_temp)) if min_temp == int(min_temp) else str(min_temp)
         else:
             min_temp_str = str(min_temp)
 
-        if isinstance(max_temp, (int, float)):
+        if isinstance(max_temp, int | float):
             max_temp_str = str(int(max_temp)) if max_temp == int(max_temp) else str(max_temp)
         else:
             max_temp_str = str(max_temp)
 
         # Заменяем минус на типографский
-        if min_temp_str.startswith('-'):
-            min_temp_str = '–' + min_temp_str[1:]
+        if min_temp_str.startswith("-"):
+            min_temp_str = "–" + min_temp_str[1:]
         elif float(min_temp) > 0:
-            min_temp_str = '+' + min_temp_str
+            min_temp_str = "+" + min_temp_str
 
-        if max_temp_str.startswith('-'):
-            max_temp_str = '–' + max_temp_str[1:]
+        if max_temp_str.startswith("-"):
+            max_temp_str = "–" + max_temp_str[1:]
         elif float(max_temp) > 0:
-            max_temp_str = '+' + max_temp_str
+            max_temp_str = "+" + max_temp_str
 
         # Форматируем в виде диапазона с градусами и многоточием
         # В соответствии с предметной областью: сначала более теплая температура, затем более холодная
         return f"{max_temp_str} °C … {min_temp_str} °C"
-    except Exception as e:
+    except (ValueError, TypeError) as e:
         logger.warning("Ошибка при форматировании температурного диапазона: %s", e)
         return ""
 
 
-def format_image_link(image_value: Union[str, List[str]], structure_name: str, output_dir: str) -> str:
+def format_image_link(image_value: str | list[str], structure_name: str, output_dir: str) -> str:
     """
     Форматирует изображение для отображения в Markdown.
 
@@ -206,6 +205,6 @@ def format_image_link(image_value: Union[str, List[str]], structure_name: str, o
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
         return f"![{structure_name}]({relative_path})"
-    except Exception as e:
-        logger.error(f"Ошибка при форматировании изображения {image_value}: {e}")
+    except (ValueError, OSError, TypeError) as e:
+        logger.error("Ошибка при форматировании изображения %s: %s", image_value, e)
         return ""

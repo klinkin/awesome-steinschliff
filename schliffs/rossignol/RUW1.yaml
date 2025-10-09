@@ -1,0 +1,27 @@
+name: RUW1
+description: null
+description_ru: универсальная структура для влажного снега до -7 °C
+website_url: null
+snow_type:
+  - wet
+  - all
+snow_temperature:
+  - min: -7
+    max: 2
+condition: ''
+manufactory: Rossignol
+author: ''
+country: France
+tags:
+  - универсальный
+  - влажный
+similars: []
+features:
+  - ''
+updated_at: 2025-10-01
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: Rossignol
+
+

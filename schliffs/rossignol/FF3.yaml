@@ -1,0 +1,27 @@
+name: FF3
+description: null
+description_ru: структура для холодного нового снега (-5…-10 °C)
+website_url: null
+snow_type:
+  - natural
+  - fresh
+snow_temperature:
+  - min: -10
+    max: -5
+condition: ''
+manufactory: Rossignol
+author: ''
+country: France
+tags:
+  - холодный
+  - новый снег
+similars: []
+features:
+  - ''
+updated_at: 2025-10-01
+updated_by: https://github.com/klinkin
+archived: false
+service:
+  name: Rossignol
+
+

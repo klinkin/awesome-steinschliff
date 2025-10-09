@@ -4,7 +4,7 @@
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 import yaml
 from pydantic import ValidationError
@@ -84,24 +84,62 @@ def print_validation_summary(valid_files: int, error_files: int, warning_files: 
     logger.info("\n%s", report_str)
 
 
-def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], ServiceMetadata, None]:
+def _validate_meta_file(data: dict[str, Any], path: Path) -> ServiceMetadata | dict[str, Any]:
     """
-    Читает и разбирает YAML-файл с помощью PyYAML и валидирует с помощью Pydantic.
+    Валидирует метафайл и возвращает объект ServiceMetadata или исходные данные.
 
     Args:
-        file_path: Путь к YAML-файлу (строка или Path).
+        data: Данные из YAML файла
+        path: Путь к файлу
 
     Returns:
-        Для `_meta.yaml` – объект :class:`ServiceMetadata` при успешной валидации,
-        либо исходный словарь при ошибках валидации.
-        Для других файлов – словарь с разобранным содержимым YAML при успешной
-        валидации, либо исходные данные при наличии обязательных полей.
-        Возвращает ``None``, если файл пуст, не содержит требуемых полей или
-        произошла ошибка.
+        ServiceMetadata объект или исходные данные
     """
-    # Преобразуем строку в Path, если нужно
-    path = Path(file_path) if not isinstance(file_path, Path) else file_path
+    try:
+        return ServiceMetadata.model_validate(data)
+    except ValidationError as e:
+        if logger.isEnabledFor(logging.WARNING):
+            error_report = format_validation_error(e, str(path))
+            logger.warning("\n%s", error_report)
+        return data
 
+
+def _validate_structure_file(data: dict[str, Any], path: Path) -> dict[str, Any] | None:
+    """
+    Валидирует файл структуры и возвращает валидированные данные или None.
+
+    Args:
+        data: Данные из YAML файла
+        path: Путь к файлу
+
+    Returns:
+        Валидированные данные или None
+    """
+    try:
+        return SchliffStructure.model_validate(data).model_dump(exclude_unset=True)
+    except ValidationError as e:
+        if logger.isEnabledFor(logging.WARNING):
+            error_report = format_validation_error(e, str(path))
+            logger.warning("\n%s", error_report)
+
+        if "name" in data and "description" in data:
+            logger.info("Файл %s содержит обязательные поля, используем с неполной валидацией", path)
+            return data
+
+        logger.error("Файл %s не содержит обязательных полей и не может быть использован", path)
+        return None
+
+
+def _load_yaml_data(path: Path) -> dict[str, Any] | None:
+    """
+    Загружает и проверяет базовую структуру YAML файла.
+
+    Args:
+        path: Путь к файлу
+
+    Returns:
+        Данные из файла или None при ошибке
+    """
     try:
         with path.open("r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
@@ -117,35 +155,7 @@ def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], Service
                 )
                 return None
 
-            # Пропускаем валидацию для метафайлов или используем специальную модель
-            if path.name == "_meta.yaml":
-                try:
-                    # Валидируем метаданные сервиса и возвращаем объект модели
-                    return ServiceMetadata.model_validate(data)
-                except ValidationError as e:
-                    # Подробный вывод ошибок валидации только если включен WARNING
-                    if logger.isEnabledFor(logging.WARNING):
-                        error_report = format_validation_error(e, str(path))
-                        logger.warning("\n%s", error_report)
-                    return data  # Возвращаем оригинальные данные, если валидация не прошла
-
-            # Валидация структуры с помощью Pydantic
-            try:
-                validated_data = SchliffStructure.model_validate(data).model_dump(exclude_unset=True)
-                return validated_data
-            except ValidationError as e:
-                # Подробный вывод ошибок валидации только если включен WARNING
-                if logger.isEnabledFor(logging.WARNING):
-                    error_report = format_validation_error(e, str(path))
-                    logger.warning("\n%s", error_report)
-
-                # Если есть минимальные обязательные поля, используем исходные данные
-                if "name" in data and "description" in data:
-                    logger.info("Файл %s содержит обязательные поля, используем с неполной валидацией", path)
-                    return data
-
-                logger.error("Файл %s не содержит обязательных полей и не может быть использован", path)
-                return None
+            return data
 
     except yaml.YAMLError as e:
         logger.error("Ошибка разбора YAML в %s: %s", path, e)
@@ -156,12 +166,39 @@ def read_yaml_file(file_path: Union[str, Path]) -> Union[Dict[str, Any], Service
     except PermissionError:
         logger.error("Отказано в доступе: %s", path)
         return None
-    except Exception as e:
+    except (OSError, UnicodeDecodeError) as e:
         logger.error("Ошибка чтения файла %s: %s", path, e)
         return None
 
 
-def find_yaml_files(directory: str) -> List[str]:
+def read_yaml_file(file_path: str | Path) -> dict[str, Any] | ServiceMetadata | None:
+    """
+    Читает и разбирает YAML-файл с помощью PyYAML и валидирует с помощью Pydantic.
+
+    Args:
+        file_path: Путь к YAML-файлу (строка или Path).
+
+    Returns:
+        Для `_meta.yaml` – объект :class:`ServiceMetadata` при успешной валидации,
+        либо исходный словарь при ошибках валидации.
+        Для других файлов – словарь с разобранным содержимым YAML при успешной
+        валидации, либо исходные данные при наличии обязательных полей.
+        Возвращает ``None``, если файл пуст, не содержит требуемых полей или
+        произошла ошибка.
+    """
+    path = Path(file_path) if not isinstance(file_path, Path) else file_path
+
+    data = _load_yaml_data(path)
+    if data is None:
+        return None
+
+    if path.name == "_meta.yaml":
+        return _validate_meta_file(data, path)
+    else:
+        return _validate_structure_file(data, path)
+
+
+def find_yaml_files(directory: str) -> list[str]:
     """
     Находит все YAML-файлы в указанной директории и её поддиректориях.
 
@@ -181,7 +218,65 @@ def find_yaml_files(directory: str) -> List[str]:
     return [str(path) for path in yaml_files]
 
 
-def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, ServiceMetadata]:
+def _process_service_metadata(
+    service: str,
+    metadata_file: Path,
+    metadata: dict[str, ServiceMetadata],
+    metadata_warnings: list[str],
+    metadata_errors: list[tuple[str, str]],
+) -> None:
+    """
+    Обрабатывает метаданные для одного сервиса.
+
+    Args:
+        service: Имя сервиса
+        metadata_file: Путь к файлу метаданных
+        metadata: Словарь для хранения метаданных
+        metadata_warnings: Список предупреждений
+        metadata_errors: Список ошибок
+    """
+    try:
+        service_meta = read_yaml_file(metadata_file)
+        if service_meta:
+            if isinstance(service_meta, dict):
+                try:
+                    service_meta = ServiceMetadata.model_validate(service_meta)
+                except ValidationError:
+                    service_meta = ServiceMetadata(name=service)
+
+            metadata[service] = service_meta
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug("Прочитаны метаданные для сервиса %s", service)
+        else:
+            metadata[service] = ServiceMetadata(name=service)
+            metadata_warnings.append(service)
+    except (OSError, yaml.YAMLError, ValidationError) as e:
+        metadata_errors.append((service, str(e)))
+        metadata[service] = ServiceMetadata(name=service)
+
+
+def _log_metadata_results(
+    metadata_warnings: list[str], metadata_errors: list[tuple[str, str]], metadata: dict[str, ServiceMetadata]
+) -> None:
+    """
+    Логирует результаты обработки метаданных.
+
+    Args:
+        metadata_warnings: Список предупреждений
+        metadata_errors: Список ошибок
+        metadata: Словарь метаданных
+    """
+    if metadata_warnings and logger.isEnabledFor(logging.WARNING):
+        logger.warning("Пустые файлы метаданных для сервисов: %s", ", ".join(metadata_warnings))
+
+    if metadata_errors and logger.isEnabledFor(logging.ERROR):
+        for service, error in metadata_errors:
+            logger.error("Ошибка чтения метаданных для сервиса %s: %s", service, error)
+
+    logger.info("Найдено %d файлов метаданных сервисов", len(metadata))
+
+
+def read_service_metadata(metadata_dir: str, services: list[str]) -> dict[str, ServiceMetadata]:
     """
     Читает метаданные сервисов из файлов _meta.yaml.
 
@@ -192,56 +287,22 @@ def read_service_metadata(metadata_dir: str, services: List[str]) -> Dict[str, S
     Returns:
         Словарь объектов ServiceMetadata, проиндексированных по имени сервиса.
     """
-    metadata = {}
-    metadata_warnings = []
-    metadata_errors = []
+    metadata: dict[str, ServiceMetadata] = {}
+    metadata_warnings: list[str] = []
+    metadata_errors: list[tuple[str, str]] = []
 
-    # Создаем Path-объект для директории метаданных
     metadata_path = Path(metadata_dir)
 
-    # Проверяем существование директории
     if not metadata_path.exists() or not metadata_path.is_dir():
         logger.warning("Директория с метаданными не найдена: %s", metadata_dir)
         return metadata
 
-    # Для каждого сервиса проверяем наличие файла метаданных
     for service in services:
-        # Ищем _meta.yaml внутри директории сервиса
         metadata_file = metadata_path / service / "_meta.yaml"
-
         if metadata_file.exists():
-            try:
-                service_meta = read_yaml_file(metadata_file)
-                if service_meta:
-                    # Если вернулся словарь (из-за ошибки валидации), преобразуем его в ServiceMetadata
-                    if isinstance(service_meta, dict):
-                        try:
-                            service_meta = ServiceMetadata.model_validate(service_meta)
-                        except ValidationError:
-                            # Если и это не удалось, создаем пустой объект
-                            service_meta = ServiceMetadata(name=service)
+            _process_service_metadata(service, metadata_file, metadata, metadata_warnings, metadata_errors)
 
-                    metadata[service] = service_meta
-                    if logger.isEnabledFor(logging.DEBUG):
-                        logger.debug("Прочитаны метаданные для сервиса %s", service)
-                else:
-                    # Создаем пустой объект метаданных
-                    metadata[service] = ServiceMetadata(name=service)
-                    metadata_warnings.append(service)
-            except Exception as e:
-                metadata_errors.append((service, str(e)))
-                # Создаем пустой объект метаданных при ошибке
-                metadata[service] = ServiceMetadata(name=service)
-
-    # Логируем предупреждения и ошибки один раз после всей обработки
-    if metadata_warnings and logger.isEnabledFor(logging.WARNING):
-        logger.warning("Пустые файлы метаданных для сервисов: %s", ", ".join(metadata_warnings))
-
-    if metadata_errors and logger.isEnabledFor(logging.ERROR):
-        for service, error in metadata_errors:
-            logger.error("Ошибка чтения метаданных для сервиса %s: %s", service, error)
-
-    logger.info("Найдено %d файлов метаданных сервисов", len(metadata))
+    _log_metadata_results(metadata_warnings, metadata_errors, metadata)
     return metadata
 
 
