@@ -1,0 +1,27 @@
+name: T20-10
+description: For fresh snow around 0°C, high humidity
+description_ru: Для свежего снега около 0°C, высокая влажность
+website_url: https://www.skisport.ru/news/cross-country/119865/
+snow_type:
+  - fresh
+  - natural
+  - artificial
+snow_temperature:
+  - min: -3
+    max: 3
+condition: wet
+manufactory: Svekom
+author: MASS SPORT / YTC Ski Service
+country: Россия
+tags:
+  - свежий снег
+  - высокая влажность
+  - около нуля
+similars: []
+features: []
+updated_at: 2025-10-18
+updated_by: https://www.skisport.ru/news/cross-country/119865/
+archived: false
+service:
+  name: Mass Sport
+

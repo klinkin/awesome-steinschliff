@@ -1,0 +1,26 @@
+name: T1.3
+description: For wet transformed snow 0..+10°C
+description_ru: Для мокрого трансформированного снега 0..+10°C
+website_url: https://www.skisport.ru/news/cross-country/119865/
+snow_type:
+  - transformed
+  - wet
+snow_temperature:
+  - min: 0
+    max: 10
+condition: wet
+manufactory: Svekom
+author: MASS SPORT / YTC Ski Service
+country: Россия
+tags:
+  - мокрый снег
+  - трансформированный снег
+  - тепло
+similars: []
+features: []
+updated_at: 2025-10-18
+updated_by: https://www.skisport.ru/news/cross-country/119865/
+archived: false
+service:
+  name: Mass Sport
+

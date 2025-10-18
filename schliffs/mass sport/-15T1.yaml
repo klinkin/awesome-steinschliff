@@ -1,0 +1,28 @@
+name: -15T1
+description: For fresh and old refrozen snow, very cold
+description_ru: Для свежего и старого перемороженного снега, очень холодно
+website_url: https://www.skisport.ru/news/cross-country/119865/
+snow_type:
+  - fresh
+  - old
+  - refrozen
+  - natural
+  - artificial
+snow_temperature:
+  - min: -25
+    max: -10
+condition: cold
+manufactory: Svekom
+author: MASS SPORT / YTC Ski Service
+country: Россия
+tags:
+  - перемороженный снег
+  - очень холодно
+similars: []
+features: []
+updated_at: 2025-10-18
+updated_by: https://www.skisport.ru/news/cross-country/119865/
+archived: false
+service:
+  name: Mass Sport
+
