@@ -1,11 +1,10 @@
 import os
-import pytest
 import tempfile
+
+import pytest
 import yaml
-from collections import defaultdict
 
 from steinschliff.generator import ReadmeGenerator
-from steinschliff.models import StructureInfo, Service
 
 
 class TestProcessYamlFiles:
@@ -28,26 +27,23 @@ class TestProcessYamlFiles:
                     "snow_type": ["fresh", "transformed"],
                     "snow_temperature": [{"min": -15, "max": -5}],
                     "country": "Россия",
-                    "tags": ["tag1", "tag2"]
+                    "tags": ["tag1", "tag2"],
                 },
                 os.path.join(service1_dir, "struct2.yaml"): {
                     "name": "Structure2",
                     "description": "Another description",
                     "snow_type": ["old"],
-                    "service": {"name": "TestService"}
+                    "service": {"name": "TestService"},
                 },
                 os.path.join(service2_dir, "struct3.yaml"): {
                     "name": "Structure3",
                     "description": "Third description",
-                    "similars": ["Structure1", "Structure2"]
+                    "similars": ["Structure1", "Structure2"],
                 },
                 # Файл с ошибкой
                 os.path.join(service2_dir, "invalid.yaml"): "invalid: yaml: content",
                 # Мета-файл, который должен быть пропущен
-                os.path.join(service1_dir, "_meta.yaml"): {
-                    "name": "Service1",
-                    "description": "Test service"
-                }
+                os.path.join(service1_dir, "_meta.yaml"): {"name": "Service1", "description": "Test service"},
             }
 
             # Записываем содержимое в файлы
@@ -71,17 +67,16 @@ class TestProcessYamlFiles:
         4. Пропуск _meta.yaml файлов
         """
         # Подготовка генератора с минимальной конфигурацией
-        config = {
-            "schliffs_dir": setup_test_files,
-            "readme_file": "README.md",
-            "readme_ru_file": "README_ru.md"
-        }
+        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
-        yaml_files = [os.path.join(dirpath, f)
-                     for dirpath, _, files in os.walk(setup_test_files)
-                     for f in files if f.endswith('.yaml')]
+        yaml_files = [
+            os.path.join(dirpath, f)
+            for dirpath, _, files in os.walk(setup_test_files)
+            for f in files
+            if f.endswith(".yaml")
+        ]
 
         # Запускаем обработку файлов
         generator._process_yaml_files(yaml_files)
@@ -113,8 +108,9 @@ class TestProcessYamlFiles:
         assert len(structure3.similars) == 2
 
         # 3. Проверяем обработку ошибок через caplog
-        assert any("Ошибка разбора YAML" in record.message and "invalid.yaml" in record.message
-                  for record in caplog.records)
+        assert any(
+            "Ошибка разбора YAML" in record.message and "invalid.yaml" in record.message for record in caplog.records
+        )
 
         # 4. Проверяем, что в результатах нет _meta.yaml
         all_structures = [s.name for service in generator.services.values() for s in service]
@@ -125,17 +121,16 @@ class TestProcessYamlFiles:
         Проверяет, что словарь name_to_path в ReadmeGenerator корректен.
         """
         # Подготовка генератора
-        config = {
-            "schliffs_dir": setup_test_files,
-            "readme_file": "README.md",
-            "readme_ru_file": "README_ru.md"
-        }
+        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
-        yaml_files = [os.path.join(dirpath, f)
-                     for dirpath, _, files in os.walk(setup_test_files)
-                     for f in files if f.endswith('.yaml')]
+        yaml_files = [
+            os.path.join(dirpath, f)
+            for dirpath, _, files in os.walk(setup_test_files)
+            for f in files
+            if f.endswith(".yaml")
+        ]
 
         # Запускаем обработку файлов
         generator._process_yaml_files(yaml_files)
@@ -190,11 +185,9 @@ class TestGenerate:
 
         readme_path = os.path.join(setup_generate_files, "README.md")
         assert os.path.exists(readme_path)
-        with open(readme_path, "r", encoding="utf-8") as f:
+        with open(readme_path, encoding="utf-8") as f:
             content = f.read()
 
         assert "Some description" in content
         assert "info@example.com" in content
         assert content.index("Alpha") < content.index("Zeta")
-
-

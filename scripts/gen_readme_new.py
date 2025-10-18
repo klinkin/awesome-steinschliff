@@ -3,15 +3,15 @@
 """
 
 import argparse
+import logging
 import os
 import sys
-import logging
 from pathlib import Path
 
 # Добавляем родительскую директорию в путь для импорта
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from steinschliff.generator import ReadmeGenerator
+from steinschliff.generator import ReadmeGenerator, export_json
 from steinschliff.utils import setup_logging
 
 
@@ -66,7 +66,7 @@ def main():
     # Создаем директорию для переводов, если её нет
     if not os.path.exists(translations_dir):
         os.makedirs(translations_dir)
-        logger.info(f"Создана директория для переводов: {translations_dir}")
+        logger.info("Создана директория для переводов: %s", translations_dir)
 
     # Создаем пустые файлы переводов, если указан флаг
     if args.create_translations:
@@ -75,7 +75,7 @@ def main():
             if not os.path.exists(translation_file):
                 with open(translation_file, "w", encoding="utf-8") as f:
                     f.write("{}")
-                logger.info(f"Создан пустой файл перевода: {translation_file}")
+                logger.info("Создан пустой файл перевода: %s", translation_file)
 
     # Конфигурация для генератора
     config = {
@@ -90,9 +90,13 @@ def main():
         # Инициализируем и запускаем генератор README
         generator = ReadmeGenerator(config)
         generator.run()
-        logger.info(f"README успешно сгенерирован: {output_file} и {output_ru}")
-    except Exception as e:
-        logger.error(f"Ошибка при генерации README: {e}", exc_info=True)
+        logger.info("README успешно сгенерирован: %s и %s", output_file, output_ru)
+
+        # Экспортируем данные в JSON для Astro-сайта
+        export_json(generator.services, out_path="webapp/src/data/structures.json")
+        logger.info("JSON-данные экспортированы в webapp/src/data/structures.json")
+    except Exception:
+        logger.exception("Ошибка при генерации README")
         sys.exit(1)
 
 

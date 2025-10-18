@@ -18,6 +18,7 @@ Useful videos:
 
 * [Ekiptime (Москва)](#ekiptime-москва)
 * [Marsport (Одинцово)](#marsport-одинцово)
+* [Mass sport (Санкт-Петербург)](#mass-sport-санкт-петербург)
 * [Serviccer (Красногорск)](#serviccer-красногорск)
 * [Skipole (Москва)](#skipole-москва)
 * [Svecky (Новосибирск)](#svecky-новосибирск)
@@ -101,6 +102,30 @@ Address: г. Одинцово ул. Манжосовская 1
 | [SM15-5](schliffs/marsport/SM15-5.yaml) |  | fresh, transformed | –5 °C … –15 °C |  | свежий снег, средний холод | [S12-4](schliffs/ramsau/S12-4.yaml), [B227](schliffs/beme/B227.yaml) |  |
 | [C100](schliffs/marsport/C100.yaml) |  | frozen, fresh | –10 °C … –25 °C |  | перемороженный, холодный | [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml), [G1](schliffs/salomon/G1.yaml), [Х20](schliffs/skipole/Х20.yaml) |  |
 
+## Mass Sport (Санкт-Петербург)
+
+Stone grind service with Svekom Ski World Cup Evo (partnered with YTC Ski Service)
+
+Website: [Mass Sport](https://www.skisport.ru/news/cross-country/119865/)
+
+Address: УТЦ «Кавголово» — по предварительной записи (пос. Токсово, ул. Лесгафта 35/2).
+Пункты приёма MASS SPORT: ТК «Вояж» (пр. Энгельса, 124/1, 5 вход, 3 этаж) и «Охта Парк» (дер. Мистолово, ул. Людмилы Кедриной).
+
+
+
+### Contact Information
+
+* phones: [+7 (911) 956-93-80](tel:+7 (911) 956-93-80), [+7 (963) 329-00-24](tel:+7 (963) 329-00-24)
+
+| Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
+|------|------------|-----------|----------------|------|------|-------------------|-------------------|
+| [T1.3](schliffs/mass sport/T1.3.yaml) | For wet transformed snow 0..+10°C | transformed, wet | +10 °C … 0 °C |  | мокрый снег, трансформированный снег, тепло |  |  |
+| [Fit-4](schliffs/mass sport/Fit-4.yaml) | All-snow structure for 0..+8°C except falling snow, mid-high humidity | natural, artificial, transformed | +8 °C … 0 °C |  | тепло, средняя влажность, высокая влажность |  |  |
+| [T20-10](schliffs/mass sport/T20-10.yaml) | For fresh snow around 0°C, high humidity | fresh, natural, artificial | +3 °C … –3 °C |  | свежий снег, высокая влажность, около нуля |  |  |
+| [T1.3fa](schliffs/mass sport/T1.3fa.yaml) | For old transformed snow around 0°C, mid-high humidity | transformed | +3 °C … –3 °C |  | трансформированный снег, около нуля, средняя влажность, высокая влажность |  |  |
+| [Fit-10](schliffs/mass sport/Fit-10.yaml) | Universal cold structure for natural and artificial snow, high humidity | natural, artificial, all | –3 °C … –15 °C |  | универсальный, высокая влажность, холодный |  |  |
+| [-15T1](schliffs/mass sport/-15T1.yaml) | For fresh and old refrozen snow, very cold | fresh, old, refrozen, natural, artificial | –10 °C … –25 °C |  | перемороженный снег, очень холодно |  |  |
+
 ## Serviccer (Красногорск)
 
 
@@ -117,10 +142,10 @@ Address: МО, г.Красногорск, ул.Речная д.37 за здан�
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
+| [SV100](schliffs/serviccer/SV100.yaml) |  | fresh, old, glossy | +3 °C … –3 °C |  | глянец, замыленный |  | не едет в воду |
 | [SV600](schliffs/serviccer/SV600.yaml) |  |  |  |  |  |  |  |
 | [R10-3](schliffs/serviccer/R10-3.yaml) |  |  |  |  |  |  |  |
 | [SV700](schliffs/serviccer/SV700.yaml) |  |  |  |  |  |  |  |
-| [SV100](schliffs/serviccer/SV100.yaml) |  | fresh, old, glossy | +3 °C … –3 °C |  | глянец, замыленный |  | не едет в воду |
 
 ## Skipole (Москва)
 
@@ -216,11 +241,6 @@ Website: [Fischer](https://www.fischersports.com)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
-| [Р3-2](schliffs/fischer/Р3-2.yaml) |  | old, wet |  |  | старый снег, мокрый, плюсовая температура | [Р3-1](schliffs/fischer/Р3-1.yaml), [Р5-9](schliffs/fischer/Р5-9.yaml) |  |
-| [Р5-9](schliffs/fischer/Р5-9.yaml) |  | old, wet |  |  | классические лыжи, старый снег, мокрый | [Р3-2](schliffs/fischer/Р3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
-| [P9-2](schliffs/fischer/P9-2.yaml) |  | wet |  |  | влажный снег, плюсовая температура | [Р3-1](schliffs/fischer/Р3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
-| [Р3-1](schliffs/fischer/Р3-1.yaml) |  | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [Р3-2](schliffs/fischer/Р3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
-| [С1-1](schliffs/fischer/С1-1.yaml) |  | all, fresh |  |  | холодный, универсальный | [С12-1](schliffs/fischer/С12-1.yaml) |  |
 | [Р3-3](schliffs/fischer/Р3-3.yaml) |  | watery, wet | +15 °C … +3 °C |  | водянистый снег, высокая температура |  |  |
 | [P5-1](schliffs/fischer/P5-1.yaml) |  | all | +5 °C … –10 °C |  | универсальный, широкий диапазон |  | стандартная |
 | [P22-6](schliffs/fischer/P22-6.yaml) |  | all | +5 °C … –5 °C |  | универсальный, переходная структура, широкий диапазон | [P5-1](schliffs/fischer/P5-1.yaml), [P11-2](schliffs/fischer/P11-2.yaml) | переходная структура |
@@ -235,6 +255,11 @@ Website: [Fischer](https://www.fischersports.com)
 | [C12-7](schliffs/fischer/C12-7.yaml) |  | fine_grained | 0 °C … –10 °C |  | мелкозернистый, средняя температура | [S13-5-08](schliffs/ramsau/S13-5-08.yaml) |  |
 | [С12-1](schliffs/fischer/С12-1.yaml) |  | all | –5 °C … –15 °C |  | холодный, универсальный | [С1-1](schliffs/fischer/С1-1.yaml) |  |
 | [С3-1](schliffs/fischer/С3-1.yaml) |  | artificial | –25 °C … –5 °C |  | холодный, искусственный снег | [С8-1](schliffs/fischer/С8-1.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
+| [Р3-2](schliffs/fischer/Р3-2.yaml) |  | old, wet |  |  | старый снег, мокрый, плюсовая температура | [Р3-1](schliffs/fischer/Р3-1.yaml), [Р5-9](schliffs/fischer/Р5-9.yaml) |  |
+| [Р5-9](schliffs/fischer/Р5-9.yaml) |  | old, wet |  |  | классические лыжи, старый снег, мокрый | [Р3-2](schliffs/fischer/Р3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
+| [P9-2](schliffs/fischer/P9-2.yaml) |  | wet |  |  | влажный снег, плюсовая температура | [Р3-1](schliffs/fischer/Р3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+| [Р3-1](schliffs/fischer/Р3-1.yaml) |  | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [Р3-2](schliffs/fischer/Р3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+| [С1-1](schliffs/fischer/С1-1.yaml) |  | all, fresh |  |  | холодный, универсальный | [С12-1](schliffs/fischer/С12-1.yaml) |  |
 
 ## Salomon
 
@@ -294,7 +319,6 @@ Website: [Rossignol](https://www.rossignol.com)
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
-| [PL1](schliffs/ramsau/Pl1.yaml) |  | all, frozen |  |  |  | [S12-4](schliffs/ramsau/S12-4.yaml), [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml) |  |
 | [S13-6](schliffs/ramsau/S13-6.yaml) |  | wet | +10 °C … 0 °C |  | мокрый снег, дождь, плюсовая температура | [F1](schliffs/marsport/F1.yaml), [M63](schliffs/madshus/M63.yaml) |  |
 | [T1](schliffs/ramsau/T1.yaml) |  | old, wet, dirty | +5 °C … 0 °C |  | крупнозернистый | [S13-5](schliffs/ramsau/S13-5.yaml), [B3312](schliffs/beme/B3312.yaml) |  |
 | [OH3](schliffs/ramsau/OH3.yaml) |  | all | +5 °C … –7 °C |  |  | [B3312](schliffs/beme/B3312.yaml) | появился шлифт относительно недавно, сильно позднее S-шлифтов |
@@ -318,6 +342,7 @@ Website: [Rossignol](https://www.rossignol.com)
 | [S11-2](schliffs/ramsau/S11-2.yaml) |  | dry, natural, cold | –10 °C … –20 °C |  | холодный, сухой снег, натуральный снег | [B227](schliffs/beme/B227.yaml), [C100](schliffs/marsport/C100.yaml) |  |
 | [S11-3](schliffs/ramsau/S11-3.yaml) |  | frozen, natural, artificial | –10 °C … –20 °C |  | перемороженый, искусственный снег, холодный | [B227](schliffs/beme/B227.yaml) |  |
 | [S11-1](schliffs/ramsau/S11-1.yaml) |  | dry | –10 °C … –20 °C |  | сухой снег, холодный | [S11-2](schliffs/ramsau/S11-2.yaml), [S11-3](schliffs/ramsau/S11-3.yaml) |  |
+| [PL1](schliffs/ramsau/Pl1.yaml) |  | all, frozen |  |  |  | [S12-4](schliffs/ramsau/S12-4.yaml), [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml) |  |
 
 ## Madshus
 

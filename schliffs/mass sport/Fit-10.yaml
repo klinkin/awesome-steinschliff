@@ -1,0 +1,27 @@
+name: Fit-10
+description: Universal cold structure for natural and artificial snow, high humidity
+description_ru: Универсальная холодная структура для натурального и искусственного снега, высокая влажность
+website_url: https://www.skisport.ru/news/cross-country/119865/
+snow_type:
+  - natural
+  - artificial
+  - all
+snow_temperature:
+  - min: -15
+    max: -3
+condition: blue
+manufactory: Svekom
+author: MASS SPORT / YTC Ski Service
+country: Россия
+tags:
+  - универсальный
+  - высокая влажность
+  - холодный
+similars: []
+features: []
+updated_at: 2025-10-18
+updated_by: https://www.skisport.ru/news/cross-country/119865/
+archived: false
+service:
+  name: Mass Sport
+

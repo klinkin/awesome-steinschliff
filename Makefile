@@ -6,7 +6,7 @@
 # Настройки
 
 # Путь к проекту
-PROJECT_PATH := steinschliff
+PROJECT_ROOT := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # Исполняемые файлы инструментов
 POETRY = poetry
@@ -15,6 +15,18 @@ MYPY = poetry run mypy
 RUFF = poetry run ruff
 BLACK = poetry run black
 PYTEST = poetry run pytest
+
+# Пути проекта и webapp
+WEBAPP_DIR   := $(PROJECT_ROOT)/webapp
+WEBAPP_NPM   := cd $(WEBAPP_DIR) && npm
+
+# Пути исходников Python (относительно корня проекта)
+PY_SRC_DIRS := steinschliff scripts tests
+PY_SRC := $(addprefix $(PROJECT_ROOT)/,$(PY_SRC_DIRS))
+
+# Опциональная загрузка переменных окружения
+-include .env
+export
 
 # Настройки для генерации README
 DEFAULT_SORT := temperature
@@ -29,6 +41,8 @@ DEF = \033[0m
 
 # --------------------------------------------------------------------------------
 # Основные цели
+
+.DEFAULT_GOAL := help
 
 .PHONY: help
 help:
@@ -51,8 +65,19 @@ help:
 	@echo "${BLUE}Генерация документации:${DEF}"
 	@echo "${GREEN}make build [SORT=field]${DEF} - ${YELLOW}Сборка проекта (генерация README)${DEF}"
 	@echo ""
+	@echo "${BLUE}Веб-сайт (Astro):${DEF}"
+	@echo "${GREEN}make webapp-install${DEF}    - ${YELLOW}Установка npm-зависимостей${DEF}"
+	@echo "${GREEN}make webapp-dev${DEF}        - ${YELLOW}Локальная разработка (astro dev)${DEF}"
+	@echo "${GREEN}make webapp-build${DEF}      - ${YELLOW}Сборка сайта (astro build + pagefind)${DEF}"
+	@echo "${GREEN}make webapp-preview${DEF}    - ${YELLOW}Предпросмотр сборки${DEF}"
+	@echo "${GREEN}make site-build${DEF}        - ${YELLOW}Алиас на webapp-build${DEF}"
+	@echo ""
 	@echo "${BLUE}CI/CD:${DEF}"
 	@echo "${GREEN}make ci${DEF}                - ${YELLOW}Запуск lint, тестов и сборки${DEF}"
+	@echo ""
+	@echo "${BLUE}Сервисные задачи:${DEF}"
+	@echo "${GREEN}make bootstrap${DEF}         - ${YELLOW}Poetry install + npm ci${DEF}"
+	@echo "${GREEN}make clean${DEF}             - ${YELLOW}Очистка артефактов (py, webapp)${DEF}"
 	@exit 0
 
 # --------------------------------------------------------------------------------
@@ -61,9 +86,9 @@ help:
 .PHONY: lint
 lint:
 	@echo "${YELLOW}Запуск проверки синтаксиса...${DEF}"
-	$(MYPY) $(PROJECT_PATH)
-	$(RUFF) check $(PROJECT_PATH)
-	$(BLACK) --check $(PROJECT_PATH)
+	$(MYPY) $(PY_SRC)
+	$(RUFF) check $(PY_SRC)
+	$(BLACK) --check $(PY_SRC)
 	@echo "${GREEN}Проверка синтаксиса завершена.${DEF}"
 
 .PHONY: test
@@ -75,9 +100,9 @@ test:
 .PHONY: format
 format:
 	@echo "${YELLOW}Форматирование проекта...${DEF}"
-	$(BLACK) $(PROJECT_PATH)
-	$(RUFF) format $(PROJECT_PATH)
-	$(RUFF) check --fix --select I $(PROJECT_PATH)
+	$(BLACK) $(PY_SRC)
+	$(RUFF) format $(PY_SRC)
+	$(RUFF) check --fix --select I $(PY_SRC)
 	@echo "${GREEN}Форматирование завершено.${DEF}"
 
 # --------------------------------------------------------------------------------
@@ -136,8 +161,47 @@ build:
 	@echo "${GREEN}Проект собран.${DEF}"
 
 # --------------------------------------------------------------------------------
+# Веб-сайт (Astro)
+
+.PHONY: bootstrap webapp-install webapp-dev webapp-build webapp-preview site-build
+
+bootstrap:
+	$(POETRY) install
+	$(WEBAPP_NPM) ci
+
+webapp-install:
+	$(WEBAPP_NPM) ci
+
+webapp-dev:
+	$(WEBAPP_NPM) run dev
+
+webapp-build:
+	$(WEBAPP_NPM) run build
+
+webapp-preview:
+	$(WEBAPP_NPM) run preview
+
+site-build: webapp-build
+
+# --------------------------------------------------------------------------------
+# Очистка
+
+.PHONY: clean-py clean-webapp clean
+
+clean-py:
+	find . -name "__pycache__" -type d -prune -exec rm -rf {} \;
+	find . -name "*.pyc" -delete
+	find . -name "*.pyo" -delete
+	find . -name ".pytest_cache" -type d -prune -exec rm -rf {} \;
+
+clean-webapp:
+	rm -rf $(WEBAPP_DIR)/dist
+
+clean: clean-py clean-webapp
+
+# --------------------------------------------------------------------------------
 # CI/CD
 
 .PHONY: ci
-ci: lint test build
+ci: lint test build site-build
 	@echo "${GREEN}CI/CD пайплайн завершен успешно.${DEF}"

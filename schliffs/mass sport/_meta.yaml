@@ -1,0 +1,20 @@
+name: Mass Sport
+description: Stone grind service with Svekom Ski World Cup Evo (partnered with YTC Ski Service)
+description_ru: Сервис штайншлифта на станке Svekom Ski World Cup Evo (совместно с YTC Ski Service). Приём лыж в УТЦ «Кавголово» по записи и в центрах MASS SPORT.
+
+website_url: https://www.skisport.ru/news/cross-country/119865/
+
+country: Россия
+city: Санкт-Петербург
+logo:
+
+contact:
+  email:
+  phones:
+    - "+7 (911) 956-93-80"
+    - "+7 (963) 329-00-24"
+  address: |
+    УТЦ «Кавголово» — по предварительной записи (пос. Токсово, ул. Лесгафта 35/2).
+    Пункты приёма MASS SPORT: ТК «Вояж» (пр. Энгельса, 124/1, 5 вход, 3 этаж) и «Охта Парк» (дер. Мистолово, ул. Людмилы Кедриной).
+
+updated_at: 2025-10-18

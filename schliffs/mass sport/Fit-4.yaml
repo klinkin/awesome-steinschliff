@@ -1,0 +1,27 @@
+name: Fit-4
+description: All-snow structure for 0..+8°C except falling snow, mid-high humidity
+description_ru: Структура для 0..+8°C для всех типов снега, кроме падающего, средняя и высокая влажность
+website_url: https://www.skisport.ru/news/cross-country/119865/
+snow_type:
+  - natural
+  - artificial
+  - transformed
+snow_temperature:
+  - min: 0
+    max: 8
+condition: warm
+manufactory: Svekom
+author: MASS SPORT / YTC Ski Service
+country: Россия
+tags:
+  - тепло
+  - средняя влажность
+  - высокая влажность
+similars: []
+features: []
+updated_at: 2025-10-18
+updated_by: https://www.skisport.ru/news/cross-country/119865/
+archived: false
+service:
+  name: Mass Sport
+

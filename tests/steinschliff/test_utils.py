@@ -1,9 +1,10 @@
 import os
-import pytest
 import tempfile
+
+import pytest
 import yaml
 
-from steinschliff.utils import read_yaml_file, find_yaml_files, read_service_metadata
+from steinschliff.utils import find_yaml_files, read_service_metadata, read_yaml_file
 
 
 class TestUtils:
@@ -15,7 +16,7 @@ class TestUtils:
                 "name": "TestStructure",
                 "description": "Test description",
                 "snow_type": ["fresh", "old"],
-                "snow_temperature": [{"min": -10, "max": 0}]
+                "snow_temperature": [{"min": -10, "max": 0}],
             }
             yaml.safe_dump(yaml_content, f)
             temp_path = f.name
@@ -99,11 +100,7 @@ class TestUtils:
             # Создаем метаданные для первого сервиса
             meta1_path = os.path.join(service1_dir, "_meta.yaml")
             with open(meta1_path, "w", encoding="utf-8") as f:
-                meta1 = {
-                    "name": "Service1",
-                    "description": "First service description",
-                    "country": "Russia"
-                }
+                meta1 = {"name": "Service1", "description": "First service description", "country": "Russia"}
                 yaml.safe_dump(meta1, f)
 
             # Создаем некорректные метаданные для второго сервиса
