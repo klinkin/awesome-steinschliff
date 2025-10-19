@@ -36,7 +36,10 @@
 * {{ gettext("email") }}: <{{ service.contact.email }}>
 {% endif %}
 {% if service.contact.phones %}
-* {{ gettext("phones") }}: {{ service.contact.phones | map('phone_link') | join(', ') }}
+* {{ gettext("phones") }}:
+{% for p in service.contact.phones %}
+  - {{ p }}
+{% endfor %}
 {% endif %}
 {% endif %}
 

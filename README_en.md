@@ -56,7 +56,8 @@ Address: Москва, стадион Динамо, ВТБ Арена Плаза
 Video: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 ### Contact Information
 
-* phones: [+74997043525](tel:+74997043525)
+* phones:
+  - +74997043525
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
@@ -91,7 +92,8 @@ Address: г. Одинцово ул. Манжосовская 1
 
 ### Contact Information
 
-* phones: [+79250464773](tel:+79250464773)
+* phones:
+  - +79250464773
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
@@ -112,7 +114,9 @@ Address: УТЦ «Кавголово» — по предварительной �
 
 ### Contact Information
 
-* phones: [+7 (911) 956-93-80](tel:+7 (911) 956-93-80), [+7 (963) 329-00-24](tel:+7 (963) 329-00-24)
+* phones:
+  - +7 (911) 956-93-80
+  - +7 (963) 329-00-24
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
@@ -134,7 +138,9 @@ Address: МО, г.Красногорск, ул.Речная д.37 за здан�
 ### Contact Information
 
 * email: <servicerski@yandex.ru>
-* phones: [+79104316887](tel:+79104316887), [+79779055104](tel:+79779055104)
+* phones:
+  - +79104316887
+  - +79779055104
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
@@ -154,7 +160,9 @@ Address: Москва, село Ромашково, ул.Советская, д.
 ### Contact Information
 
 * telegram: [Nikfedval](https://t.me/Nikfedval)
-* phones: [+79261489013](tel:+79261489013), [+79032181881](tel:+79032181881)
+* phones:
+  - +79261489013
+  - +79032181881
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
@@ -175,7 +183,9 @@ Address: Новосибирск, Академгородок, ул. Ионосф�
 ### Contact Information
 
 * telegram: [svecky](https://t.me/svecky)
-* phones: [+7(913)478-29-59](tel:+7(913)478-29-59), [+7(913)000-04-00](tel:+7(913)000-04-00)
+* phones:
+  - +7(913)478-29-59
+  - +7(913)000-04-00
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
