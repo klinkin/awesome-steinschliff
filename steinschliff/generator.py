@@ -19,6 +19,7 @@ from .formatters import (
     format_similars_with_links,
     format_snow_types,
     format_temperature_range,
+    url_encode_path,
 )
 from .i18n import load_translations
 from .models import Service, ServiceMetadata, StructureInfo
@@ -71,6 +72,7 @@ class ReadmeGenerator:
         self.jinja_env.filters["format_features"] = format_features
         self.jinja_env.filters["relpath"] = lambda p, start: os.path.relpath(p, start)
         self.jinja_env.filters["phone_link"] = lambda phone: f"[{str(phone)}](tel:{str(phone)})"
+        self.jinja_env.filters["urlencode"] = url_encode_path
 
     def load_structures(self) -> None:
         """Загружает структуры из YAML-файлов."""

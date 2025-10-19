@@ -26,7 +26,6 @@
 {% if service.video_url %}
 {{ gettext("video") }}: [{{ service.title }}]({{ service.video_url }})
 {% endif %}
-
 {% if service.contact and (service.contact.telegram or service.contact.email or service.contact.phones) %}
 ### {{ gettext("contact") }}
 

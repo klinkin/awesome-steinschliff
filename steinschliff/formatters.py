@@ -6,6 +6,7 @@ import logging
 import os
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 logger = logging.getLogger("steinschliff.formatters")
 
@@ -45,6 +46,16 @@ format_list_for_display = format_list
 
 # Алиас для format_list
 format_features = format_list
+
+
+def url_encode_path(path_value: str | Path) -> str:
+    """
+    Возвращает URL-кодированное представление пути для использования в Markdown-ссылках.
+
+    Эквивалент urllib.parse.quote с сохранением разделителей директорий.
+    """
+    # Преобразуем в строку и кодируем, сохраняя слэши
+    return quote(str(path_value), safe="/")
 
 
 def format_similars_with_links(
@@ -93,7 +104,9 @@ def format_similars_with_links(
             except ValueError:
                 # Если не удалось создать относительный путь, используем os.path.relpath
                 rel_path = Path(os.path.relpath(path, output_dir))
-            result.append(f"[{str_item}]({rel_path})")
+            # Кодируем путь для корректной работы Markdown при пробелах
+            encoded_path = url_encode_path(rel_path)
+            result.append(f"[{str_item}]({encoded_path})")
         else:
             result.append(str_item)
 
@@ -204,7 +217,9 @@ def format_image_link(image_value: str | list[str], structure_name: str, output_
             relative_path = Path(os.path.relpath(path, output_dir))
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
-        return f"![{structure_name}]({relative_path})"
+        # Кодируем путь для корректной работы Markdown при пробелах в сегментах
+        encoded_path = url_encode_path(relative_path)
+        return f"![{structure_name}]({encoded_path})"
     except (ValueError, OSError, TypeError) as e:
         logger.error("Ошибка при форматировании изображения %s: %s", image_value, e)
         return ""
