@@ -2,16 +2,16 @@
 Скрипт для управления переводами в проекте.
 """
 
-import argparse
 import logging
 import os
 import sys
 from pathlib import Path
 
+import typer
+from rich.traceback import install as rich_traceback_install
+
 # Добавляем родительскую директорию в sys.path, чтобы можно было импортировать модуль steinschliff
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from rich.traceback import install as rich_traceback_install
 
 from steinschliff.i18n import (
     compile_translations,
@@ -26,20 +26,34 @@ rich_traceback_install(show_locals=True)
 setup_logging(level=logging.INFO)
 logger = logging.getLogger("i18n")
 
+app = typer.Typer(help="Управление переводами (i18n)")
 
-def _cmd_extract(_args) -> None:
+
+@app.command("extract")
+def cmd_extract() -> None:
+    """Извлечь сообщения для перевода."""
     extract_messages()
 
 
-def _cmd_init(args) -> None:
-    init_locale(args.locale)
+@app.command("init")
+def cmd_init(
+    locale: str = typer.Option(..., "-l", "--locale", help="Код локали (например, ru, en)"),
+) -> None:
+    """Инициализировать новую локаль."""
+    init_locale(locale)
 
 
-def _cmd_update(args) -> None:
-    update_locale(args.locale)
+@app.command("update")
+def cmd_update(
+    locale: str = typer.Option(..., "-l", "--locale", help="Код локали (например, ru, en)"),
+) -> None:
+    """Обновить существующую локаль."""
+    update_locale(locale)
 
 
-def _cmd_update_all(_args) -> None:
+@app.command("update-all")
+def cmd_update_all() -> None:
+    """Обновить все существующие локали."""
     translations_dir = get_translation_directory()
     locales = [d for d in os.listdir(translations_dir) if os.path.isdir(os.path.join(translations_dir, d))]
     if locales:
@@ -50,11 +64,15 @@ def _cmd_update_all(_args) -> None:
         logger.warning("Локали не найдены.")
 
 
-def _cmd_compile(_args) -> None:
+@app.command("compile")
+def cmd_compile() -> None:
+    """Скомпилировать переводы."""
     compile_translations()
 
 
-def _cmd_list(_args) -> None:
+@app.command("list")
+def cmd_list() -> None:
+    """Показать список доступных локалей."""
     translations_dir = get_translation_directory()
     locales = [d for d in os.listdir(translations_dir) if os.path.isdir(os.path.join(translations_dir, d))]
     if locales:
@@ -65,47 +83,5 @@ def _cmd_list(_args) -> None:
         logger.info("Локали не найдены.")
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Управление переводами в проекте steinschliff")
-    subparsers = parser.add_subparsers(dest="command", help="Команда для выполнения")
-
-    # Извлечение сообщений
-    subparsers.add_parser("extract", help="Извлечь сообщения для перевода")
-
-    # Инициализация локали
-    init_parser = subparsers.add_parser("init", help="Инициализировать новую локаль")
-    init_parser.add_argument("-l", "--locale", required=True, help="Код локали (например, ru, en)")
-
-    # Обновление локали
-    update_parser = subparsers.add_parser("update", help="Обновить существующую локаль")
-    update_parser.add_argument("-l", "--locale", required=True, help="Код локали (например, ru, en)")
-
-    # Обновление всех локалей
-    subparsers.add_parser("update-all", help="Обновить все существующие локали")
-
-    # Компиляция переводов
-    subparsers.add_parser("compile", help="Скомпилировать переводы")
-
-    # Показать список доступных локалей
-    subparsers.add_parser("list", help="Показать список доступных локалей")
-
-    args = parser.parse_args()
-
-    dispatch = {
-        "extract": _cmd_extract,
-        "init": _cmd_init,
-        "update": _cmd_update,
-        "update-all": _cmd_update_all,
-        "compile": _cmd_compile,
-        "list": _cmd_list,
-    }
-
-    handler = dispatch.get(args.command)
-    if handler is None:
-        parser.print_help()
-        return
-    handler(args)
-
-
 if __name__ == "__main__":
-    main()
+    app()

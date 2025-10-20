@@ -64,6 +64,7 @@ help:
 	@echo ""
 	@echo "${BLUE}Генерация документации:${DEF}"
 	@echo "${GREEN}make build [SORT=field]${DEF} - ${YELLOW}Сборка проекта (генерация README)${DEF}"
+	@echo "${GREEN}make export-json${DEF}        - ${YELLOW}Экспорт JSON для веб-приложения${DEF}"
 	@echo ""
 	@echo "${BLUE}Веб-сайт (Astro):${DEF}"
 	@echo "${GREEN}make webapp-install${DEF}    - ${YELLOW}Установка npm-зависимостей${DEF}"
@@ -157,8 +158,14 @@ i18n-list:
 .PHONY: build
 build:
 	@echo "${YELLOW}Сборка проекта...${DEF}"
-	$(POETRY) run python scripts/gen_readme_new.py --sort $(or $(SORT),$(DEFAULT_SORT))
+	$(POETRY) run python scripts/cli.py generate --sort $(or $(SORT),$(DEFAULT_SORT))
 	@echo "${GREEN}Проект собран.${DEF}"
+
+.PHONY: export-json
+export-json:
+	@echo "${YELLOW}Экспорт JSON данных...${DEF}"
+	$(POETRY) run python scripts/cli.py export-json
+	@echo "${GREEN}JSON экспортирован.${DEF}"
 
 # --------------------------------------------------------------------------------
 # Веб-сайт (Astro)

@@ -1,15 +1,7 @@
 import os
 import re
 import sys
-from collections.abc import Callable
-from importlib import import_module
 from pathlib import Path
-
-rich_traceback_install: Callable[..., None] | None
-try:
-    rich_traceback_install = getattr(import_module("rich.traceback"), "install")  # type: ignore[assignment]
-except (ImportError, AttributeError):  # pragma: no cover
-    rich_traceback_install = None
 
 # Предкомпилированный паттерн для быстрого поиска кириллицы
 CYRILLIC_RE = re.compile(r"[\u0400-\u04FF]")
@@ -32,8 +24,6 @@ def contains_cyrillic(text: str) -> bool:
 
 def check_yaml_file(repo_root: Path, abs_path: Path) -> list[str]:
     """Проверяет YAML-файл на наличие кириллицы в полях name и similars.
-
-    Использует надежный парсер из утилит проекта (``read_yaml_file``), покрытый unit-тестами.
 
     Args:
         repo_root: Корень репозитория (для формирования относительных путей в отчетах).
@@ -135,6 +125,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    if rich_traceback_install is not None:
-        rich_traceback_install(show_locals=True)
     sys.exit(main())

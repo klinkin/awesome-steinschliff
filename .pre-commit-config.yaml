@@ -65,3 +65,12 @@ repos:
         language: python
         types: [file]
         files: ^(schliffs/|README\.md)
+
+  # - repo: local
+  #   hooks:
+  #     - id: check-cyrillic
+  #       name: Forbid Cyrillic in file names and YAML name/similars
+  #       entry: poetry run python scripts/check_cyrillic.py
+  #       language: system
+  #       types: [file]
+  #       files: ^(schliffs/|README\.md)
