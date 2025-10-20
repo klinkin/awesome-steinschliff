@@ -1,26 +1,24 @@
 name: R10-3
 description: null
-description_ru: null
+description_ru: универсальная структура 0…-5 для свежего снега и глянца; TOP
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
-  - null
-  - null
-  - null
+  - fresh
+  - glossy
 snow_temperature:
-  - min: null
-  - max: null
-condition: null
+  - min: -5
+    max: 0
+condition: ''
 manufactory: ''
 author: Victor Golovin
 country: Россия
 tags:
-  - null
-  - null
-similars:
-  - null
-features:
-  - null
-updated_at: 2024-04-01
+  - универсальный
+  - глянец
+  - TOP
+similars: []
+features: []
+updated_at: 2025-10-20
 updated_by: https://github.com/klinkin
 archived: false
 service:

@@ -144,10 +144,22 @@ Address: МО, г.Красногорск, ул.Речная д.37 за здан�
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
+| [SR12-3](schliffs/serviccer/SR12-3.yaml) |  | trancformed, wet, water | +10 °C … +3 °C |  | весенний снег, вода, тепло |  |  |
+| [SV150](schliffs/serviccer/SV150.yaml) |  | spring | +5 °C … +3 °C |  | тепло, весенний снег |  |  |
+| [W1](schliffs/serviccer/W1.yaml) |  | classic, coarse, glossy | +3 °C … 0 °C |  | классика, крупное зерно, глянец |  |  |
 | [SV100](schliffs/serviccer/SV100.yaml) |  | fresh, old, glossy | +3 °C … –3 °C |  | глянец, замыленный |  | не едет в воду |
-| [SV600](schliffs/serviccer/SV600.yaml) |  |  |  |  |  |  |  |
-| [R10-3](schliffs/serviccer/R10-3.yaml) |  |  |  |  |  |  |  |
-| [SV700](schliffs/serviccer/SV700.yaml) |  |  |  |  |  |  |  |
+| [SR15](schliffs/serviccer/SR15.yaml) |  | trancformed | +3 °C … –3 °C |  | фирн, трансформированный |  |  |
+| [G2-2](schliffs/serviccer/G2-2.yaml) |  | all, glossy | +2 °C … –5 °C |  | глянец |  |  |
+| [R10-3](schliffs/serviccer/R10-3.yaml) |  | fresh, glossy | 0 °C … –5 °C |  | универсальный, глянец, TOP |  |  |
+| [G3.1](schliffs/serviccer/G3.1.yaml) |  | fresh | 0 °C … –5 °C |  | универсальный, свежий снег |  |  |
+| [SV600](schliffs/serviccer/SV600.yaml) |  | all | –2 °C … –10 °C |  | универсальный, TOP |  |  |
+| [V7-3](schliffs/serviccer/V7-3.yaml) |  | trancformed, fine_grained | –2 °C … –15 °C |  | старый снег, подготовленная трасса |  |  |
+| [77](schliffs/serviccer/77.yaml) |  | all | –5 °C … –18 °C |  | холод |  |  |
+| [SR21](schliffs/serviccer/SR21.yaml) |  | all | –5 °C … –15 °C |  | универсальный |  |  |
+| [R11-2](schliffs/serviccer/R11-2.yaml) |  | all, fresh | –8 °C … –18 °C |  | холод, свежий снег |  |  |
+| [SV700](schliffs/serviccer/SV700.yaml) |  | all, frozen | –8 °C … –25 °C |  | холод, перемороженный |  |  |
+| [R10](schliffs/serviccer/R10.yaml) |  | all | –10 °C … –20 °C |  | холод |  |  |
+| [SR23](schliffs/serviccer/SR23.yaml) |  | fresh | –10 °C … –20 °C |  | свежий снег, холод |  |  |
 
 ## Skipole (Москва)
 

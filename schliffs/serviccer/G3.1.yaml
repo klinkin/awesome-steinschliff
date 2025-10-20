@@ -1,19 +1,19 @@
-name: SV600
+name: G3.1
 description: null
-description_ru: универсальная структура −2…−10 на любой тип снега; TOP
+description_ru: универсальная 0…−5, свежий снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
-  - all
+  - fresh
 snow_temperature:
-  - min: -10
-    max: -2
+  - min: -5
+    max: 0
 condition: ''
 manufactory: ''
 author: Victor Golovin
 country: Россия
 tags:
   - универсальный
-  - TOP
+  - свежий снег
 similars: []
 features: []
 updated_at: 2025-10-20
@@ -21,3 +21,5 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Serviccer
+
+

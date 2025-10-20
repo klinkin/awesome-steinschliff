@@ -1,19 +1,22 @@
-name: SV600
+name: W1
 description: null
-description_ru: универсальная структура −2…−10 на любой тип снега; TOP
+description_ru: только на классику, переход 0→+, крупное зерно, глянец
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
-  - all
+  - classic
+  - coarse
+  - glossy
 snow_temperature:
-  - min: -10
-    max: -2
-condition: ''
+  - min: 0
+    max: 3
+condition: yellow
 manufactory: ''
 author: Victor Golovin
 country: Россия
 tags:
-  - универсальный
-  - TOP
+  - классика
+  - крупное зерно
+  - глянец
 similars: []
 features: []
 updated_at: 2025-10-20
@@ -21,3 +24,5 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Serviccer
+
+
