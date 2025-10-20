@@ -1,4 +1,4 @@
-name: Р3-2
+name: P3-2
 description: null
 description_ru: на старый мокрый снег при t 0 с переходом в плюс
 website_url: null
@@ -17,8 +17,8 @@ tags:
   - мокрый
   - плюсовая температура
 similars:
-  - Р3-1
-  - Р5-9
+  - P3-1
+  - P5-9
 features:
   - ''
 updated_at: 2024-04-01

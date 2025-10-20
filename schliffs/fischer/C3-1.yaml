@@ -1,4 +1,4 @@
-name: С3-1
+name: C3-1
 description: null
 description_ru: для искусственного снега, температура ниже -5
 website_url: null
@@ -15,7 +15,7 @@ tags:
   - холодный
   - искусственный снег
 similars:
-  - С8-1
+  - C8-1
   - S12-7
 features:
   - ''

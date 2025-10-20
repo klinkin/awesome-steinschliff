@@ -179,9 +179,9 @@ Awesome Steinschliff — это не просто таблица с штайнш
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
 | [F1](schliffs/marsport/F1.yaml) | стуктура для весеннего влажного снега | wet, old, dirty | +5 °C … –5 °C |  | влажный, старый, грязный | [S13-5](schliffs/ramsau/S13-5.yaml) |  |
-| [M100](schliffs/marsport/M100.yaml) | структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10 | fresh | 0 °C … –10 °C |  | свежий снег, высокая влажность, глянец | [P5-1](schliffs/fischer/P5-1.yaml), [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml), [SV77](schliffs/ekiptime/sv77.yaml), X25 |  |
+| [M100](schliffs/marsport/M100.yaml) | структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10 | fresh | 0 °C … –10 °C |  | свежий снег, высокая влажность, глянец | [P5-1](schliffs/fischer/P5-1.yaml), [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml), [SV77](schliffs/ekiptime/sv77.yaml), [X25](schliffs/skipole/X25.yaml) |  |
 | [SM15-5](schliffs/marsport/SM15-5.yaml) | универсальная структура для среднего холода и низкой влажности при температуре от -15 до -5 | fresh, transformed | –5 °C … –15 °C |  | свежий снег, средний холод | [S12-4](schliffs/ramsau/S12-4.yaml), [B227](schliffs/beme/B227.yaml) |  |
-| [C100](schliffs/marsport/C100.yaml) | мелкая холодная структура на мороз | frozen, fresh | –10 °C … –25 °C |  | перемороженный, холодный | [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml), [G1](schliffs/salomon/G1.yaml), [Х20](schliffs/skipole/X20.yaml) |  |
+| [C100](schliffs/marsport/C100.yaml) | мелкая холодная структура на мороз | frozen, fresh | –10 °C … –25 °C |  | перемороженный, холодный | [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml), [G1](schliffs/salomon/G1.yaml), Х20 |  |
 
 ## Mass Sport (Санкт-Петербург)
 
@@ -259,11 +259,11 @@ Awesome Steinschliff — это не просто таблица с штайнш
 
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
-| [Х20](schliffs/skipole/X20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | +15 °C … –5 °C | ![Х20](schliffs/skipole/X20/X20.jpg) | свежий снег |  | При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C. |
+| [X20](schliffs/skipole/X20.yaml) | структура для свежего и старого снега при температуре от -5 до 15 | all, fresh, old | +15 °C … –5 °C | ![X20](schliffs/skipole/X20/X20.jpg) | свежий снег |  | При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C. |
 | [W30](schliffs/skipole/W30.yaml) | стуктура для мокрого снега с дождём | wet, rain | +10 °C … 0 °C | ![W30](schliffs/skipole/W30/W30.jpg) | мокрый снег, дождь |  |  |
 | [W28](schliffs/skipole/W28.yaml) | переходная структура на любой тип снега при температуре от +3 до -3 | all | +3 °C … –3 °C | ![W28](schliffs/skipole/W28/skipole_w28.jpeg) | переходная | [SV100](schliffs/serviccer/SV100.yaml), [F1](schliffs/marsport/F1.yaml) | Может ехать лучше ожидаемого, если снег уже сильно трансформирован. |
-| [Х25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | 0 °C … –8 °C | ![Х25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
-| [Х0](schliffs/skipole/X0.yaml) | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | –12 °C … –25 °C | ![Х0](schliffs/skipole/X0/X0.jpg) | сухой снег, натуральный снег |  |  |
+| [X25](schliffs/skipole/X25.yaml) | стуктура для свежего и нового натурального снега, глянец при температуре от 0 до -8 | all | 0 °C … –8 °C | ![X25](schliffs/skipole/X25/X25.jpg) | свежий снег, глянец | [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
+| [X0](schliffs/skipole/X0.yaml) | структура для натурального сухого снега при температуре ниже -12 | frozen, dry, natural | –12 °C … –25 °C | ![X0](schliffs/skipole/X0/X0.jpg) | сухой снег, натуральный снег |  |  |
 
 ## Svecky (Новосибирск)
 
@@ -335,7 +335,7 @@ Cервис оказывает услуги по нанесению штайнш
 
 | Название | Описание | Тип снега | Температура | Изображение | Теги | Похожие структуры | Особенности |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
-| [Р3-3](schliffs/fischer/P3-3.yaml) | водянистый снег от +3 до +15 | watery, wet | +15 °C … +3 °C |  | водянистый снег, высокая температура |  |  |
+| [P3-3](schliffs/fischer/P3-3.yaml) | водянистый снег от +3 до +15 | watery, wet | +15 °C … +3 °C |  | водянистый снег, высокая температура |  |  |
 | [P5-1](schliffs/fischer/P5-1.yaml) | универсальная структура для любого типа снега на температуру от +5 до -10 | all | +5 °C … –10 °C |  | универсальный, широкий диапазон |  | стандартная |
 | [P22-6](schliffs/fischer/P22-6.yaml) | переходная структура на любой тип снега, температура от +5 до -5 | all | +5 °C … –5 °C |  | универсальный, переходная структура, широкий диапазон | [P5-1](schliffs/fischer/P5-1.yaml), [P11-2](schliffs/fischer/P11-2.yaml) | переходная структура |
 | [P1-1](schliffs/fischer/P1-1.yaml) | структура для свежего снега при температуре +3 до -5 | fresh | +3 °C … –5 °C |  | свежий снег, умеренный | [P10-3](schliffs/fischer/P10-3.yaml), [S12-2](schliffs/ramsau/S12-2.yaml) |  |
@@ -343,17 +343,17 @@ Cервис оказывает услуги по нанесению штайнш
 | [P10-3](schliffs/fischer/P10-3.yaml) | структура для падающего свежего снега, температура от 0 до -5 | fresh, falling | 0 °C … –5 °C |  | падающий снег, свежий, легкий мороз | [S12-6](schliffs/ramsau/S12-6.yaml), [P1-1](schliffs/fischer/P1-1.yaml) |  |
 | [TZ1-1](schliffs/fischer/TZ1-1.yaml) | на свежий снег при температуре ниже 0 | fresh |  |  | свежий снег, минусовая температура | [P10-3](schliffs/fischer/P10-3.yaml), [S12-2](schliffs/ramsau/S12-2.yaml) |  |
 | [P11-1](schliffs/fischer/P11-1.yaml) | чуть холоднее чем P11-2 | all | 0 °C … –10 °C |  | универсальный, средняя температура | [P11-2](schliffs/fischer/P11-2.yaml), [P5-1](schliffs/fischer/P5-1.yaml) | чуть холоднее чем P11-2 |
-| [С8-1](schliffs/fischer/C8-1.yaml) | более узкая структура для искусственного снега от 0 до -10 | artificial | 0 °C … –10 °C |  | искусственный снег, узкая структура |  |  |
-| [Р5-0](schliffs/fischer/P5-0.yaml) | сухой мелкий снег от 0 до -5 | dry, old, fine | 0 °C … –5 °C |  | сухой, старый, мелкозернистый, мелкий снег | [S12-6](schliffs/ramsau/S12-6.yaml) |  |
-| [P10-1](schliffs/fischer/P10-1.yaml) | для сухого снега при температуре ниже 0 | dry |  |  | сухой снег, минусовая температура | [S11-1](schliffs/ramsau/S11-1.yaml), [Р5-0](schliffs/fischer/P5-0.yaml) |  |
+| [C8-1](schliffs/fischer/C8-1.yaml) | более узкая структура для искусственного снега от 0 до -10 | artificial | 0 °C … –10 °C |  | искусственный снег, узкая структура |  |  |
+| [P5-0](schliffs/fischer/P5-0.yaml) | сухой мелкий снег от 0 до -5 | dry, old, fine | 0 °C … –5 °C |  | сухой, старый, мелкозернистый, мелкий снег | [S12-6](schliffs/ramsau/S12-6.yaml) |  |
+| [P10-1](schliffs/fischer/P10-1.yaml) | для сухого снега при температуре ниже 0 | dry |  |  | сухой снег, минусовая температура | [S11-1](schliffs/ramsau/S11-1.yaml), [P5-0](schliffs/fischer/P5-0.yaml) |  |
 | [C12-7](schliffs/fischer/C12-7.yaml) | мелкозернистый снег на температуре от 0 до -10 | fine_grained | 0 °C … –10 °C |  | мелкозернистый, средняя температура | [S13-5-08](schliffs/ramsau/S13-5-08.yaml) |  |
-| [С12-1](schliffs/fischer/C12-1.yaml) | любой тип снега, температура от -15 до -5 | all | –5 °C … –15 °C |  | холодный, универсальный | [С1-1](schliffs/fischer/C1-1.yaml) |  |
-| [С3-1](schliffs/fischer/C3-1.yaml) | для искусственного снега, температура ниже -5 | artificial | –25 °C … –5 °C |  | холодный, искусственный снег | [С8-1](schliffs/fischer/C8-1.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
-| [Р5-9](schliffs/fischer/P5-9.yaml) | структура для классических лыж на старый мокрый снег, температура от 0 и выше | old, wet |  |  | классические лыжи, старый снег, мокрый | [Р3-2](schliffs/fischer/P3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
-| [Р3-2](schliffs/fischer/P3-2.yaml) | на старый мокрый снег при t 0 с переходом в плюс | old, wet |  |  | старый снег, мокрый, плюсовая температура | [Р3-1](schliffs/fischer/P3-1.yaml), [Р5-9](schliffs/fischer/P5-9.yaml) |  |
-| [С1-1](schliffs/fischer/C1-1.yaml) | все типы снега, включая свежий, температура ниже -5 | all, fresh |  |  | холодный, универсальный | [С12-1](schliffs/fischer/C12-1.yaml) |  |
-| [P9-2](schliffs/fischer/P9-2.yaml) | влажный снег, t выше 0 | wet |  |  | влажный снег, плюсовая температура | [Р3-1](schliffs/fischer/P3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
-| [Р3-1](schliffs/fischer/P3-1.yaml) | структура на свежий влажный снег, на 0 градусов с переходом в плюсовую | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [Р3-2](schliffs/fischer/P3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+| [C12-1](schliffs/fischer/C12-1.yaml) | любой тип снега, температура от -15 до -5 | all | –5 °C … –15 °C |  | холодный, универсальный | [C1-1](schliffs/fischer/C1-1.yaml) |  |
+| [C3-1](schliffs/fischer/C3-1.yaml) | для искусственного снега, температура ниже -5 | artificial | –25 °C … –5 °C |  | холодный, искусственный снег | [C8-1](schliffs/fischer/C8-1.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
+| [P5-9](schliffs/fischer/P5-9.yaml) | структура для классических лыж на старый мокрый снег, температура от 0 и выше | old, wet |  |  | классические лыжи, старый снег, мокрый | [P3-2](schliffs/fischer/P3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
+| [P3-2](schliffs/fischer/P3-2.yaml) | на старый мокрый снег при t 0 с переходом в плюс | old, wet |  |  | старый снег, мокрый, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [P5-9](schliffs/fischer/P5-9.yaml) |  |
+| [C1-1](schliffs/fischer/C1-1.yaml) | все типы снега, включая свежий, температура ниже -5 | all, fresh |  |  | холодный, универсальный | [C12-1](schliffs/fischer/C12-1.yaml) |  |
+| [P9-2](schliffs/fischer/P9-2.yaml) | влажный снег, t выше 0 | wet |  |  | влажный снег, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+| [P3-1](schliffs/fischer/P3-1.yaml) | структура на свежий влажный снег, на 0 градусов с переходом в плюсовую | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [P3-2](schliffs/fischer/P3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
 
 ## Fischer 2026
 
@@ -371,16 +371,16 @@ Cервис оказывает услуги по нанесению штайнш
 | [F-275](schliffs/fischer26/F-275.yaml) | Standard Plus | all | +5 °C … –10 °C |  | универсальный | [P5-1](schliffs/fischer/P5-1.yaml) |  |
 | [F-395](schliffs/fischer26/F-395.yaml) | мокрый, липкий снег, дождь | wet, rain | +5 °C … 0 °C |  | мокрый снег, дождь | P14-1 |  |
 | [F-205](schliffs/fischer26/F-205.yaml) | свежий снег | fresh | +3 °C … –5 °C |  | свежий снег | [P1-1](schliffs/fischer/P1-1.yaml) |  |
-| [F-230](schliffs/fischer26/F-230.yaml) | универсальная при любых типах снега | all | +2 °C … –7 °C |  | универсальный | P5-0 |  |
+| [F-230](schliffs/fischer26/F-230.yaml) | универсальная при любых типах снега | all | +2 °C … –7 °C |  | универсальный | [P5-0](schliffs/fischer/P5-0.yaml) |  |
 | [F-256](schliffs/fischer26/F-256.yaml) | искусственный мелкозернистый снег | artificial, fine_grained | +2 °C … –5 °C |  | искусственный снег | [P22-6](schliffs/fischer/P22-6.yaml) |  |
 | [F-211](schliffs/fischer26/F-211.yaml) | мелкозернистый снег | fine_grained | +1 °C … –8 °C |  | мелкозернистый | P2-1 |  |
 | [F-226](schliffs/fischer26/F-226.yaml) | зернистый снег и мокрый свежий снег | trancformed, wet, fresh | 0 °C … –7 °C |  | мокрый снег, свежий снег | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
 | [F-201](schliffs/fischer26/F-201.yaml) | мукообразный снег | fine_grained | 0 °C … –10 °C |  | универсальный | [P10-1](schliffs/fischer/P10-1.yaml) |  |
 | [F-198](schliffs/fischer26/F-198.yaml) | универсальная | all | 0 °C … –10 °C |  | универсальный | [TZ1-1](schliffs/fischer/TZ1-1.yaml) |  |
-| [F-138](schliffs/fischer26/F-138.yaml) | универсальная холодная | all | –5 °C … –15 °C |  | холодный, универсальный | C8-1 |  |
-| [F-110](schliffs/fischer26/F-110.yaml) | холодный мелкозернистый (свежий) снег | fresh, fine_grained | –5 °C … –13 °C |  | холодный, свежий снег | C3-1 |  |
-| [F-171](schliffs/fischer26/F-171.yaml) | холодный искусственный снег | artificial | –7 °C … –30 °C |  | искусственный снег, холодный | C12-1 |  |
-| [F-115](schliffs/fischer26/F-115.yaml) | для очень холодных условий | all | –10 °C … –30 °C |  | экстремальный холод | C1-1 |  |
+| [F-138](schliffs/fischer26/F-138.yaml) | универсальная холодная | all | –5 °C … –15 °C |  | холодный, универсальный | [C8-1](schliffs/fischer/C8-1.yaml) |  |
+| [F-110](schliffs/fischer26/F-110.yaml) | холодный мелкозернистый (свежий) снег | fresh, fine_grained | –5 °C … –13 °C |  | холодный, свежий снег | [C3-1](schliffs/fischer/C3-1.yaml) |  |
+| [F-171](schliffs/fischer26/F-171.yaml) | холодный искусственный снег | artificial | –7 °C … –30 °C |  | искусственный снег, холодный | [C12-1](schliffs/fischer/C12-1.yaml) |  |
+| [F-115](schliffs/fischer26/F-115.yaml) | для очень холодных условий | all | –10 °C … –30 °C |  | экстремальный холод | [C1-1](schliffs/fischer/C1-1.yaml) |  |
 
 ## Salomon
 
@@ -445,13 +445,13 @@ Cервис оказывает услуги по нанесению штайнш
 | [S13-5-08](schliffs/ramsau/S13-5-08.yaml) | влажный мелкозернистый свежий снег | wet, fine_grained, fresh | +3 °C … –3 °C |  | мелкозернистый, влажный, свежий | [S13-5](schliffs/ramsau/S13-5.yaml), [C12-7](schliffs/fischer/C12-7.yaml) |  |
 | [S12-6](schliffs/ramsau/S12-6.yaml) | универсальная структура для всех трасс со свежим снегом, падающим и мокрым снегом, температура от 0 до -15 | fresh, falling, wet | 0 °C … –15 °C |  | падающий снег, свежий, мокрый |  |  |
 | [S12-1](schliffs/ramsau/S12-1.yaml) | свежий натуральный и искусственный снег, температура от -15 до 0 | fresh, natural, artificial | 0 °C … –15 °C |  | свежий снег, натуральный снег, искусственный снег | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
-| [S12-12](schliffs/ramsau/S12-12.yaml) | старый снег при температуре от 0 до -5 | old | 0 °C … –5 °C |  | старый снег, легкий мороз | [Р3-2](schliffs/fischer/P3-2.yaml) |  |
+| [S12-12](schliffs/ramsau/S12-12.yaml) | старый снег при температуре от 0 до -5 | old | 0 °C … –5 °C |  | старый снег, легкий мороз | Р3-2 |  |
 | [PL2](schliffs/ramsau/Pl2.yaml) | универсальный шлифт как для свежего снега так и для трансформированого при температуре от 0 до -10 | all, fresh, transformed | 0 °C … –10 °C |  |  | [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml) |  |
 | [S12-2-07](schliffs/ramsau/S12-2-07.yaml) | для свежего снега и мягкой лыжни 0 -10 | fresh | 0 °C … –10 °C |  | свежий снег, мягкая лыжня | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-3](schliffs/ramsau/S12-3.yaml) |  |
 | [S12-2](schliffs/ramsau/S12-2.yaml) | свежий мокрый снег, температура от -5 до 0 | fresh, wet | 0 °C … –5 °C |  | свежий снег, мокрый, легкий мороз | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
 | [S12-16](schliffs/ramsau/S12-16.yaml) | универсальная структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10 | fresh | 0 °C … –10 °C |  | свежий снег, высокая влажность, глянец | [B2211](schliffs/beme/B2211.yaml) |  |
 | [S12-14](schliffs/ramsau/S12-14.yaml) | на перемороженный снег в период потепления, свежий снег, температура от -2 до -10 | frozen, fresh | –2 °C … –10 °C |  | перемороженный снег, свежий снег, потепление | [S12-4](schliffs/ramsau/S12-4.yaml), [S12-16](schliffs/ramsau/S12-16.yaml) |  |
-| [S12-7](schliffs/ramsau/S12-7.yaml) | искусственный снег, температура от -2 до -12 | artificial | –2 °C … –12 °C |  | искусственный снег, широкий диапазон | [С8-1](schliffs/fischer/C8-1.yaml), [S11-3](schliffs/ramsau/S11-3.yaml) |  |
+| [S12-7](schliffs/ramsau/S12-7.yaml) | искусственный снег, температура от -2 до -12 | artificial | –2 °C … –12 °C |  | искусственный снег, широкий диапазон | С8-1, [S11-3](schliffs/ramsau/S11-3.yaml) |  |
 | [S12-3](schliffs/ramsau/S12-3.yaml) | свежий снег под t -2 -6 | fresh | –2 °C … –6 °C |  | свежий снег, узкий диапазон | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-4](schliffs/ramsau/S12-4.yaml) |  |
 | [S12-4](schliffs/ramsau/S12-4.yaml) | универсальная структура для всех трасс с сухим снегом, температура от -2 до -15 | fresh, dry | –2 °C … –15 °C |  | свежий снег, сухой, холодный | [SM15-5](schliffs/marsport/SM15-5.yaml) |  |
 | [V1](schliffs/ramsau/V1.yaml) | морозная структура для натурального снега при -5 и холоднее | all, fresh, frozen, natural | –5 °C … –20 °C |  | ramsau | [B227](schliffs/beme/B227.yaml) |  |

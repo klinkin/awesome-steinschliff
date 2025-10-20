@@ -1,4 +1,4 @@
-name: Р3-1
+name: P3-1
 description: null
 description_ru: структура на свежий влажный снег, на 0 градусов с переходом в плюсовую
 website_url: null
@@ -17,7 +17,7 @@ tags:
   - влажный
   - плюсовая температура
 similars:
-  - Р3-2
+  - P3-2
   - S13-5
 features:
   - ''

@@ -1,4 +1,4 @@
-name: С12-1
+name: C12-1
 description: null
 description_ru: любой тип снега, температура от -15 до -5
 website_url: null
@@ -15,7 +15,7 @@ tags:
   - холодный
   - универсальный
 similars:
-  - С1-1
+  - C1-1
 features:
   - ''
 updated_at: 2024-04-01
