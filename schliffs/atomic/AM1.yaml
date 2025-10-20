@@ -1,0 +1,26 @@
+---
+name: AM1
+description: null
+description_ru: структура для смешанного искусственного и свежего снега на −10 −3. Подходит для классики и конька.
+website_url: null
+snow_type:
+  - artificial
+  - fresh
+snow_temperature:
+  - min: -10
+    max: -3
+condition: ''
+manufactory: Atomic
+author: ''
+country: Austria
+tags:
+  - смешанный снег
+  - конек
+  - классика
+features:
+  - ''
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Atomic

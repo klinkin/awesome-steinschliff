@@ -1,0 +1,26 @@
+---
+name: AC3
+description: null
+description_ru: универсальная холодная структура на −17 −8. Хорошо работает в Скандинавии. Для классики и конька.
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -17
+    max: -8
+condition: ''
+manufactory: Atomic
+author: ''
+country: Austria
+tags:
+  - холодный
+  - универсальный
+  - конек
+  - классика
+features:
+  - ''
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Atomic

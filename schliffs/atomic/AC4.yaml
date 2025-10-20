@@ -1,0 +1,27 @@
+---
+name: AC4
+description: null
+description_ru: универсальная холодная структура на −15 −5. Подходит для конька и классики, особенно хороша при высокой влажности.
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -15
+    max: -5
+condition: ''
+manufactory: Atomic
+author: ''
+country: Austria
+tags:
+  - холодный
+  - универсальный
+  - высокая влажность
+  - конек
+  - классика
+features:
+  - ''
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Atomic

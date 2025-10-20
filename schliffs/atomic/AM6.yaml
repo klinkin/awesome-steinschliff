@@ -1,0 +1,26 @@
+---
+name: AM6
+description: null
+description_ru: хорошо работает на крупнозернистом снегу после оттепели в −8 −1. Подходит на конек и классику.
+website_url: null
+snow_type:
+  - fine_grained
+  - trancformed
+snow_temperature:
+  - min: -8
+    max: -1
+condition: ''
+manufactory: Atomic
+author: ''
+country: Austria
+tags:
+  - крупнозернистый
+  - конек
+  - классика
+features:
+  - ''
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Atomic

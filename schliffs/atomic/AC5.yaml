@@ -1,0 +1,26 @@
+---
+name: AC5
+description: null
+description_ru: очень холодная структура для всех типов снега на −20 −8. Хорошо работает в России. Atomic также рекомендует на −30 −8.
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -30
+    max: -8
+condition: ''
+manufactory: Atomic
+author: ''
+country: Russia
+tags:
+  - очень холодный
+  - универсальный
+  - конек
+  - классика
+features:
+  - ''
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Atomic

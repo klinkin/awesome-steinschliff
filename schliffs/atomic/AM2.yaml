@@ -1,19 +1,21 @@
 ---
-name: AM7
+name: AM2
 description: null
-description_ru: хорошо работает на сухом снеге в −10 −4. Подходит для конька и классики, иногда работает и холоднее.
+description_ru: под свежий снег, глянец и влажный снег на −5 −1. Нарезается на классику и конек.
 website_url: null
 snow_type:
-  - frozen
+  - fresh
+  - wet
 snow_temperature:
-  - min: -15
-    max: -4
+  - min: -5
+    max: -1
 condition: ''
 manufactory: Atomic
 author: ''
 country: Austria
 tags:
-  - сухой снег
+  - свежий снег
+  - влажный
   - конек
   - классика
 features:
