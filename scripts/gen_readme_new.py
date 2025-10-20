@@ -6,19 +6,17 @@ import argparse
 import logging
 import os
 import sys
-from collections.abc import Callable
-from importlib import import_module
 from pathlib import Path
 
 from rich.traceback import install as rich_traceback_install
 
-from steinschliff.generator import ReadmeGenerator, export_json  # noqa: E402
-from steinschliff.utils import setup_logging  # noqa: E402
+# Добавляем родительскую директорию в путь для импорта до локальных импортов
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.utils import setup_logging
 
 rich_traceback_install(show_locals=True)
-
-# Добавляем родительскую директорию в путь для импорта
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def main():
