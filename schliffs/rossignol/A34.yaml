@@ -1,3 +1,4 @@
+---
 name: A34
 description: null
 description_ru: универсальная для влажного и мокрого снега (+…-5 °C)
@@ -23,5 +24,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Rossignol
-
-

@@ -1,3 +1,4 @@
+---
 name: F-372
 description: null
 description_ru: крупнозернистый до мокрого снега
@@ -23,5 +24,3 @@ updated_by: ''
 archived: false
 service:
   name: Fischer
-
-

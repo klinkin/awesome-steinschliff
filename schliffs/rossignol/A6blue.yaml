@@ -1,3 +1,4 @@
+---
 name: A6blue
 description: null
 description_ru: универсальная структура на 0…-10 °C
@@ -21,5 +22,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Rossignol
-
-

@@ -109,4 +109,3 @@ msgstr "Table of Contents"
 #: steinschliff/templates/readme.jinja2:13
 msgid "main_content"
 msgstr "Structures"
-

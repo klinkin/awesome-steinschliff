@@ -1,3 +1,4 @@
+---
 name: T1.3
 description: For wet transformed snow 0..+10°C
 description_ru: Для мокрого трансформированного снега 0..+10°C
@@ -23,4 +24,3 @@ updated_by: https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport
-

@@ -1,3 +1,4 @@
+---
 name: F-256
 description: null
 description_ru: искусственный мелкозернистый снег
@@ -22,5 +23,3 @@ updated_by: ''
 archived: false
 service:
   name: Fischer
-
-

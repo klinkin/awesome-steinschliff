@@ -1,3 +1,4 @@
+---
 name: R11-2
 description: null
 description_ru: −8…−18, любой тип снега, свежий снег
@@ -22,5 +23,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Serviccer
-
-

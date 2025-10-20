@@ -1,3 +1,4 @@
+---
 name: RW691
 description: null
 description_ru: структура для очень мокрого снега (+…-5 °C), жесткий снег
@@ -22,5 +23,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Rossignol
-
-

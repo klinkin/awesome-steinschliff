@@ -1,3 +1,4 @@
+---
 name: F-359
 description: null
 description_ru: влажный мелкий липкий снег
@@ -22,5 +23,3 @@ updated_by: ''
 archived: false
 service:
   name: Fischer
-
-

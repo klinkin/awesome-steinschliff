@@ -1,4 +1,62 @@
+---
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-added-large-files
+        args: ['--maxkb=1024']
+      - id: check-yaml
+      - id: check-json
+      # - id: check-toml
+      # - id: no-commit-to-branch
+      #   args: [--branch, main]
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args:
+          - --skip=*.min.js,*.lock,*.svg,node_modules,dist
+          - --ignore-words-list=schliff,Schliff,Ramsau,Serviccer,Salomon,Rossignol,Fischer,Madshus,Skipole
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: default, rules: {line-length: disable}}']
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+      - id: markdownlint
+        args: ['--disable', 'MD013,MD012,MD024,MD004']
+
+  # Локальные — через Poetry, чтобы использовать твои версии и конфиги
+  - repo: local
+    hooks:
+      - id: ruff
+        name: Ruff (poetry)
+        entry: poetry run ruff check
+        language: system
+        types: [python]
+
+      - id: black
+        name: Black check (poetry)
+        entry: poetry run black --check
+        language: system
+        types: [python]
+
+      - id: mypy
+        name: Mypy (poetry)
+        entry: poetry run mypy steinschliff scripts tests
+        language: system
+        pass_filenames: false
+
   - repo: local
     hooks:
       - id: check-cyrillic
@@ -7,4 +65,3 @@ repos:
         language: python
         types: [file]
         files: ^(schliffs/|README\.md)
-

@@ -1,3 +1,4 @@
+---
 name: Fit-4
 description: All-snow structure for 0..+8°C except falling snow, mid-high humidity
 description_ru: Структура для 0..+8°C для всех типов снега, кроме падающего, средняя и высокая влажность
@@ -24,4 +25,3 @@ updated_by: https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport
-

@@ -398,4 +398,3 @@ Website: [Madshus](https://www.madshus.com)
 | [M61](schliffs/madshus/M61.yaml) |  | fresh, universal, transformed | –1 °C … –6 °C |  | свежий снег, универсальный, трансформированный |  |  |
 | [M61F](schliffs/madshus/M61F.yaml) |  | dry, frozen, new, transformed | –3 °C … –20 °C |  | сухой снег, трансформированный, перемороженый | [G1](schliffs/salomon/G1.yaml), [B227](schliffs/beme/B227.yaml) |  |
 | [M61F2](schliffs/madshus/M61F2.yaml) |  | dry, frozen | –6 °C … –25 °C |  | сухой снег, трансформированный, перемороженый | [G1](schliffs/salomon/G1.yaml), [B227](schliffs/beme/B227.yaml) |  |
-

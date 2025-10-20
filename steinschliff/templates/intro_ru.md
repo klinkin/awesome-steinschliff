@@ -89,4 +89,3 @@ Awesome Steinschliff — это не просто таблица с штайнш
 * [Обзор редких структур Рамзау](https://vkvideo.ru/video-220482174_456239484)
 * [Обзор штайншлифта в ЭкипТайме](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 * [Статья про штайншлифт и структуры](https://training365.ru/shtajnshlift-i-struktury/)
-

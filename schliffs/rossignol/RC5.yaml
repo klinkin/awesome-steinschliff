@@ -1,3 +1,4 @@
+---
 name: RC5
 description: null
 description_ru: универсальная холодная структура (-25…-5 °C)
@@ -22,5 +23,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Rossignol
-
-

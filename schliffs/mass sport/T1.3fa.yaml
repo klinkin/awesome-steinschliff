@@ -1,3 +1,4 @@
+---
 name: T1.3fa
 description: For old transformed snow around 0°C, mid-high humidity
 description_ru: Для старого трансформированного снега около 0°C, средняя и высокая влажность
@@ -23,4 +24,3 @@ updated_by: https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport
-

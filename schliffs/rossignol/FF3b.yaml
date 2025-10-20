@@ -1,3 +1,4 @@
+---
 name: FF3b
 description: null
 description_ru: структура для очень холодного сухого снега (-10…-20 °C)
@@ -23,5 +24,3 @@ updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Rossignol
-
-

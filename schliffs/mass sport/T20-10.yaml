@@ -1,3 +1,4 @@
+---
 name: T20-10
 description: For fresh snow around 0°C, high humidity
 description_ru: Для свежего снега около 0°C, высокая влажность
@@ -24,4 +25,3 @@ updated_by: https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport
-
