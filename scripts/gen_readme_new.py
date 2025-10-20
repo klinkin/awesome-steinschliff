@@ -6,17 +6,27 @@ import argparse
 import logging
 import os
 import sys
+from collections.abc import Callable
+from importlib import import_module
 from pathlib import Path
+
+rich_traceback_install: Callable[..., None] | None
+try:
+    rich_traceback_install = getattr(import_module("rich.traceback"), "install")  # type: ignore[assignment]
+except (ImportError, AttributeError):  # pragma: no cover
+    rich_traceback_install = None
 
 # Добавляем родительскую директорию в путь для импорта
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from steinschliff.generator import ReadmeGenerator, export_json
-from steinschliff.utils import setup_logging
+from steinschliff.generator import ReadmeGenerator, export_json  # noqa: E402
+from steinschliff.utils import setup_logging  # noqa: E402
 
 
 def main():
     """Основная функция скрипта."""
+    if rich_traceback_install is not None:
+        rich_traceback_install(show_locals=True)
     parser = argparse.ArgumentParser(description="Генерация README.md из YAML-файлов")
     parser.add_argument("--schliffs-dir", default="schliffs", help="Директория с YAML-файлами (по умолчанию: schliffs)")
     parser.add_argument(

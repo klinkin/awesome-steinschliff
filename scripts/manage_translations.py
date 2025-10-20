@@ -11,6 +11,8 @@ from pathlib import Path
 # Добавляем родительскую директорию в sys.path, чтобы можно было импортировать модуль steinschliff
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from rich.traceback import install as rich_traceback_install
+
 from steinschliff.i18n import (
     compile_translations,
     extract_messages,
@@ -18,10 +20,10 @@ from steinschliff.i18n import (
     init_locale,
     update_locale,
 )
+from steinschliff.utils import setup_logging
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
-)
+rich_traceback_install(show_locals=True)
+setup_logging(level=logging.INFO)
 logger = logging.getLogger("i18n")
 
 
