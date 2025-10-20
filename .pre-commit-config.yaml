@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-cyrillic
+        name: Forbid Cyrillic in file names and YAML name/similars
+        entry: python scripts/check_cyrillic.py
+        language: python
+        types: [file]
+        files: ^(schliffs/|README\.md)
+
