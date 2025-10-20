@@ -319,24 +319,14 @@ def setup_logging(level: int = logging.INFO) -> None:
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
 
-    # Пытаемся использовать Rich, при отсутствии — используем стандартный обработчик
-    console_handler: logging.Handler
-    try:
-        from rich.logging import RichHandler  # type: ignore
-        from rich.traceback import install as rich_traceback_install  # type: ignore
-    except (ImportError, AttributeError):
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(level)
-        formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
-        )
-        console_handler.setFormatter(formatter)
-    else:
-        rich_traceback_install(show_locals=True)
-        console_handler = RichHandler(rich_tracebacks=True, tracebacks_show_locals=True)
-        console_handler.setLevel(level)
-        formatter = logging.Formatter("%(message)s")
-        console_handler.setFormatter(formatter)
+    from rich.logging import RichHandler
+    from rich.traceback import install as rich_traceback_install
+
+    rich_traceback_install(show_locals=True)
+    console_handler: logging.Handler = RichHandler(rich_tracebacks=True, tracebacks_show_locals=True)
+    console_handler.setLevel(level)
+    formatter = logging.Formatter("%(message)s")
+    console_handler.setFormatter(formatter)
 
     # Добавляем обработчик к корневому логгеру
     root_logger.setLevel(level)
