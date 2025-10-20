@@ -1,0 +1,25 @@
+name: F-230
+description: null
+description_ru: универсальная при любых типах снега
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -7
+    max: 2
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - универсальный
+similars:
+  - P5-0
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

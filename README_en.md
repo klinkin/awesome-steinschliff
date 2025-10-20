@@ -28,6 +28,7 @@ Useful videos:
 
 * [Beme](#beme)
 * [Fischer](#fischer)
+* [Fischer26](#fischer26)
 * [Salomon](#salomon)
 
 ### France
@@ -273,6 +274,33 @@ Website: [Fischer](https://www.fischersports.com)
 | [С1-1](schliffs/fischer/C1-1.yaml) |  | all, fresh |  |  | холодный, универсальный | [С12-1](schliffs/fischer/C12-1.yaml) |  |
 | [P9-2](schliffs/fischer/P9-2.yaml) |  | wet |  |  | влажный снег, плюсовая температура | [Р3-1](schliffs/fischer/P3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
 | [Р3-1](schliffs/fischer/P3-1.yaml) |  | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [Р3-2](schliffs/fischer/P3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+
+## Fischer 2026
+
+FISCHER 25|26 BASE STRUCTURES
+
+
+
+
+| Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
+|------|------------|-----------|----------------|------|------|-------------------|-------------------|
+| [F-359](schliffs/fischer26/F-359.yaml) |  | wet, fine_grained | +5 °C … 0 °C |  | мокрый снег | TZ1-2 |  |
+| [F-372](schliffs/fischer26/F-372.yaml) |  | coarse, wet | +5 °C … 0 °C |  | мокрый снег, крупнозернистый | [P11-2](schliffs/fischer/P11-2.yaml) |  |
+| [F-390](schliffs/fischer26/F-390.yaml) |  | wet, classic | +5 °C … 0 °C |  | мокрый снег, классика | [P9-2](schliffs/fischer/P9-2.yaml) |  |
+| [F-311](schliffs/fischer26/F-311.yaml) |  | coarse, frozen, trancformed | +5 °C … –5 °C |  | крупнозернистый, перемороженный | [P11-1](schliffs/fischer/P11-1.yaml) |  |
+| [F-275](schliffs/fischer26/F-275.yaml) |  | all | +5 °C … –10 °C |  | универсальный | [P5-1](schliffs/fischer/P5-1.yaml) |  |
+| [F-395](schliffs/fischer26/F-395.yaml) |  | wet, rain | +5 °C … 0 °C |  | мокрый снег, дождь | P14-1 |  |
+| [F-205](schliffs/fischer26/F-205.yaml) |  | fresh | +3 °C … –5 °C |  | свежий снег | [P1-1](schliffs/fischer/P1-1.yaml) |  |
+| [F-230](schliffs/fischer26/F-230.yaml) |  | all | +2 °C … –7 °C |  | универсальный | P5-0 |  |
+| [F-256](schliffs/fischer26/F-256.yaml) |  | artificial, fine_grained | +2 °C … –5 °C |  | искусственный снег | [P22-6](schliffs/fischer/P22-6.yaml) |  |
+| [F-211](schliffs/fischer26/F-211.yaml) |  | fine_grained | +1 °C … –8 °C |  | мелкозернистый | P2-1 |  |
+| [F-226](schliffs/fischer26/F-226.yaml) |  | trancformed, wet, fresh | 0 °C … –7 °C |  | мокрый снег, свежий снег | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
+| [F-201](schliffs/fischer26/F-201.yaml) |  | fine_grained | 0 °C … –10 °C |  | универсальный | [P10-1](schliffs/fischer/P10-1.yaml) |  |
+| [F-198](schliffs/fischer26/F-198.yaml) |  | all | 0 °C … –10 °C |  | универсальный | [TZ1-1](schliffs/fischer/TZ1-1.yaml) |  |
+| [F-138](schliffs/fischer26/F-138.yaml) |  | all | –5 °C … –15 °C |  | холодный, универсальный | C8-1 |  |
+| [F-110](schliffs/fischer26/F-110.yaml) |  | fresh, fine_grained | –5 °C … –13 °C |  | холодный, свежий снег | C3-1 |  |
+| [F-171](schliffs/fischer26/F-171.yaml) |  | artificial | –7 °C … –30 °C |  | искусственный снег, холодный | C12-1 |  |
+| [F-115](schliffs/fischer26/F-115.yaml) |  | all | –10 °C … –30 °C |  | экстремальный холод | C1-1 |  |
 
 ## Salomon
 

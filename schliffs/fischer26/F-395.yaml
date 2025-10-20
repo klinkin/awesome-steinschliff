@@ -1,0 +1,27 @@
+name: F-395
+description: null
+description_ru: мокрый, липкий снег, дождь
+website_url: null
+snow_type:
+  - wet
+  - rain
+snow_temperature:
+  - min: 0
+    max: 5
+condition: yellow
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - мокрый снег
+  - дождь
+similars:
+  - P14-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

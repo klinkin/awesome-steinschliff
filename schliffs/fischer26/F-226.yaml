@@ -1,0 +1,29 @@
+name: F-226
+description: null
+description_ru: зернистый снег и мокрый свежий снег
+website_url: null
+snow_type:
+  - trancformed
+  - wet
+  - fresh
+snow_temperature:
+  - min: -7
+    max: 0
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - мокрый снег
+  - свежий снег
+similars:
+  - S12-6
+  - P10-3
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

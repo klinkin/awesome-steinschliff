@@ -1,0 +1,25 @@
+name: F-198
+description: null
+description_ru: универсальная
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -10
+    max: 0
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - универсальный
+similars:
+  - TZ1-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

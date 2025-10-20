@@ -1,0 +1,26 @@
+name: F-256
+description: null
+description_ru: искусственный мелкозернистый снег
+website_url: null
+snow_type:
+  - artificial
+  - fine_grained
+snow_temperature:
+  - min: -5
+    max: 2
+condition: yellow
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - искусственный снег
+similars:
+  - P22-6
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

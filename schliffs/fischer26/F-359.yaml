@@ -1,0 +1,26 @@
+name: F-359
+description: null
+description_ru: влажный мелкий липкий снег
+website_url: null
+snow_type:
+  - wet
+  - fine_grained
+snow_temperature:
+  - min: 0
+    max: 5
+condition: yellow
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - мокрый снег
+similars:
+  - TZ1-2
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

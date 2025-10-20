@@ -1,0 +1,25 @@
+name: F-115
+description: null
+description_ru: для очень холодных условий
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -30
+    max: -10
+condition: blue
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - экстремальный холод
+similars:
+  - C1-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

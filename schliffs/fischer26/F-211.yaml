@@ -1,0 +1,25 @@
+name: F-211
+description: null
+description_ru: мелкозернистый снег
+website_url: null
+snow_type:
+  - fine_grained
+snow_temperature:
+  - min: -8
+    max: 1
+condition: ''
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - мелкозернистый
+similars:
+  - P2-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

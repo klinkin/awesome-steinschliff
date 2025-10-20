@@ -1,0 +1,25 @@
+name: F-205
+description: null
+description_ru: свежий снег
+website_url: null
+snow_type:
+  - fresh
+snow_temperature:
+  - min: -5
+    max: 3
+condition: yellow
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - свежий снег
+similars:
+  - P1-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

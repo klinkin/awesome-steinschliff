@@ -1,0 +1,26 @@
+name: F-138
+description: null
+description_ru: универсальная холодная
+website_url: null
+snow_type:
+  - all
+snow_temperature:
+  - min: -15
+    max: -5
+condition: blue
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - холодный
+  - универсальный
+similars:
+  - C8-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+

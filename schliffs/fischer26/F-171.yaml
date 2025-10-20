@@ -1,0 +1,26 @@
+name: F-171
+description: null
+description_ru: холодный искусственный снег
+website_url: null
+snow_type:
+  - artificial
+snow_temperature:
+  - min: -30
+    max: -7
+condition: blue
+manufactory: Fischer
+author: ''
+country: Austria
+tags:
+  - искусственный снег
+  - холодный
+similars:
+  - C12-1
+features: []
+updated_at: 2025-10-20
+updated_by: ''
+archived: false
+service:
+  name: Fischer
+
+
