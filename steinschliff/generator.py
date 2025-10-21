@@ -11,6 +11,13 @@ from typing import Any
 
 from jinja2 import Environment, FileSystemLoader
 from jinja2.ext import i18n
+from rich.progress import (
+    BarColumn,
+    Progress,
+    SpinnerColumn,
+    TextColumn,
+    TimeElapsedColumn,
+)
 
 from .formatters import (
     format_features,
@@ -23,12 +30,7 @@ from .formatters import (
 )
 from .i18n import load_translations
 from .models import Service, ServiceMetadata, StructureInfo
-from .utils import (
-    find_yaml_files,
-    print_validation_summary,
-    read_service_metadata,
-    read_yaml_file,
-)
+from .utils import find_yaml_files, print_kv_panel, print_validation_summary, read_service_metadata, read_yaml_file
 
 logger = logging.getLogger("steinschliff.generator")
 
@@ -77,7 +79,7 @@ class ReadmeGenerator:
     def load_structures(self) -> None:
         """Загружает структуры из YAML-файлов."""
         yaml_files = find_yaml_files(self.schliffs_dir)
-        logger.info("Найдено %d YAML-файлов", len(yaml_files))
+        print_kv_panel("Поиск YAML-файлов", [("Найдено", str(len(yaml_files)))])
 
         self._process_yaml_files(yaml_files)
 
@@ -107,67 +109,88 @@ class ReadmeGenerator:
         error_files = 0
         warning_files = 0
 
-        # Один проход по всем файлам - одновременно создаем name_to_path и обрабатываем структуры
-        for file_path in yaml_files:
-            try:
-                # Пропускаем файлы _meta.yaml
-                if os.path.basename(file_path) == "_meta.yaml":
-                    continue
+        # Один проход по всем файлам — показываем прогресс обработки
+        with Progress(
+            SpinnerColumn(style="cyan"),
+            TextColumn("[bold]Обработка YAML[/]"),
+            BarColumn(bar_width=None),
+            TextColumn("{task.completed}/{task.total}"),
+            TimeElapsedColumn(),
+        ) as progress:
+            task_id = progress.add_task("process", total=len(yaml_files))
 
-                data = read_yaml_file(file_path)
-                if not data:
+            for file_path in yaml_files:
+                try:
+                    # Пропускаем файлы _meta.yaml
+                    if os.path.basename(file_path) == "_meta.yaml":
+                        progress.update(task_id, advance=1)
+                        continue
+
+                    data = read_yaml_file(file_path)
+                    if not data:
+                        error_count += 1
+                        error_files += 1
+                        progress.update(task_id, advance=1)
+                        continue
+
+                    # data может быть только dict из read_yaml_file для обычных файлов
+                    assert isinstance(data, dict)
+                    is_partial_validation = bool(data.get("_partial_validation"))
+                    name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
+                    # Преобразуем имя в строку, чтобы обеспечить единый тип ключей
+                    name_str = str(name)
+                    name_to_path[name_str] = file_path
+                    if is_partial_validation:
+                        warning_files += 1
+                    else:
+                        valid_files += 1
+
+                    # Далее обрабатываем структуру и создаем StructureInfo
+                    # Определяем сервис
+                    service = os.path.dirname(file_path).replace(f"{self.schliffs_dir}/", "")
+                    if not service:
+                        service = "main"
+
+                    # Обрабатываем snow_type для форматированного вывода
+                    formatted_snow_type = format_snow_types(data.get("snow_type", []))
+
+                    # Получаем значение service и создаем объект Service
+                    service_data = data.get("service", {})
+                    if isinstance(service_data, dict):
+                        service_obj = Service(name=service_data.get("name", ""))
+                    else:
+                        service_obj = Service(name=service_data or "")
+
+                    # Сохраняем структуру в соответствующий сервис
+                    structure_info = StructureInfo(
+                        name=name_str,
+                        description=data.get("description", ""),
+                        description_ru=data.get("description_ru", ""),
+                        snow_type=formatted_snow_type,
+                        snow_temperature=data.get("snow_temperature", []),
+                        service=service_obj,
+                        country=data.get("country", ""),
+                        tags=data.get("tags", []),
+                        similars=data.get("similars", []),
+                        features=data.get("features", []),
+                        images=data.get("images", []),
+                        file_path=file_path,
+                    )
+
+                    services[service].append(structure_info)
+                    processed_count += 1
+                except (OSError, ValueError, TypeError) as e:
                     error_count += 1
                     error_files += 1
-                    continue
+                    logger.error("Непредвиденная ошибка при обработке %s: %s", file_path, e)
+                finally:
+                    progress.update(task_id, advance=1)
 
-                # data может быть только dict из read_yaml_file для обычных файлов
-                assert isinstance(data, dict)
-                name = data.get("name", os.path.basename(file_path).replace(".yaml", ""))
-                # Преобразуем имя в строку, чтобы обеспечить единый тип ключей
-                name_str = str(name)
-                name_to_path[name_str] = file_path
-                valid_files += 1
-
-                # Далее обрабатываем структуру и создаем StructureInfo
-                # Определяем сервис
-                service = os.path.dirname(file_path).replace(f"{self.schliffs_dir}/", "")
-                if not service:
-                    service = "main"
-
-                # Обрабатываем snow_type для форматированного вывода
-                formatted_snow_type = format_snow_types(data.get("snow_type", []))
-
-                # Получаем значение service и создаем объект Service
-                service_data = data.get("service", {})
-                if isinstance(service_data, dict):
-                    service_obj = Service(name=service_data.get("name", ""))
-                else:
-                    service_obj = Service(name=service_data or "")
-
-                # Сохраняем структуру в соответствующий сервис
-                structure_info = StructureInfo(
-                    name=name_str,
-                    description=data.get("description", ""),
-                    description_ru=data.get("description_ru", ""),
-                    snow_type=formatted_snow_type,
-                    snow_temperature=data.get("snow_temperature", []),
-                    service=service_obj,
-                    country=data.get("country", ""),
-                    tags=data.get("tags", []),
-                    similars=data.get("similars", []),
-                    features=data.get("features", []),
-                    images=data.get("images", []),
-                    file_path=file_path,
-                )
-
-                services[service].append(structure_info)
-                processed_count += 1
-            except (OSError, ValueError, TypeError) as e:
-                error_count += 1
-                error_files += 1
-                logger.error("Непредвиденная ошибка при обработке %s: %s", file_path, e)
-
-        logger.info("Успешно обработано %d файлов с %d ошибками", processed_count, error_count)
+        print_kv_panel(
+            "Итоги обработки YAML",
+            [("Успешно обработано", str(processed_count)), ("Ошибок", str(error_count))],
+            border_style="green" if error_count == 0 else "red",
+        )
         self.services = services
         self.name_to_path = name_to_path
 
@@ -361,7 +384,7 @@ class ReadmeGenerator:
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(rendered_content)
 
-            logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), os.path.abspath(output_file))
+            # logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), os.path.abspath(output_file))
 
     def run(self) -> None:
         """Запускает процесс генерации README."""

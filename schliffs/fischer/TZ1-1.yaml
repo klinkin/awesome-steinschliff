@@ -6,7 +6,7 @@ website_url: null
 snow_type:
   - fresh
 snow_temperature:
-  - min: null
+  - min: -10
     max: 0
 condition: ''
 manufactory: Fischer

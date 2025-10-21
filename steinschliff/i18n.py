@@ -8,6 +8,8 @@ from gettext import NullTranslations
 
 from babel.support import Translations
 
+from steinschliff.utils import print_kv_panel
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,10 +37,14 @@ def load_translations(locale: str) -> Translations | NullTranslations:
 
     try:
         translations = Translations.load(translations_dir, [locale])
-        logger.info("Загружены переводы для локали %s", locale)
+        print_kv_panel("Переводы", [("Локаль", locale), ("Статус", "загружены")], border_style="magenta")
         return translations
     except OSError as e:
-        logger.warning("Не удалось загрузить переводы для локали %s: %s", locale, e)
+        print_kv_panel(
+            "Переводы",
+            [("Локаль", locale), ("Статус", "не загружены"), ("Ошибка", str(e))],
+            border_style="red",
+        )
         # Возвращаем пустые переводы корректного типа
         return Translations()
 

@@ -1,14 +1,14 @@
 ---
 name: SL22
 description: null
-description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от +1 до -7
+description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от 0 до -12
 website_url: null
 snow_type:
   - natural
   - artificial
 snow_temperature:
-  - min: -7
-    max: 1
+  - min: -12
+    max: 0
 condition: blue
 manufactory: Salomon
 author: ''

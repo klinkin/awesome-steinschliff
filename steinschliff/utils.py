@@ -8,6 +8,9 @@ from typing import Any
 
 import yaml
 from pydantic import ValidationError
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
 
 from steinschliff.models import SchliffStructure, ServiceMetadata
 
@@ -22,6 +25,7 @@ CYAN = "\033[36m"
 BOLD = "\033[1m"
 
 logger = logging.getLogger("steinschliff.utils")
+console = Console()
 
 
 def format_validation_error(err: ValidationError, file_path: str) -> str:
@@ -53,35 +57,89 @@ def format_validation_error(err: ValidationError, file_path: str) -> str:
     return "\n".join(report)
 
 
+def print_kv_panel(title: str, rows: list[tuple[str, str]], border_style: str = "cyan") -> None:
+    """
+    Выводит ключ-значение в виде компактной таблицы в панели.
+
+    Args:
+        title: Заголовок панели
+        rows: Список пар (ключ, значение)
+        border_style: Цвет рамки панели
+    """
+    table = Table.grid(padding=(0, 1))
+    for key, value in rows:
+        table.add_row(f"[bold]{key}[/]:", f"[cyan]{value}[/]")
+    console.print(Panel.fit(table, title=title, border_style=border_style))
+
+
+def print_items_panel(title: str, items: list[str], border_style: str = "yellow") -> None:
+    """
+    Выводит список строк в виде таблицы в панели.
+
+    Args:
+        title: Заголовок панели
+        items: Список строк
+        border_style: Цвет рамки панели
+    """
+    table = Table(show_header=False, box=None)
+    table.add_column("Элемент")
+    for item in items:
+        table.add_row(item)
+    console.print(Panel.fit(table, title=title, border_style=border_style))
+
+
+def print_validation_errors(err: ValidationError, file_path: str) -> None:
+    """
+    Печатает ошибки валидации в виде таблицы Rich.
+
+    Args:
+        err: Объект ошибки ValidationError
+        file_path: Путь к файлу с ошибкой
+    """
+    errors = err.errors()
+
+    table = Table(show_header=True, header_style="bold", box=None)
+    table.add_column("Поле")
+    table.add_column("Тип")
+    table.add_column("Текст")
+
+    for error in errors:
+        loc = " -> ".join([str(loc_part) for loc_part in error.get("loc", [])])
+        error_type = error.get("type", "")
+        msg = error.get("msg", "")
+        table.add_row(f"[bold]{loc}[/]", f"[magenta]{error_type}[/]", f"[red]{msg}[/]")
+
+    console.print(Panel.fit(table, title=f"Ошибки валидации в файле: {file_path}", border_style="red"))
+
+
 def print_validation_summary(valid_files: int, error_files: int, warning_files: int) -> None:
     """
-    Выводит сводку по результатам валидации YAML-файлов.
+    Выводит сводку по результатам валидации YAML-файлов с использованием Rich.
 
     Args:
         valid_files: Количество валидных файлов
         error_files: Количество файлов с ошибками
         warning_files: Количество файлов с предупреждениями
     """
-    total = valid_files + error_files + warning_files
-
     # Проверяем, включен ли уровень INFO
     if not logger.isEnabledFor(logging.INFO):
         return
 
-    valid_percent = valid_files / total * 100 if total > 0 else 0
-    warning_percent = warning_files / total * 100 if total > 0 else 0
-    error_percent = error_files / total * 100 if total > 0 else 0
+    total = valid_files + error_files + warning_files
+    valid_percent = (valid_files / total * 100) if total else 0
+    warning_percent = (warning_files / total * 100) if total else 0
+    error_percent = (error_files / total * 100) if total else 0
 
-    report = [
-        f"{BOLD}===== РЕЗУЛЬТАТЫ ВАЛИДАЦИИ YAML-ФАЙЛОВ ====={RESET}",
-        f"{GREEN}✓ Успешно:{RESET}       {valid_files} из {total} ({valid_percent:.1f}%)",
-        f"{YELLOW}⚠ Предупреждения:{RESET} {warning_files} из {total} ({warning_percent:.1f}%)",
-        f"{RED}✗ Ошибки:{RESET}         {error_files} из {total} ({error_percent:.1f}%)",
-    ]
+    table = Table(show_header=True, header_style="bold", box=None)
+    table.add_column("Статус")
+    table.add_column("Кол-во", justify="right")
+    table.add_column("Доля", justify="right")
 
-    # Используем параметризованное логирование вместо конкатенации
-    report_str = "\n".join(report)
-    logger.info("\n%s", report_str)
+    table.add_row("[green]✓ Успешно[/]", str(valid_files), f"{valid_percent:.1f}%")
+    table.add_row("[yellow]⚠ Предупреждения[/]", str(warning_files), f"{warning_percent:.1f}%")
+    table.add_row("[red]✗ Ошибки[/]", str(error_files), f"{error_percent:.1f}%")
+
+    console.print(Panel.fit(table, title="Результаты валидации YAML-файлов", border_style="cyan"))
 
 
 def _validate_meta_file(data: dict[str, Any], path: Path) -> ServiceMetadata | dict[str, Any]:
@@ -99,8 +157,7 @@ def _validate_meta_file(data: dict[str, Any], path: Path) -> ServiceMetadata | d
         return ServiceMetadata.model_validate(data)
     except ValidationError as e:
         if logger.isEnabledFor(logging.WARNING):
-            error_report = format_validation_error(e, str(path))
-            logger.warning("\n%s", error_report)
+            print_validation_errors(e, str(path))
         return data
 
 
@@ -119,11 +176,18 @@ def _validate_structure_file(data: dict[str, Any], path: Path) -> dict[str, Any]
         return SchliffStructure.model_validate(data).model_dump(exclude_unset=True)
     except ValidationError as e:
         if logger.isEnabledFor(logging.WARNING):
-            error_report = format_validation_error(e, str(path))
-            logger.warning("\n%s", error_report)
+            print_validation_errors(e, str(path))
 
         if "name" in data and "description" in data:
-            logger.info("Файл %s содержит обязательные поля, используем с неполной валидацией", path)
+            # Табличное уведомление о частичной валидации
+            print_kv_panel(
+                title="Частичная валидация",
+                rows=[("Файл", str(path))],
+                border_style="yellow",
+            )
+            # Помечаем как частично валидированный, чтобы отразить это в сводке
+            if isinstance(data, dict):
+                data["_partial_validation"] = True
             return data
 
         logger.error("Файл %s не содержит обязательных полей и не может быть использован", path)
@@ -266,14 +330,22 @@ def _log_metadata_results(
         metadata_errors: Список ошибок
         metadata: Словарь метаданных
     """
-    if metadata_warnings and logger.isEnabledFor(logging.WARNING):
-        logger.warning("Пустые файлы метаданных для сервисов: %s", ", ".join(metadata_warnings))
+    # Таблица предупреждений по метаданным
+    if metadata_warnings:
+        items = [f"[yellow]{service}[/]" for service in metadata_warnings]
+        print_items_panel("Пустые файлы метаданных для сервисов", items, border_style="yellow")
 
-    if metadata_errors and logger.isEnabledFor(logging.ERROR):
+    # Таблица ошибок по метаданным
+    if metadata_errors:
+        table = Table(show_header=True, header_style="bold red", box=None)
+        table.add_column("Сервис")
+        table.add_column("Ошибка")
         for service, error in metadata_errors:
-            logger.error("Ошибка чтения метаданных для сервиса %s: %s", service, error)
+            table.add_row(f"[bold]{service}[/]", f"[red]{error}[/]")
+        console.print(Panel.fit(table, title="Ошибки чтения метаданных", border_style="red"))
 
-    logger.info("Найдено %d файлов метаданных сервисов", len(metadata))
+    # Сводка по метаданным
+    print_kv_panel("Итоги метаданных сервисов", [("Всего", str(len(metadata)))], border_style="blue")
 
 
 def read_service_metadata(metadata_dir: str, services: list[str]) -> dict[str, ServiceMetadata]:

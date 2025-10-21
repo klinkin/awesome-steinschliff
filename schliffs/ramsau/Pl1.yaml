@@ -7,8 +7,8 @@ snow_type:
   - all
   - frozen
 snow_temperature:
-  - min: null
-    max: null
+  - min: -20
+    max: -5
 condition: ''
 manufactory: Fischer
 author: ''

@@ -7,7 +7,7 @@ snow_type:
   - wet
 snow_temperature:
   - min: 0
-    max: null
+    max: +10
 condition: ''
 manufactory: Fischer
 author: ''

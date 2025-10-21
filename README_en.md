@@ -264,7 +264,7 @@ Website: [Beme](https://www.bemesports.com/en/skiservice)
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
 | [B3312](schliffs/beme/B3312.yaml) |  | wet, transformed | +5 °C … –5 °C |  | переходка, тепло, влажный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 | [B2211](schliffs/beme/B2211.yaml) |  | all, fresh | –1 °C … –12 °C |  | универсальная, свежий снег, все типы снега | [P5-1](schliffs/fischer/P5-1.yaml), [S12-16](schliffs/ramsau/S12-16.yaml) |  |
-| [B227](schliffs/beme/B227.yaml) |  | cold | –5 °C … –20 °C |  |  | [PL1](schliffs/ramsau/Pl1.yaml), [S11-3](schliffs/ramsau/S11-3.yaml) |  |
+| [B227](schliffs/beme/B227.yaml) |  | cold | –5 °C … –20 °C |  |  | [PL1](schliffs/ramsau/PL1.yaml), [S11-3](schliffs/ramsau/S11-3.yaml) |  |
 
 ## Fischer
 
@@ -277,24 +277,24 @@ Website: [Fischer](https://www.fischersports.com)
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
 | [P3-3](schliffs/fischer/P3-3.yaml) |  | watery, wet | +15 °C … +3 °C |  | водянистый снег, высокая температура |  |  |
+| [P5-9](schliffs/fischer/P5-9.yaml) |  | old, wet | +10 °C … 0 °C |  | классические лыжи, старый снег, мокрый | [P3-2](schliffs/fischer/P3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
+| [P9-2](schliffs/fischer/P9-2.yaml) |  | wet | +10 °C … 0 °C |  | влажный снег, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
+| [P3-2](schliffs/fischer/P3-2.yaml) |  | old, wet | +5 °C … 0 °C |  | старый снег, мокрый, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [P5-9](schliffs/fischer/P5-9.yaml) |  |
 | [P5-1](schliffs/fischer/P5-1.yaml) |  | all | +5 °C … –10 °C |  | универсальный, широкий диапазон |  | стандартная |
 | [P22-6](schliffs/fischer/P22-6.yaml) |  | all | +5 °C … –5 °C |  | универсальный, переходная структура, широкий диапазон | [P5-1](schliffs/fischer/P5-1.yaml), [P11-2](schliffs/fischer/P11-2.yaml) | переходная структура |
+| [P3-1](schliffs/fischer/P3-1.yaml) |  | fresh, wet | +5 °C … 0 °C |  | свежий снег, влажный, плюсовая температура | [P3-2](schliffs/fischer/P3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
 | [P1-1](schliffs/fischer/P1-1.yaml) |  | fresh | +3 °C … –5 °C |  | свежий снег, умеренный | [P10-3](schliffs/fischer/P10-3.yaml), [S12-2](schliffs/ramsau/S12-2.yaml) |  |
 | [P11-2](schliffs/fischer/P11-2.yaml) |  | all | +2 °C … –8 °C |  | универсальный, широкий диапазон | [P11-1](schliffs/fischer/P11-1.yaml), [P5-1](schliffs/fischer/P5-1.yaml), [P22-6](schliffs/fischer/P22-6.yaml) |  |
 | [P10-3](schliffs/fischer/P10-3.yaml) |  | fresh, falling | 0 °C … –5 °C |  | падающий снег, свежий, легкий мороз | [S12-6](schliffs/ramsau/S12-6.yaml), [P1-1](schliffs/fischer/P1-1.yaml) |  |
-| [TZ1-1](schliffs/fischer/TZ1-1.yaml) |  | fresh |  |  | свежий снег, минусовая температура | [P10-3](schliffs/fischer/P10-3.yaml), [S12-2](schliffs/ramsau/S12-2.yaml) |  |
+| [TZ1-1](schliffs/fischer/TZ1-1.yaml) |  | fresh | 0 °C … –10 °C |  | свежий снег, минусовая температура | [P10-3](schliffs/fischer/P10-3.yaml), [S12-2](schliffs/ramsau/S12-2.yaml) |  |
 | [P11-1](schliffs/fischer/P11-1.yaml) |  | all | 0 °C … –10 °C |  | универсальный, средняя температура | [P11-2](schliffs/fischer/P11-2.yaml), [P5-1](schliffs/fischer/P5-1.yaml) | чуть холоднее чем P11-2 |
 | [C8-1](schliffs/fischer/C8-1.yaml) |  | artificial | 0 °C … –10 °C |  | искусственный снег, узкая структура |  |  |
 | [P5-0](schliffs/fischer/P5-0.yaml) |  | dry, old, fine | 0 °C … –5 °C |  | сухой, старый, мелкозернистый, мелкий снег | [S12-6](schliffs/ramsau/S12-6.yaml) |  |
-| [P10-1](schliffs/fischer/P10-1.yaml) |  | dry |  |  | сухой снег, минусовая температура | [S11-1](schliffs/ramsau/S11-1.yaml), [P5-0](schliffs/fischer/P5-0.yaml) |  |
+| [P10-1](schliffs/fischer/P10-1.yaml) |  | dry | 0 °C … –10 °C |  | сухой снег, минусовая температура | [S11-1](schliffs/ramsau/S11-1.yaml), [P5-0](schliffs/fischer/P5-0.yaml) |  |
 | [C12-7](schliffs/fischer/C12-7.yaml) |  | fine_grained | 0 °C … –10 °C |  | мелкозернистый, средняя температура | [S13-5-08](schliffs/ramsau/S13-5-08.yaml) |  |
 | [C12-1](schliffs/fischer/C12-1.yaml) |  | all | –5 °C … –15 °C |  | холодный, универсальный | [C1-1](schliffs/fischer/C1-1.yaml) |  |
+| [C1-1](schliffs/fischer/C1-1.yaml) |  | all, fresh | –15 °C … –5 °C |  | холодный, универсальный | [C12-1](schliffs/fischer/C12-1.yaml) |  |
 | [C3-1](schliffs/fischer/C3-1.yaml) |  | artificial | –25 °C … –5 °C |  | холодный, искусственный снег | [C8-1](schliffs/fischer/C8-1.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
-| [P5-9](schliffs/fischer/P5-9.yaml) |  | old, wet |  |  | классические лыжи, старый снег, мокрый | [P3-2](schliffs/fischer/P3-2.yaml), [P9-2](schliffs/fischer/P9-2.yaml) | классический стиль |
-| [P3-2](schliffs/fischer/P3-2.yaml) |  | old, wet |  |  | старый снег, мокрый, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [P5-9](schliffs/fischer/P5-9.yaml) |  |
-| [C1-1](schliffs/fischer/C1-1.yaml) |  | all, fresh |  |  | холодный, универсальный | [C12-1](schliffs/fischer/C12-1.yaml) |  |
-| [P9-2](schliffs/fischer/P9-2.yaml) |  | wet |  |  | влажный снег, плюсовая температура | [P3-1](schliffs/fischer/P3-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
-| [P3-1](schliffs/fischer/P3-1.yaml) |  | fresh, wet |  |  | свежий снег, влажный, плюсовая температура | [P3-2](schliffs/fischer/P3-2.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) |  |
 
 ## Fischer 2026
 
@@ -336,7 +336,7 @@ Website: [Salomon](https://www.salomon.com)
 | [SL32](schliffs/salomon/SL32.yaml) | from humid natural to wet and very wet old and dirty snow, from medium to soft conditions | wet, transformed, dirty | +15 °C … 0 °C |  | влажный, мокрый, грязный, старый | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml) |  |
 | [SLRGL](schliffs/salomon/SLRGL.yaml) |  | natural, artificial, wet | +5 °C … –3 °C |  | влажный, мокрый, грязный, старый, искусственный | [S13-5](schliffs/ramsau/S13-5.yaml), [S13-4](schliffs/ramsau/S13-4.yaml), [B3312](schliffs/beme/B3312.yaml), [SV100](schliffs/serviccer/SV100.yaml) |  |
 | [SL21](schliffs/salomon/SL21.yaml) |  | natural, artificial | +1 °C … –7 °C |  | натуральный, искусственный, смешеный | [S12-16](schliffs/ramsau/S12-16.yaml), [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV600](schliffs/serviccer/SV600.yaml), [M100](schliffs/marsport/M100.yaml) |  |
-| [SL22](schliffs/salomon/SL22.yaml) |  | natural, artificial | +1 °C … –7 °C |  | натуральный, искусственный, смешеный | [S12-16](schliffs/ramsau/S12-16.yaml), [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV600](schliffs/serviccer/SV600.yaml), [M100](schliffs/marsport/M100.yaml) |  |
+| [SL22](schliffs/salomon/SL22.yaml) |  | natural, artificial | 0 °C … –12 °C |  | натуральный, искусственный, смешеный | [S12-16](schliffs/ramsau/S12-16.yaml), [S12-6](schliffs/ramsau/S12-6.yaml), [B2211](schliffs/beme/B2211.yaml), [SV600](schliffs/serviccer/SV600.yaml), [M100](schliffs/marsport/M100.yaml) |  |
 | [G1](schliffs/salomon/G1.yaml) |  | natural, cold, dry | –5 °C … –20 °C |  | сухой, холодный, натуральный | C12-4 |  |
 | [SL1](schliffs/salomon/SL1.yaml) |  | natural, artificial, dry, frozen | –10 °C … –30 °C |  | сухой, холодный, перемороженный, натуральный, искусственный, смешеный | C11-3, [B227](schliffs/beme/B227.yaml), [SV700](schliffs/serviccer/SV700.yaml), [C100](schliffs/marsport/C100.yaml) |  |
 
@@ -388,7 +388,7 @@ Website: [Rossignol](https://www.rossignol.com)
 | [S12-6](schliffs/ramsau/S12-6.yaml) |  | fresh, falling, wet | 0 °C … –15 °C |  | падающий снег, свежий, мокрый |  |  |
 | [S12-1](schliffs/ramsau/S12-1.yaml) |  | fresh, natural, artificial | 0 °C … –15 °C |  | свежий снег, натуральный снег, искусственный снег | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-7](schliffs/ramsau/S12-7.yaml) |  |
 | [S12-12](schliffs/ramsau/S12-12.yaml) |  | old | 0 °C … –5 °C |  | старый снег, легкий мороз | [P3-2](schliffs/fischer/P3-2.yaml) |  |
-| [PL2](schliffs/ramsau/Pl2.yaml) |  | all, fresh, transformed | 0 °C … –10 °C |  |  | [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml) |  |
+| [PL2](schliffs/ramsau/PL2.yaml) |  | all, fresh, transformed | 0 °C … –10 °C |  |  | [S12-16](schliffs/ramsau/S12-16.yaml), [B2211](schliffs/beme/B2211.yaml) |  |
 | [S12-2-07](schliffs/ramsau/S12-2-07.yaml) |  | fresh | 0 °C … –10 °C |  | свежий снег, мягкая лыжня | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-3](schliffs/ramsau/S12-3.yaml) |  |
 | [S12-2](schliffs/ramsau/S12-2.yaml) |  | fresh, wet | 0 °C … –5 °C |  | свежий снег, мокрый, легкий мороз | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
 | [S12-16](schliffs/ramsau/S12-16.yaml) |  | fresh | 0 °C … –10 °C |  | свежий снег, высокая влажность, глянец | [B2211](schliffs/beme/B2211.yaml) |  |
@@ -397,12 +397,12 @@ Website: [Rossignol](https://www.rossignol.com)
 | [S12-3](schliffs/ramsau/S12-3.yaml) |  | fresh | –2 °C … –6 °C |  | свежий снег, узкий диапазон | [S12-2](schliffs/ramsau/S12-2.yaml), [S12-4](schliffs/ramsau/S12-4.yaml) |  |
 | [S12-4](schliffs/ramsau/S12-4.yaml) |  | fresh, dry | –2 °C … –15 °C |  | свежий снег, сухой, холодный | [SM15-5](schliffs/marsport/SM15-5.yaml) |  |
 | [V1](schliffs/ramsau/V1.yaml) |  | all, fresh, frozen, natural | –5 °C … –20 °C |  | ramsau | [B227](schliffs/beme/B227.yaml) |  |
+| [PL1](schliffs/ramsau/PL1.yaml) |  | all, frozen | –5 °C … –20 °C |  |  | [S12-4](schliffs/ramsau/S12-4.yaml), [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml) |  |
 | [T4](schliffs/ramsau/T4.yaml) |  | frozen, dry | –5 °C … –20 °C |  |  | [B227](schliffs/beme/B227.yaml) |  |
 | [R2](schliffs/ramsau/R2.yaml) |  | all, frozen | –5 °C … –15 °C |  | ramsau |  | создавалась под ЧМ по биатлону в Антхольце |
 | [S11-2](schliffs/ramsau/S11-2.yaml) |  | dry, natural, cold | –10 °C … –20 °C |  | холодный, сухой снег, натуральный снег | [B227](schliffs/beme/B227.yaml), [C100](schliffs/marsport/C100.yaml) |  |
 | [S11-3](schliffs/ramsau/S11-3.yaml) |  | frozen, natural, artificial | –10 °C … –20 °C |  | перемороженый, искусственный снег, холодный | [B227](schliffs/beme/B227.yaml) |  |
 | [S11-1](schliffs/ramsau/S11-1.yaml) |  | dry | –10 °C … –20 °C |  | сухой снег, холодный | [S11-2](schliffs/ramsau/S11-2.yaml), [S11-3](schliffs/ramsau/S11-3.yaml) |  |
-| [PL1](schliffs/ramsau/Pl1.yaml) |  | all, frozen |  |  |  | [S12-4](schliffs/ramsau/S12-4.yaml), [S11-3](schliffs/ramsau/S11-3.yaml), [B227](schliffs/beme/B227.yaml) |  |
 
 ## Madshus
 
