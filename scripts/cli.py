@@ -19,7 +19,9 @@ from rich.traceback import install as rich_traceback_install
 # Добавляем родительскую директорию в путь для импорта до локальных импортов
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from steinschliff.formatters import format_list_for_display, format_temperature_range
 from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.models import StructureInfo
 from steinschliff.utils import print_kv_panel, setup_logging
 
 rich_traceback_install(show_locals=True)
@@ -78,6 +80,90 @@ def _prepare(
     }
 
     return logger, config
+
+
+def _build_generator(
+    *,
+    schliffs_dir: str,
+    output: str,
+    output_ru: str,
+    sort: Literal["name", "rating", "country", "temperature"],
+    translations_dir: str,
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+    create_translations: bool,
+):
+    """Собирает конфиг и возвращает (logger, generator, config)."""
+    logger, config = _prepare(
+        schliffs_dir=schliffs_dir,
+        output=output,
+        output_ru=output_ru,
+        sort=sort,
+        translations_dir=translations_dir,
+        log_level=log_level,
+        create_translations=create_translations,
+    )
+    generator = ReadmeGenerator(config)
+    return logger, generator, config
+
+
+def _run_generate(
+    *,
+    schliffs_dir: str,
+    output: str,
+    output_ru: str,
+    sort: Literal["name", "rating", "country", "temperature"],
+    translations_dir: str,
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+    create_translations: bool,
+):
+    """Общий раннер генерации README и экспорта JSON."""
+    logger, generator, config = _build_generator(
+        schliffs_dir=schliffs_dir,
+        output=output,
+        output_ru=output_ru,
+        sort=sort,
+        translations_dir=translations_dir,
+        log_level=log_level,
+        create_translations=create_translations,
+    )
+    try:
+        generator.run()
+        export_json(generator.services, out_path="webapp/src/data/structures.json")
+
+        summary = Table.grid(padding=(0, 1))
+        summary.add_row("[bold]README EN[/]:", f"[cyan]{config['readme_file']}[/]")
+        summary.add_row("[bold]README RU[/]:", f"[cyan]{config['readme_ru_file']}[/]")
+        summary.add_row("[bold]JSON[/]:", "[cyan]webapp/src/data/structures.json[/]")
+        console.print(Panel.fit(summary, title="Готово", border_style="green"))
+    except Exception:
+        logger.exception("Ошибка при генерации README")
+        raise typer.Exit(code=1)
+
+
+def _render_table(
+    *,
+    generator: ReadmeGenerator,
+    selected_services: dict[str, list[StructureInfo]],
+    title: str = "Структуры шлифов",
+) -> Table:
+    """Строит таблицу структур для выбранных сервисов."""
+    table = Table(title=title, show_lines=False)
+    table.add_column("Сервис", style="cyan", no_wrap=True)
+    table.add_column("Имя", style="bold", no_wrap=True)
+    table.add_column("Тип снега", style="magenta")
+    table.add_column("Диапазон t", style="yellow")
+    table.add_column("Похожие", style="green")
+
+    for service_key, items in selected_services.items():
+        sorted_items = sorted(items, key=generator._get_structure_sort_key)
+        service_meta = generator.service_metadata.get(service_key)
+        visible_service = (service_meta.name or service_key) if (service_meta and service_meta.name) else service_key
+        for s in sorted_items:
+            temp_str = format_temperature_range(s.snow_temperature)
+            similars_str = format_list_for_display(s.similars)
+            table.add_row(visible_service, str(s.name), s.snow_type or "", temp_str, similars_str)
+
+    return table
 
 
 @app.callback(invoke_without_command=True)
@@ -143,7 +229,7 @@ def main(
     if ctx.invoked_subcommand is not None:
         return
 
-    logger, config = _prepare(
+    _run_generate(
         schliffs_dir=schliffs_dir,
         output=output,
         output_ru=output_ru,
@@ -152,20 +238,6 @@ def main(
         log_level=log_level,
         create_translations=create_translations,
     )
-
-    try:
-        generator = ReadmeGenerator(config)
-        generator.run()
-        export_json(generator.services, out_path="webapp/src/data/structures.json")
-
-        summary = Table.grid(padding=(0, 1))
-        summary.add_row("[bold]README EN[/]:", f"[cyan]{config['readme_file']}[/]")
-        summary.add_row("[bold]README RU[/]:", f"[cyan]{config['readme_ru_file']}[/]")
-        summary.add_row("[bold]JSON[/]:", "[cyan]webapp/src/data/structures.json[/]")
-        console.print(Panel.fit(summary, title="Готово", border_style="green"))
-    except Exception:
-        logger.exception("Ошибка при генерации README")
-        raise typer.Exit(code=1)
 
 
 @app.command("generate")
@@ -183,7 +255,7 @@ def cmd_generate(
     create_translations: bool = typer.Option(False, help="Создать пустые файлы переводов, если нет"),
 ):
     """Сгенерировать README (EN и RU) и экспортировать JSON."""
-    logger, config = _prepare(
+    _run_generate(
         schliffs_dir=schliffs_dir,
         output=output,
         output_ru=output_ru,
@@ -192,19 +264,6 @@ def cmd_generate(
         log_level=log_level,
         create_translations=create_translations,
     )
-    try:
-        generator = ReadmeGenerator(config)
-        generator.run()
-        export_json(generator.services, out_path="webapp/src/data/structures.json")
-
-        summary = Table.grid(padding=(0, 1))
-        summary.add_row("[bold]README EN[/]:", f"[cyan]{config['readme_file']}[/]")
-        summary.add_row("[bold]README RU[/]:", f"[cyan]{config['readme_ru_file']}[/]")
-        summary.add_row("[bold]JSON[/]:", "[cyan]webapp/src/data/structures.json[/]")
-        console.print(Panel.fit(summary, title="Готово", border_style="green"))
-    except Exception:
-        logger.exception("Ошибка при генерации README")
-        raise typer.Exit(code=1)
 
 
 @app.command("export-json")
@@ -225,6 +284,52 @@ def cmd_export_json(
     project_dir = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
+    # Строим генератор единообразно
+    _, generator, _ = _build_generator(
+        schliffs_dir=schliffs_abs,
+        output="README_en.md",
+        output_ru="README.md",
+        sort=sort,
+        translations_dir=os.path.join(project_dir, "translations"),
+        log_level=log_level,
+        create_translations=False,
+    )
+    try:
+        generator.load_structures()
+        generator.load_service_metadata()
+        export_json(generator.services, out_path=out_path)
+        summary = Table.grid(padding=(0, 1))
+        summary.add_row("[bold]JSON[/]:", f"[cyan]{out_path}[/]")
+        console.print(Panel.fit(summary, title="JSON экспортирован", border_style="blue"))
+    except Exception:
+        logger.exception("Ошибка при экспорте JSON")
+        raise typer.Exit(code=1)
+
+
+@app.command("list")
+def cmd_list(
+    schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
+    sort: Literal["name", "rating", "country", "temperature"] = typer.Option(
+        "temperature", help="Поле сортировки", case_sensitive=False
+    ),
+    service: str | None = typer.Option(
+        None,
+        "-s",
+        "--service",
+        help="Фильтр по производителю/сервису (например: Ramsau)",
+        show_default=False,
+    ),
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = typer.Option(
+        "INFO", help="Уровень логирования", case_sensitive=False
+    ),
+):
+    """Показать таблицу шлифов. Можно отфильтровать по конкретному производителю."""
+    setup_logging(level=getattr(logging, log_level))
+    logger = logging.getLogger("steinschliff")
+
+    project_dir = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    schliffs_abs = os.path.join(project_dir, schliffs_dir)
+
     config = {
         "schliffs_dir": schliffs_abs,
         "readme_file": "README_en.md",
@@ -236,12 +341,37 @@ def cmd_export_json(
         generator = ReadmeGenerator(config)
         generator.load_structures()
         generator.load_service_metadata()
-        export_json(generator.services, out_path=out_path)
-        summary = Table.grid(padding=(0, 1))
-        summary.add_row("[bold]JSON[/]:", f"[cyan]{out_path}[/]")
-        console.print(Panel.fit(summary, title="JSON экспортирован", border_style="blue"))
+
+        # Подготовим маппинг видимого имени сервиса (из _meta.yaml) -> ключ сервиса
+        service_name_to_key: dict[str, str] = {}
+        for key, meta in generator.service_metadata.items():
+            visible_name = (meta.name or key).strip()
+            service_name_to_key[visible_name.lower()] = key
+
+        # Определим список сервисов для показа (как обычный dict для типизации)
+        selected_services: dict[str, list[StructureInfo]] = dict(generator.services)
+        if service:
+            lookup = service.strip().lower()
+            # Поддержка поиска по ключу директории и по видимому имени
+            if lookup in selected_services:
+                resolved_key = lookup
+            else:
+                mapped = service_name_to_key.get(lookup)
+                if mapped is None:
+                    console.print(Panel.fit(f"Сервис '{service}' не найден", border_style="red"))
+                    raise typer.Exit(code=1)
+                resolved_key = mapped
+
+            if resolved_key not in selected_services:
+                console.print(Panel.fit(f"Сервис '{service}' не найден", border_style="red"))
+                raise typer.Exit(code=1)
+
+            selected_services = {resolved_key: selected_services[resolved_key]}
+
+        table = _render_table(generator=generator, selected_services=selected_services)
+        console.print(table)
     except Exception:
-        logger.exception("Ошибка при экспорте JSON")
+        logger.exception("Ошибка при построении списка")
         raise typer.Exit(code=1)
 
 
