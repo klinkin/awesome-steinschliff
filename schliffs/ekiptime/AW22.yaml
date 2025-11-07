@@ -1,16 +1,16 @@
 ---
 name: AW22
-description: null
+description:
 description_ru: структура для влажности 100%, 0/+15
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - extreme_humidity
   - wet
-snow_temperature:
+temperature:
   - min: 0
     max: 15
 condition: blue
-manufactory: ''
+manufactory:
 author: Artur
 country: Россия
 tags:

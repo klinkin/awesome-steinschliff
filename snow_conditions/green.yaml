@@ -1,0 +1,28 @@
+---
+key: green
+name: Green
+name_ru: Холод
+color: green
+temperature:
+  - min: -30
+    max: -12
+texture:
+  - squeaky
+snow_age: []
+humidity:
+  - very_dry
+description: Cold, squeaky snow. Typical air temps -12 to -30 °C.
+description_ru: Очень холодный, скрипучий снег. Типично при −12…−30 °C.
+friction: Very cold snow creates very low humidity conditions. The snow crystals are sharp and hard. The squeaky sound comes from the dry, cold crystals rubbing together. You need the hardest, most durable waxes to protect your base from these extremely sharp crystals. Kinetic friction is high due to the sharpness of the crystals, but static friction is minimized due to the dryness.
+friction_ru: Очень холодный снег создает условия очень низкой влажности. Кристаллы снега острые и твердые. Скрипучий звук возникает от трения сухих, холодных кристаллов друг о друга. Вам нужны самые твердые, долговечные парафины, чтобы защитить базу от этих чрезвычайно острых кристаллов. Кинетическое трение высокое из-за остроты кристаллов, но статическое трение минимизировано из-за сухости.
+synonyms:
+  - cold
+  - squeaky
+  - very_cold
+  - dry
+synonyms_ru:
+  - холодный
+  - скрипучий
+  - очень холодный
+  - сухой
+source_url: https://skiwax.ca/collections/green

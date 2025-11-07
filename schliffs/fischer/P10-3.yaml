@@ -1,17 +1,17 @@
 ---
 name: P10-3
-description: null
+description:
 description_ru: структура для падающего свежего снега, температура от 0 до -5
-website_url: null
+website_url:
 snow_type:
   - fresh
   - falling
-snow_temperature:
+temperature:
   - min: -5
     max: 0
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - падающий снег
@@ -21,9 +21,9 @@ similars:
   - S12-6
   - P1-1
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

@@ -1,16 +1,16 @@
 ---
 name: SV700
-description: null
+description:
 description_ru: на холод −8…−25, любой тип снега, перемороженный снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - all
   - frozen
-snow_temperature:
+temperature:
   - min: -25
     max: -8
-condition: ''
-manufactory: ''
+condition: green
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

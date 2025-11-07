@@ -167,7 +167,8 @@ class ReadmeGenerator:
                         description=data.get("description", ""),
                         description_ru=data.get("description_ru", ""),
                         snow_type=formatted_snow_type,
-                        snow_temperature=data.get("snow_temperature", []),
+                        temperature=data.get("temperature", []),
+                        condition=data.get("condition", ""),
                         service=service_obj,
                         country=data.get("country", ""),
                         tags=data.get("tags", []),
@@ -221,12 +222,8 @@ class ReadmeGenerator:
         """
         if self.sort_field == "temperature":
             # Сортировка по температуре (сначала самые теплые)
-            if (
-                structure.snow_temperature
-                and isinstance(structure.snow_temperature, list)
-                and structure.snow_temperature[0]
-            ):
-                temp_range = structure.snow_temperature[0]
+            if structure.temperature and isinstance(structure.temperature, list) and structure.temperature[0]:
+                temp_range = structure.temperature[0]
                 max_temp = temp_range.get("max")
                 if max_temp is not None:
                     try:
@@ -398,7 +395,7 @@ def export_json(services: dict[str, list["StructureInfo"]], out_path: str):
     flat = []
     for service, items in services.items():
         for s in items:
-            tr = s.snow_temperature[0] if s.snow_temperature else None
+            tr = s.temperature[0] if s.temperature else None
             flat.append(
                 {
                     "name": s.name,

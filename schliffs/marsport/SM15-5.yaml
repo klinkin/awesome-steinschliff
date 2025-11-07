@@ -1,18 +1,17 @@
 ---
 name: SM15-5
-description: null
-description_ru: универсальная структура для среднего холода и низкой влажности при
-  температуре от -15 до -5
+description:
+description_ru: универсальная структура для среднего холода и низкой влажности при температуре от -15 до -5
 website_url: https://marsport.ru/service
 snow_type:
   - fresh
   - transformed
-snow_temperature:
+temperature:
   - min: -15
     max: -5
 condition: green
-manufactory: ''
-author: 'Alexandr Veselov'
+manufactory:
+author: Alexandr Veselov
 country: Россия
 tags:
   - свежий снег
@@ -21,7 +20,7 @@ similars:
   - S12-4
   - B227
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

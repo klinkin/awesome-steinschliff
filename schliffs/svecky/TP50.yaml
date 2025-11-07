@@ -5,19 +5,19 @@ description_ru: Для мокрых кондиций, хорошо прояви�
 snow_type:
   - wet
   - rain
-snow_temperature:
+temperature:
   - min: 0
     max: 10
-condition: wet
-manufactory: ''
-author: ''
+condition: pink
+manufactory:
+author:
 country: Россия
 tags:
   - дождь
   - мокрый снег
   - влажные условия
 features:
-  - null
+  -
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false

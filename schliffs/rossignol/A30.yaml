@@ -1,23 +1,23 @@
 ---
 name: A30
-description: null
+description:
 description_ru: структура для очень мокрого и зернистого снега (+…-5 °C)
-website_url: null
+website_url:
 snow_type:
   - wet
-snow_temperature:
+temperature:
   - min: -5
     max: 3
-condition: ''
+condition: pink
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - очень мокрый
   - зернистый
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

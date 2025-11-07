@@ -1,6 +1,6 @@
 ---
 name: AW7
-description: null
+description:
 description_ru: структура для крупнозернистого, падающего мокрого снега при -5/+5, хорошо работает поздней весной в России, на водянистый снег дополняется накаткой
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
@@ -8,11 +8,11 @@ snow_type:
   - wet
   - falling
   - spring
-snow_temperature:
+temperature:
   - min: -5
     max: 5
-condition: blue
-manufactory: ''
+condition: red
+manufactory:
 author: Artur
 country: Россия
 tags:

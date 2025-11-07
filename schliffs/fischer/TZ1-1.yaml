@@ -1,16 +1,16 @@
 ---
 name: TZ1-1
-description: null
+description:
 description_ru: на свежий снег при температуре ниже 0
-website_url: null
+website_url:
 snow_type:
   - fresh
-snow_temperature:
+temperature:
   - min: -10
     max: 0
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - свежий снег
@@ -19,9 +19,9 @@ similars:
   - P10-3
   - S12-2
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

@@ -1,25 +1,25 @@
 ---
 name: AM7
-description: null
+description:
 description_ru: хорошо работает на сухом снеге в −10 −4. Подходит для конька и классики, иногда работает и холоднее.
-website_url: null
+website_url:
 snow_type:
   - frozen
-snow_temperature:
+temperature:
   - min: -15
     max: -4
-condition: ''
+condition: violet
 manufactory: Atomic
-author: ''
+author:
 country: Austria
 tags:
   - сухой снег
   - конек
   - классика
 features:
-  - ''
+  -
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Atomic

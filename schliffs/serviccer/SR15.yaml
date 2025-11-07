@@ -1,15 +1,15 @@
 ---
 name: SR15
-description: null
+description:
 description_ru: +3…−3, трансформированный снег (фирн)
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - trancformed
-snow_temperature:
+temperature:
   - min: -3
     max: 3
 condition: yellow
-manufactory: ''
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

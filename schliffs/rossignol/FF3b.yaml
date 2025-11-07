@@ -1,24 +1,24 @@
 ---
 name: FF3b
-description: null
+description:
 description_ru: структура для очень холодного сухого снега (-10…-20 °C)
-website_url: null
+website_url:
 snow_type:
   - frozen
   - dry
-snow_temperature:
+temperature:
   - min: -20
     max: -10
-condition: ''
+condition: green
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - холодный
   - сухой
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

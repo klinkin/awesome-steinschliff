@@ -5,18 +5,18 @@ description_ru: Структура на свежий снег при холод�
 snow_type:
   - fresh
   - new
-snow_temperature:
+temperature:
   - min: -12
     max: -3
 condition: green
-manufactory: ''
-author: ''
+manufactory:
+author:
 country: Россия
 tags:
   - свежий снег
   - холодная
 features:
-  - null
+  -
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false

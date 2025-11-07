@@ -1,17 +1,16 @@
 ---
 name: N33
 description: Transition structure for all snow types, temperature range +5°C to -5°C
-description_ru: Переходная структура для любого типа снега, температурный диапазон
-  от +5°C до -5°C
+description_ru: Переходная структура для любого типа снега, температурный диапазон от +5°C до -5°C
 website_url: https://www.uventasport.ru/company/servis-centr/shtaynshlift/
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -5
     max: 5
-condition: ''
+condition: blue
 manufactory: Uventa
-author: ''
+author:
 country: Россия
 tags:
   - переходная
@@ -21,9 +20,9 @@ similars:
   - X1W
   - 729
 features:
-  - ''
+  -
 updated_at: 2024-04-04
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Uventa

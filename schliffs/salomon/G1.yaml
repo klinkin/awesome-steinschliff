@@ -1,18 +1,18 @@
 ---
 name: G1
-description: null
+description:
 description_ru: натуральный холодный снег на температуру -5 и холоднее
-website_url: null
+website_url:
 snow_type:
   - natural
   - cold
   - dry
-snow_temperature:
+temperature:
   - min: -20
     max: -5
 condition: green
 manufactory: Salomon
-author: ''
+author:
 country: Austria
 tags:
   - сухой
@@ -21,7 +21,7 @@ tags:
 similars:
   - C12-4
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

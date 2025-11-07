@@ -1,16 +1,16 @@
 ---
 name: S12-12
-description: null
+description:
 description_ru: старый снег при температуре от 0 до -5
-website_url: null
+website_url:
 snow_type:
   - old
-snow_temperature:
+temperature:
   - min: -5
     max: 0
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - старый снег
@@ -18,9 +18,9 @@ tags:
 similars:
   - P3-2
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

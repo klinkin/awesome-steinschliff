@@ -1,17 +1,17 @@
 ---
 name: AW7
-description: null
+description:
 description_ru: структура на крупнозернистый, водянистый снег при −2 0. Подходит для конька и классики. Хорошо работает поздней весной в России. Atomic также рекомендует на −5 +5.
-website_url: null
+website_url:
 snow_type:
   - fine_grained
   - wet
-snow_temperature:
+temperature:
   - min: -5
     max: 5
-condition: ''
+condition: red
 manufactory: Atomic
-author: ''
+author:
 country: Russia
 tags:
   - крупнозернистый
@@ -20,9 +20,9 @@ tags:
   - конек
   - классика
 features:
-  - ''
+  -
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Atomic

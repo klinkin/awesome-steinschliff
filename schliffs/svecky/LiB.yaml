@@ -5,19 +5,19 @@ description_ru: Тёплая структура на свежий снег, вы
 snow_type:
   - fresh
   - new
-snow_temperature:
+temperature:
   - min: -4
     max: 5
-condition: warm
-manufactory: ''
-author: ''
+condition: pink
+manufactory:
+author:
 country: Россия
 tags:
   - тёплая
   - свежий снег
   - высокая влажность
 features:
-  - null
+  -
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false

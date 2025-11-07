@@ -1,0 +1,26 @@
+---
+key: red
+name: Red
+name_ru: Переходка
+color: red
+temperature:
+  - min: -5
+    max: 5
+texture:
+  - coarse
+  - packing
+snow_age: []
+humidity: []
+description: Coarse, packing snow. Typical air temps +5 to -5 °C.
+description_ru: Крупнозернистый, слёживающийся снег. Типично при +5 … -5 °C.
+friction: Coarse snow has larger crystals that create more contact points with your ski base. This creates more kinetic friction. You need harder waxes to prevent these larger crystals from penetrating into your ski base. This type of snow tends to pack, which means it compresses under pressure.
+friction_ru: Крупнозернистый снег имеет более крупные кристаллы, которые создают больше точек контакта с лыжной базой. Это создает больше кинетического трения. Вам нужны более твердые парафины, чтобы предотвратить проникновение этих крупных кристаллов в лыжную базу. Этот тип снега имеет тенденцию к слёживанию, что означает его сжатие под давлением.
+synonyms:
+  - coarse
+  - packing
+  - transformed
+synonyms_ru:
+  - крупнозернистый
+  - слёживающийся
+  - уплотнённый
+source_url: https://skiwax.ca/collections/red

@@ -1,12 +1,12 @@
 ---
 name: B3312
-description: null
+description:
 description_ru: струтура на переходку и тепло, на влажный, но не жидкий снег
 website_url: https://www.bemesports.com/en/skiservice
 snow_type:
   - wet
   - transformed
-snow_temperature:
+temperature:
   - min: -5
     max: 5
 condition: yellow
@@ -21,7 +21,7 @@ similars:
   - S13-5
   - S13-4
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

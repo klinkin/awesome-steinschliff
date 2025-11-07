@@ -5,12 +5,12 @@ description_ru: Структура для классики на мелкозер
 snow_type:
   - fine
   - fresh
-snow_temperature:
+temperature:
   - min: -16
     max: 0
 condition: blue
-manufactory: ''
-author: ''
+manufactory:
+author:
 country: Россия
 tags:
   - классический стиль

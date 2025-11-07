@@ -1,17 +1,17 @@
 ---
 name: S12-2
-description: null
+description:
 description_ru: свежий мокрый снег, температура от -5 до 0
-website_url: null
+website_url:
 snow_type:
   - fresh
   - wet
-snow_temperature:
+temperature:
   - min: -5
     max: 0
-condition: ''
+condition: pink
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - свежий снег
@@ -21,9 +21,9 @@ similars:
   - S12-6
   - P10-3
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

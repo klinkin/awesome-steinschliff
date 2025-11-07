@@ -1,16 +1,16 @@
 ---
 name: P11-1
-description: null
+description:
 description_ru: чуть холоднее чем P11-2
-website_url: null
+website_url:
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -10
     max: 0
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - универсальный
@@ -21,7 +21,7 @@ similars:
 features:
   - чуть холоднее чем P11-2
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

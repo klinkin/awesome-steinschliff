@@ -1,22 +1,22 @@
 ---
 name: A6green
-description: null
+description:
 description_ru: структура для холодного снега
-website_url: null
+website_url:
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -25
     max: -5
-condition: ''
+condition: green
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - холодный
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

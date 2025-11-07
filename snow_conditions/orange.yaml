@@ -1,0 +1,26 @@
+---
+key: orange
+name: Orange
+name_ru: Глянец
+color: orange
+temperature:
+  - min: -5
+    max: 5
+texture:
+  - glazing
+snow_age:
+  - new
+humidity: []
+description: New, glazing snow. Typical air temps +5 to -5 °C.
+description_ru: Новый снег с полировкой (глазурью). Типично при +5…-5 °C.
+friction: New snow in this temperature range can develop a glazing surface when it melts slightly and refreezes. This creates a slick surface that reduces friction. You need waxes that can handle both the fresh snow crystals and the glazed surface. The glazing effect means less kinetic friction but the fresh snow underneath can still create some friction.
+friction_ru: Новый снег в этом температурном диапазоне может образовывать полированную поверхность при небольшом таянии и повторном замерзании. Это создает скользкую поверхность, которая снижает трение. Вам нужны парафины, которые могут работать как со свежими кристаллами снега, так и с полированной поверхностью. Эффект полировки означает меньшее кинетическое трение, но свежий снег под ним все еще может создавать некоторое трение.
+synonyms:
+  - new
+  - glazing
+  - fresh
+synonyms_ru:
+  - новый
+  - глянец
+  - свежий
+source_url: https://skiwax.ca/collections/orange

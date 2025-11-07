@@ -1,23 +1,23 @@
 ---
 name: A1
-description: null
+description:
 description_ru: структура для очень холодного и сухого снега
-website_url: null
+website_url:
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -25
     max: -5
-condition: ''
+condition: green
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - холодный
   - сухой
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

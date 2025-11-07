@@ -1,0 +1,27 @@
+---
+key: blue
+name: Blue
+name_ru: Умеренный холод
+color: blue
+temperature:
+  - min: -12
+    max: 0
+texture:
+  - fresh
+  - powdery
+snow_age:
+  - new
+humidity: []
+description: Fresh, powdery snow. Typical air temps 0 to -12 °C.
+description_ru: Свежий, порошкообразный снег. Типично при 0…−12 °C.
+friction: New snow crystals in this temperature range and with medium to low humidity are like a million tiny knives to your ski bases. Kinetic friction is the main kind of friction to deal with. This means hard, durable waxes that keep the sharp knives of the snow crystals out of your ski base is what you need. Any other water or dirt-repelling compounds will help your glide, but not to a high degree.
+friction_ru: Свежий снег в этом температурном диапазоне и с умеренной до низкой влажностью похож на миллион крошечных ножей. Кинетическое трение является основным типом трения, с которым нужно иметь дело. Это означает, что вам нужно твердые, долговечные парафины.
+synonyms:
+  - fresh
+  - powdery
+  - falling
+synonyms_ru:
+  - свежий
+  - пушистый
+  - падющий
+source_url: https://skiwax.ca/collections/blue

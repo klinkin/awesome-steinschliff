@@ -1,18 +1,18 @@
 ---
 name: S13-5-08
-description: null
+description:
 description_ru: влажный мелкозернистый свежий снег
-website_url: null
+website_url:
 snow_type:
   - wet
   - fine_grained
   - fresh
-snow_temperature:
+temperature:
   - min: -3
     max: 3
 condition: yellow
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - мелкозернистый
@@ -22,9 +22,9 @@ similars:
   - S13-5
   - C12-7
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

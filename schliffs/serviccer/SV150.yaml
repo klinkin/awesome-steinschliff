@@ -1,15 +1,15 @@
 ---
 name: SV150
-description: null
+description:
 description_ru: на тепло +3…+5, весенний снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - spring
-snow_temperature:
+temperature:
   - min: 3
     max: 5
 condition: yellow
-manufactory: ''
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

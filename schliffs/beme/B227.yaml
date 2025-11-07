@@ -1,11 +1,11 @@
 ---
 name: B227
-description: null
+description:
 description_ru: стуктура для морозного снега и температуры ниже -5
 website_url: https://www.bemesports.com/en/skiservice
 snow_type:
   - cold
-snow_temperature:
+temperature:
   - min: -20
     max: -5
 condition: green
@@ -13,14 +13,14 @@ manufactory: all
 author: Benjamin Eder
 country: Austria
 tags:
-  - null
-  - null
-  - null
+  -
+  -
+  -
 similars:
   - PL1
   - S11-3
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

@@ -1,28 +1,27 @@
 ---
 name: P5-1
-description: null
-description_ru: универсальная структура для любого типа снега на температуру от +5
-  до -10
-website_url: null
+description:
+description_ru: универсальная структура для любого типа снега на температуру от +5 до -10
+website_url:
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -10
     max: 5
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - универсальный
   - широкий диапазон
 similars:
-  - null
-  - null
+  -
+  -
 features:
   - стандартная
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

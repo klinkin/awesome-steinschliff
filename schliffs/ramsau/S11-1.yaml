@@ -1,16 +1,16 @@
 ---
 name: S11-1
-description: null
+description:
 description_ru: сухой снег на температуре от -10 до -20
-website_url: null
+website_url:
 snow_type:
   - dry
-snow_temperature:
+temperature:
   - min: -20
     max: -10
-condition: ''
+condition: green
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - сухой снег
@@ -19,9 +19,9 @@ similars:
   - S11-2
   - S11-3
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

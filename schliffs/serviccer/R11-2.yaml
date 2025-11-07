@@ -1,16 +1,16 @@
 ---
 name: R11-2
-description: null
+description:
 description_ru: −8…−18, любой тип снега, свежий снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - all
   - fresh
-snow_temperature:
+temperature:
   - min: -18
     max: -8
-condition: ''
-manufactory: ''
+condition: blue
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

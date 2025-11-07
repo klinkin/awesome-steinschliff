@@ -1,17 +1,17 @@
 ---
 name: F-110
-description: null
+description:
 description_ru: холодный мелкозернистый (свежий) снег
-website_url: null
+website_url:
 snow_type:
   - fresh
   - fine_grained
-snow_temperature:
+temperature:
   - min: -13
     max: -5
 condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - холодный
@@ -20,7 +20,7 @@ similars:
   - C3-1
 features: []
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

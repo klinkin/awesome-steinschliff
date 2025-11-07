@@ -5,19 +5,19 @@ description_ru: Универсальная тёплая структура в т
 snow_type:
   - all
   - wet
-snow_temperature:
+temperature:
   - min: -1
     max: 10
-condition: warm
-manufactory: ''
-author: ''
+condition: pink
+manufactory:
+author:
 country: Россия
 tags:
   - универсальная
   - тёплая
   - влажные условия
 features:
-  - null
+  -
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false

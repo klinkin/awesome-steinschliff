@@ -1,17 +1,17 @@
 ---
 name: C1-1
-description: null
+description:
 description_ru: все типы снега, включая свежий, температура ниже -5
-website_url: null
+website_url:
 snow_type:
   - all
   - fresh
-snow_temperature:
+temperature:
   - min: -5
     max: -15
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - холодный
@@ -19,9 +19,9 @@ tags:
 similars:
   - C12-1
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

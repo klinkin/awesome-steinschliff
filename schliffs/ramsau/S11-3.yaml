@@ -1,19 +1,18 @@
 ---
 name: S11-3
-description: null
-description_ru: структура под натуральный и искусственный перемороженный снег, температура
-  от -10 до -20
-website_url: null
+description:
+description_ru: структура под натуральный и искусственный перемороженный снег, температура от -10 до -20
+website_url:
 snow_type:
   - frozen
   - natural
   - artificial
-snow_temperature:
+temperature:
   - min: -20
     max: -10
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - перемороженый
@@ -22,9 +21,9 @@ tags:
 similars:
   - B227
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

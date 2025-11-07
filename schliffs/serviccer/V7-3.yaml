@@ -1,16 +1,16 @@
 ---
 name: V7-3
-description: null
+description:
 description_ru: −2…−15, старый снег, хорошо подготовленная трасса
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - trancformed
   - fine_grained
-snow_temperature:
+temperature:
   - min: -15
     max: -2
-condition: ''
-manufactory: ''
+condition: violet
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

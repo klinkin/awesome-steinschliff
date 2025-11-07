@@ -1,17 +1,17 @@
 ---
 name: SR12-3
-description: null
+description:
 description_ru: тёплый весенний старый снег, вода; от +3 и выше
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - trancformed
   - wet
   - water
-snow_temperature:
+temperature:
   - min: 3
     max: 10
 condition: yellow
-manufactory: ''
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

@@ -1,0 +1,31 @@
+---
+key: violet
+name: Violet
+name_ru: Старый
+color: violet
+temperature:
+  - min: -15
+    max: 0
+texture:
+  - icy
+  - sugary
+snow_age:
+  - old
+  - transformed
+humidity:
+  - dry
+description: Icy, sugary snow. Typical air temps 0 to -15 °C.
+description_ru: Это обледенелый старый снег, который превращается в сахарную или зернистую массу. Этот тип снега старый, преобразованный и довольно абразивный. Обычно этот тип снега имеет более низкую влажность. Часто искусственный снег относится к этой категории. Это самые быстрые из всех условий.
+friction: This is old, transformed snow that has become icy and sugary or granular. This type of snow is old, transformed, and quite abrasive. Usually this type of snow has lower humidity. Often artificial snow falls into this category. These are the fastest of all conditions. The snow crystals have transformed into abrasive particles that can scratch your base, so you need very hard, durable waxes.
+friction_ru: Это старый, преобразованный снег, который стал ледяным и сахаристым или зернистым. Этот тип снега старый, преобразованный и довольно абразивный. Обычно этот тип снега имеет более низкую влажность. Часто искусственный снег относится к этой категории. Это самые быстрые из всех условий. Кристаллы снега превратились в абразивные частицы, которые могут поцарапать базу, поэтому вам нужны очень твердые, долговечные парафины.
+synonyms:
+  - icy
+  - sugary
+  - granular
+  - transformed
+synonyms_ru:
+  - ледяной
+  - сахарный
+  - зернистый
+  - преобразованный
+source_url: https://skiwax.ca/collections/violet

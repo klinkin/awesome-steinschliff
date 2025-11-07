@@ -1,18 +1,18 @@
 ---
 name: S13-4
-description: null
+description:
 description_ru: влажный снег, натуральный и искусственный, переменчивая погода, большой диапазон
-website_url: null
+website_url:
 snow_type:
   - wet
   - natural
   - artificial
-snow_temperature:
+temperature:
   - min: -5
     max: 5
 condition: yellow
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - влажный снег
@@ -25,7 +25,7 @@ similars:
 features:
   - большой диапазон
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

@@ -1,17 +1,16 @@
 ---
 name: S12-16
-description: null
-description_ru: универсальная структура для высокой влажности и свежего снега, подходит
-  под глянец, температура от 0 до -10
-website_url: null
+description:
+description_ru: универсальная структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10
+website_url:
 snow_type:
   - fresh
-snow_temperature:
+temperature:
   - min: -10
     max: 0
 condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - свежий снег
@@ -20,7 +19,7 @@ tags:
 similars:
   - B2211
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

@@ -1,16 +1,16 @@
 ---
 name: AW4
-description: null
+description:
 description_ru: структура для крупнозернистого снега при 0/-2, хорошо работает поздней весной в России, дополняется ручной накаткой
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - coarse
   - spring
-snow_temperature:
+temperature:
   - min: -2
     max: 0
-condition: blue
-manufactory: ''
+condition: red
+manufactory:
 author: Artur
 country: Россия
 tags:

@@ -1,17 +1,17 @@
 ---
 name: F-390
-description: null
+description:
 description_ru: мокрые условия (чаще для классики)
-website_url: null
+website_url:
 snow_type:
   - wet
   - classic
-snow_temperature:
+temperature:
   - min: 0
     max: 5
 condition: yellow
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - мокрый снег
@@ -20,7 +20,7 @@ similars:
   - P9-2
 features: []
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

@@ -1,19 +1,17 @@
 ---
 name: C110X
-description: Cold structure for new and transformed snow, temperature range -10°C
-  to -20°C
-description_ru: Холодная структура для нового и преобразованного снега, температурный
-  диапазон от -10°C до -20°C
+description: Cold structure for new and transformed snow, temperature range -10°C to -20°C
+description_ru: Холодная структура для нового и преобразованного снега, температурный диапазон от -10°C до -20°C
 website_url: https://www.uventasport.ru/company/servis-centr/shtaynshlift/
 snow_type:
   - fresh
   - transformed
-snow_temperature:
+temperature:
   - min: -20
     max: -10
-condition: ''
+condition: violet
 manufactory: Uventa
-author: ''
+author:
 country: Россия
 tags:
   - холодная
@@ -22,9 +20,9 @@ tags:
 similars:
   - 330
 features:
-  - ''
+  -
 updated_at: 2024-04-04
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Uventa

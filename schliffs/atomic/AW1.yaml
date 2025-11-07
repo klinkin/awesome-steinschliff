@@ -1,24 +1,24 @@
 ---
 name: AW1
-description: null
+description:
 description_ru: структура на влажный снег при 0 −4. Предназначена для классических лыж.
-website_url: null
+website_url:
 snow_type:
   - wet
-snow_temperature:
+temperature:
   - min: -4
     max: 0
-condition: ''
+condition: pink
 manufactory: Atomic
-author: ''
+author:
 country: Austria
 tags:
   - влажный снег
   - классика
 features:
-  - ''
+  -
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Atomic

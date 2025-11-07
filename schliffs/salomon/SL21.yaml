@@ -1,18 +1,17 @@
 ---
 name: SL21
-description: null
-description_ru: стандартная структура для жестких трасс, натуральный и искусственный
-  снег, температура от +1 до -7
-website_url: null
+description:
+description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от +1 до -7
+website_url:
 snow_type:
   - natural
   - artificial
-snow_temperature:
+temperature:
   - min: -7
     max: 1
 condition: blue
 manufactory: Salomon
-author: ''
+author:
 country: Austria
 tags:
   - натуральный
@@ -25,7 +24,7 @@ similars:
   - SV600
   - M100
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

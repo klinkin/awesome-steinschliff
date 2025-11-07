@@ -6,12 +6,12 @@ snow_type:
   - all
   - transformed
   - old
-snow_temperature:
+temperature:
   - min: -9
     max: 2
-condition: universal
-manufactory: ''
-author: ''
+condition: violet
+manufactory:
+author:
 country: Россия
 tags:
   - универсальная

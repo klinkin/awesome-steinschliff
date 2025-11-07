@@ -1,20 +1,18 @@
 ---
-name: "729"
-description: Universal structure for fresh and old snow, temperature range +2°C to
-  -12°C
-description_ru: Универсальная структура для свежего и старого снега, температурный
-  диапазон от +2°C до -12°C
+name: '729'
+description: Universal structure for fresh and old snow, temperature range +2°C to -12°C
+description_ru: Универсальная структура для свежего и старого снега, температурный диапазон от +2°C до -12°C
 website_url: https://www.uventasport.ru/company/servis-centr/shtaynshlift/
 snow_type:
   - fresh
   - old
   - universal
-snow_temperature:
+temperature:
   - min: -12
     max: 2
-condition: ''
+condition: violet
 manufactory: Uventa
-author: ''
+author:
 country: Россия
 tags:
   - универсальная
@@ -23,9 +21,9 @@ tags:
 similars:
   - N33
 features:
-  - ''
+  -
 updated_at: 2024-04-04
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Uventa

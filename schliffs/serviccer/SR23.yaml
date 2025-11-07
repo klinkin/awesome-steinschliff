@@ -1,15 +1,15 @@
 ---
 name: SR23
-description: null
+description:
 description_ru: от −20 к −10 (когда днём отпускает мороз), свежий снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - fresh
-snow_temperature:
+temperature:
   - min: -20
     max: -10
 condition: blue
-manufactory: ''
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

@@ -80,7 +80,7 @@ Video: [Ekiptime](https://www.youtube.com/watch?v=IN1FKSIZT2I)
 | [AM7](schliffs/ekiptime/AM7.yaml) |  | all, fresh, cold | –4 °C … –12 °C |  | универсальный, свежий, холодный, Russia |  |  |
 | [AM26](schliffs/ekiptime/AM26.yaml) |  | natural, high_humidity | –5 °C … –12 °C |  | натуральный, высокая влажность |  |  |
 | [AC4](schliffs/ekiptime/AC4.yaml) |  | all, cold | –5 °C … –20 °C |  | холодный, универсальный |  |  |
-| [G1](schliffs/ekiptime/G1.yaml) |  | cold, extremely_cold, dry | –5 °C … –30 °C |  | холодный, экстремально холодный, сухой, реплика |  |  |
+| [G1](schliffs/ekiptime/G1.yaml) |  | cold, extremely_cold, dry | –5 °C … –30 °C |  | холодный, экстремально холодный, сухой, реплика | [G1](schliffs/salomon/G1.yaml), [B227](schliffs/beme/B227.yaml) |  |
 | [AC5](schliffs/ekiptime/AC5.yaml) |  | all, cold | –8 °C … –25 °C |  | холодный, универсальный, Russia |  |  |
 | [AC3](schliffs/ekiptime/AC3.yaml) |  | cold, old, scandinavian | –8 °C … –17 °C |  | холодный, скандинавский |  |  |
 

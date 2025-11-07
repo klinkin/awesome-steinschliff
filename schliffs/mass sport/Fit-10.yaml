@@ -7,7 +7,7 @@ snow_type:
   - natural
   - artificial
   - all
-snow_temperature:
+temperature:
   - min: -15
     max: -3
 condition: blue
@@ -21,7 +21,7 @@ tags:
 similars: []
 features: []
 updated_at: 2025-10-18
-updated_by: https://www.skisport.ru/news/cross-country/119865/
+updated_by: https://github.com/klinkin https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport

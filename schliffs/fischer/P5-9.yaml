@@ -1,18 +1,17 @@
 ---
 name: P5-9
-description: null
-description_ru: структура для классических лыж на старый мокрый снег, температура
-  от 0 и выше
-website_url: null
+description:
+description_ru: структура для классических лыж на старый мокрый снег, температура от 0 и выше
+website_url:
 snow_type:
   - old
   - wet
-snow_temperature:
+temperature:
   - min: 0
-    max: +10
-condition: ''
+    max: 10
+condition: pink
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - классические лыжи
@@ -24,7 +23,7 @@ similars:
 features:
   - классический стиль
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

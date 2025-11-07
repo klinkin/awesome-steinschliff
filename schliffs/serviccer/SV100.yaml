@@ -1,25 +1,24 @@
 ---
 name: SV100
-description: null
-description_ru: стурктура для глянца, старого и свежего снег, замыленный снега и температуры
-  от +3 до -3
+description:
+description_ru: стурктура для глянца, старого и свежего снег, замыленный снега и температуры от +3 до -3
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - fresh
   - old
   - glossy
-snow_temperature:
+temperature:
   - min: -3
     max: 3
 condition: yellow
-manufactory: ''
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:
   - глянец
   - замыленный
 similars:
-  - null
+  -
 features:
   - не едет в воду
 updated_at: 2024-04-01

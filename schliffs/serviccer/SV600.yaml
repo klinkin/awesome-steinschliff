@@ -1,15 +1,15 @@
 ---
 name: SV600
-description: null
+description:
 description_ru: универсальная структура −2…−10 на любой тип снега; TOP
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -10
     max: -2
-condition: ''
-manufactory: ''
+condition: blue
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

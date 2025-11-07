@@ -1,27 +1,27 @@
 ---
 name: C8-1
-description: null
+description:
 description_ru: более узкая структура для искусственного снега от 0 до -10
-website_url: null
+website_url:
 snow_type:
   - artificial
-snow_temperature:
+temperature:
   - min: -10
     max: 0
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - искусственный снег
   - узкая структура
 similars:
-  - null
-  - null
+  -
+  -
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

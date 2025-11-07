@@ -1,19 +1,18 @@
 ---
 name: S11-2
-description: null
-description_ru: структура для холодного сухого натурального снега, температура от
-  -10 до -20
-website_url: null
+description:
+description_ru: структура для холодного сухого натурального снега, температура от -10 до -20
+website_url:
 snow_type:
   - dry
   - natural
   - cold
-snow_temperature:
+temperature:
   - min: -20
     max: -10
 condition: green
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - холодный
@@ -23,9 +22,9 @@ similars:
   - B227
   - C100
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

@@ -1,19 +1,18 @@
 ---
 name: SV77
-description: null
-description_ru: универсальная структура на средний холод и низкой влажности при температуре
-  от -0 до -20
+description:
+description_ru: универсальная структура на средний холод и низкой влажности при температуре от -0 до -20
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - cold
   - dry
   - old
   - fresh
-snow_temperature:
+temperature:
   - min: -20
     max: 0
 condition: blue
-manufactory: ''
+manufactory:
 author: Artur
 country: Россия
 tags:
@@ -22,9 +21,9 @@ tags:
   - свежий
   - старый
 similars:
-  - null
+  -
 features:
-  - null
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

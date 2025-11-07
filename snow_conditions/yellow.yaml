@@ -1,0 +1,30 @@
+---
+key: yellow
+name: Yellow
+name_ru: Тепло
+color: yellow
+temperature:
+  - min: 0
+    max: 20
+texture:
+  - slushy
+snow_age:
+  - old
+humidity:
+  - wet
+  - saturated
+description: Wet, slushy, old snow. Typical air temps 0 to +20 °C.
+description_ru: Cтарый снег полностью пропитан водой. Он рыхлый, влажный, тёплый, старый и обычно крупнозернистый и грязный.
+friction: Old snow that is completely saturated with water. It is loose, wet, warm, old and usually coarse-grained and dirty. The high water content creates significant static friction (suction effect). You need water-repellent waxes and compounds. The slushy texture also creates kinetic friction as your skis push through the wet snow. Clean base preparation is crucial because any dirt increases friction dramatically.
+friction_ru: Старый снег полностью пропитан водой. Он рыхлый, влажный, тёплый, старый и обычно крупнозернистый и грязный. Высокое содержание воды создает значительное статическое трение (эффект всасывания). Вам нужны водоотталкивающие парафины и соединения. Кашеобразная текстура также создает кинетическое трение, когда ваши лыжи проталкиваются через мокрый снег. Чистая подготовка базы имеет решающее значение, потому что любая грязь значительно увеличивает трение.
+synonyms:
+  - wet
+  - slushy
+  - old
+  - saturated
+synonyms_ru:
+  - влажный
+  - мокрый
+  - каша
+  - старый снег
+source_url: https://skiwax.ca/collections/yellow

@@ -1,15 +1,15 @@
 ---
 name: 77
-description: null
+description:
 description_ru: −5…−18, холодный шлифт под любой тип снега
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -18
     max: -5
-condition: ''
-manufactory: ''
+condition: blue
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

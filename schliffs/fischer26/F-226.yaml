@@ -1,18 +1,18 @@
 ---
 name: F-226
-description: null
+description:
 description_ru: зернистый снег и мокрый свежий снег
-website_url: null
+website_url:
 snow_type:
   - trancformed
   - wet
   - fresh
-snow_temperature:
+temperature:
   - min: -7
     max: 0
-condition: ''
+condition: blue
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - мокрый снег
@@ -22,7 +22,7 @@ similars:
   - P10-3
 features: []
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

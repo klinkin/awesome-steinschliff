@@ -1,16 +1,16 @@
 ---
 name: AC5
-description: null
+description:
 description_ru: структура для всех типов снега от -8 и холоднее, подходит для регионов России
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - all
   - cold
-snow_temperature:
+temperature:
   - min: -25
     max: -8
 condition: blue
-manufactory: ''
+manufactory:
 author: Artur
 country: Россия
 tags:

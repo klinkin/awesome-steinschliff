@@ -1,15 +1,15 @@
 ---
 name: G3.1
-description: null
+description:
 description_ru: универсальная 0…−5, свежий снег
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - fresh
-snow_temperature:
+temperature:
   - min: -5
     max: 0
-condition: ''
-manufactory: ''
+condition: blue
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

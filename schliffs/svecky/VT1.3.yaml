@@ -5,18 +5,18 @@ description_ru: Холодная структура, хорошо работае
 snow_type:
   - used
   - transformed
-snow_temperature:
+temperature:
   - min: -16
     max: -4
-condition: cold
-manufactory: ''
-author: ''
+condition: violet
+manufactory:
+author:
 country: Россия
 tags:
   - холодная
   - трансформированный снег
 features:
-  - null
+  -
 updated_at: 2024-04-05
 updated_by: https://github.com/klinkin
 archived: false

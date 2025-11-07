@@ -1,20 +1,19 @@
 ---
 name: SL1
-description: null
-description_ru: структура для натурального холодного и сухого снега, допустима в смесь
-  натурального и искусственного при низкой влажности от -10 и холоднее
-website_url: null
+description:
+description_ru: структура для натурального холодного и сухого снега, допустима в смесь натурального и искусственного при низкой влажности от -10 и холоднее
+website_url:
 snow_type:
   - natural
   - artificial
   - dry
   - frozen
-snow_temperature:
+temperature:
   - min: -30
     max: -10
 condition: green
 manufactory: Salomon
-author: ''
+author:
 country: Austria
 tags:
   - сухой
@@ -29,7 +28,7 @@ similars:
   - SV700
   - C100
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

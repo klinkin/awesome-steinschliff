@@ -1,16 +1,16 @@
 ---
 name: P9-2
-description: null
+description:
 description_ru: влажный снег, t выше 0
-website_url: null
+website_url:
 snow_type:
   - wet
-snow_temperature:
+temperature:
   - min: 0
-    max: +10
-condition: ''
+    max: 10
+condition: pink
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - влажный снег
@@ -19,9 +19,9 @@ similars:
   - P3-1
   - S13-5
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

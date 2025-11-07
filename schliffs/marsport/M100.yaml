@@ -1,16 +1,15 @@
 ---
 name: M100
-description: null
-description_ru: структура для высокой влажности и свежего снега, подходит под глянец,
-  температура от 0 до -10
+description:
+description_ru: структура для высокой влажности и свежего снега, подходит под глянец, температура от 0 до -10
 website_url: https://marsport.ru/service
 snow_type:
   - fresh
-snow_temperature:
+temperature:
   - min: -10
     max: 0
 condition: blue
-manufactory: ''
+manufactory:
 author: 'Alexandr Veselov '
 country: Россия
 tags:
@@ -24,7 +23,7 @@ similars:
   - SV77
   - X25
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

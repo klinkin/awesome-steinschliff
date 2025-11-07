@@ -1,24 +1,24 @@
 ---
 name: A34
-description: null
+description:
 description_ru: универсальная для влажного и мокрого снега (+…-5 °C)
-website_url: null
+website_url:
 snow_type:
   - all
   - wet
-snow_temperature:
+temperature:
   - min: -5
     max: 3
-condition: ''
+condition: pink
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - влажный
   - мокрый
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

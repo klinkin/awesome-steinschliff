@@ -114,7 +114,7 @@ def format_similars_with_links(
 
 
 def format_temperature_range(
-    snow_temperature: list[dict[str, Any]] | None,
+    temperature: list[dict[str, Any]] | None,
 ) -> str:
     """
     Форматирует диапазон температуры снега для отображения в таблице в формате "max °C … min °C".
@@ -122,17 +122,17 @@ def format_temperature_range(
     Пример: "+1 °C … –8 °C" или "–3 °C … –5 °C"
 
     Args:
-        snow_temperature: Список диапазонов температуры снега.
+        temperature: Список диапазонов температуры.
 
     Returns:
         Отформатированная строка с диапазоном температуры в формате "max °C … min °C".
     """
-    if not snow_temperature or not isinstance(snow_temperature, list) or not snow_temperature[0]:
+    if not temperature or not isinstance(temperature, list) or not temperature[0]:
         return ""
 
     try:
         # Берем только первый диапазон (если их несколько)
-        temp_range = snow_temperature[0]
+        temp_range = temperature[0]
         min_temp = temp_range.get("min")
         max_temp = temp_range.get("max")
 

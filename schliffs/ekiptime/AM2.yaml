@@ -1,17 +1,17 @@
 ---
 name: AM2
-description: null
+description:
 description_ru: структура для свежего, влажного или подмороженного снега при -1/-8
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - fresh
   - wet
   - frozen
-snow_temperature:
+temperature:
   - min: -8
     max: -1
 condition: blue
-manufactory: ''
+manufactory:
 author: Artur
 country: Россия
 tags:

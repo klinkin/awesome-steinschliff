@@ -1,28 +1,28 @@
 ---
 name: P3-3
-description: null
+description:
 description_ru: водянистый снег от +3 до +15
-website_url: null
+website_url:
 snow_type:
   - watery
   - wet
-snow_temperature:
+temperature:
   - min: 3
     max: 15
-condition: ''
+condition: pink
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - водянистый снег
   - высокая температура
 similars:
-  - null
-  - null
+  -
+  -
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

@@ -140,18 +140,144 @@ def _run_generate(
         raise typer.Exit(code=1)
 
 
+def _load_condition_name_ru(condition_key: str) -> str | None:
+    """
+    Загружает локализованное название (name_ru) для условия снега из файла snow_conditions.
+
+    Args:
+        condition_key: Ключ условия (red, blue, violet, etc.)
+
+    Returns:
+        Локализованное название или None, если не найдено
+    """
+    if not condition_key:
+        return None
+
+    try:
+        import yaml
+
+        project_root = Path(__file__).resolve().parents[1]
+        condition_file = project_root / "snow_conditions" / f"{condition_key.lower()}.yaml"
+
+        if condition_file.exists():
+            with condition_file.open("r", encoding="utf-8") as f:
+                data = yaml.safe_load(f) or {}
+                if isinstance(data, dict) and "name_ru" in data:
+                    return data["name_ru"]
+    except (OSError, yaml.YAMLError):
+        pass
+
+    return None
+
+
+def _format_condition(condition: str | None) -> str:
+    """
+    Форматирует значение condition для отображения.
+    Если condition это ключ SnowCondition, пытается получить локализованное название.
+
+    Args:
+        condition: Значение поля condition
+
+    Returns:
+        Отформатированная строка для отображения
+    """
+    if not condition:
+        return ""
+
+    condition = condition.strip().lower()
+    if not condition:
+        return ""
+
+    # Пытаемся загрузить локализованное название из файла
+    name_ru = _load_condition_name_ru(condition)
+    if name_ru:
+        return name_ru
+
+    # Fallback на маппинг ключей на русские названия
+    condition_names = {
+        "red": "Красный",
+        "blue": "Синий",
+        "violet": "Фиолетовый",
+        "orange": "Оранжевый",
+        "green": "Зелёный",
+        "yellow": "Жёлтый",
+        "pink": "Розовый",
+        "brown": "Коричневый",
+    }
+
+    return condition_names.get(condition, condition.capitalize())
+
+
+def _build_table_title(
+    *,
+    generator: ReadmeGenerator,
+    selected_services: dict[str, list[StructureInfo]],
+    filter_service: str | None = None,
+    filter_condition: str | None = None,
+) -> str:
+    """
+    Строит заголовок таблицы на основе применённых фильтров.
+
+    Args:
+        generator: Генератор с метаданными сервисов
+        selected_services: Отфильтрованные сервисы
+        filter_service: Имя сервиса, по которому фильтровали (если был фильтр)
+        filter_condition: Условие снега, по которому фильтровали (если был фильтр)
+
+    Returns:
+        Сформированный заголовок таблицы
+    """
+    title_parts = ["Таблица шлифов"]
+
+    # Добавляем имя сервиса, если был фильтр
+    if filter_service:
+        # Пытаемся найти видимое имя сервиса
+        service_name = None
+        for service_key in selected_services.keys():
+            service_meta = generator.service_metadata.get(service_key)
+            if service_meta and service_meta.name:
+                service_name = service_meta.name
+                break
+
+        if not service_name:
+            # Используем исходное значение фильтра с капитализацией
+            service_name = filter_service.capitalize()
+
+        title_parts.append(service_name)
+
+    # Добавляем условие снега, если был фильтр
+    if filter_condition:
+        condition_name = _format_condition(filter_condition)
+        if condition_name:
+            title_parts.append(f"для {condition_name}")
+
+    return " ".join(title_parts)
+
+
 def _render_table(
     *,
     generator: ReadmeGenerator,
     selected_services: dict[str, list[StructureInfo]],
-    title: str = "Структуры шлифов",
+    title: str | None = None,
+    filter_service: str | None = None,
+    filter_condition: str | None = None,
 ) -> Table:
     """Строит таблицу структур для выбранных сервисов."""
+    # Строим заголовок динамически, если не передан явно
+    if title is None:
+        title = _build_table_title(
+            generator=generator,
+            selected_services=selected_services,
+            filter_service=filter_service,
+            filter_condition=filter_condition,
+        )
+
     table = Table(title=title, show_lines=False)
     table.add_column("Сервис", style="cyan", no_wrap=True)
     table.add_column("Имя", style="bold", no_wrap=True)
     table.add_column("Тип снега", style="magenta")
-    table.add_column("Диапазон t", style="yellow")
+    table.add_column("Условия", style="green")
+    table.add_column("Температура", style="yellow")
     table.add_column("Похожие", style="green")
 
     for service_key, items in selected_services.items():
@@ -159,9 +285,10 @@ def _render_table(
         service_meta = generator.service_metadata.get(service_key)
         visible_service = (service_meta.name or service_key) if (service_meta and service_meta.name) else service_key
         for s in sorted_items:
-            temp_str = format_temperature_range(s.snow_temperature)
+            temp_str = format_temperature_range(s.temperature)
             similars_str = format_list_for_display(s.similars)
-            table.add_row(visible_service, str(s.name), s.snow_type or "", temp_str, similars_str)
+            condition_str = _format_condition(s.condition)
+            table.add_row(visible_service, str(s.name), s.snow_type or "", condition_str, temp_str, similars_str)
 
     return table
 
@@ -306,8 +433,50 @@ def cmd_export_json(
         raise typer.Exit(code=1)
 
 
+def _normalize_condition_filter(condition_input: str) -> str:
+    """
+    Нормализует введенное значение condition для фильтрации.
+    Поддерживает ключи (green, red, etc.) и локализованные названия (Зелёный, Красный, etc.).
+
+    Args:
+        condition_input: Введенное значение для фильтрации
+
+    Returns:
+        Нормализованный ключ condition или пустая строка
+    """
+    if not condition_input:
+        return ""
+
+    condition_input = condition_input.strip().lower()
+
+    # Маппинг локализованных названий на ключи
+    localized_to_key = {
+        "красный": "red",
+        "синий": "blue",
+        "фиолетовый": "violet",
+        "оранжевый": "orange",
+        "зелёный": "green",
+        "зеленый": "green",  # альтернативное написание
+        "жёлтый": "yellow",
+        "желтый": "yellow",  # альтернативное написание
+        "розовый": "pink",
+        "коричневый": "brown",
+    }
+
+    # Проверяем локализованные названия
+    if condition_input in localized_to_key:
+        return localized_to_key[condition_input]
+
+    # Проверяем, является ли это уже валидным ключом
+    valid_keys = ["red", "blue", "violet", "orange", "green", "yellow", "pink", "brown"]
+    if condition_input in valid_keys:
+        return condition_input
+
+    return condition_input  # Возвращаем как есть, если не найдено
+
+
 @app.command("list")
-def cmd_list(
+def cmd_list(  # noqa: C901
     schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
     sort: Literal["name", "rating", "country", "temperature"] = typer.Option(
         "temperature", help="Поле сортировки", case_sensitive=False
@@ -319,11 +488,21 @@ def cmd_list(
         help="Фильтр по производителю/сервису (например: Ramsau)",
         show_default=False,
     ),
+    condition: str | None = typer.Option(
+        None,
+        "-c",
+        "--condition",
+        help=(
+            "Фильтр по условиям снега (green, red, blue, violet, orange, yellow, pink, "
+            "brown или локализованные названия)"
+        ),
+        show_default=False,
+    ),
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = typer.Option(
         "INFO", help="Уровень логирования", case_sensitive=False
     ),
 ):
-    """Показать таблицу шлифов. Можно отфильтровать по конкретному производителю."""
+    """Показать таблицу шлифов. Можно отфильтровать по конкретному производителю и условиям снега."""
     setup_logging(level=getattr(logging, log_level))
     logger = logging.getLogger("steinschliff")
 
@@ -368,10 +547,194 @@ def cmd_list(
 
             selected_services = {resolved_key: selected_services[resolved_key]}
 
-        table = _render_table(generator=generator, selected_services=selected_services)
+        # Фильтрация по condition
+        normalized_condition = None
+        if condition:
+            normalized_condition = _normalize_condition_filter(condition)
+            if not normalized_condition:
+                console.print(
+                    Panel.fit(
+                        (
+                            f"Неизвестное условие '{condition}'. Допустимые: red, blue, violet, "
+                            "orange, green, yellow, pink, brown"
+                        ),
+                        border_style="red",
+                    )
+                )
+                raise typer.Exit(code=1)
+
+            # Фильтруем структуры по condition
+            filtered_services: dict[str, list[StructureInfo]] = {}
+            for service_key, structures in selected_services.items():
+                filtered_structures = [
+                    s for s in structures if s.condition and s.condition.strip().lower() == normalized_condition
+                ]
+                if filtered_structures:
+                    filtered_services[service_key] = filtered_structures
+
+            if not filtered_services:
+                console.print(Panel.fit(f"Не найдено структур с условием '{condition}'", border_style="yellow"))
+                raise typer.Exit(code=0)
+
+            selected_services = filtered_services
+
+        table = _render_table(
+            generator=generator,
+            selected_services=selected_services,
+            filter_service=service,
+            filter_condition=normalized_condition if condition else None,
+        )
         console.print(table)
     except Exception:
         logger.exception("Ошибка при построении списка")
+        raise typer.Exit(code=1)
+
+
+@app.command("conditions")
+def cmd_conditions(  # noqa: C901
+    schliffs_dir: str = typer.Option(
+        "schliffs",
+        "--schliffs",
+        "-s",
+        help="Путь к директории со шлифами",
+    ),
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = typer.Option(
+        "WARNING",
+        "--log-level",
+        "-l",
+        help="Уровень логирования",
+    ),
+):
+    """Показать статистику по условиям снега (snow conditions)."""
+    setup_logging(level=getattr(logging, log_level))
+    logger = logging.getLogger("steinschliff")
+
+    project_dir = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    schliffs_abs = os.path.join(project_dir, schliffs_dir)
+
+    config = {
+        "schliffs_dir": schliffs_abs,
+        "readme_file": "README_en.md",
+        "readme_ru_file": "README.md",
+        "sort_field": "name",
+        "translations_dir": os.path.join(project_dir, "translations"),
+    }
+
+    try:
+        from collections import Counter
+
+        import yaml
+
+        generator = ReadmeGenerator(config)
+        generator.load_structures()
+
+        # Подсчитываем статистику
+        condition_counts: Counter[str] = Counter()
+        total_structures = 0
+
+        for service_structures in generator.services.values():
+            for structure in service_structures:
+                total_structures += 1
+                if structure.condition:
+                    condition_counts[structure.condition.strip().lower()] += 1
+
+        # Загружаем информацию о условиях из snow_conditions
+        conditions_info = {}
+        snow_conditions_dir = project_dir / "snow_conditions"
+
+        if snow_conditions_dir.exists():
+            for condition_file in snow_conditions_dir.glob("*.yaml"):
+                try:
+                    with condition_file.open("r", encoding="utf-8") as f:
+                        data = yaml.safe_load(f) or {}
+                        if isinstance(data, dict):
+                            key = data.get("key", condition_file.stem)
+                            conditions_info[key] = {
+                                "name_ru": data.get("name_ru", key),
+                                "color": data.get("color", ""),
+                                "temperature": data.get("temperature"),
+                            }
+                except Exception:  # noqa: BLE001
+                    pass
+
+        # Маппинг цветов на эмодзи
+        color_emoji = {
+            "green": "🟢",
+            "blue": "🔵",
+            "violet": "🟣",
+            "orange": "🟠",
+            "red": "🔴",
+            "pink": "💗",
+            "yellow": "💛",
+            "brown": "🟤",
+        }
+
+        # Создаем таблицу
+        table = Table(
+            title="📊 Статистика по условиям снега",
+            show_header=True,
+            header_style="bold cyan",
+            border_style="blue",
+        )
+
+        table.add_column("Условие", style="bold", justify="left")
+        table.add_column("Emoji", justify="center")
+        table.add_column("Название", justify="left")
+        table.add_column("Температура", style="yellow")
+        table.add_column("Количество", justify="right", style="bold green")
+        table.add_column("%", justify="right")
+
+        # Сортируем условия по количеству (убывание)
+        sorted_conditions = sorted(condition_counts.items(), key=lambda x: x[1], reverse=True)
+
+        for condition_key, count in sorted_conditions:
+            info = conditions_info.get(condition_key, {})
+            emoji = color_emoji.get(condition_key, "⚪")
+            name_ru = info.get("name_ru", condition_key.capitalize())
+
+            # Форматируем температуру
+            temp = info.get("temperature")
+            if temp and isinstance(temp, list) and len(temp) > 0:
+                temp_str = format_temperature_range(temp)
+            else:
+                temp_str = "любая"
+
+            percentage = (count / total_structures * 100) if total_structures > 0 else 0
+
+            table.add_row(
+                condition_key.upper(),
+                emoji,
+                name_ru,
+                temp_str,
+                str(count),
+                f"{percentage:.1f}%",
+            )
+
+        # Добавляем итоговую строку
+        table.add_section()
+        table.add_row(
+            "[bold]ВСЕГО[/bold]",
+            "",
+            "",
+            "",
+            f"[bold]{total_structures}[/bold]",
+            "[bold]100.0%[/bold]",
+        )
+
+        console.print()
+        console.print(table)
+        console.print()
+
+        # Дополнительная информация
+        if total_structures > 0:
+            empty_conditions = total_structures - sum(condition_counts.values())
+            if empty_conditions > 0:
+                console.print(f"[yellow]⚠️  Структур без condition: {empty_conditions}[/yellow]")
+            else:
+                console.print("[green]✅ Все структуры имеют валидные значения condition![/green]")
+
+    except Exception:
+        logger.exception("Ошибка при получении статистики")
         raise typer.Exit(code=1)
 
 

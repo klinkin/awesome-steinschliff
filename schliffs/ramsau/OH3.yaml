@@ -1,18 +1,18 @@
 ---
 name: OH3
-description: null
+description:
 description_ru: модифицированная S13-5 под Оберхоф; больше под смешанные и сухие снега, не любит сильную воду. По воде возможно, но нужна жесткая, ледянистая основа (фирн).
 website_url: https://vk.com/video-220482174_456239484
 snow_type:
   - trancformed
   - fine_grained
   - icy
-snow_temperature:
+temperature:
   - min: -7
     max: 5
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - смешанный снег
@@ -26,7 +26,7 @@ features:
   - появился шлифт относительно недавно, сильно позднее S-шлифтов
   - модификация S13-5 под Оберхоф
 updated_at: 2025-10-20
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

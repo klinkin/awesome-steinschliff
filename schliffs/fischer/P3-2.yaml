@@ -1,17 +1,17 @@
 ---
 name: P3-2
-description: null
+description:
 description_ru: на старый мокрый снег при t 0 с переходом в плюс
-website_url: null
+website_url:
 snow_type:
   - old
   - wet
-snow_temperature:
+temperature:
   - min: 0
-    max: +5
-condition: ''
+    max: 5
+condition: pink
 manufactory: Fischer
-author: ''
+author:
 country: Austria
 tags:
   - старый снег
@@ -21,9 +21,9 @@ similars:
   - P3-1
   - P5-9
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Fischer

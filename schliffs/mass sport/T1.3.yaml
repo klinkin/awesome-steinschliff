@@ -6,10 +6,10 @@ website_url: https://www.skisport.ru/news/cross-country/119865/
 snow_type:
   - transformed
   - wet
-snow_temperature:
+temperature:
   - min: 0
     max: 10
-condition: wet
+condition: pink
 manufactory: Svekom
 author: MASS SPORT / YTC Ski Service
 country: Россия
@@ -20,7 +20,7 @@ tags:
 similars: []
 features: []
 updated_at: 2025-10-18
-updated_by: https://www.skisport.ru/news/cross-country/119865/
+updated_by: https://github.com/klinkin https://www.skisport.ru/news/cross-country/119865/
 archived: false
 service:
   name: Mass Sport

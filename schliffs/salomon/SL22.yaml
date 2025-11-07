@@ -1,17 +1,17 @@
 ---
 name: SL22
-description: null
+description:
 description_ru: стандартная структура для жестких трасс, натуральный и искусственный снег, температура от 0 до -12
-website_url: null
+website_url:
 snow_type:
   - natural
   - artificial
-snow_temperature:
+temperature:
   - min: -12
     max: 0
 condition: blue
 manufactory: Salomon
-author: ''
+author:
 country: Austria
 tags:
   - натуральный
@@ -24,7 +24,7 @@ similars:
   - SV600
   - M100
 features:
-  - ''
+  -
 updated_at: 2025-10-20
 updated_by: https://github.com/klinkin
 archived: false

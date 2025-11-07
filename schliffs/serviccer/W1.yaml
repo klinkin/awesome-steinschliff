@@ -1,17 +1,17 @@
 ---
 name: W1
-description: null
+description:
 description_ru: только на классику, переход 0→+, крупное зерно, глянец
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
   - classic
   - coarse
   - glossy
-snow_temperature:
+temperature:
   - min: 0
     max: 3
-condition: yellow
-manufactory: ''
+condition: red
+manufactory:
 author: Victor Golovin
 country: Россия
 tags:

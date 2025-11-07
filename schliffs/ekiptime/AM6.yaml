@@ -1,17 +1,17 @@
 ---
 name: AM6
-description: null
+description:
 description_ru: структура на +1/-8, подходит на все типы снега, отлично работает на крупнозернистом снегу после оттепели
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - all
   - coarse
   - thawed
-snow_temperature:
+temperature:
   - min: -8
     max: 1
 condition: blue
-manufactory: ''
+manufactory:
 author: Artur
 country: Россия
 tags:

@@ -1,19 +1,18 @@
 ---
 name: SLRGL
-description: null
-description_ru: структура на переменную от холода на тепло и на жесткую трассу и искусственный
-  снег
-website_url: null
+description:
+description_ru: структура на переменную от холода на тепло и на жесткую трассу и искусственный снег
+website_url:
 snow_type:
   - natural
   - artificial
   - wet
-snow_temperature:
+temperature:
   - min: -3
     max: 5
 condition: yellow
 manufactory: Salomon
-author: ''
+author:
 country: Austria
 tags:
   - влажный
@@ -27,7 +26,7 @@ similars:
   - B3312
   - SV100
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

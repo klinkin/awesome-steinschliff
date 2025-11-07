@@ -1,17 +1,17 @@
 ---
 name: G1
-description: null
+description:
 description_ru: реплика структуры для экстремально холодного снега -5/-30
 website_url: https://ekiptime.ru/services/base_tuning.php
 snow_type:
   - cold
   - extremely_cold
   - dry
-snow_temperature:
+temperature:
   - min: -30
     max: -5
-condition: blue
-manufactory: ''
+condition: green
+manufactory:
 author: Artur
 country: Россия
 tags:
@@ -19,7 +19,9 @@ tags:
   - экстремально холодный
   - сухой
   - реплика
-similars: []
+similars:
+  - G1
+  - B227
 features: []
 updated_at: 2024-05-08
 updated_by: https://github.com/klinkin

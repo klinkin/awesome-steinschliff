@@ -1,22 +1,22 @@
 ---
 name: RU12
-description: null
+description:
 description_ru: универсальная структура при 0…-10 °C
-website_url: null
+website_url:
 snow_type:
   - all
-snow_temperature:
+temperature:
   - min: -10
     max: 0
-condition: ''
+condition: blue
 manufactory: Rossignol
-author: ''
+author:
 country: France
 tags:
   - универсальный
 similars: []
 features:
-  - ''
+  -
 updated_at: 2025-10-01
 updated_by: https://github.com/klinkin
 archived: false

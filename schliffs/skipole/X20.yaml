@@ -1,6 +1,6 @@
 ---
 name: X20
-description: null
+description:
 description_ru: структура для свежего и старого снега при температуре от -5 до 15
 images:
   - schliffs/skipole/X20/X20.jpg
@@ -9,22 +9,20 @@ snow_type:
   - all
   - fresh
   - old
-snow_temperature:
+temperature:
   - min: -5
     max: 15
 condition: blue
-manufactory: ''
+manufactory:
 author: Fedor Nikolaev
 country: Россия
 tags:
   - свежий снег
 similars:
-  - null
-  - null
+  -
+  -
 features:
-  - При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой
-    влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг
-    на +5–7°C.
+  - При потеплении едет хуже, чем на свежем или падающем снегу. В регионах с низкой влажностью — почти не применяется в начале сезона. Во второй половине — сдвиг на +5–7°C.
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

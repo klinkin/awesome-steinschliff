@@ -1,18 +1,17 @@
 ---
 name: M61F2
-description: null
-description_ru: новая мелкая структура для холодного и сухого снега при температуре
-  от -6 и холоднее
+description:
+description_ru: новая мелкая структура для холодного и сухого снега при температуре от -6 и холоднее
 website_url: https://www.skisport.ru/forum/commercial-offers-of-partners/104563/
 snow_type:
   - dry
   - frozen
-snow_temperature:
+temperature:
   - min: -25
     max: -6
 condition: green
 manufactory: Madshus
-author: ''
+author:
 country: Norway
 tags:
   - сухой снег
@@ -22,7 +21,7 @@ similars:
   - G1
   - B227
 features:
-  - ''
+  -
 updated_at: 2024-04-01
 updated_by: https://github.com/klinkin
 archived: false

@@ -1,0 +1,27 @@
+---
+key: pink
+name: Pink
+name_ru: Мокрый
+color: pink
+temperature:
+  - min: 0
+    max: 20
+texture:
+  - fresh
+snow_age:
+  - new
+humidity:
+  - saturated
+description: Saturated, new snow. Typical air temps 0 to +20 °C.
+description_ru: Насыщенный влагой, новый снег. Типично при 0…+20 °C.
+friction: New snow that is saturated with water. This is fresh snow but with high water content. The combination of fresh crystals and high humidity creates both kinetic friction (from the crystals) and static friction (from the water). You need waxes that can handle wet conditions but also protect against the fresh snow crystals. Water-repellent compounds are essential.
+friction_ru: Новый снег, насыщенный водой. Это свежий снег, но с высоким содержанием воды. Комбинация свежих кристаллов и высокой влажности создает как кинетическое трение (от кристаллов), так и статическое трение (от воды). Вам нужны парафины, которые могут работать в мокрых условиях, но также защищают от свежих кристаллов снега. Водоотталкивающие соединения необходимы.
+synonyms:
+  - saturated
+  - new
+  - wet_new
+synonyms_ru:
+  - насыщенный
+  - новый
+  - мокрый новый
+source_url: https://skiwax.ca/collections/pink

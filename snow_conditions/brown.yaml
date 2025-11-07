@@ -1,0 +1,21 @@
+---
+key: brown
+name: Brown
+name_ru: Грязный
+color: brown
+temperature:
+texture:
+  - dirty
+snow_age: []
+humidity: []
+description: Dirty snow, any temperature.
+description_ru: Грязный снег, любая температура.
+friction: Dirty snow can occur at any temperature. The dirt particles create significant friction by scratching your base and creating more contact points. Dirt particles are much harder than snow crystals and can damage your base. You need durable waxes and frequent rewaxing. The friction characteristics depend on the underlying snow type (wet or dry) combined with the abrasive effect of dirt.
+friction_ru: Грязный снег может встречаться при любой температуре. Частицы грязи создают значительное трение, царапая базу и создавая больше точек контакта. Частицы грязи намного тверже кристаллов снега и могут повредить базу. Вам нужны долговечные парафины и частая перепарафинка. Характеристики трения зависят от основного типа снега (мокрый или сухой) в сочетании с абразивным эффектом грязи.
+synonyms:
+  - dirty
+  - contaminated
+synonyms_ru:
+  - грязный
+  - загрязнённый
+source_url: https://skiwax.ca/collections/brown

@@ -1,16 +1,16 @@
 ---
 name: S12-7
-description: null
+description:
 description_ru: искусственный снег, температура от -2 до -12
-website_url: null
+website_url:
 snow_type:
   - artificial
-snow_temperature:
+temperature:
   - min: -12
     max: -2
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - искусственный снег
@@ -19,9 +19,9 @@ similars:
   - C8-1
   - S11-3
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau

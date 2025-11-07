@@ -1,18 +1,18 @@
 ---
 name: S12-1
-description: null
+description:
 description_ru: свежий натуральный и искусственный снег, температура от -15 до 0
-website_url: null
+website_url:
 snow_type:
   - fresh
   - natural
   - artificial
-snow_temperature:
+temperature:
   - min: -15
     max: 0
-condition: ''
+condition: violet
 manufactory: Fischer
-author: ''
+author:
 country: Germany
 tags:
   - свежий снег
@@ -22,9 +22,9 @@ similars:
   - S12-2
   - S12-7
 features:
-  - ''
+  -
 updated_at: 2024-04-01
-updated_by: ''
+updated_by: https://github.com/klinkin
 archived: false
 service:
   name: Ramsau
