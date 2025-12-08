@@ -65,6 +65,7 @@ help:
 	@echo "${BLUE}Генерация документации:${DEF}"
 	@echo "${GREEN}make build [SORT=field]${DEF} - ${YELLOW}Сборка проекта (генерация README)${DEF}"
 	@echo "${GREEN}make export-json${DEF}        - ${YELLOW}Экспорт JSON для веб-приложения${DEF}"
+	@echo "${GREEN}make export-csv${DEF}         - ${YELLOW}Экспорт списка структур в CSV${DEF}"
 	@echo ""
 	@echo "${BLUE}Веб-сайт (Astro):${DEF}"
 	@echo "${GREEN}make webapp-install${DEF}    - ${YELLOW}Установка npm-зависимостей${DEF}"
@@ -166,6 +167,12 @@ export-json:
 	@echo "${YELLOW}Экспорт JSON данных...${DEF}"
 	$(POETRY) run python scripts/cli.py export-json
 	@echo "${GREEN}JSON экспортирован.${DEF}"
+
+.PHONY: export-csv
+export-csv:
+	@echo "${YELLOW}Экспорт CSV данных...${DEF}"
+	$(POETRY) run python scripts/cli.py export-csv --output structures.csv
+	@echo "${GREEN}CSV экспортирован в structures.csv${DEF}"
 
 # --------------------------------------------------------------------------------
 # Веб-сайт (Astro)

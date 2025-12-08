@@ -1,0 +1,171 @@
+Сервис,Имя,Тип снега,Условия,Температура,Похожие
+Madshus,M62,,Тепло,+10 °C … –2 °C,
+Madshus,M63,wet,Тепло,+10 °C … 0 °C,
+Madshus,M61B,"all, universal, wet",Мокрый,+3 °C … –3 °C,SV100
+Madshus,M61,"fresh, universal, transformed",Умеренный холод,–1 °C … –6 °C,
+Madshus,M61F,"dry, frozen, new, transformed",Холод,–3 °C … –20 °C,"G1, B227"
+Madshus,M61F2,"dry, frozen",Холод,–6 °C … –25 °C,"G1, B227"
+Rossignol,A15,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,A34,"all, wet",Мокрый,+3 °C … –5 °C,
+Rossignol,RW692,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,RW1,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,A11,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,A30,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,RW691,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,A36,wet,Мокрый,+3 °C … –5 °C,
+Rossignol,RUW1,"wet, all",Умеренный холод,+2 °C … –7 °C,
+Rossignol,RU12,all,Умеренный холод,0 °C … –10 °C,
+Rossignol,RU15,all,Умеренный холод,0 °C … –10 °C,
+Rossignol,RU18,all,Умеренный холод,0 °C … –15 °C,
+Rossignol,A6,all,Умеренный холод,0 °C … –10 °C,
+Rossignol,A6blue,all,Умеренный холод,0 °C … –10 °C,
+Rossignol,FF3,"natural, fresh",Умеренный холод,–5 °C … –10 °C,
+Rossignol,RC5,all,Холод,–5 °C … –25 °C,
+Rossignol,A6green,all,Холод,–5 °C … –25 °C,
+Rossignol,A1,all,Холод,–5 °C … –25 °C,
+Rossignol,FF3b,"frozen, dry",Холод,–10 °C … –20 °C,
+Fischer 2026,F-359,"wet, fine_grained",Тепло,+5 °C … 0 °C,TZ1-2
+Fischer 2026,F-372,"coarse, wet",Переходка,+5 °C … 0 °C,P11-2
+Fischer 2026,F-390,"wet, classic",Тепло,+5 °C … 0 °C,P9-2
+Fischer 2026,F-311,"coarse, frozen, trancformed",Переходка,+5 °C … –5 °C,P11-1
+Fischer 2026,F-275,all,Умеренный холод,+5 °C … –10 °C,P5-1
+Fischer 2026,F-395,"wet, rain",Тепло,+5 °C … 0 °C,P14-1
+Fischer 2026,F-205,fresh,Тепло,+3 °C … –5 °C,P1-1
+Fischer 2026,F-230,all,Умеренный холод,+2 °C … –7 °C,P5-0
+Fischer 2026,F-256,"artificial, fine_grained",Тепло,+2 °C … –5 °C,P22-6
+Fischer 2026,F-211,fine_grained,Умеренный холод,+1 °C … –8 °C,P2-1
+Fischer 2026,F-226,"trancformed, wet, fresh",Умеренный холод,0 °C … –7 °C,"S12-6, P10-3"
+Fischer 2026,F-201,fine_grained,Умеренный холод,0 °C … –10 °C,P10-1
+Fischer 2026,F-198,all,Умеренный холод,0 °C … –10 °C,TZ1-1
+Fischer 2026,F-138,all,Умеренный холод,–5 °C … –15 °C,C8-1
+Fischer 2026,F-110,"fresh, fine_grained",Умеренный холод,–5 °C … –13 °C,C3-1
+Fischer 2026,F-171,artificial,Умеренный холод,–7 °C … –30 °C,C12-1
+Fischer 2026,F-115,all,Умеренный холод,–10 °C … –30 °C,C1-1
+Skipole,X20,"all, fresh, old",Умеренный холод,+15 °C … –5 °C,
+Skipole,W30,"wet, rain",Тепло,+10 °C … 0 °C,
+Skipole,W28,all,Тепло,+3 °C … –3 °C,"SV100, F1"
+Skipole,X25,all,Тепло,0 °C … –8 °C,"S12-6, B2211, SV100"
+Skipole,X0,"frozen, dry, natural",Холод,–12 °C … –25 °C,
+Ramsau,S13-6,wet,Тепло,+10 °C … 0 °C,"F1, M63"
+Ramsau,T1,"old, wet, dirty",Грязный,+5 °C … 0 °C,"S13-5, B3312"
+Ramsau,OH3,"trancformed, fine_grained, icy",Старый,+5 °C … –7 °C,"S13-5, B3312"
+Ramsau,S13-5,"fresh, falling, wet",Мокрый,+5 °C … 0 °C,"F1, M63"
+Ramsau,S13-4,"wet, natural, artificial",Тепло,+5 °C … –5 °C,"P5-1, S13-5"
+Ramsau,S13-5-08,"wet, fine_grained, fresh",Тепло,+3 °C … –3 °C,"S13-5, C12-7"
+Ramsau,S12-6,"fresh, falling, wet",Умеренный холод,0 °C … –15 °C,
+Ramsau,S12-1,"fresh, natural, artificial",Старый,0 °C … –15 °C,"S12-2, S12-7"
+Ramsau,S12-12,old,Старый,0 °C … –5 °C,P3-2
+Ramsau,PL2,"all, fresh, transformed",Умеренный холод,0 °C … –10 °C,"S12-16, B2211"
+Ramsau,S12-2-07,fresh,Умеренный холод,0 °C … –10 °C,"S12-2, S12-3"
+Ramsau,S12-2,"fresh, wet",Мокрый,0 °C … –5 °C,"S12-6, P10-3"
+Ramsau,S12-16,fresh,Умеренный холод,0 °C … –10 °C,B2211
+Ramsau,S12-14,"frozen, fresh",Умеренный холод,–2 °C … –10 °C,"S12-4, S12-16"
+Ramsau,S12-7,artificial,Старый,–2 °C … –12 °C,"C8-1, S11-3"
+Ramsau,S12-3,fresh,Умеренный холод,–2 °C … –6 °C,"S12-2, S12-4"
+Ramsau,S12-4,"fresh, dry",Умеренный холод,–2 °C … –15 °C,SM15-5
+Ramsau,V1,"all, fresh, frozen, natural",Холод,–5 °C … –20 °C,B227
+Ramsau,PL1,"all, frozen",Старый,–5 °C … –20 °C,"S12-4, S11-3, B227"
+Ramsau,T4,"frozen, dry",Холод,–5 °C … –20 °C,B227
+Ramsau,R2,"all, frozen",Старый,–5 °C … –15 °C,
+Ramsau,S11-2,"dry, natural, cold",Холод,–10 °C … –20 °C,"B227, C100"
+Ramsau,S11-3,"frozen, natural, artificial",Старый,–10 °C … –20 °C,B227
+Ramsau,S11-1,dry,Холод,–10 °C … –20 °C,"S11-2, S11-3"
+Beme,B3312,"wet, transformed",Тепло,+5 °C … –5 °C,"S13-5, S13-4"
+Beme,B2211,"all, fresh",Умеренный холод,–1 °C … –12 °C,"P5-1, S12-16"
+Beme,B227,cold,Холод,–5 °C … –20 °C,"PL1, S11-3"
+Serviccer,SR12-3,"trancformed, wet, water",Тепло,+10 °C … +3 °C,
+Serviccer,SV150,spring,Тепло,+5 °C … +3 °C,
+Serviccer,W1,"classic, coarse, glossy",Переходка,+3 °C … 0 °C,
+Serviccer,SV100,"fresh, old, glossy",Тепло,+3 °C … –3 °C,
+Serviccer,SR15,trancformed,Тепло,+3 °C … –3 °C,
+Serviccer,G2-2,"all, glossy",Умеренный холод,+2 °C … –5 °C,
+Serviccer,R10-3,"fresh, glossy",Умеренный холод,0 °C … –5 °C,
+Serviccer,G3.1,fresh,Умеренный холод,0 °C … –5 °C,
+Serviccer,SV600,all,Умеренный холод,–2 °C … –10 °C,
+Serviccer,V7-3,"trancformed, fine_grained",Старый,–2 °C … –15 °C,
+Serviccer,77,all,Умеренный холод,–5 °C … –18 °C,
+Serviccer,SR21,all,Умеренный холод,–5 °C … –15 °C,
+Serviccer,R11-2,"all, fresh",Умеренный холод,–8 °C … –18 °C,
+Serviccer,SV700,"all, frozen",Холод,–8 °C … –25 °C,
+Serviccer,R10,all,Холод,–10 °C … –20 °C,
+Serviccer,SR23,fresh,Умеренный холод,–10 °C … –20 °C,
+Fischer,P3-3,"watery, wet",Мокрый,+15 °C … +3 °C,
+Fischer,P5-9,"old, wet",Мокрый,+10 °C … 0 °C,"P3-2, P9-2"
+Fischer,P9-2,wet,Мокрый,+10 °C … 0 °C,"P3-1, S13-5"
+Fischer,P3-2,"old, wet",Мокрый,+5 °C … 0 °C,"P3-1, P5-9"
+Fischer,P5-1,all,Умеренный холод,+5 °C … –10 °C,
+Fischer,P22-6,all,Умеренный холод,+5 °C … –5 °C,"P5-1, P11-2"
+Fischer,P3-1,"fresh, wet",Мокрый,+5 °C … 0 °C,"P3-2, S13-5"
+Fischer,P1-1,fresh,Глянец,+3 °C … –5 °C,"P10-3, S12-2"
+Fischer,P11-2,all,Умеренный холод,+2 °C … –8 °C,"P11-1, P5-1, P22-6"
+Fischer,P10-3,"fresh, falling",Умеренный холод,0 °C … –5 °C,"S12-6, P1-1"
+Fischer,TZ1-1,fresh,Умеренный холод,0 °C … –10 °C,"P10-3, S12-2"
+Fischer,P11-1,all,Умеренный холод,0 °C … –10 °C,"P11-2, P5-1"
+Fischer,C8-1,artificial,Старый,0 °C … –10 °C,
+Fischer,P5-0,"dry, old, fine",Умеренный холод,0 °C … –5 °C,S12-6
+Fischer,P10-1,dry,Умеренный холод,0 °C … –10 °C,"S11-1, P5-0"
+Fischer,C12-7,fine_grained,Умеренный холод,0 °C … –10 °C,S13-5-08
+Fischer,C12-1,all,Умеренный холод,–5 °C … –15 °C,C1-1
+Fischer,C1-1,"all, fresh",Умеренный холод,–15 °C … –5 °C,C12-1
+Fischer,C3-1,artificial,Старый,–25 °C … –5 °C,"C8-1, S12-7"
+Uventa,X3LS,"wet, old, transformed, dirty",Грязный,+10 °C … –2 °C,Z1
+Uventa,N33,all,Умеренный холод,+5 °C … –5 °C,"X1W, 729"
+Uventa,729,"fresh, old, universal",Старый,+2 °C … –12 °C,N33
+Uventa,X1W,all,Умеренный холод,+2 °C … –2 °C,N33
+Uventa,Z1,"transformed, hard, glazed",Старый,0 °C … –5 °C,X3LS
+Uventa,SL7,"fresh, slightly_transformed",Умеренный холод,–3 °C … –10 °C,729
+Uventa,330,"frozen, cold, transformed",Холод,–5 °C … –20 °C,C110X
+Uventa,C110X,"fresh, transformed",Старый,–10 °C … –20 °C,330
+Atomic,AW7,"fine_grained, wet",Переходка,+5 °C … –5 °C,
+Atomic,AW1,wet,Мокрый,0 °C … –4 °C,
+Atomic,AM2,"fresh, wet",Мокрый,–1 °C … –5 °C,
+Atomic,AM6,"fine_grained, trancformed",Умеренный холод,–1 °C … –8 °C,
+Atomic,AM1,"artificial, fresh",Старый,–3 °C … –10 °C,
+Atomic,AM7,frozen,Старый,–4 °C … –15 °C,
+Atomic,AC4,all,Умеренный холод,–5 °C … –15 °C,
+Atomic,AC5,all,Холод,–8 °C … –30 °C,
+Atomic,AC3,all,Умеренный холод,–8 °C … –17 °C,
+Ekiptime,SIGMA,"wet, old, dirty, transformed",Грязный,+15 °C … 0 °C,
+Ekiptime,UGOL13,"watery, water",Умеренный холод,+15 °C … +2 °C,
+Ekiptime,AW22,"extreme_humidity, wet",Умеренный холод,+15 °C … 0 °C,AW2
+Ekiptime,AW8,"spring, wet",Умеренный холод,+10 °C … –5 °C,
+Ekiptime,UGOL1,"warm, wet",Умеренный холод,+5 °C … 0 °C,UGOL13
+Ekiptime,AW7,"coarse, wet, falling, spring",Переходка,+5 °C … –5 °C,
+Ekiptime,AW2,"wet, watery, high_humidity",Умеренный холод,+2 °C … –2 °C,
+Ekiptime,AM6,"all, coarse, thawed",Умеренный холод,+1 °C … –8 °C,
+Ekiptime,AW4,"coarse, spring",Переходка,0 °C … –2 °C,
+Ekiptime,SV77,"cold, dry, old, fresh",Умеренный холод,0 °C … –20 °C,
+Ekiptime,AW1,"wet, damp",Умеренный холод,0 °C … –4 °C,
+Ekiptime,AM7-2,"fresh, high_humidity",Умеренный холод,0 °C … –6 °C,AM7
+Ekiptime,AM2,"fresh, wet, frozen",Умеренный холод,–1 °C … –8 °C,
+Ekiptime,AM3,"all, natural, artificial",Умеренный холод,–2 °C … –10 °C,
+Ekiptime,AM7,"all, fresh, cold",Умеренный холод,–4 °C … –12 °C,
+Ekiptime,AM26,"natural, high_humidity",Умеренный холод,–5 °C … –12 °C,
+Ekiptime,AC4,"all, cold",Умеренный холод,–5 °C … –20 °C,
+Ekiptime,G1,"cold, extremely_cold, dry",Холод,–5 °C … –30 °C,"G1, B227"
+Ekiptime,AC5,"all, cold",Умеренный холод,–8 °C … –25 °C,
+Ekiptime,AC3,"cold, old, scandinavian",Умеренный холод,–8 °C … –17 °C,
+Svecky,16-4,"all, wet",Мокрый,+10 °C … –1 °C,
+Svecky,TP50,"wet, rain",Мокрый,+10 °C … 0 °C,
+Svecky,LiB,"fresh, new",Мокрый,+5 °C … –4 °C,
+Svecky,P51-33,"all, transformed, old",Старый,+2 °C … –9 °C,
+Svecky,VT322,"fine, fresh",Умеренный холод,0 °C … –16 °C,
+Svecky,VT3-2,"fresh, new",Холод,–3 °C … –12 °C,
+Svecky,VT1.3,"used, transformed",Старый,–4 °C … –16 °C,
+Svecky,PRG,"transformed, groomed",Старый,–5 °C … –13 °C,
+Salomon,SL32,"wet, transformed, dirty",Грязный,+15 °C … 0 °C,"S13-5, S13-4"
+Salomon,SLRGL,"natural, artificial, wet",Тепло,+5 °C … –3 °C,"S13-5, S13-4, B3312, SV100"
+Salomon,SL21,"natural, artificial",Умеренный холод,+1 °C … –7 °C,"S12-16, S12-6, B2211, SV600, M100"
+Salomon,SL22,"natural, artificial",Умеренный холод,0 °C … –12 °C,"S12-16, S12-6, B2211, SV600, M100"
+Salomon,G1,"natural, cold, dry",Холод,–5 °C … –20 °C,C12-4
+Salomon,SL1,"natural, artificial, dry, frozen",Холод,–10 °C … –30 °C,"C11-3, B227, SV700, C100"
+Marsport,F1,"wet, old, dirty",Грязный,+5 °C … –5 °C,S13-5
+Marsport,M100,fresh,Умеренный холод,0 °C … –10 °C,"P5-1, S12-16, B2211, SV77, X25"
+Marsport,SM15-5,"fresh, transformed",Холод,–5 °C … –15 °C,"S12-4, B227"
+Marsport,C100,"frozen, fresh",Холод,–10 °C … –25 °C,"S11-3, B227, G1, X20"
+Mass Sport,T1.3,"transformed, wet",Мокрый,+10 °C … 0 °C,
+Mass Sport,Fit-4,"natural, artificial, transformed",Тепло,+8 °C … 0 °C,
+Mass Sport,T20-10,"fresh, natural, artificial",Старый,+3 °C … –3 °C,
+Mass Sport,T1.3fa,transformed,Старый,+3 °C … –3 °C,
+Mass Sport,Fit-10,"natural, artificial, all",Умеренный холод,–3 °C … –15 °C,
+Mass Sport,-15T1,"fresh, old, refrozen, natural, artificial",Старый,–10 °C … –25 °C,
