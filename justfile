@@ -21,6 +21,11 @@ set shell := ["bash", "-c"]
 default:
   @just --list
 
+[group("meta")]
+[doc("Справка (алиас): показать команды с описаниями (как make help).")]
+help:
+  @just --list --verbose
+
 # --- Quality -------------------------------------------------
 
 [group("quality")]
