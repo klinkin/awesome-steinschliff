@@ -159,19 +159,19 @@ i18n-list:
 .PHONY: build
 build:
 	@echo "${YELLOW}Сборка проекта...${DEF}"
-	$(PYTHON) scripts/cli.py generate --sort $(or $(SORT),$(DEFAULT_SORT))
+	$(UV) run steinschliff generate --sort $(or $(SORT),$(DEFAULT_SORT))
 	@echo "${GREEN}Проект собран.${DEF}"
 
 .PHONY: export-json
 export-json:
 	@echo "${YELLOW}Экспорт JSON данных...${DEF}"
-	$(PYTHON) scripts/cli.py export-json
+	$(UV) run steinschliff export-json
 	@echo "${GREEN}JSON экспортирован.${DEF}"
 
 .PHONY: export-csv
 export-csv:
 	@echo "${YELLOW}Экспорт CSV данных...${DEF}"
-	$(PYTHON) scripts/cli.py export-csv --output structures.csv
+	$(UV) run steinschliff export-csv --output structures.csv
 	@echo "${GREEN}CSV экспортирован в structures.csv${DEF}"
 
 # --------------------------------------------------------------------------------
