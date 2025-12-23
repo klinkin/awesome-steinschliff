@@ -5,18 +5,18 @@ import os
 from typing import Literal
 
 import typer
-import yaml
 from rich.table import Table
 
 from scripts.cli.common import PROJECT_ROOT, console
 from steinschliff.formatters import format_temperature_range
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
+from steinschliff.snow_conditions import get_condition_info, get_valid_keys
 
 
-def register(app: typer.Typer) -> None:  # noqa: C901
+def register(app: typer.Typer) -> None:
     @app.command("conditions")
-    def cmd_conditions(  # noqa: C901
+    def cmd_conditions(
         schliffs_dir: str = typer.Option(
             "schliffs",
             "--schliffs",
@@ -60,22 +60,13 @@ def register(app: typer.Typer) -> None:  # noqa: C901
                         condition_counts[key] = condition_counts.get(key, 0) + 1
 
             conditions_info: dict[str, dict[str, object]] = {}
-            snow_conditions_dir = project_dir / "snow_conditions"
-
-            if snow_conditions_dir.exists():
-                for condition_file in snow_conditions_dir.glob("*.yaml"):
-                    try:
-                        with condition_file.open("r", encoding="utf-8") as f:
-                            data = yaml.safe_load(f) or {}
-                            if isinstance(data, dict):
-                                key = data.get("key", condition_file.stem)
-                                conditions_info[str(key)] = {
-                                    "name_ru": data.get("name_ru", key),
-                                    "color": data.get("color", ""),
-                                    "temperature": data.get("temperature"),
-                                }
-                    except Exception:  # noqa: BLE001
-                        pass
+            for key in get_valid_keys():
+                info = get_condition_info(key) or {}
+                conditions_info[key] = {
+                    "name_ru": info.get("name_ru", key),
+                    "color": info.get("color", ""),
+                    "temperature": info.get("temperature"),
+                }
 
             # Маппинг цветов на emoji (как было в исходном CLI)
             color_emoji = {

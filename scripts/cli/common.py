@@ -17,7 +17,6 @@ from pathlib import Path
 from typing import Literal
 
 import typer
-import yaml
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -27,6 +26,7 @@ from steinschliff.formatters import format_list_for_display, format_temperature_
 from steinschliff.generator import ReadmeGenerator, export_json
 from steinschliff.logging import setup_logging
 from steinschliff.models import StructureInfo
+from steinschliff.snow_conditions import get_condition_info, get_name_ru, get_valid_keys, normalize_condition_input
 from steinschliff.ui.rich import print_kv_panel
 
 console = Console()
@@ -149,26 +149,6 @@ def run_generate(
         raise typer.Exit(code=1) from err
 
 
-def load_condition_name_ru(condition_key: str) -> str | None:
-    """Загружает локализованное `name_ru` для snow condition."""
-    if not condition_key:
-        return None
-
-    try:
-        project_root = Path(__file__).resolve().parents[2]
-        condition_file = project_root / "snow_conditions" / f"{condition_key.lower()}.yaml"
-
-        if condition_file.exists():
-            with condition_file.open("r", encoding="utf-8") as f:
-                data = yaml.safe_load(f) or {}
-                if isinstance(data, dict) and "name_ru" in data:
-                    return data["name_ru"]
-    except (OSError, yaml.YAMLError):
-        pass
-
-    return None
-
-
 def format_condition(condition: str | None) -> str:
     """Форматирует condition для отображения (RU-название при наличии)."""
     if not condition:
@@ -178,7 +158,7 @@ def format_condition(condition: str | None) -> str:
     if not condition:
         return ""
 
-    name_ru = load_condition_name_ru(condition)
+    name_ru = get_name_ru(condition)
     if name_ru:
         return name_ru
 
@@ -266,33 +246,8 @@ def render_table(
 
 
 def normalize_condition_filter(condition_input: str) -> str:
-    """Нормализует condition для фильтрации (ключи и RU-названия)."""
-    if not condition_input:
-        return ""
-
-    condition_input = condition_input.strip().lower()
-
-    localized_to_key = {
-        "красный": "red",
-        "синий": "blue",
-        "фиолетовый": "violet",
-        "оранжевый": "orange",
-        "зелёный": "green",
-        "зеленый": "green",
-        "жёлтый": "yellow",
-        "желтый": "yellow",
-        "розовый": "pink",
-        "коричневый": "brown",
-    }
-
-    if condition_input in localized_to_key:
-        return localized_to_key[condition_input]
-
-    valid_keys = ["red", "blue", "violet", "orange", "green", "yellow", "pink", "brown"]
-    if condition_input in valid_keys:
-        return condition_input
-
-    return condition_input
+    """Нормализует condition для фильтрации (ключи/цвета/синонимы из snow_conditions)."""
+    return normalize_condition_input(condition_input)
 
 
 def export_csv_content(
@@ -350,7 +305,6 @@ def compute_conditions_stats(
 ) -> tuple[int, Counter[str], dict[str, dict[str, object]]]:
     """Собирает статистику по snow conditions из YAML + справочника snow_conditions."""
     setup_logging(level=getattr(logging, log_level))
-    logger = logging.getLogger("steinschliff")
     project_dir = PROJECT_ROOT
     schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
@@ -375,21 +329,13 @@ def compute_conditions_stats(
                 condition_counts[structure.condition.strip().lower()] += 1
 
     conditions_info: dict[str, dict[str, object]] = {}
-    snow_conditions_dir = project_dir / "snow_conditions"
-    if snow_conditions_dir.exists():
-        for condition_file in snow_conditions_dir.glob("*.yaml"):
-            try:
-                with condition_file.open("r", encoding="utf-8") as f:
-                    data = yaml.safe_load(f) or {}
-                    if isinstance(data, dict):
-                        key = data.get("key", condition_file.stem)
-                        conditions_info[str(key)] = {
-                            "name_ru": data.get("name_ru", key),
-                            "color": data.get("color", ""),
-                            "temperature": data.get("temperature"),
-                        }
-            except Exception:  # noqa: BLE001
-                logger.debug("Не удалось прочитать %s", condition_file)
+    for key in get_valid_keys():
+        info = get_condition_info(key) or {}
+        conditions_info[key] = {
+            "name_ru": info.get("name_ru", key),
+            "color": info.get("color", ""),
+            "temperature": info.get("temperature"),
+        }
 
     return total_structures, condition_counts, conditions_info
 

@@ -1,42 +1,10 @@
-"""
-Модели данных для Steinschliff.
-"""
+"""Модели данных для Steinschliff."""
 
-from pathlib import Path
 from typing import Any
 
-import yaml
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-# Допустимые значения для condition из SnowCondition
-DEFAULT_SNOW_CONDITIONS = ["red", "blue", "violet", "orange", "green", "yellow", "pink", "brown"]
-
-
-def get_valid_snow_condition_keys() -> list[str]:
-    """
-    Возвращает список допустимых ключей для condition из файлов snow_conditions/*.yaml.
-
-    Returns:
-        Список строк с ключами: ['red', 'blue', 'violet', 'orange', 'green', 'yellow', 'pink', 'brown']
-    """
-    project_root = Path(__file__).resolve().parents[1]
-    snow_conditions_dir = project_root / "snow_conditions"
-
-    if not snow_conditions_dir.exists():
-        # Возвращаем хардкодный список, если директория недоступна
-        return DEFAULT_SNOW_CONDITIONS
-
-    valid_keys = []
-    for yaml_file in snow_conditions_dir.glob("*.yaml"):
-        try:
-            with yaml_file.open("r", encoding="utf-8") as f:
-                data = yaml.safe_load(f) or {}
-                if isinstance(data, dict) and "key" in data:
-                    valid_keys.append(str(data["key"]))
-        except (OSError, yaml.YAMLError):
-            continue
-
-    return sorted(valid_keys) if valid_keys else DEFAULT_SNOW_CONDITIONS
+from steinschliff.snow_conditions import get_valid_keys
 
 
 class TemperatureRange(BaseModel):
@@ -104,7 +72,7 @@ class SchliffStructure(BaseModel):
         if not value:
             return ""
 
-        valid_keys = get_valid_snow_condition_keys()
+        valid_keys = get_valid_keys()
         if value not in valid_keys:
             valid_str = ", ".join(valid_keys)
             msg = f"condition must be one of valid SnowCondition keys: {valid_str}. Got: '{v}'"
