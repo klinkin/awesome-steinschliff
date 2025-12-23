@@ -31,21 +31,28 @@ help:
 [group("quality")]
 [doc("Статический анализ: mypy + ruff + black --check.")]
 lint:
-  uv run mypy steinschliff scripts tests
-  uv run ruff check steinschliff scripts tests
-  uv run black --check steinschliff scripts tests
+  uv run --frozen mypy steinschliff scripts tests
+  uv run --frozen ruff check steinschliff scripts tests
+  uv run --frozen black --check steinschliff scripts tests
+
+[group("quality")]
+[doc("Быстрый check (как в rendercv): ruff check + mypy + pre-commit run --all-files.")]
+check:
+  uv run --frozen ruff check steinschliff scripts tests
+  uv run --frozen mypy steinschliff scripts tests
+  uv run --frozen pre-commit run --all-files
 
 [group("quality")]
 [doc("Форматирование: black + ruff format + фиксация import-порядка.")]
 format:
-  uv run black steinschliff scripts tests
-  uv run ruff format steinschliff scripts tests
-  uv run ruff check --fix --select I steinschliff scripts tests
+  uv run --frozen black steinschliff scripts tests
+  uv run --frozen ruff format steinschliff scripts tests
+  uv run --frozen ruff check --fix --select I steinschliff scripts tests
 
 [group("quality")]
 [doc("Запуск тестов (pytest).")]
 test:
-  uv run pytest -v
+  uv run --frozen pytest -v
 
 [group("quality")]
 [doc("Локальный CI-пайплайн: lint + test + build temperature + webapp-build.")]
@@ -61,49 +68,49 @@ ci:
 [group("i18n")]
 [doc("Извлечь переводимые строки (pybabel extract).")]
 i18n-extract:
-  uv run python scripts/manage_translations.py extract
+  uv run --frozen python scripts/manage_translations.py extract
 
 [group("i18n")]
 [doc("Инициализировать новую локаль: just i18n-init <locale>.")]
 i18n-init locale:
-  uv run python scripts/manage_translations.py init -l {{locale}}
+  uv run --frozen python scripts/manage_translations.py init -l {{locale}}
 
 [group("i18n")]
 [doc("Обновить существующую локаль: just i18n-update <locale>.")]
 i18n-update locale:
-  uv run python scripts/manage_translations.py update -l {{locale}}
+  uv run --frozen python scripts/manage_translations.py update -l {{locale}}
 
 [group("i18n")]
 [doc("Обновить все существующие локали.")]
 i18n-update-all:
-  uv run python scripts/manage_translations.py update-all
+  uv run --frozen python scripts/manage_translations.py update-all
 
 [group("i18n")]
 [doc("Скомпилировать переводы (pybabel compile).")]
 i18n-compile:
-  uv run python scripts/manage_translations.py compile
+  uv run --frozen python scripts/manage_translations.py compile
 
 [group("i18n")]
 [doc("Показать список доступных локалей.")]
 i18n-list:
-  uv run python scripts/manage_translations.py list
+  uv run --frozen python scripts/manage_translations.py list
 
 # --- Build / export ------------------------------------------
 
 [group("build")]
 [doc("Сборка README (по умолчанию sort=temperature). Пример: just build name")]
 build sort="temperature":
-  uv run steinschliff generate --sort {{sort}}
+  uv run --frozen steinschliff generate --sort {{sort}}
 
 [group("build")]
 [doc("Экспорт JSON для webapp.")]
 export-json:
-  uv run steinschliff export-json
+  uv run --frozen steinschliff export-json
 
 [group("build")]
 [doc("Экспорт CSV в structures.csv.")]
 export-csv:
-  uv run steinschliff export-csv --output structures.csv
+  uv run --frozen steinschliff export-csv --output structures.csv
 
 # --- Webapp (Astro) ------------------------------------------
 
@@ -132,7 +139,7 @@ webapp-preview:
 [group("setup")]
 [doc("Установить Python deps (uv sync --extra dev) и webapp deps (npm ci).")]
 bootstrap:
-  uv sync --extra dev
+  uv sync --frozen --extra dev
   cd webapp && npm ci
 
 [group("clean")]
