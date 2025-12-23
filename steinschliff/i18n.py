@@ -7,13 +7,16 @@
 
 import glob
 import logging
-import os
 import subprocess
 from gettext import NullTranslations
 
 from babel.support import Translations
 
 from steinschliff.ui.rich import print_kv_panel
+
+from .paths import project_root
+from .paths import templates_dir as package_templates_dir
+from .paths import translations_dir as package_translations_dir
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +27,7 @@ def get_translation_directory() -> str:
     Returns:
         Абсолютный путь к директории с переводами.
     """
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), "translations"))
+    return str(package_translations_dir())
 
 
 def load_translations(locale: str) -> Translations | NullTranslations:
@@ -59,12 +62,12 @@ def extract_messages() -> None:
     """
     try:
         # Определяем пути
-        templates_dir = os.path.join(os.path.dirname(__file__), "templates")
-        babel_cfg = os.path.join(os.path.dirname(os.path.dirname(__file__)), "babel.cfg")
-        output_pot = os.path.join(os.path.dirname(os.path.dirname(__file__)), "messages.pot")
+        templates_dir = package_templates_dir()
+        babel_cfg = project_root() / "babel.cfg"
+        output_pot = project_root() / "messages.pot"
 
         # Находим все шаблоны .jinja2
-        templates = glob.glob(os.path.join(templates_dir, "*.jinja2"))
+        templates = glob.glob(str(templates_dir / "*.jinja2"))
         if not templates:
             logger.error("Не найдены шаблоны в директории %s", templates_dir)
             return
@@ -72,7 +75,18 @@ def extract_messages() -> None:
         logger.info("Найдено %d шаблонов в %s", len(templates), templates_dir)
 
         # Запускаем pybabel через subprocess, явно указывая пути к шаблонам
-        cmd = ["pybabel", "extract", "-F", babel_cfg, "-k", "gettext", "-k", "_", "-o", output_pot]
+        cmd = [
+            "pybabel",
+            "extract",
+            "-F",
+            str(babel_cfg),
+            "-k",
+            "gettext",
+            "-k",
+            "_",
+            "-o",
+            str(output_pot),
+        ]
         cmd.extend(templates)  # Добавляем пути ко всем шаблонам
 
         logger.info("Выполнение команды: %s", " ".join(cmd))

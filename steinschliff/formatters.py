@@ -7,10 +7,11 @@
 """
 
 import logging
-import os
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
+
+from steinschliff.paths import relpath as relpath_path
 
 logger = logging.getLogger("steinschliff.formatters")
 
@@ -117,8 +118,8 @@ def format_similars_with_links(
                 else:
                     rel_path = path_obj.relative_to(Path.cwd())
             except ValueError:
-                # Если не удалось создать относительный путь, используем os.path.relpath
-                rel_path = Path(os.path.relpath(path, output_dir))
+                # Если не удалось создать относительный путь, используем общий helper.
+                rel_path = relpath_path(path, output_dir)
             # Кодируем путь для корректной работы Markdown при пробелах
             encoded_path = url_encode_path(rel_path)
             result.append(f"[{str_item}]({encoded_path})")
@@ -227,8 +228,8 @@ def format_image_link(image_value: str | list[str], structure_name: str, output_
                 # Для относительных путей
                 relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
         except ValueError:
-            # Если не удалось создать относительный путь, возвращаемся к os.path.relpath
-            relative_path = Path(os.path.relpath(path, output_dir))
+            # Если не удалось создать относительный путь, возвращаемся к общему helper.
+            relative_path = relpath_path(path, output_dir)
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
         # Кодируем путь для корректной работы Markdown при пробелах в сегментах

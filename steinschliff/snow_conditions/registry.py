@@ -17,6 +17,8 @@ from typing import Any
 
 import yaml
 
+from steinschliff.paths import project_root, snow_conditions_dir
+
 DEFAULT_SNOW_CONDITION_KEYS = ["red", "blue", "violet", "orange", "green", "yellow", "pink", "brown"]
 
 # Поддержка ввода по русским названиям цветов (историческое поведение CLI).
@@ -35,22 +37,13 @@ _COLOR_RU_TO_KEY: dict[str, str] = {
 
 
 def _project_root() -> Path:
-    """Получить корень репозитория.
-
-    Returns:
-        Путь к корню репозитория.
-    """
-    # steinschliff/snow_conditions/registry.py -> steinschliff -> repo root
-    return Path(__file__).resolve().parents[2]
+    """Получить корень репозитория (через `steinschliff.paths`)."""
+    return project_root()
 
 
 def _snow_conditions_dir() -> Path:
-    """Получить директорию `snow_conditions/` (в корне репозитория).
-
-    Returns:
-        Путь к директории с YAML-файлами условий.
-    """
-    return _project_root() / "snow_conditions"
+    """Получить директорию `snow_conditions/` (через `steinschliff.paths`)."""
+    return snow_conditions_dir()
 
 
 def _safe_load_yaml(path: Path) -> dict[str, Any] | None:

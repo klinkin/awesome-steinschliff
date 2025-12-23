@@ -87,8 +87,6 @@ def load_structures_from_yaml_files(*, yaml_files: list[Path], schliffs_dir: Pat
     error_files = 0
     processed_structures = 0
 
-    schliffs_prefix = f"{str(schliffs_dir).rstrip('/')}/"
-
     for file_path in yaml_files:
         if file_path.name == "_meta.yaml":
             continue
@@ -113,11 +111,12 @@ def load_structures_from_yaml_files(*, yaml_files: list[Path], schliffs_dir: Pat
         name_str = str(name)
         name_to_path[name_str] = str(file_path)
 
-        service_key = str(file_path.parent)
-        if service_key.startswith(schliffs_prefix):
-            service_key = service_key[len(schliffs_prefix) :]
-        if not service_key:
-            service_key = "main"
+        try:
+            service_rel = file_path.parent.relative_to(schliffs_dir)
+            service_key = service_rel.as_posix() or "main"
+        except ValueError:
+            # Файл вне schliffs_dir — сохраняем “как есть” (историческое поведение).
+            service_key = file_path.parent.as_posix() or "main"
 
         formatted_snow_type = format_snow_types(data.get("snow_type", []))
 

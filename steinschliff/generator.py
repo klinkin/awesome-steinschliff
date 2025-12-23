@@ -5,7 +5,6 @@
 """
 
 import logging
-import os
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -25,6 +24,8 @@ from .formatters import (
 from .i18n import load_translations
 from .io import read_service_metadata
 from .models import ServiceMetadata, StructureInfo
+from .paths import relpath as relpath_path
+from .paths import templates_dir
 from .pipeline.readme import (
     build_template_data,
     discover_yaml_files,
@@ -65,7 +66,7 @@ class ReadmeGenerator:
 
         # Устанавливаем окружение Jinja2
         self.jinja_env = Environment(
-            loader=FileSystemLoader(os.path.join(os.path.dirname(__file__), "templates")),
+            loader=FileSystemLoader(str(templates_dir())),
             extensions=[i18n],
             autoescape=False,
             trim_blocks=True,
@@ -81,7 +82,7 @@ class ReadmeGenerator:
         self.jinja_env.filters["format_similars"] = format_similars_with_links
         self.jinja_env.filters["format_temperature"] = format_temperature_range
         self.jinja_env.filters["format_features"] = format_features
-        self.jinja_env.filters["relpath"] = lambda p, start: os.path.relpath(p, start)
+        self.jinja_env.filters["relpath"] = lambda p, start: str(relpath_path(p, start))
         self.jinja_env.filters["phone_link"] = lambda phone: f"[{phone!s}](tel:{phone!s})"
         self.jinja_env.filters["urlencode"] = url_encode_path
 
@@ -212,8 +213,7 @@ class ReadmeGenerator:
             description_field = locale_data["description_field"]
 
             # Получаем выходную директорию (для вычисления относительных путей)
-            output_dir_str = os.path.dirname(os.path.abspath(output_file))
-            output_dir = Path(output_dir_str) if output_dir_str else Path.cwd()
+            output_dir = Path(output_file).resolve().parent
 
             # Загружаем переводы для текущей локали
             translations = load_translations(locale)
@@ -239,7 +239,7 @@ class ReadmeGenerator:
             with open(output_file, "w", encoding="utf-8") as f:
                 f.write(rendered_content)
 
-            # logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), os.path.abspath(output_file))
+            # logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), Path(output_file).resolve())
 
     def run(self) -> None:
         """Запустить полный цикл генерации README: load → metadata → render."""

@@ -6,7 +6,6 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 
 from steinschliff.models import StructureInfo
@@ -39,6 +38,7 @@ def export_structures_json(*, services: dict[str, list[StructureInfo]], out_path
                 }
             )
 
-    Path(os.path.dirname(out_path)).mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
+    out = Path(out_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w", encoding="utf-8") as f:
         json.dump(flat, f, ensure_ascii=False, indent=2)
