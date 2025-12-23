@@ -9,7 +9,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from scripts.cli.common import PROJECT_ROOT, build_generator, console
-from steinschliff.generator import export_json
+from steinschliff.export.json import export_structures_json
 from steinschliff.logging import setup_logging
 
 
@@ -44,7 +44,7 @@ def register(app: typer.Typer) -> None:
         try:
             generator.load_structures()
             generator.load_service_metadata()
-            export_json(generator.services, out_path=out_path)
+            export_structures_json(services=generator.services, out_path=out_path)
 
             summary = Table.grid(padding=(0, 1))
             summary.add_row("[bold]JSON[/]:", f"[cyan]{out_path}[/]")

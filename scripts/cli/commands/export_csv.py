@@ -12,7 +12,8 @@ from rich.console import Console
 from rich.panel import Panel
 
 import steinschliff.utils as utils_module
-from scripts.cli.common import PROJECT_ROOT, console, export_csv_content, normalize_condition_filter
+from scripts.cli.common import PROJECT_ROOT, console, normalize_condition_filter
+from steinschliff.export.csv import export_structures_csv_string
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 
@@ -141,7 +142,10 @@ def register(app: typer.Typer) -> None:  # noqa: C901
 
                 selected_services = filtered_services
 
-            csv_content = export_csv_content(generator=generator, selected_services=selected_services)
+            csv_content = export_structures_csv_string(
+                services=selected_services,
+                sort_key=generator._get_structure_sort_key,
+            )
 
             if output:
                 output_path = Path(output)

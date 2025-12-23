@@ -5,7 +5,6 @@
 
 from __future__ import annotations
 
-import csv
 import io
 import logging
 import os
@@ -22,8 +21,9 @@ from rich.panel import Panel
 from rich.table import Table
 
 import steinschliff.utils as utils_module
+from steinschliff.export.json import export_structures_json
 from steinschliff.formatters import format_list_for_display, format_temperature_range
-from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 from steinschliff.models import StructureInfo
 from steinschliff.snow_conditions import get_condition_info, get_name_ru, get_valid_keys, normalize_condition_input
@@ -137,7 +137,7 @@ def run_generate(
     )
     try:
         generator.run()
-        export_json(generator.services, out_path="webapp/src/data/structures.json")
+        export_structures_json(services=generator.services, out_path="webapp/src/data/structures.json")
 
         summary = Table.grid(padding=(0, 1))
         summary.add_row("[bold]README EN[/]:", f"[cyan]{config['readme_file']}[/]")
@@ -248,30 +248,6 @@ def render_table(
 def normalize_condition_filter(condition_input: str) -> str:
     """Нормализует condition для фильтрации (ключи/цвета/синонимы из snow_conditions)."""
     return normalize_condition_input(condition_input)
-
-
-def export_csv_content(
-    *,
-    generator: ReadmeGenerator,
-    selected_services: dict[str, list[StructureInfo]],
-) -> str:
-    """Генерирует CSV как строку."""
-    csv_buffer = io.StringIO()
-    writer = csv.writer(csv_buffer)
-    writer.writerow(["Сервис", "Имя", "Тип снега", "Условия", "Температура", "Похожие"])
-
-    for service_key, items in selected_services.items():
-        sorted_items = sorted(items, key=generator._get_structure_sort_key)
-        service_meta = generator.service_metadata.get(service_key)
-        visible_service = (service_meta.name or service_key) if (service_meta and service_meta.name) else service_key
-
-        for s in sorted_items:
-            temp_str = format_temperature_range(s.temperature)
-            similars_str = format_list_for_display(s.similars)
-            condition_str = format_condition(s.condition)
-            writer.writerow([visible_service, str(s.name), s.snow_type or "", condition_str, temp_str, similars_str])
-
-    return csv_buffer.getvalue()
 
 
 def load_generator_for_reporting(

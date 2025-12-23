@@ -1,6 +1,7 @@
 import yaml
 
-from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.export.json import export_structures_json
+from steinschliff.generator import ReadmeGenerator
 
 
 def _write_yaml(path, data):
@@ -23,7 +24,7 @@ def test_sort_by_temperature_and_export_json(tmp_path):
         {
             "name": "Warm",
             "description": "",
-            "snow_temperature": [{"min": -5, "max": 5}],
+            "temperature": [{"min": -5, "max": 5}],
         },
     )
     _write_yaml(
@@ -31,7 +32,7 @@ def test_sort_by_temperature_and_export_json(tmp_path):
         {
             "name": "Cold",
             "description": "",
-            "snow_temperature": [{"min": -20, "max": -5}],
+            "temperature": [{"min": -20, "max": -5}],
         },
     )
     _write_yaml(
@@ -66,5 +67,5 @@ def test_sort_by_temperature_and_export_json(tmp_path):
 
     # Проверим экспорт JSON
     out_json = root / "out" / "data.json"
-    export_json({"svc": ordered}, str(out_json))
+    export_structures_json(services={"svc": ordered}, out_path=str(out_json))
     assert out_json.exists()
