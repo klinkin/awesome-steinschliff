@@ -1,0 +1,14 @@
+site_name: Awesome Steinschliff
+docs_dir: docs
+
+nav:
+  - Документация: index.md
+  - Разработка: development.md
+  - Контент: content.md
+  - CLI и команды: commands.md
+  - Вклад: contributing.md
+
+theme:
+  name: readthedocs
+
+

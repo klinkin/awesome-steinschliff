@@ -4,7 +4,7 @@ description:
 description_ru: зернистый снег и мокрый свежий снег
 website_url:
 snow_type:
-  - trancformed
+  - transformed
   - wet
   - fresh
 temperature:

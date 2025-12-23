@@ -27,14 +27,14 @@ Rossignol,FF3b,"frozen, dry",Холод,–10 °C … –20 °C,
 Fischer 2026,F-359,"wet, fine_grained",Тепло,+5 °C … 0 °C,TZ1-2
 Fischer 2026,F-372,"coarse, wet",Переходка,+5 °C … 0 °C,P11-2
 Fischer 2026,F-390,"wet, classic",Тепло,+5 °C … 0 °C,P9-2
-Fischer 2026,F-311,"coarse, frozen, trancformed",Переходка,+5 °C … –5 °C,P11-1
+Fischer 2026,F-311,"coarse, frozen, transformed",Переходка,+5 °C … –5 °C,P11-1
 Fischer 2026,F-275,all,Умеренный холод,+5 °C … –10 °C,P5-1
 Fischer 2026,F-395,"wet, rain",Тепло,+5 °C … 0 °C,P14-1
 Fischer 2026,F-205,fresh,Тепло,+3 °C … –5 °C,P1-1
 Fischer 2026,F-230,all,Умеренный холод,+2 °C … –7 °C,P5-0
 Fischer 2026,F-256,"artificial, fine_grained",Тепло,+2 °C … –5 °C,P22-6
 Fischer 2026,F-211,fine_grained,Умеренный холод,+1 °C … –8 °C,P2-1
-Fischer 2026,F-226,"trancformed, wet, fresh",Умеренный холод,0 °C … –7 °C,"S12-6, P10-3"
+Fischer 2026,F-226,"transformed, wet, fresh",Умеренный холод,0 °C … –7 °C,"S12-6, P10-3"
 Fischer 2026,F-201,fine_grained,Умеренный холод,0 °C … –10 °C,P10-1
 Fischer 2026,F-198,all,Умеренный холод,0 °C … –10 °C,TZ1-1
 Fischer 2026,F-138,all,Умеренный холод,–5 °C … –15 °C,C8-1
@@ -48,7 +48,7 @@ Skipole,X25,all,Тепло,0 °C … –8 °C,"S12-6, B2211, SV100"
 Skipole,X0,"frozen, dry, natural",Холод,–12 °C … –25 °C,
 Ramsau,S13-6,wet,Тепло,+10 °C … 0 °C,"F1, M63"
 Ramsau,T1,"old, wet, dirty",Грязный,+5 °C … 0 °C,"S13-5, B3312"
-Ramsau,OH3,"trancformed, fine_grained, icy",Старый,+5 °C … –7 °C,"S13-5, B3312"
+Ramsau,OH3,"transformed, fine_grained, icy",Старый,+5 °C … –7 °C,"S13-5, B3312"
 Ramsau,S13-5,"fresh, falling, wet",Мокрый,+5 °C … 0 °C,"F1, M63"
 Ramsau,S13-4,"wet, natural, artificial",Тепло,+5 °C … –5 °C,"P5-1, S13-5"
 Ramsau,S13-5-08,"wet, fine_grained, fresh",Тепло,+3 °C … –3 °C,"S13-5, C12-7"
@@ -73,16 +73,16 @@ Ramsau,S11-1,dry,Холод,–10 °C … –20 °C,"S11-2, S11-3"
 Beme,B3312,"wet, transformed",Тепло,+5 °C … –5 °C,"S13-5, S13-4"
 Beme,B2211,"all, fresh",Умеренный холод,–1 °C … –12 °C,"P5-1, S12-16"
 Beme,B227,cold,Холод,–5 °C … –20 °C,"PL1, S11-3"
-Serviccer,SR12-3,"trancformed, wet, water",Тепло,+10 °C … +3 °C,
+Serviccer,SR12-3,"transformed, wet, water",Тепло,+10 °C … +3 °C,
 Serviccer,SV150,spring,Тепло,+5 °C … +3 °C,
 Serviccer,W1,"classic, coarse, glossy",Переходка,+3 °C … 0 °C,
 Serviccer,SV100,"fresh, old, glossy",Тепло,+3 °C … –3 °C,
-Serviccer,SR15,trancformed,Тепло,+3 °C … –3 °C,
+Serviccer,SR15,transformed,Тепло,+3 °C … –3 °C,
 Serviccer,G2-2,"all, glossy",Умеренный холод,+2 °C … –5 °C,
 Serviccer,R10-3,"fresh, glossy",Умеренный холод,0 °C … –5 °C,
 Serviccer,G3.1,fresh,Умеренный холод,0 °C … –5 °C,
 Serviccer,SV600,all,Умеренный холод,–2 °C … –10 °C,
-Serviccer,V7-3,"trancformed, fine_grained",Старый,–2 °C … –15 °C,
+Serviccer,V7-3,"transformed, fine_grained",Старый,–2 °C … –15 °C,
 Serviccer,77,all,Умеренный холод,–5 °C … –18 °C,
 Serviccer,SR21,all,Умеренный холод,–5 °C … –15 °C,
 Serviccer,R11-2,"all, fresh",Умеренный холод,–8 °C … –18 °C,
@@ -119,7 +119,7 @@ Uventa,C110X,"fresh, transformed",Старый,–10 °C … –20 °C,330
 Atomic,AW7,"fine_grained, wet",Переходка,+5 °C … –5 °C,
 Atomic,AW1,wet,Мокрый,0 °C … –4 °C,
 Atomic,AM2,"fresh, wet",Мокрый,–1 °C … –5 °C,
-Atomic,AM6,"fine_grained, trancformed",Умеренный холод,–1 °C … –8 °C,
+Atomic,AM6,"fine_grained, transformed",Умеренный холод,–1 °C … –8 °C,
 Atomic,AM1,"artificial, fresh",Старый,–3 °C … –10 °C,
 Atomic,AM7,frozen,Старый,–4 °C … –15 °C,
 Atomic,AC4,all,Умеренный холод,–5 °C … –15 °C,

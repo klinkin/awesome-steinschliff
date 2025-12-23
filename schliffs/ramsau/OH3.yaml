@@ -4,7 +4,7 @@ description:
 description_ru: модифицированная S13-5 под Оберхоф; больше под смешанные и сухие снега, не любит сильную воду. По воде возможно, но нужна жесткая, ледянистая основа (фирн).
 website_url: https://vk.com/video-220482174_456239484
 snow_type:
-  - trancformed
+  - transformed
   - fine_grained
   - icy
 temperature:

@@ -1,57 +1,65 @@
-## Разработка: workflow через just
+# Разработка
 
-Проект исторически использовал `make`, но основной workflow теперь — **через `just`**.
-`Makefile` пока оставлен для обратной совместимости.
+Основной workflow проекта — через `just`. `Makefile` оставлен как набор алиасов для обратной совместимости.
 
-### Быстрый старт
+Содержание:
 
-- **Установка зависимостей**:
+- [Быстрый старт](#быстрый-старт)
+- [Воспроизводимые прогоны через uv](#воспроизводимые-прогоны-через-uv)
+- [Повседневные команды](#повседневные-команды)
+- [i18n](#i18n)
+- [Webapp (Astro)](#webapp-astro)
+- [Эквиваленты make → just](#эквиваленты-make--just)
+
+## Быстрый старт
+
+Требования:
+
+- Python 3.13+
+- `uv`
+- Node.js (только если работаете с `webapp/`)
+
+Установка зависимостей (Python + webapp):
 
 ```bash
 just bootstrap
 ```
 
-- **Проверки качества**:
+Быстрая проверка (ruff + mypy + pre-commit):
 
 ```bash
-just lint
-just test
+just check
 ```
 
-- **Форматирование**:
+## Воспроизводимые прогоны через uv
+
+`justfile` использует `uv run --frozen` и `uv sync --frozen`, чтобы команды выполнялись строго по `uv.lock`.
+
+Если нужен только Python-стек без webapp:
 
 ```bash
-just format
+uv sync --frozen --extra dev
 ```
 
-### Сборка и экспорт
+## Повседневные команды
 
-- **Сборка README** (сортировка по умолчанию `temperature`):
+Список команд: `just help`.
 
 ```bash
-just build
+just check                 # ruff check + mypy + pre-commit run --all-files
+just lint                  # mypy + ruff check + black --check
+just format                # форматирование + сортировка импортов
+just test                  # pytest
+just build                 # генерация README (sort=temperature)
+just build name            # генерация README с сортировкой
+just export-json           # экспорт JSON для webapp
+just export-csv            # экспорт CSV (structures.csv)
+just ci                    # lint + test + build + webapp-build
 ```
 
-- **Сборка README с явной сортировкой**:
+Про контент (структуры/YAML/snow conditions) см. [content.md](content.md).
 
-```bash
-just build name
-just build temperature
-```
-
-- **Экспорт JSON для webapp**:
-
-```bash
-just export-json
-```
-
-- **Экспорт CSV**:
-
-```bash
-just export-csv
-```
-
-### i18n
+## i18n
 
 ```bash
 just i18n-extract
@@ -62,7 +70,7 @@ just i18n-compile
 just i18n-list
 ```
 
-### Webapp (Astro)
+## Webapp (Astro)
 
 ```bash
 just webapp-install
@@ -71,7 +79,7 @@ just webapp-build
 just webapp-preview
 ```
 
-### Эквиваленты make → just
+## Эквиваленты make → just
 
 - `make lint` → `just lint`
 - `make test` → `just test`

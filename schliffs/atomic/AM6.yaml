@@ -5,7 +5,7 @@ description_ru: хорошо работает на крупнозернисто�
 website_url:
 snow_type:
   - fine_grained
-  - trancformed
+  - transformed
 temperature:
   - min: -8
     max: -1
