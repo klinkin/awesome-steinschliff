@@ -1,0 +1,152 @@
+from __future__ import annotations
+
+import logging
+import os
+from typing import Literal
+
+import typer
+import yaml
+from rich.table import Table
+
+from scripts.cli.common import PROJECT_ROOT, console
+from steinschliff.formatters import format_temperature_range
+from steinschliff.generator import ReadmeGenerator
+from steinschliff.logging import setup_logging
+
+
+def register(app: typer.Typer) -> None:  # noqa: C901
+    @app.command("conditions")
+    def cmd_conditions(  # noqa: C901
+        schliffs_dir: str = typer.Option(
+            "schliffs",
+            "--schliffs",
+            "-s",
+            help="Путь к директории со шлифами",
+        ),
+        log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = typer.Option(
+            "WARNING",
+            "--log-level",
+            "-l",
+            help="Уровень логирования",
+        ),
+    ) -> None:
+        """Показать статистику по условиям снега (snow conditions)."""
+        setup_logging(level=getattr(logging, log_level))
+        logger = logging.getLogger("steinschliff")
+
+        project_dir = PROJECT_ROOT
+        schliffs_abs = os.path.join(project_dir, schliffs_dir)
+
+        config = {
+            "schliffs_dir": schliffs_abs,
+            "readme_file": "README_en.md",
+            "readme_ru_file": "README.md",
+            "sort_field": "name",
+            "translations_dir": os.path.join(project_dir, "translations"),
+        }
+
+        try:
+            generator = ReadmeGenerator(config)
+            generator.load_structures()
+
+            condition_counts: dict[str, int] = {}
+            total_structures = 0
+
+            for service_structures in generator.services.values():
+                for structure in service_structures:
+                    total_structures += 1
+                    if structure.condition:
+                        key = structure.condition.strip().lower()
+                        condition_counts[key] = condition_counts.get(key, 0) + 1
+
+            conditions_info: dict[str, dict[str, object]] = {}
+            snow_conditions_dir = project_dir / "snow_conditions"
+
+            if snow_conditions_dir.exists():
+                for condition_file in snow_conditions_dir.glob("*.yaml"):
+                    try:
+                        with condition_file.open("r", encoding="utf-8") as f:
+                            data = yaml.safe_load(f) or {}
+                            if isinstance(data, dict):
+                                key = data.get("key", condition_file.stem)
+                                conditions_info[str(key)] = {
+                                    "name_ru": data.get("name_ru", key),
+                                    "color": data.get("color", ""),
+                                    "temperature": data.get("temperature"),
+                                }
+                    except Exception:  # noqa: BLE001
+                        pass
+
+            # Маппинг цветов на emoji (как было в исходном CLI)
+            color_emoji = {
+                "green": "🟢",
+                "blue": "🔵",
+                "violet": "🟣",
+                "orange": "🟠",
+                "red": "🔴",
+                "pink": "💗",
+                "yellow": "💛",
+                "brown": "🟤",
+            }
+
+            table = Table(
+                title="📊 Статистика по условиям снега",
+                show_header=True,
+                header_style="bold cyan",
+                border_style="blue",
+            )
+
+            table.add_column("Условие", style="bold", justify="left")
+            table.add_column("Emoji", justify="center")
+            table.add_column("Название", justify="left")
+            table.add_column("Температура", style="yellow")
+            table.add_column("Количество", justify="right", style="bold green")
+            table.add_column("%", justify="right")
+
+            sorted_conditions = sorted(condition_counts.items(), key=lambda x: x[1], reverse=True)
+
+            for condition_key, count in sorted_conditions:
+                info = conditions_info.get(condition_key, {})
+                emoji = color_emoji.get(condition_key, "⚪")
+                name_ru = str(info.get("name_ru", condition_key.capitalize()))
+
+                temp = info.get("temperature")
+                temp_str = (
+                    format_temperature_range(temp) if temp and isinstance(temp, list) and len(temp) > 0 else "любая"
+                )
+
+                percentage = (count / total_structures * 100) if total_structures > 0 else 0
+
+                table.add_row(
+                    condition_key.upper(),
+                    emoji,
+                    name_ru,
+                    temp_str,
+                    str(count),
+                    f"{percentage:.1f}%",
+                )
+
+            table.add_section()
+            table.add_row(
+                "[bold]ВСЕГО[/bold]",
+                "",
+                "",
+                "",
+                f"[bold]{total_structures}[/bold]",
+                "[bold]100.0%[/bold]",
+            )
+
+            console.print()
+            console.print(table)
+            console.print()
+
+            if total_structures > 0:
+                empty_conditions = total_structures - sum(condition_counts.values())
+                if empty_conditions > 0:
+                    console.print(f"[yellow]⚠️  Структур без condition: {empty_conditions}[/yellow]")
+                else:
+                    console.print("[green]✅ Все структуры имеют валидные значения condition![/green]")
+
+        except Exception as err:
+            logger.exception("Ошибка при получении статистики")
+            raise typer.Exit(code=1) from err
