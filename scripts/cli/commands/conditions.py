@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import logging
 import os
+from pathlib import Path
 from typing import Literal
 
 import typer
 from rich.table import Table
 
 from scripts.cli.common import PROJECT_ROOT, console
+from steinschliff.config import GeneratorConfig
 from steinschliff.formatters import format_temperature_range
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
@@ -37,13 +39,13 @@ def register(app: typer.Typer) -> None:
         project_dir = PROJECT_ROOT
         schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
-        config = {
-            "schliffs_dir": schliffs_abs,
-            "readme_file": "README_en.md",
-            "readme_ru_file": "README.md",
-            "sort_field": "name",
-            "translations_dir": os.path.join(project_dir, "translations"),
-        }
+        config = GeneratorConfig(
+            schliffs_dir=Path(schliffs_abs),
+            readme_file=Path(os.path.join(project_dir, "README_en.md")),
+            readme_ru_file=Path(os.path.join(project_dir, "README.md")),
+            sort_field="name",
+            translations_dir=Path(os.path.join(project_dir, "translations")),
+        )
 
         try:
             generator = ReadmeGenerator(config)

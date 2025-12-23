@@ -15,6 +15,7 @@ import steinschliff.utils as utils_module
 from scripts.cli.common import PROJECT_ROOT, console, normalize_condition_filter, restore_stdout
 from scripts.cli.error_handler import handle_user_errors
 from steinschliff.catalog import filter_services_by_condition, select_services
+from steinschliff.config import GeneratorConfig
 from steinschliff.exceptions import SteinschliffUserError
 from steinschliff.export.csv import export_structures_csv_string
 from steinschliff.generator import ReadmeGenerator
@@ -70,13 +71,13 @@ def register(app: typer.Typer) -> None:  # noqa: C901
         project_dir = PROJECT_ROOT
         schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
-        config = {
-            "schliffs_dir": schliffs_abs,
-            "readme_file": "README_en.md",
-            "readme_ru_file": "README.md",
-            "sort_field": sort,
-            "translations_dir": os.path.join(project_dir, "translations"),
-        }
+        config = GeneratorConfig(
+            schliffs_dir=Path(schliffs_abs),
+            readme_file=Path(os.path.join(project_dir, "README_en.md")),
+            readme_ru_file=Path(os.path.join(project_dir, "README.md")),
+            sort_field=sort,
+            translations_dir=Path(os.path.join(project_dir, "translations")),
+        )
         try:
             generator = ReadmeGenerator(config)
 

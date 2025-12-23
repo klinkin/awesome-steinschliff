@@ -2,15 +2,18 @@ from __future__ import annotations
 
 import logging
 import os
+from pathlib import Path
 from typing import Literal
 
 import typer
 from rich.panel import Panel
 from rich.table import Table
 
-from scripts.cli.common import PROJECT_ROOT, build_generator, console
+from scripts.cli.common import PROJECT_ROOT, console
 from scripts.cli.error_handler import handle_user_errors
+from steinschliff.config import GeneratorConfig
 from steinschliff.export.json import export_structures_json
+from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 
 
@@ -34,16 +37,15 @@ def register(app: typer.Typer) -> None:
         project_dir = PROJECT_ROOT
         schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
-        _, generator, _ = build_generator(
-            schliffs_dir=schliffs_abs,
-            output="README_en.md",
-            output_ru="README.md",
-            sort=sort,
-            translations_dir=os.path.join(project_dir, "translations"),
-            log_level=log_level,
-            create_translations=False,
+        cfg = GeneratorConfig(
+            schliffs_dir=Path(schliffs_abs),
+            readme_file=Path(os.path.join(project_dir, "README_en.md")),
+            readme_ru_file=Path(os.path.join(project_dir, "README.md")),
+            sort_field=sort,
+            translations_dir=Path(os.path.join(project_dir, "translations")),
         )
         try:
+            generator = ReadmeGenerator(cfg)
             generator.load_structures()
             generator.load_service_metadata()
             export_structures_json(services=generator.services, out_path=out_path)

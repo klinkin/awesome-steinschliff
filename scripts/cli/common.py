@@ -21,6 +21,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 import steinschliff.utils as utils_module
+from steinschliff.config import GeneratorConfig
 from steinschliff.export.json import export_structures_json
 from steinschliff.formatters import format_list_for_display, format_temperature_range
 from steinschliff.generator import ReadmeGenerator
@@ -58,7 +59,7 @@ def prepare_config(
     translations_dir: str,
     log_level: LogLevel,
     create_translations: bool,
-) -> tuple[logging.Logger, dict[str, str | SortField]]:
+) -> tuple[logging.Logger, GeneratorConfig]:
     setup_logging(level=getattr(logging, log_level))
     logger = logging.getLogger("steinschliff")
 
@@ -80,13 +81,13 @@ def prepare_config(
                     f.write("{}")
                 print_kv_panel("Переводы", [("Создан файл", translation_file)], border_style="blue")
 
-    config: dict[str, str | SortField] = {
-        "schliffs_dir": schliffs_abs,
-        "readme_file": output_en_abs,
-        "readme_ru_file": output_ru_abs,
-        "sort_field": sort,
-        "translations_dir": translations_abs,
-    }
+    config = GeneratorConfig(
+        schliffs_dir=Path(schliffs_abs),
+        readme_file=Path(output_en_abs),
+        readme_ru_file=Path(output_ru_abs),
+        sort_field=sort,
+        translations_dir=Path(translations_abs),
+    )
 
     return logger, config
 
@@ -100,7 +101,7 @@ def build_generator(
     translations_dir: str,
     log_level: LogLevel,
     create_translations: bool,
-) -> tuple[logging.Logger, ReadmeGenerator, dict[str, str | SortField]]:
+) -> tuple[logging.Logger, ReadmeGenerator, GeneratorConfig]:
     """Собирает конфиг и возвращает (logger, generator, config)."""
     logger, config = prepare_config(
         schliffs_dir=schliffs_dir,
@@ -140,8 +141,8 @@ def run_generate(
         export_structures_json(services=generator.services, out_path="webapp/src/data/structures.json")
 
         summary = Table.grid(padding=(0, 1))
-        summary.add_row("[bold]README EN[/]:", f"[cyan]{config['readme_file']}[/]")
-        summary.add_row("[bold]README RU[/]:", f"[cyan]{config['readme_ru_file']}[/]")
+        summary.add_row("[bold]README EN[/]:", f"[cyan]{config.readme_file}[/]")
+        summary.add_row("[bold]README RU[/]:", f"[cyan]{config.readme_ru_file}[/]")
         summary.add_row("[bold]JSON[/]:", "[cyan]webapp/src/data/structures.json[/]")
         console.print(Panel.fit(summary, title="Готово", border_style="green"))
     except Exception as err:
@@ -261,13 +262,13 @@ def load_generator_for_reporting(
     project_dir = PROJECT_ROOT
     schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
-    config = {
-        "schliffs_dir": schliffs_abs,
-        "readme_file": "README_en.md",
-        "readme_ru_file": "README.md",
-        "sort_field": sort,
-        "translations_dir": os.path.join(project_dir, "translations"),
-    }
+    config = GeneratorConfig(
+        schliffs_dir=Path(schliffs_abs),
+        readme_file=Path(project_dir / "README_en.md"),
+        readme_ru_file=Path(project_dir / "README.md"),
+        sort_field=sort,
+        translations_dir=Path(project_dir / "translations"),
+    )
     generator = ReadmeGenerator(config)
     generator.load_structures()
     generator.load_service_metadata()
@@ -284,13 +285,13 @@ def compute_conditions_stats(
     project_dir = PROJECT_ROOT
     schliffs_abs = os.path.join(project_dir, schliffs_dir)
 
-    config = {
-        "schliffs_dir": schliffs_abs,
-        "readme_file": "README_en.md",
-        "readme_ru_file": "README.md",
-        "sort_field": "name",
-        "translations_dir": os.path.join(project_dir, "translations"),
-    }
+    config = GeneratorConfig(
+        schliffs_dir=Path(schliffs_abs),
+        readme_file=Path(project_dir / "README_en.md"),
+        readme_ru_file=Path(project_dir / "README.md"),
+        sort_field="name",
+        translations_dir=Path(project_dir / "translations"),
+    )
 
     generator = ReadmeGenerator(config)
     generator.load_structures()

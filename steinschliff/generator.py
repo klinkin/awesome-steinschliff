@@ -17,6 +17,7 @@ from rich.progress import (
     TimeElapsedColumn,
 )
 
+from .config import GeneratorConfig
 from .formatters import (
     format_features,
     format_image_link,
@@ -37,16 +38,18 @@ logger = logging.getLogger("steinschliff.generator")
 class ReadmeGenerator:
     """Класс для генерации README из YAML-файлов структур."""
 
-    def __init__(self, config: dict) -> None:
+    def __init__(self, config: dict[str, object] | GeneratorConfig) -> None:
         """Инициализирует генератор.
 
         Args:
-            config: Словарь с конфигурацией генератора.
+            config: Конфигурация генератора (словарь для совместимости или GeneratorConfig).
         """
-        self.schliffs_dir = config["schliffs_dir"]
-        self.readme_file = config["readme_file"]
-        self.readme_ru_file = config["readme_ru_file"]
-        self.sort_field = config.get("sort_field", "name")
+        cfg: dict[str, Any] = dict(config.as_dict()) if isinstance(config, GeneratorConfig) else dict(config)
+
+        self.schliffs_dir = str(cfg["schliffs_dir"])
+        self.readme_file = str(cfg["readme_file"])
+        self.readme_ru_file = str(cfg["readme_ru_file"])
+        self.sort_field = str(cfg.get("sort_field", "name"))
 
         # Инициализируем пустые структуры данных
         self.services: defaultdict[str, list[StructureInfo]] = defaultdict(list)
