@@ -2,8 +2,10 @@
 Модуль для интернационализации (i18n) в проекте steinschliff с использованием Babel.
 """
 
+import glob
 import logging
 import os
+import subprocess
 from gettext import NullTranslations
 
 from babel.support import Translations
@@ -54,10 +56,6 @@ def extract_messages():
     Запускает извлечение сообщений для перевода.
     Использует subprocess для вызова pybabel напрямую.
     """
-    import glob
-    import os
-    import subprocess
-
     try:
         # Определяем пути
         templates_dir = os.path.join(os.path.dirname(__file__), "templates")
@@ -80,6 +78,7 @@ def extract_messages():
         result = subprocess.run(
             cmd,
             capture_output=True,
+            check=False,
             text=True,
         )
 
@@ -107,12 +106,11 @@ def init_locale(locale: str):
     Args:
         locale: Код локали (например, 'ru' или 'en').
     """
-    import subprocess
-
     try:
         result = subprocess.run(
             ["pybabel", "init", "-i", "messages.pot", "-d", get_translation_directory(), "-l", locale],
             capture_output=True,
+            check=False,
             text=True,
         )
 
@@ -132,12 +130,11 @@ def update_locale(locale: str):
     Args:
         locale: Код локали (например, 'ru' или 'en').
     """
-    import subprocess
-
     try:
         result = subprocess.run(
             ["pybabel", "update", "-i", "messages.pot", "-d", get_translation_directory(), "-l", locale],
             capture_output=True,
+            check=False,
             text=True,
         )
 
@@ -154,11 +151,12 @@ def compile_translations():
     """
     Компилирует все переводы.
     """
-    import subprocess
-
     try:
         result = subprocess.run(
-            ["pybabel", "compile", "-d", get_translation_directory()], capture_output=True, text=True
+            ["pybabel", "compile", "-d", get_translation_directory()],
+            capture_output=True,
+            check=False,
+            text=True,
         )
 
         if result.returncode != 0:

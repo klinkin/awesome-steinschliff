@@ -9,12 +9,12 @@
 PROJECT_ROOT := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # Исполняемые файлы инструментов
-POETRY = poetry
-PYTHON = poetry run python
-MYPY = poetry run mypy
-RUFF = poetry run ruff
-BLACK = poetry run black
-PYTEST = poetry run pytest
+UV = uv
+PYTHON = uv run python
+MYPY = uv run mypy
+RUFF = uv run ruff
+BLACK = uv run black
+PYTEST = uv run pytest
 
 # Пути проекта и webapp
 WEBAPP_DIR   := $(PROJECT_ROOT)/webapp
@@ -78,7 +78,7 @@ help:
 	@echo "${GREEN}make ci${DEF}                - ${YELLOW}Запуск lint, тестов и сборки${DEF}"
 	@echo ""
 	@echo "${BLUE}Сервисные задачи:${DEF}"
-	@echo "${GREEN}make bootstrap${DEF}         - ${YELLOW}Poetry install + npm ci${DEF}"
+	@echo "${GREEN}make bootstrap${DEF}         - ${YELLOW}uv sync --extra dev + npm ci${DEF}"
 	@echo "${GREEN}make clean${DEF}             - ${YELLOW}Очистка артефактов (py, webapp)${DEF}"
 	@exit 0
 
@@ -159,19 +159,19 @@ i18n-list:
 .PHONY: build
 build:
 	@echo "${YELLOW}Сборка проекта...${DEF}"
-	$(POETRY) run python scripts/cli.py generate --sort $(or $(SORT),$(DEFAULT_SORT))
+	$(PYTHON) scripts/cli.py generate --sort $(or $(SORT),$(DEFAULT_SORT))
 	@echo "${GREEN}Проект собран.${DEF}"
 
 .PHONY: export-json
 export-json:
 	@echo "${YELLOW}Экспорт JSON данных...${DEF}"
-	$(POETRY) run python scripts/cli.py export-json
+	$(PYTHON) scripts/cli.py export-json
 	@echo "${GREEN}JSON экспортирован.${DEF}"
 
 .PHONY: export-csv
 export-csv:
 	@echo "${YELLOW}Экспорт CSV данных...${DEF}"
-	$(POETRY) run python scripts/cli.py export-csv --output structures.csv
+	$(PYTHON) scripts/cli.py export-csv --output structures.csv
 	@echo "${GREEN}CSV экспортирован в structures.csv${DEF}"
 
 # --------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ export-csv:
 .PHONY: bootstrap webapp-install webapp-dev webapp-build webapp-preview site-build
 
 bootstrap:
-	$(POETRY) install
+	$(UV) sync --extra dev
 	$(WEBAPP_NPM) ci
 
 webapp-install:

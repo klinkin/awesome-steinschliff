@@ -72,7 +72,7 @@ class TestUtils:
             non_yaml_file = os.path.join(temp_dir, "file.txt")
 
             # Создаем файлы
-            for path in yaml_files + [non_yaml_file]:
+            for path in [*yaml_files, non_yaml_file]:
                 with open(path, "w") as f:
                     f.write("test")
 

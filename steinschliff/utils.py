@@ -9,8 +9,10 @@ from typing import Any
 import yaml
 from pydantic import ValidationError
 from rich.console import Console
+from rich.logging import RichHandler
 from rich.panel import Panel
 from rich.table import Table
+from rich.traceback import install as rich_traceback_install
 
 from steinschliff.models import SchliffStructure, ServiceMetadata
 
@@ -258,8 +260,7 @@ def read_yaml_file(file_path: str | Path) -> dict[str, Any] | ServiceMetadata | 
 
     if path.name == "_meta.yaml":
         return _validate_meta_file(data, path)
-    else:
-        return _validate_structure_file(data, path)
+    return _validate_structure_file(data, path)
 
 
 def find_yaml_files(directory: str) -> list[str]:
@@ -390,9 +391,6 @@ def setup_logging(level: int = logging.INFO) -> None:
     root_logger = logging.getLogger()
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
-
-    from rich.logging import RichHandler
-    from rich.traceback import install as rich_traceback_install
 
     rich_traceback_install(show_locals=True)
     console_handler: logging.Handler = RichHandler(rich_tracebacks=True, tracebacks_show_locals=True)

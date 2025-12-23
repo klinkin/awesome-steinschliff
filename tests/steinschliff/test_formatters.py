@@ -29,14 +29,14 @@ def test_aliases_behave_like_format_list():
 
 
 @pytest.mark.parametrize(
-    "temp,min_val,max_val,expected",
+    ("temp", "expected"),
     [
-        ([{"min": -8, "max": 1}], -8, 1, "+1 °C … –8 °C"),
-        ([{"min": -10.0, "max": 0.0}], -10.0, 0.0, "0 °C … –10 °C"),
-        ([{"min": 2, "max": 5}], 2, 5, "+5 °C … +2 °C"),
+        ([{"min": -8, "max": 1}], "+1 °C … –8 °C"),
+        ([{"min": -10.0, "max": 0.0}], "0 °C … –10 °C"),
+        ([{"min": 2, "max": 5}], "+5 °C … +2 °C"),
     ],
 )
-def test_format_temperature_range_ok(temp, min_val, max_val, expected):
+def test_format_temperature_range_ok(temp, expected):
     assert format_temperature_range(temp) == expected
 
 
@@ -99,8 +99,10 @@ def test_formatters_relative_path_fallbacks(tmp_path):
 
     # format_similars_with_links -> путь не является поддиректорией output_dir, должен сработать os.path.relpath
     txt = format_similars_with_links(["S2"], generator_stub, str(out_dir))
-    assert "](" in txt and ")" in txt  # есть ссылка
+    assert "](" in txt  # есть ссылка
+    assert ")" in txt
 
     # format_image_link -> тот же случай с разными директориями
     link = format_image_link(str(struct_file), "S2", str(out_dir))
-    assert link.startswith("![S2](") and ")" in link
+    assert link.startswith("![S2](")
+    assert ")" in link

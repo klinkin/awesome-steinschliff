@@ -9,39 +9,46 @@ license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "pyyaml (>=6.0.2,<7.0.0)",
-    "pydantic (>=2.11.2,<3.0.0)",
-    "jinja2 (>=3.1.6,<4.0.0)",
-    "babel (>=2.17.0,<3.0.0)",
-    "rich (>=13.7.1,<14.0.0)",
-    "typer[all] (>=0.12.5,<1.0.0)",
-    "ruamel-yaml (>=0.18.16,<0.19.0)"
+    "PyYAML>=6.0.2,<7.0.0",
+    "pydantic>=2.11.2,<3.0.0",
+    "jinja2>=3.1.6,<4.0.0",
+    "Babel>=2.17.0,<3.0.0",
+    "rich>=13.7.1,<14.0.0",
+    "typer>=0.12.5,<1.0.0",
+    "ruamel.yaml>=0.18.16,<0.19.0",
 ]
 
-[tool.poetry.group.dev.dependencies]
-black = "^24.4.0"
-mypy = "^1.9.0"
-pre-commit = "^3.7.0"
-ruff = "^0.4.0"
-pytest = "^8.3.5"
-pytest-cov = "^6.1.1"
-types-pyyaml = "^6.0.12.20250915"
+[project.optional-dependencies]
+dev = [
+    "black>=24.4.0,<25.0.0",
+    "mypy>=1.9.0,<2.0.0",
+    "pre-commit>=3.7.0,<4.0.0",
+    "ruff>=0.14.0,<1.0.0",
+    "pytest>=8.3.5,<9.0.0",
+    "pytest-cov>=6.1.1,<7.0.0",
+    "types-PyYAML>=6.0.12.20250915,<7.0.0",
+]
+
+[project.scripts]
+steinschliff = "scripts.cli:app"
 
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
-package-mode = false
+requires = ["hatchling>=1.26.0"]
+build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 120
 
 [tool.ruff]
 line-length = 120
-target-version = "py311"
-lint.select = [
+target-version = "py313"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
   "BLE",
   "C90",
   "E",
@@ -52,14 +59,51 @@ lint.select = [
   "ISC",
   "PLE",
   "Q",
-  "RUF006",
-  "RUF100",
   "T10",
   "T20",
   "TID",
   "UP",
   "W",
 ]
-lint.ignore = [
-  "ISC001",  # Конфликтует с форматировщиком
+extend-select = [
+  "B",    # flake8-bugbear
+  "ARG",  # unused arguments (flake8-unused-arguments)
+  "C4",   # flake8-comprehensions
+  "EM",   # flake8-errmsg
+  "PGH",  # pygrep-hooks
+  "PIE",  # flake8-pie
+  "PL",   # pylint (частично; дизайн-правила отключаем ниже)
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "RET",  # flake8-return
+  "RUF",  # ruff-specific rules
+  "SIM",  # flake8-simplify
 ]
+ignore = [
+  "ISC001", # Конфликтует с форматировщиком
+  "PLR",    # Дизайн-правила pylint (слишком шумные)
+  "PTH",    # pathlib-миграция: полезно, но слишком шумно для существующего кода/тестов
+  "UP007",  # Разрешаем Optional[T] вместо T | None (по желанию команды)
+  "PGH003", # Не всегда удобно требовать конкретные noqa-коды
+  "RUF001", # Допускаем нелатиницу (полезно для ru/i18n контента)
+  "RUF002", # Амбигуозные unicode-символы в RU-тексте (даёт много ложных срабатываний)
+  "RUF003", # Амбигуозные unicode-символы в RU-тексте (даёт много ложных срабатываний)
+  "EM101",  # Разрешаем строку-литерал в исключениях (не везде нужна переменная)
+]
+flake8-unused-arguments.ignore-variadic-names = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["steinschliff", "scripts"]
+
+[tool.coverage.run]
+source = ["steinschliff"]
+relative_files = true
+
+[tool.coverage.report]
+omit = [
+  "steinschliff/templates/*",
+  "steinschliff/templates/**/*",
+]
+
+[tool.codespell]
+skip = "*.md"

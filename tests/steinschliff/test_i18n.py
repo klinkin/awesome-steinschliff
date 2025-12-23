@@ -5,10 +5,11 @@ from steinschliff.i18n import get_translation_directory, load_translations
 
 def test_get_translation_directory_returns_absolute_path():
     path = get_translation_directory()
-    assert path and path.startswith("/")
+    assert path
+    assert path.startswith("/")
 
 
-def test_load_translations_success(monkeypatch):
+def test_load_translations_success():
     class DummyTranslations:
         def gettext(self, s):
             return s
@@ -19,7 +20,7 @@ def test_load_translations_success(monkeypatch):
         assert hasattr(tr, "gettext")
 
 
-def test_load_translations_fallback_oserror(monkeypatch):
+def test_load_translations_fallback_oserror():
     with patch("steinschliff.i18n.Translations.load", side_effect=OSError("boom")):
         tr = load_translations("xx")
         # Возвращаем объект, совместимый с Translations

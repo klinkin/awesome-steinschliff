@@ -3,10 +3,8 @@
     "playwright": {
       "command": "npx",
       "args": [
-        "-y",
-        "@executeautomation/playwright-mcp-server"
-      ],
-      "env": {}
+        "@playwright/mcp@latest"
+      ]
     },
     "sequential-thinking": {
       "command": "npx",
@@ -20,6 +18,15 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
       ]
     }
   }

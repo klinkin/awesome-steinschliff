@@ -56,7 +56,7 @@ class TestProcessYamlFiles:
 
             yield temp_dir
 
-    def test_process_yaml_files(self, setup_test_files, monkeypatch, caplog):
+    def test_process_yaml_files(self, setup_test_files, caplog):
         """
         Тестирует метод _process_yaml_files ReadmeGenerator.
 

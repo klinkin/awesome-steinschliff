@@ -107,7 +107,8 @@ class SchliffStructure(BaseModel):
         valid_keys = get_valid_snow_condition_keys()
         if value not in valid_keys:
             valid_str = ", ".join(valid_keys)
-            raise ValueError(f"condition must be one of valid SnowCondition keys: {valid_str}. Got: '{v}'")
+            msg = f"condition must be one of valid SnowCondition keys: {valid_str}. Got: '{v}'"
+            raise ValueError(msg)
 
         return value
 

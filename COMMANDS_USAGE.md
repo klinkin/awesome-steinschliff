@@ -9,13 +9,13 @@
 
 ```bash
 # Базовое использование
-poetry run python scripts/cli.py conditions
+uv run python scripts/cli.py conditions
 
 # С указанием директории шлифов
-poetry run python scripts/cli.py conditions --schliffs schliffs
+uv run python scripts/cli.py conditions --schliffs schliffs
 
 # С включенным debug логированием
-poetry run python scripts/cli.py conditions --log-level DEBUG
+uv run python scripts/cli.py conditions --log-level DEBUG
 ```
 
 ### Параметры
@@ -75,27 +75,27 @@ poetry run python scripts/cli.py conditions --log-level DEBUG
 
 ### `generate` - Генерация README
 ```bash
-poetry run python scripts/cli.py generate
+uv run python scripts/cli.py generate
 ```
 
 ### `export-json` - Экспорт в JSON
 ```bash
-poetry run python scripts/cli.py export-json
+uv run python scripts/cli.py export-json
 ```
 
 ### `list` - Просмотр списка структур
 ```bash
 # Все структуры
-poetry run python scripts/cli.py list
+uv run python scripts/cli.py list
 
 # Фильтр по бренду
-poetry run python scripts/cli.py list --service "Fischer"
+uv run python scripts/cli.py list --service "Fischer"
 
 # Фильтр по условию
-poetry run python scripts/cli.py list --condition "blue"
+uv run python scripts/cli.py list --condition "blue"
 
 # Комбинированный фильтр
-poetry run python scripts/cli.py list --service "Fischer" --condition "blue"
+uv run python scripts/cli.py list --service "Fischer" --condition "blue"
 ```
 
 ---
@@ -105,25 +105,25 @@ poetry run python scripts/cli.py list --service "Fischer" --condition "blue"
 ### Заполнение условий
 ```bash
 # Автоматическое заполнение поля condition
-poetry run python scripts/fill_conditions.py
+uv run python scripts/fill_conditions.py
 
 # Проверка корректности заполнения
-poetry run python scripts/check_conditions.py
+uv run python scripts/check_conditions.py
 
 # Поиск кандидатов на RED и BROWN
-poetry run python scripts/find_red_brown_candidates.py
+uv run python scripts/find_red_brown_candidates.py
 
 # Применение RED и BROWN к кандидатам
-poetry run python scripts/apply_red_brown.py
+uv run python scripts/apply_red_brown.py
 
 # Финальный отчет
-poetry run python scripts/final_report.py
+uv run python scripts/final_report.py
 ```
 
 ---
 
 ## 📝 Примечания
 
-- Все команды запускаются через `poetry run` для использования виртуального окружения
+- Все команды запускаются через `uv run` для использования виртуального окружения
 - Данные загружаются из директории `schliffs/` и файлов `snow_conditions/*.yaml`
 - Статистика обновляется автоматически при изменении YAML-файлов

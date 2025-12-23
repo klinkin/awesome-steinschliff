@@ -2,23 +2,25 @@
 Скрипт для генерации README.md из YAML-файлов в директории schliffs.
 """
 
+import csv
+import io
 import logging
 import os
 import sys
+from collections import Counter
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as pkg_version
 from pathlib import Path
 from typing import Literal
 
 import typer
+import yaml
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 from rich.traceback import install as rich_traceback_install
 
-# Добавляем родительскую директорию в путь для импорта до локальных импортов
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+import steinschliff.utils as utils_module
 from steinschliff.formatters import format_list_for_display, format_temperature_range
 from steinschliff.generator import ReadmeGenerator, export_json
 from steinschliff.models import StructureInfo
@@ -135,9 +137,9 @@ def _run_generate(
         summary.add_row("[bold]README RU[/]:", f"[cyan]{config['readme_ru_file']}[/]")
         summary.add_row("[bold]JSON[/]:", "[cyan]webapp/src/data/structures.json[/]")
         console.print(Panel.fit(summary, title="Готово", border_style="green"))
-    except Exception:
+    except Exception as err:
         logger.exception("Ошибка при генерации README")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from err
 
 
 def _load_condition_name_ru(condition_key: str) -> str | None:
@@ -154,8 +156,6 @@ def _load_condition_name_ru(condition_key: str) -> str | None:
         return None
 
     try:
-        import yaml
-
         project_root = Path(__file__).resolve().parents[1]
         condition_file = project_root / "snow_conditions" / f"{condition_key.lower()}.yaml"
 
@@ -233,7 +233,7 @@ def _build_table_title(
     if filter_service:
         # Пытаемся найти видимое имя сервиса
         service_name = None
-        for service_key in selected_services.keys():
+        for service_key in selected_services:
             service_meta = generator.service_metadata.get(service_key)
             if service_meta and service_meta.name:
                 service_name = service_meta.name
@@ -342,7 +342,7 @@ def main(
         help="Только извлечь сообщения для перевода (зарезервировано)",
         rich_help_panel="Отладка",
     ),
-    version: bool = typer.Option(
+    _version: bool = typer.Option(
         None,
         "--version",
         callback=_version_callback,
@@ -428,9 +428,9 @@ def cmd_export_json(
         summary = Table.grid(padding=(0, 1))
         summary.add_row("[bold]JSON[/]:", f"[cyan]{out_path}[/]")
         console.print(Panel.fit(summary, title="JSON экспортирован", border_style="blue"))
-    except Exception:
+    except Exception as err:
         logger.exception("Ошибка при экспорте JSON")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from err
 
 
 def _normalize_condition_filter(condition_input: str) -> str:
@@ -585,9 +585,9 @@ def cmd_list(  # noqa: C901
             filter_condition=normalized_condition if condition else None,
         )
         console.print(table)
-    except Exception:
+    except Exception as err:
         logger.exception("Ошибка при построении списка")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from err
 
 
 @app.command("export-csv")
@@ -628,11 +628,6 @@ def cmd_export_csv(  # noqa: C901
     ),
 ):
     """Экспортировать таблицу шлифов в формате CSV."""
-    import csv
-    import io
-
-    import steinschliff.utils as utils_module
-
     # Если вывод в stdout - автоматически включаем тихий режим
     if output is None:
         quiet = True
@@ -760,9 +755,9 @@ def cmd_export_csv(  # noqa: C901
 
     except typer.Exit:
         raise
-    except Exception:
+    except Exception as err:
         logger.exception("Ошибка при экспорте CSV")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from err
 
 
 @app.command("conditions")
@@ -796,10 +791,6 @@ def cmd_conditions(  # noqa: C901
     }
 
     try:
-        from collections import Counter
-
-        import yaml
-
         generator = ReadmeGenerator(config)
         generator.load_structures()
 
@@ -869,10 +860,7 @@ def cmd_conditions(  # noqa: C901
 
             # Форматируем температуру
             temp = info.get("temperature")
-            if temp and isinstance(temp, list) and len(temp) > 0:
-                temp_str = format_temperature_range(temp)
-            else:
-                temp_str = "любая"
+            temp_str = format_temperature_range(temp) if temp and isinstance(temp, list) and len(temp) > 0 else "любая"
 
             percentage = (count / total_structures * 100) if total_structures > 0 else 0
 
@@ -908,9 +896,9 @@ def cmd_conditions(  # noqa: C901
             else:
                 console.print("[green]✅ Все структуры имеют валидные значения condition![/green]")
 
-    except Exception:
+    except Exception as err:
         logger.exception("Ошибка при получении статистики")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from err
 
 
 if __name__ == "__main__":

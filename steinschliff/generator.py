@@ -73,7 +73,7 @@ class ReadmeGenerator:
         self.jinja_env.filters["format_temperature"] = format_temperature_range
         self.jinja_env.filters["format_features"] = format_features
         self.jinja_env.filters["relpath"] = lambda p, start: os.path.relpath(p, start)
-        self.jinja_env.filters["phone_link"] = lambda phone: f"[{str(phone)}](tel:{str(phone)})"
+        self.jinja_env.filters["phone_link"] = lambda phone: f"[{phone!s}](tel:{phone!s})"
         self.jinja_env.filters["urlencode"] = url_encode_path
 
     def load_structures(self) -> None:
@@ -232,9 +232,8 @@ class ReadmeGenerator:
                         pass
             # Структуры без температуры отправляем в конец сортировки
             return float("inf")
-        else:
-            # Сортировка по имени или другому полю
-            return getattr(structure, self.sort_field, "") or ""
+        # Сортировка по имени или другому полю
+        return getattr(structure, self.sort_field, "") or ""
 
     def _prepare_countries_data(self) -> dict[str, Any]:
         """Подготавливает иерархические данные о странах, сервисах и структурах."""
@@ -336,7 +335,7 @@ class ReadmeGenerator:
         if self.sort_field == "temperature":
             # Подготавливаем отсортированные структуры для каждого сервиса
             for country in countries_data["countries"].values():
-                for service_name, service_data in country["services"].items():
+                for _service_name, service_data in country["services"].items():
                     structures = service_data["structures"]
                     # Сортируем структуры по максимальной температуре (сначала теплые)
                     service_data["structures"] = sorted(structures, key=self._get_structure_sort_key)
