@@ -1,5 +1,9 @@
 # 🎿 Использование CLI команд для Steinschliff
 
+Актуальный способ запуска CLI:
+1) Через `just` (для основных задач разработки: build/export/lint/test).
+2) Напрямую через модуль `steinschliff.cli` (для CLI-команд вроде `conditions` и `list`).
+
 ## 📊 Команда `conditions` - Статистика по условиям снега
 
 ### Описание
@@ -9,13 +13,13 @@
 
 ```bash
 # Базовое использование
-uv run python scripts/cli.py conditions
+uv run python -m steinschliff.cli conditions
 
 # С указанием директории шлифов
-uv run python scripts/cli.py conditions --schliffs schliffs
+uv run python -m steinschliff.cli conditions --schliffs schliffs
 
 # С включенным debug логированием
-uv run python scripts/cli.py conditions --log-level DEBUG
+uv run python -m steinschliff.cli conditions --log-level DEBUG
 ```
 
 ### Параметры
@@ -32,14 +36,14 @@ uv run python scripts/cli.py conditions --log-level DEBUG
 ┏━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┓
 ┃ Условие ┃ Emoji ┃ Название        ┃ Температура ┃ Количество ┃      % ┃
 ┡━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━┩
-│ BLUE    │  🔵   │ Умеренный холод │   -12…0°C   │         74 │  43.5% │
-│ PINK    │  💗   │ Мокрый          │   0…20°C    │         22 │  12.9% │
-│ GREEN   │  🟢   │ Холод           │  -30…-12°C  │         21 │  12.4% │
-│ VIOLET  │  🟣   │ Старый          │   -15…0°C   │         21 │  12.4% │
-│ YELLOW  │  💛   │ Тепло           │   0…20°C    │         20 │  11.8% │
-│ RED     │  🔴   │ Переходка       │   -5…5°C    │          6 │   3.5% │
-│ BROWN   │  🟤   │ Грязный         │    любая    │          5 │   2.9% │
-│ ORANGE  │  🟠   │ Глянец          │   -5…5°C    │          1 │   0.6% │
+│ blue   │  🔵   │ Умеренный холод │   -12…0°C   │         74 │  43.5% │
+│ pink   │  💗   │ Мокрый          │   0…20°C    │         22 │  12.9% │
+│ green  │  🟢   │ Холод           │  -30…-12°C  │         21 │  12.4% │
+│ violet │  🟣   │ Старый          │   -15…0°C   │         21 │  12.4% │
+│ yellow │  💛   │ Тепло           │   0…20°C    │         20 │  11.8% │
+│ red    │  🔴   │ Переходка       │   -5…5°C    │          6 │   3.5% │
+│ brown  │  🟤   │ Грязный         │    любая    │          5 │   2.9% │
+│ orange │  🟠   │ Глянец          │   -5…5°C    │          1 │   0.6% │
 ├─────────┼───────┼─────────────────┼─────────────┼────────────┼────────┤
 │ ВСЕГО   │       │                 │             │        170 │ 100.0% │
 └─────────┴───────┴─────────────────┴─────────────┴────────────┴────────┘
@@ -75,49 +79,51 @@ uv run python scripts/cli.py conditions --log-level DEBUG
 
 ### `generate` - Генерация README
 ```bash
-uv run python scripts/cli.py generate
+just build
+# или напрямую:
+uv run python -m steinschliff.cli generate
 ```
 
 ### `export-json` - Экспорт в JSON
 ```bash
-uv run python scripts/cli.py export-json
+just export-json
+# или напрямую:
+uv run python -m steinschliff.cli export-json
 ```
 
 ### `list` - Просмотр списка структур
 ```bash
 # Все структуры
-uv run python scripts/cli.py list
+uv run python -m steinschliff.cli list
 
 # Фильтр по бренду
-uv run python scripts/cli.py list --service "Fischer"
+uv run python -m steinschliff.cli list --service "Fischer"
 
 # Фильтр по условию
-uv run python scripts/cli.py list --condition "blue"
+uv run python -m steinschliff.cli list --condition "blue"
 
 # Комбинированный фильтр
-uv run python scripts/cli.py list --service "Fischer" --condition "blue"
+uv run python -m steinschliff.cli list --service "Fischer" --condition "blue"
 ```
 
 ---
 
 ## 🛠️ Вспомогательные скрипты
 
-### Заполнение условий
+### Проверка/валидация контента
 ```bash
-# Автоматическое заполнение поля condition
-uv run python scripts/fill_conditions.py
+# Проверка корректности snow conditions
+uv run python scripts/validate_snow_conditions.py
 
-# Проверка корректности заполнения
-uv run python scripts/check_conditions.py
+# Проверка YAML на нежелательную кириллицу (если включено правилами проекта)
+uv run python scripts/check_cyrillic.py
+```
 
-# Поиск кандидатов на RED и BROWN
-uv run python scripts/find_red_brown_candidates.py
+### Локализация (i18n)
 
-# Применение RED и BROWN к кандидатам
-uv run python scripts/apply_red_brown.py
-
-# Финальный отчет
-uv run python scripts/final_report.py
+```bash
+# Список локалей
+uv run python scripts/manage_translations.py list
 ```
 
 ---

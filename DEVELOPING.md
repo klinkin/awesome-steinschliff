@@ -38,25 +38,26 @@ uv sync --extra dev
 
 ## <a name="dev"></a> Повседневная разработка
 
-В проекте есть `Makefile` с основными командами (запуск идёт через `uv run`, активировать venv вручную не требуется):
+Проект исторически использовал `make`, но основной workflow теперь — **через `just`**.
+`Makefile` оставлен для обратной совместимости (как набор алиасов).
 
 ```bash
-make help                 # список команд
-make lint                 # mypy + ruff check + black --check
-make format               # форматирование ruff/black + сортировка импортов
-make test                 # запустить тесты pytest
-make i18n-extract         # извлечь строки перевода из Python/Jinja2
-make i18n-init LOCALE=xx  # инициализировать новую локаль (например, LOCALE=de)
-make i18n-update LOCALE=xx# обновить существующую локаль
-make i18n-update-all      # обновить все локали
-make i18n-compile         # скомпилировать переводы (.mo)
-make i18n-list            # показать доступные локали
-make build                # сгенерировать README.md (параметр SORT=name|snow_type|service|temperature|rating|country)
+just help                 # список команд
+just lint                 # mypy + ruff check + black --check
+just format               # форматирование ruff/black + сортировка импортов
+just test                 # запустить тесты pytest
+just i18n-extract         # извлечь строки перевода из Python/Jinja2
+just i18n-init <locale>   # инициализировать новую локаль (например, just i18n-init de)
+just i18n-update <locale> # обновить существующую локаль
+just i18n-update-all      # обновить все локали
+just i18n-compile         # скомпилировать переводы (.mo)
+just i18n-list            # показать доступные локали
+just build                # сгенерировать README (параметр sort: name|snow_type|service|temperature|rating|country)
 ```
 
 Рекомендации:
 
-- Перед коммитом выполняйте `make format && make lint`.
+- Перед коммитом выполняйте `just format && just lint`.
 - Соблюдайте стиль кода (смотри `pyproject.toml`: Black line-length 120, Ruff правила).
 
 ## <a name="test"></a> Тестирование
@@ -64,7 +65,7 @@ make build                # сгенерировать README.md (парамет
 Запуск тестов:
 
 ```bash
-make test
+just test
 ```
 
 Конфигурация pytest находится в `tests/pytest.ini`.
@@ -74,12 +75,12 @@ make test
 Экстракция и обновление переводов управляется через `scripts/manage_translations.py` и `babel.cfg`:
 
 ```bash
-make i18n-extract                  # собрать сообщения в messages.pot
-make i18n-init LOCALE=de           # создать новую локаль
-make i18n-update LOCALE=ru         # обновить существующую локаль
-make i18n-update-all               # обновить все локали
-make i18n-compile                  # скомпилировать .po в .mo
-make i18n-list                     # список локалей
+just i18n-extract                  # собрать сообщения в messages.pot
+just i18n-init de                  # создать новую локаль
+just i18n-update ru                # обновить существующую локаль
+just i18n-update-all               # обновить все локали
+just i18n-compile                  # скомпилировать .po в .mo
+just i18n-list                     # список локалей
 ```
 
 Jinja2-шаблоны читаются с расширением `i18n`, Python-файлы — напрямую. Конфигурация в `babel.cfg`.
@@ -89,10 +90,10 @@ Jinja2-шаблоны читаются с расширением `i18n`, Python-
 Генератор (`steinschliff/generator.py`) собирает YAML-файлы из `schliffs/`, группирует по сервисам/странам и рендерит шаблон Jinja2 в `README.md` и `README_en.md`:
 
 ```bash
-make build            # генератор (сортировка по температуре по умолчанию)
-make build SORT=temperature  # сортировка по максимуму температуры (теплые сверху)
-make build SORT=name  # сортировка по имени
-make build SORT=rating # сортировка по рейтингу
+just build                 # генератор (сортировка по температуре по умолчанию)
+just build temperature     # сортировка по максимуму температуры (теплые сверху)
+just build name            # сортировка по имени
+just build rating          # сортировка по рейтингу
 ```
 
 Шаблоны находятся в `steinschliff/templates/`. Переводы подключаются через `steinschliff/i18n.py`.
@@ -107,7 +108,7 @@ description: null              # описание (английский), нео
 description_ru: "..."          # описание (русский), необязательно
 snow_type:                     # список строк (допускаются пустые элементы, будут отфильтрованы)
   - wet
-snow_temperature:              # список диапазонов; используется первый элемент
+temperature:                   # список диапазонов; используется первый элемент
   - min: -5
     max: 3
 condition: ""                  # произвольная строка (необязательно)
@@ -141,7 +142,7 @@ archived: false
 name: X25
 description_ru: "структура для свежего и нового натурального снега"
 snow_type: [all]
-snow_temperature:
+temperature:
   - {min: -8, max: 0}
 service: {name: Skipole}
 country: Russia
@@ -149,7 +150,7 @@ country: Russia
 
 ## <a name="contributing"></a> Правила вкладов
 
-- Перед PR запускайте `make format`, `make lint`, `make test`.
+- Перед PR запускайте `just format`, `just lint`, `just test`.
 - Следите за корректностью `YAML`: валидные типы, первый диапазон температуры — основной.
 - Для новых сервисов добавляйте мета-файл `schliffs/<service>/_meta.yaml` с полями `name`, `country`, `city`, `contact` (см. существующие примеры).
 - Коммиты на русском/английском допустимы; будьте конкретны (что и зачем меняете).
