@@ -151,5 +151,3 @@ clean-webapp:
 [group("clean")]
 [doc("Очистить python + webapp артефакты.")]
 clean: clean-py clean-webapp
-
-
