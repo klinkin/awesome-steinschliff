@@ -1,3 +1,14 @@
+"""Реестр snow conditions (условий снега).
+
+Модуль загружает `snow_conditions/*.yaml` из репозитория и предоставляет:
+- список допустимых ключей
+- поиск информации по ключу
+- нормализацию пользовательского ввода (CLI)
+
+Кэширование:
+    Данные YAML и таблица нормализации кэшируются через `functools.lru_cache`.
+"""
+
 from __future__ import annotations
 
 import functools
@@ -24,15 +35,33 @@ _COLOR_RU_TO_KEY: dict[str, str] = {
 
 
 def _project_root() -> Path:
+    """Получить корень репозитория.
+
+    Returns:
+        Путь к корню репозитория.
+    """
     # steinschliff/snow_conditions/registry.py -> steinschliff -> repo root
     return Path(__file__).resolve().parents[2]
 
 
 def _snow_conditions_dir() -> Path:
+    """Получить директорию `snow_conditions/` (в корне репозитория).
+
+    Returns:
+        Путь к директории с YAML-файлами условий.
+    """
     return _project_root() / "snow_conditions"
 
 
 def _safe_load_yaml(path: Path) -> dict[str, Any] | None:
+    """Безопасно прочитать YAML-файл как dict.
+
+    Args:
+        path: Путь к YAML-файлу.
+
+    Returns:
+        Dict с данными или `None` при ошибке чтения/парсинга или неверном типе корня.
+    """
     try:
         with path.open("r", encoding="utf-8") as f:
             data = yaml.safe_load(f) or {}
@@ -43,7 +72,11 @@ def _safe_load_yaml(path: Path) -> dict[str, Any] | None:
 
 @functools.lru_cache(maxsize=1)
 def _load_registry() -> dict[str, dict[str, Any]]:
-    """Загружает все snow_conditions из `snow_conditions/*.yaml` и кеширует."""
+    """Загрузить все условия из `snow_conditions/*.yaml` и закэшировать.
+
+    Returns:
+        Реестр `key -> data`.
+    """
     root = _snow_conditions_dir()
     if not root.exists():
         return {}
@@ -65,7 +98,14 @@ def _load_registry() -> dict[str, dict[str, Any]]:
 
 @functools.lru_cache(maxsize=1)
 def _build_lookup() -> dict[str, str]:
-    """Строит маппинг 'разные варианты ввода' -> канонический key."""
+    """Построить маппинг “вариант ввода” → канонический `key`.
+
+    Returns:
+        Словарь, в который входят:
+        - `red/blue/...` ключи
+        - русские названия цветов
+        - `name`, `name_ru`, `synonyms`, `synonyms_ru` из YAML-файлов
+    """
     lookup: dict[str, str] = {}
 
     # Ключи и русские названия цветов:
@@ -96,20 +136,38 @@ def _build_lookup() -> dict[str, str]:
 
 
 def get_valid_keys() -> list[str]:
-    """Возвращает список допустимых ключей condition."""
+    """Получить список допустимых ключей `condition`.
+
+    Returns:
+        Список ключей. Если YAML-реестр пуст, возвращает `DEFAULT_SNOW_CONDITION_KEYS`.
+    """
     keys = sorted(_load_registry().keys())
     return keys if keys else DEFAULT_SNOW_CONDITION_KEYS
 
 
 def get_condition_info(key: str) -> dict[str, Any] | None:
-    """Возвращает словарь из `snow_conditions/<key>.yaml` или None."""
+    """Получить данные snow condition по ключу.
+
+    Args:
+        key: Канонический ключ (например, `blue`).
+
+    Returns:
+        Словарь из `snow_conditions/<key>.yaml` или `None`, если ключ неизвестен/пуст.
+    """
     if not key:
         return None
     return _load_registry().get(key.strip().lower())
 
 
 def get_name_ru(key: str) -> str | None:
-    """Возвращает `name_ru` для указанного snow condition key."""
+    """Получить русское название условия по ключу.
+
+    Args:
+        key: Канонический ключ.
+
+    Returns:
+        Значение `name_ru` или `None`.
+    """
     info = get_condition_info(key)
     if not info:
         return None
@@ -118,7 +176,7 @@ def get_name_ru(key: str) -> str | None:
 
 
 def normalize_condition_input(condition_input: str) -> str:
-    """Нормализует пользовательский ввод для фильтров CLI.
+    """Нормализовать пользовательский ввод условия (для CLI/фильтров).
 
     Поддерживает:
     - key (red/blue/…)

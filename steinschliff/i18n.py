@@ -1,5 +1,8 @@
-"""
-Модуль для интернационализации (i18n) в проекте steinschliff с использованием Babel.
+"""Интернационализация (i18n) проекта Steinschliff через Babel.
+
+Модуль содержит:
+- загрузку переводов для Jinja2
+- утилиты для извлечения/инициализации/обновления/компиляции переводов через `pybabel`
 """
 
 import glob
@@ -16,8 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_translation_directory() -> str:
-    """
-    Возвращает директорию с переводами.
+    """Получить директорию с переводами.
 
     Returns:
         Абсолютный путь к директории с переводами.
@@ -26,14 +28,13 @@ def get_translation_directory() -> str:
 
 
 def load_translations(locale: str) -> Translations | NullTranslations:
-    """
-    Загружает переводы для указанной локали.
+    """Загрузить переводы для указанной локали.
 
     Args:
-        locale: Код локали (например, 'ru' или 'en').
+        locale: Код локали (например, `"ru"` или `"en"`).
 
     Returns:
-        Объект Translations с переводами.
+        Объект `Translations` (или пустые переводы при ошибке загрузки).
     """
     translations_dir = get_translation_directory()
 
@@ -51,10 +52,10 @@ def load_translations(locale: str) -> Translations | NullTranslations:
         return Translations()
 
 
-def extract_messages():
-    """
-    Запускает извлечение сообщений для перевода.
-    Использует subprocess для вызова pybabel напрямую.
+def extract_messages() -> None:
+    """Извлечь сообщения для перевода (через `pybabel extract`).
+
+    Использует `subprocess.run` и логирует ошибки/предупреждения.
     """
     try:
         # Определяем пути
@@ -99,12 +100,11 @@ def extract_messages():
         logger.error("Ошибка при извлечении сообщений: %s", e)
 
 
-def init_locale(locale: str):
-    """
-    Инициализирует новую локаль.
+def init_locale(locale: str) -> None:
+    """Инициализировать новую локаль (через `pybabel init`).
 
     Args:
-        locale: Код локали (например, 'ru' или 'en').
+        locale: Код локали (например, `"ru"` или `"en"`).
     """
     try:
         result = subprocess.run(
@@ -123,12 +123,11 @@ def init_locale(locale: str):
         logger.error("Ошибка при инициализации локали %s: %s", locale, e)
 
 
-def update_locale(locale: str):
-    """
-    Обновляет существующую локаль.
+def update_locale(locale: str) -> None:
+    """Обновить существующую локаль (через `pybabel update`).
 
     Args:
-        locale: Код локали (например, 'ru' или 'en').
+        locale: Код локали (например, `"ru"` или `"en"`).
     """
     try:
         result = subprocess.run(
@@ -147,10 +146,8 @@ def update_locale(locale: str):
         logger.error("Ошибка при обновлении локали %s: %s", locale, e)
 
 
-def compile_translations():
-    """
-    Компилирует все переводы.
-    """
+def compile_translations() -> None:
+    """Скомпилировать все переводы (через `pybabel compile`)."""
     try:
         result = subprocess.run(
             ["pybabel", "compile", "-d", get_translation_directory()],

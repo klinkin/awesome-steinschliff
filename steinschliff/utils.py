@@ -41,15 +41,14 @@ logger = logging.getLogger("steinschliff.utils")
 
 
 def format_validation_error(err: ValidationError, file_path: str) -> str:
-    """
-    Форматирует ошибку валидации Pydantic в удобочитаемый текст.
+    """Отформатировать ошибку валидации Pydantic в человекочитаемый текст.
 
     Args:
-        err: Объект ошибки ValidationError
-        file_path: Путь к файлу с ошибкой
+        err: Объект `ValidationError`.
+        file_path: Путь к файлу с ошибкой.
 
     Returns:
-        Отформатированная строка с подробным описанием ошибок
+        Текстовый отчёт (ANSI-цвета), пригодный для вывода в терминал.
     """
     errors = err.errors()
     report = [f"{RED}{BOLD}ОШИБКИ ВАЛИДАЦИИ В ФАЙЛЕ: {file_path}{RESET}"]

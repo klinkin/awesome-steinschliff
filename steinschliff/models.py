@@ -1,4 +1,10 @@
-"""Модели данных для Steinschliff."""
+"""Модели данных Steinschliff (Pydantic).
+
+Здесь описаны:
+- модели входного YAML (`SchliffStructure`, `ServiceMetadata`)
+- модели “для отображения” (`StructureInfo`)
+- справочники (`SnowCondition`)
+"""
 
 from typing import Any
 
@@ -8,7 +14,7 @@ from steinschliff.snow_conditions import get_valid_keys
 
 
 class TemperatureRange(BaseModel):
-    """Диапазон температуры снега"""
+    """Диапазон температуры снега."""
 
     min: float
     max: float
@@ -17,7 +23,7 @@ class TemperatureRange(BaseModel):
 
 
 class Service(BaseModel):
-    """Модель сервиса по обработке лыж"""
+    """Сервис/производитель (как поле в структуре)."""
 
     name: str | None = ""
 
@@ -25,7 +31,7 @@ class Service(BaseModel):
 
 
 class SchliffStructure(BaseModel):
-    """Модель структуры"""
+    """Модель YAML-структуры (как хранится в `schliffs/*/*.yaml`)."""
 
     name: str | int
     description: str | None
@@ -53,17 +59,16 @@ class SchliffStructure(BaseModel):
     @field_validator("condition")
     @classmethod
     def validate_condition(cls, v: Any) -> str:
-        """
-        Валидирует, что condition является допустимым ключом из SnowCondition.
+        """Провалидировать `condition` как допустимый snow condition key.
 
         Args:
-            v: Значение для проверки
+            v: Значение для проверки (любого типа).
 
         Returns:
-            Валидированное значение
+            Нормализованный ключ (lower/strip) или `""` для пустого значения.
 
         Raises:
-            ValueError: Если значение не является допустимым ключом SnowCondition
+            ValueError: Если значение не входит в список допустимых ключей.
         """
         if v is None:
             return ""
@@ -82,7 +87,7 @@ class SchliffStructure(BaseModel):
 
 
 class ContactInfo(BaseModel):
-    """Модель контактной информации"""
+    """Контактная информация сервиса (из `_meta.yaml`)."""
 
     email: str | None = None
     phones: list[str] | None = None  # Массив телефонных номеров
@@ -93,7 +98,7 @@ class ContactInfo(BaseModel):
 
 
 class ServiceMetadata(BaseModel):
-    """Модель метаданных сервиса обработки лыж"""
+    """Метаданные сервиса (из `_meta.yaml`)."""
 
     name: str | None = ""
     description: str | None = ""
@@ -108,7 +113,7 @@ class ServiceMetadata(BaseModel):
 
 
 class StructureInfo(BaseModel):
-    """Модель обработанной информации о структуре для вывода в README"""
+    """Структура в виде, удобном для рендера/экспорта."""
 
     name: str
     description: str | None = ""

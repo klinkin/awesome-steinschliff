@@ -1,3 +1,8 @@
+"""Экспорт структур в JSON (для webapp).
+
+Формат JSON соответствует ожиданиям фронтенда и содержит “плоский” список структур.
+"""
+
 from __future__ import annotations
 
 import json
@@ -8,7 +13,12 @@ from steinschliff.models import StructureInfo
 
 
 def export_structures_json(*, services: dict[str, list[StructureInfo]], out_path: str) -> None:
-    """Экспортирует структуры в JSON (для webapp)."""
+    """Экспортировать структуры в JSON (для webapp).
+
+    Args:
+        services: Маппинг `service_key -> list[StructureInfo]`.
+        out_path: Путь выходного файла.
+    """
     flat: list[dict[str, object]] = []
     for service, items in services.items():
         for s in items:

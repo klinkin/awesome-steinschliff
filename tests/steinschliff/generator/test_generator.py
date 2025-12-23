@@ -1,11 +1,14 @@
 import os
 import tempfile
+from collections import defaultdict
+from pathlib import Path
 
 import pytest
 import yaml
 
 from steinschliff.config import GeneratorConfig
 from steinschliff.generator import ReadmeGenerator
+from steinschliff.pipeline.readme import load_structures_from_yaml_files
 
 
 class TestProcessYamlFiles:
@@ -83,8 +86,13 @@ class TestProcessYamlFiles:
             if f.endswith(".yaml")
         ]
 
-        # Запускаем обработку файлов
-        generator._process_yaml_files(yaml_files)
+        # Шаг LOAD+VALIDATE вынесен в pipeline (и тестируется отдельно)
+        loaded = load_structures_from_yaml_files(
+            yaml_files=[Path(p) for p in yaml_files],
+            schliffs_dir=Path(setup_test_files),
+        )
+        generator.services = defaultdict(list, loaded.services)
+        generator.name_to_path = loaded.name_to_path
 
         # Проверяем результаты
 
@@ -141,8 +149,12 @@ class TestProcessYamlFiles:
             if f.endswith(".yaml")
         ]
 
-        # Запускаем обработку файлов
-        generator._process_yaml_files(yaml_files)
+        loaded = load_structures_from_yaml_files(
+            yaml_files=[Path(p) for p in yaml_files],
+            schliffs_dir=Path(setup_test_files),
+        )
+        generator.services = defaultdict(list, loaded.services)
+        generator.name_to_path = loaded.name_to_path
 
         # Проверяем, что name_to_path содержит все структуры
         assert len(generator.name_to_path) == 3

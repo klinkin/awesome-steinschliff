@@ -1,8 +1,7 @@
-"""
-Консольные UI-утилиты (Rich).
+"""Консольные UI-утилиты (Rich).
 
-Почему:
-    Держим форматирование/вывод отдельно от доменной логики и I/O.
+Модуль отвечает только за отображение (таблицы/панели) и не должен содержать
+доменной логики. Это упрощает тестирование и переиспользование.
 """
 
 import logging
@@ -17,7 +16,13 @@ console = Console()
 
 
 def print_kv_panel(title: str, rows: list[tuple[str, str]], border_style: str = "cyan") -> None:
-    """Выводит ключ-значение в виде компактной таблицы в панели."""
+    """Вывести пары ключ-значение в панели.
+
+    Args:
+        title: Заголовок панели.
+        rows: Список пар `(key, value)`.
+        border_style: Цвет рамки панели.
+    """
     table = Table.grid(padding=(0, 1))
     for key, value in rows:
         table.add_row(f"[bold]{key}[/]:", f"[cyan]{value}[/]")
@@ -25,7 +30,13 @@ def print_kv_panel(title: str, rows: list[tuple[str, str]], border_style: str = 
 
 
 def print_items_panel(title: str, items: list[str], border_style: str = "yellow") -> None:
-    """Выводит список строк в виде таблицы в панели."""
+    """Вывести список строк в панели.
+
+    Args:
+        title: Заголовок панели.
+        items: Список строк.
+        border_style: Цвет рамки панели.
+    """
     table = Table(show_header=False, box=None)
     table.add_column("Элемент")
     for item in items:
@@ -34,7 +45,12 @@ def print_items_panel(title: str, items: list[str], border_style: str = "yellow"
 
 
 def print_validation_errors(err: ValidationError, file_path: str) -> None:
-    """Печатает ошибки валидации в виде таблицы Rich."""
+    """Показать ошибки валидации (Pydantic) в виде таблицы.
+
+    Args:
+        err: Ошибка валидации Pydantic.
+        file_path: Путь к файлу, в котором произошла ошибка.
+    """
     errors = err.errors()
 
     table = Table(show_header=True, header_style="bold", box=None)
@@ -52,7 +68,16 @@ def print_validation_errors(err: ValidationError, file_path: str) -> None:
 
 
 def print_validation_summary(valid_files: int, error_files: int, warning_files: int) -> None:
-    """Выводит сводку по результатам валидации YAML-файлов."""
+    """Показать сводку по валидации YAML-файлов.
+
+    Note:
+        Сводка показывается только если логгер `steinschliff.ui` включён на уровне INFO.
+
+    Args:
+        valid_files: Количество валидных файлов.
+        error_files: Количество файлов с ошибками (не пригодны).
+        warning_files: Количество файлов с предупреждениями (частичная валидация).
+    """
     # Сохраняем прежнее поведение: сводка показывается только при INFO.
     if not logger.isEnabledFor(logging.INFO):
         return

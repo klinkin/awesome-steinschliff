@@ -9,12 +9,12 @@ SortField = Literal["name", "rating", "country", "temperature"]
 
 
 class GeneratorConfig(BaseModel):
-    """Конфигурация ReadmeGenerator.
+    """Конфигурация `ReadmeGenerator`.
 
-    Делаем контракт явным, чтобы:
-    - избежать неявных KeyError по словарю
-    - держать типы и дефолты в одном месте
-    - упростить использование в CLI/тестах
+    Зачем это нужно:
+    - убрать “магические” словари и возможные `KeyError`
+    - держать типы/дефолты/валидацию в одном месте
+    - упростить использование в CLI и тестах
     """
 
     schliffs_dir: Path
@@ -26,7 +26,11 @@ class GeneratorConfig(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     def as_dict(self) -> dict[str, str | SortField]:
-        """Совместимость со старым API `ReadmeGenerator(config: dict)`."""
+        """Преобразовать конфиг в dict (совместимость со старым API).
+
+        Returns:
+            Словарь со строковыми путями и `sort_field`.
+        """
         data: dict[str, str | SortField] = {
             "schliffs_dir": str(self.schliffs_dir),
             "readme_file": str(self.readme_file),

@@ -10,11 +10,18 @@ def build_service_name_to_key(
     services: Mapping[str, list[StructureInfo]],
     service_metadata: Mapping[str, ServiceMetadata],
 ) -> dict[str, str]:
-    """Строит маппинг "видимое имя сервиса" -> ключ сервиса (папка).
+    """Построить маппинг “видимое имя сервиса” → ключ сервиса (папка).
 
     Поддерживает:
     - ключи директории (`ramsau`)
     - `meta.name` из `_meta.yaml` (например, `Ramsau`)
+
+    Args:
+        services: Маппинг `service_key -> list[StructureInfo]`.
+        service_metadata: Маппинг `service_key -> ServiceMetadata`.
+
+    Returns:
+        Словарь, где ключ — `lower()` от видимого имени, а значение — `service_key`.
     """
     mapping: dict[str, str] = {}
 
@@ -35,7 +42,19 @@ def select_services(
     service_metadata: Mapping[str, ServiceMetadata],
     service_filter: str | None,
 ) -> dict[str, list[StructureInfo]]:
-    """Выбирает сервисы по фильтру `service_filter` (или возвращает все)."""
+    """Выбрать сервис(ы) по фильтру `service_filter` (или вернуть все).
+
+    Args:
+        services: Все сервисы.
+        service_metadata: Метаданные сервисов (для поиска по “видимому имени”).
+        service_filter: Значение фильтра (ключ директории или `meta.name`). `None`/пусто → вернуть все.
+
+    Returns:
+        Новый словарь с выбранными сервисами.
+
+    Raises:
+        ValueError: Если `service_filter` задан, но сервис не найден.
+    """
     selected_services: dict[str, list[StructureInfo]] = dict(services)
     if not service_filter:
         return selected_services
@@ -58,7 +77,15 @@ def filter_services_by_condition(
     services: Mapping[str, list[StructureInfo]],
     condition_key: str,
 ) -> dict[str, list[StructureInfo]]:
-    """Фильтрует структуры по `condition_key` (канонический key)."""
+    """Отфильтровать структуры по `condition_key` (канонический key).
+
+    Args:
+        services: Сервисы и структуры.
+        condition_key: Канонический ключ условия (например, `blue`). Пустое значение → вернуть всё.
+
+    Returns:
+        Новый словарь сервисов, где оставлены только структуры с подходящим `condition`.
+    """
     key = (condition_key or "").strip().lower()
     if not key:
         return dict(services)

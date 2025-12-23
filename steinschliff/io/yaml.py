@@ -20,7 +20,15 @@ logger = logging.getLogger("steinschliff.io.yaml")
 
 
 def _validate_meta_file(data: dict[str, Any], path: Path) -> ServiceMetadata | dict[str, Any]:
-    """Валидирует метафайл и возвращает ServiceMetadata или исходные данные."""
+    """Валидировать `_meta.yaml` и вернуть `ServiceMetadata`.
+
+    Args:
+        data: Сырые данные YAML (mapping).
+        path: Путь к файлу (для сообщений об ошибках).
+
+    Returns:
+        `ServiceMetadata` при успехе или исходный `dict` при ошибке валидации.
+    """
     try:
         return ServiceMetadata.model_validate(data)
     except ValidationError as e:
@@ -30,7 +38,17 @@ def _validate_meta_file(data: dict[str, Any], path: Path) -> ServiceMetadata | d
 
 
 def _validate_structure_file(data: dict[str, Any], path: Path) -> dict[str, Any] | None:
-    """Валидирует файл структуры и возвращает валидированные данные или None."""
+    """Валидировать YAML-файл структуры.
+
+    Args:
+        data: Сырые данные YAML (mapping).
+        path: Путь к файлу (для сообщений об ошибках).
+
+    Returns:
+        - dict валидированных данных (normal case)
+        - dict исходных данных с `_partial_validation=True`, если можно “частично принять”
+        - `None`, если файл непригоден для использования
+    """
     try:
         return SchliffStructure.model_validate(data).model_dump(exclude_unset=True)
     except ValidationError as e:
@@ -53,7 +71,14 @@ def _validate_structure_file(data: dict[str, Any], path: Path) -> dict[str, Any]
 
 
 def _load_yaml_data(path: Path) -> dict[str, Any] | None:
-    """Загружает и проверяет базовую структуру YAML файла."""
+    """Прочитать YAML-файл и убедиться, что на верхнем уровне находится mapping.
+
+    Args:
+        path: Путь к YAML-файлу.
+
+    Returns:
+        Словарь (mapping) или `None`, если файл не найден/битый/не имеет корректной структуры.
+    """
     try:
         with path.open("r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
@@ -86,13 +111,18 @@ def _load_yaml_data(path: Path) -> dict[str, Any] | None:
 
 
 def read_yaml_file(file_path: str | Path) -> dict[str, Any] | ServiceMetadata | None:
-    """
-    Читает YAML-файл и валидирует с помощью Pydantic.
+    """Прочитать YAML-файл и (частично) провалидировать через Pydantic.
 
-    Возвращает:
-        - для `_meta.yaml`: ServiceMetadata (или dict при ошибке валидации)
-        - для файлов структур: dict валидированных данных или dict частично-валидированных данных
-        - None: если файл пуст/битый/непригоден
+    Поведение зависит от файла:
+    - `_meta.yaml`: возвращает `ServiceMetadata` (или `dict`, если мета-файл невалиден)
+    - файл структуры: возвращает `dict` валидированных данных или `dict` с `_partial_validation=True`
+    - при ошибках чтения/структуры: возвращает `None`
+
+    Args:
+        file_path: Путь к YAML-файлу.
+
+    Returns:
+        Объект данных (`ServiceMetadata`/`dict`) или `None`, если файл непригоден.
     """
     path = Path(file_path) if not isinstance(file_path, Path) else file_path
 
@@ -106,7 +136,14 @@ def read_yaml_file(file_path: str | Path) -> dict[str, Any] | ServiceMetadata | 
 
 
 def find_yaml_files(directory: str) -> list[str]:
-    """Находит все YAML-файлы в директории и поддиректориях."""
+    """Найти все `.yaml` файлы в директории рекурсивно.
+
+    Args:
+        directory: Директория для поиска.
+
+    Returns:
+        Список путей к YAML-файлам.
+    """
     dir_path = Path(directory)
     yaml_files = list(dir_path.glob("**/*.yaml"))
     return [str(path) for path in yaml_files]
@@ -119,7 +156,15 @@ def _process_service_metadata(
     metadata_warnings: list[str],
     metadata_errors: list[tuple[str, str]],
 ) -> None:
-    """Обрабатывает метаданные одного сервиса."""
+    """Обработать метаданные одного сервиса и обновить агрегаты.
+
+    Args:
+        service: Ключ сервиса (имя папки).
+        metadata_file: Путь к `_meta.yaml`.
+        metadata: Агрегируемый результат `service -> ServiceMetadata`.
+        metadata_warnings: Список сервисов с пустыми/непрочитанными метаданными.
+        metadata_errors: Список ошибок чтения метаданных.
+    """
     try:
         service_meta = read_yaml_file(metadata_file)
         if service_meta:
@@ -145,7 +190,13 @@ def _log_metadata_results(
     metadata_errors: list[tuple[str, str]],
     metadata: dict[str, ServiceMetadata],
 ) -> None:
-    """Показывает сводку по метаданным."""
+    """Показать сводку по метаданным сервисов (через Rich UI).
+
+    Args:
+        metadata_warnings: Сервисы с предупреждениями.
+        metadata_errors: Сервисы с ошибками.
+        metadata: Итоговый словарь метаданных (для вывода общего количества).
+    """
     if metadata_warnings:
         items = [f"[yellow]{service}[/]" for service in metadata_warnings]
         print_items_panel("Пустые файлы метаданных для сервисов", items, border_style="yellow")
@@ -163,7 +214,15 @@ def _log_metadata_results(
 
 
 def read_service_metadata(metadata_dir: str, services: list[str]) -> dict[str, ServiceMetadata]:
-    """Читает метаданные сервисов из файлов `_meta.yaml`."""
+    """Прочитать метаданные сервисов из файлов `_meta.yaml`.
+
+    Args:
+        metadata_dir: Корневая директория, где лежат папки сервисов.
+        services: Список ключей сервисов (имена папок).
+
+    Returns:
+        Словарь `service_key -> ServiceMetadata` для тех сервисов, у которых существует `_meta.yaml`.
+    """
     metadata: dict[str, ServiceMetadata] = {}
     metadata_warnings: list[str] = []
     metadata_errors: list[tuple[str, str]] = []

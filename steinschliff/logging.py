@@ -14,7 +14,11 @@ logger = logging.getLogger("steinschliff.logging")
 
 
 def setup_logging(level: int = logging.INFO) -> None:
-    """Настраивает логирование для приложения (консоль через RichHandler)."""
+    """Настроить логирование приложения (консоль через `RichHandler`).
+
+    Args:
+        level: Уровень логирования (например, `logging.INFO`).
+    """
     root_logger = logging.getLogger()
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
