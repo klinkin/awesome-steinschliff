@@ -15,6 +15,7 @@ from steinschliff.config import GeneratorConfig
 from steinschliff.exceptions import SteinschliffUserError
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
+from steinschliff.snow_conditions import get_valid_keys
 
 
 def register(app: typer.Typer) -> None:
@@ -77,11 +78,10 @@ def register(app: typer.Typer) -> None:
             normalized_condition = None
             if condition:
                 normalized_condition = normalize_condition_filter(condition)
-                if not normalized_condition:
-                    msg = (
-                        f"Неизвестное условие '{condition}'. Допустимые: red, blue, violet, "
-                        "orange, green, yellow, pink, brown"
-                    )
+                valid = set(get_valid_keys())
+                if not normalized_condition or normalized_condition not in valid:
+                    allowed = ", ".join(sorted(valid))
+                    msg = f"Неизвестное условие '{condition}'. Допустимые: {allowed}"
                     raise SteinschliffUserError(msg)
 
                 selected_services = filter_services_by_condition(

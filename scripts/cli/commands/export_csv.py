@@ -20,6 +20,7 @@ from steinschliff.exceptions import SteinschliffUserError
 from steinschliff.export.csv import export_structures_csv_string
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
+from steinschliff.snow_conditions import get_valid_keys
 
 
 def register(app: typer.Typer) -> None:  # noqa: C901
@@ -105,11 +106,10 @@ def register(app: typer.Typer) -> None:  # noqa: C901
 
             if condition:
                 normalized_condition = normalize_condition_filter(condition)
-                if not normalized_condition:
-                    msg = (
-                        f"Неизвестное условие '{condition}'. "
-                        "Допустимые: red, blue, violet, orange, green, yellow, pink, brown"
-                    )
+                valid = set(get_valid_keys())
+                if not normalized_condition or normalized_condition not in valid:
+                    allowed = ", ".join(sorted(valid))
+                    msg = f"Неизвестное условие '{condition}'. Допустимые: {allowed}"
                     raise SteinschliffUserError(msg)
 
                 selected_services = filter_services_by_condition(

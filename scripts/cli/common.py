@@ -155,26 +155,15 @@ def format_condition(condition: str | None) -> str:
     if not condition:
         return ""
 
-    condition = condition.strip().lower()
-    if not condition:
+    condition_key = normalize_condition_input(condition)
+    if not condition_key:
         return ""
 
-    name_ru = get_name_ru(condition)
+    name_ru = get_name_ru(condition_key)
     if name_ru:
         return name_ru
 
-    condition_names = {
-        "red": "Красный",
-        "blue": "Синий",
-        "violet": "Фиолетовый",
-        "orange": "Оранжевый",
-        "green": "Зелёный",
-        "yellow": "Жёлтый",
-        "pink": "Розовый",
-        "brown": "Коричневый",
-    }
-
-    return condition_names.get(condition, condition.capitalize())
+    return condition_key.capitalize()
 
 
 def build_table_title(
