@@ -8,13 +8,14 @@ import typer
 from rich.panel import Panel
 
 from scripts.cli.common import PROJECT_ROOT, console, normalize_condition_filter, render_table
+from steinschliff.catalog import filter_services_by_condition, select_services
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 
 
-def register(app: typer.Typer) -> None:  # noqa: C901
+def register(app: typer.Typer) -> None:
     @app.command("list")
-    def cmd_list(  # noqa: C901
+    def cmd_list(
         schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
         sort: Literal["name", "rating", "country", "temperature"] = typer.Option(
             "temperature", help="Поле сортировки", case_sensitive=False
@@ -59,28 +60,15 @@ def register(app: typer.Typer) -> None:  # noqa: C901
             generator.load_structures()
             generator.load_service_metadata()
 
-            service_name_to_key: dict[str, str] = {}
-            for key, meta in generator.service_metadata.items():
-                visible_name = (meta.name or key).strip()
-                service_name_to_key[visible_name.lower()] = key
-
-            selected_services: dict[str, list] = dict(generator.services)
-            if service:
-                lookup = service.strip().lower()
-                if lookup in selected_services:
-                    resolved_key = lookup
-                else:
-                    mapped = service_name_to_key.get(lookup)
-                    if mapped is None:
-                        console.print(Panel.fit(f"Сервис '{service}' не найден", border_style="red"))
-                        raise typer.Exit(code=1)
-                    resolved_key = mapped
-
-                if resolved_key not in selected_services:
-                    console.print(Panel.fit(f"Сервис '{service}' не найден", border_style="red"))
-                    raise typer.Exit(code=1)
-
-                selected_services = {resolved_key: selected_services[resolved_key]}
+            try:
+                selected_services = select_services(
+                    services=generator.services,
+                    service_metadata=generator.service_metadata,
+                    service_filter=service,
+                )
+            except ValueError as e:
+                console.print(Panel.fit(str(e), border_style="red"))
+                raise typer.Exit(code=1) from e
 
             normalized_condition = None
             if condition:
@@ -97,19 +85,13 @@ def register(app: typer.Typer) -> None:  # noqa: C901
                     )
                     raise typer.Exit(code=1)
 
-                filtered_services: dict[str, list] = {}
-                for service_key, structures in selected_services.items():
-                    filtered_structures = [
-                        s for s in structures if s.condition and s.condition.strip().lower() == normalized_condition
-                    ]
-                    if filtered_structures:
-                        filtered_services[service_key] = filtered_structures
-
-                if not filtered_services:
+                selected_services = filter_services_by_condition(
+                    services=selected_services,
+                    condition_key=normalized_condition,
+                )
+                if not selected_services:
                     console.print(Panel.fit(f"Не найдено структур с условием '{condition}'", border_style="yellow"))
                     raise typer.Exit(code=0)
-
-                selected_services = filtered_services
 
             table = render_table(
                 generator=generator,
