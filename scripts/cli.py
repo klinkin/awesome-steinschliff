@@ -23,8 +23,9 @@ from rich.traceback import install as rich_traceback_install
 import steinschliff.utils as utils_module
 from steinschliff.formatters import format_list_for_display, format_temperature_range
 from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.logging import setup_logging
 from steinschliff.models import StructureInfo
-from steinschliff.utils import print_kv_panel, setup_logging
+from steinschliff.ui.rich import print_kv_panel
 
 rich_traceback_install(show_locals=True)
 

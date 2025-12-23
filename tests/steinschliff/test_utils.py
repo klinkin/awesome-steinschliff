@@ -4,7 +4,7 @@ import tempfile
 import pytest
 import yaml
 
-from steinschliff.utils import find_yaml_files, read_service_metadata, read_yaml_file
+from steinschliff.io.yaml import find_yaml_files, read_service_metadata, read_yaml_file
 
 
 class TestUtils:

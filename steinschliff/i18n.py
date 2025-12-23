@@ -10,7 +10,7 @@ from gettext import NullTranslations
 
 from babel.support import Translations
 
-from steinschliff.utils import print_kv_panel
+from steinschliff.ui.rich import print_kv_panel
 
 logger = logging.getLogger(__name__)
 

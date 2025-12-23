@@ -1,10 +1,7 @@
 from unittest.mock import patch
 
-from steinschliff.utils import (
-    print_validation_summary,
-    read_service_metadata,
-    read_yaml_file,
-)
+from steinschliff.io.yaml import read_service_metadata, read_yaml_file
+from steinschliff.ui.rich import print_validation_summary
 
 
 def test_print_validation_summary_info(caplog):
@@ -53,7 +50,7 @@ def test_read_service_metadata_warnings_and_errors(tmp_path, caplog):
 
     services = ["svc1", "svc2", "svc3"]
 
-    with patch("steinschliff.utils.read_yaml_file") as mocked:
+    with patch("steinschliff.io.yaml.read_yaml_file") as mocked:
 
         def side_effect(path):
             if str(path).endswith("svc1/_meta.yaml"):

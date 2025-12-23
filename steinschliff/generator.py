@@ -29,8 +29,9 @@ from .formatters import (
     url_encode_path,
 )
 from .i18n import load_translations
+from .io import find_yaml_files, read_service_metadata, read_yaml_file
 from .models import Service, ServiceMetadata, StructureInfo
-from .utils import find_yaml_files, print_kv_panel, print_validation_summary, read_service_metadata, read_yaml_file
+from .ui.rich import print_kv_panel, print_validation_summary
 
 logger = logging.getLogger("steinschliff.generator")
 

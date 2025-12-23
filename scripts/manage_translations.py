@@ -20,7 +20,7 @@ from steinschliff.i18n import (
     init_locale,
     update_locale,
 )
-from steinschliff.utils import setup_logging
+from steinschliff.logging import setup_logging
 
 rich_traceback_install(show_locals=True)
 setup_logging(level=logging.INFO)
