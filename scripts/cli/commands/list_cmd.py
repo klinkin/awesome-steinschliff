@@ -8,13 +8,16 @@ import typer
 from rich.panel import Panel
 
 from scripts.cli.common import PROJECT_ROOT, console, normalize_condition_filter, render_table
+from scripts.cli.error_handler import handle_user_errors
 from steinschliff.catalog import filter_services_by_condition, select_services
+from steinschliff.exceptions import SteinschliffUserError
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 
 
 def register(app: typer.Typer) -> None:
     @app.command("list")
+    @handle_user_errors
     def cmd_list(
         schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
         sort: Literal["name", "rating", "country", "temperature"] = typer.Option(
@@ -67,23 +70,17 @@ def register(app: typer.Typer) -> None:
                     service_filter=service,
                 )
             except ValueError as e:
-                console.print(Panel.fit(str(e), border_style="red"))
-                raise typer.Exit(code=1) from e
+                raise SteinschliffUserError(str(e)) from e
 
             normalized_condition = None
             if condition:
                 normalized_condition = normalize_condition_filter(condition)
                 if not normalized_condition:
-                    console.print(
-                        Panel.fit(
-                            (
-                                f"Неизвестное условие '{condition}'. Допустимые: red, blue, violet, "
-                                "orange, green, yellow, pink, brown"
-                            ),
-                            border_style="red",
-                        )
+                    msg = (
+                        f"Неизвестное условие '{condition}'. Допустимые: red, blue, violet, "
+                        "orange, green, yellow, pink, brown"
                     )
-                    raise typer.Exit(code=1)
+                    raise SteinschliffUserError(msg)
 
                 selected_services = filter_services_by_condition(
                     services=selected_services,

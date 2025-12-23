@@ -9,12 +9,14 @@ from rich.panel import Panel
 from rich.table import Table
 
 from scripts.cli.common import PROJECT_ROOT, build_generator, console
+from scripts.cli.error_handler import handle_user_errors
 from steinschliff.export.json import export_structures_json
 from steinschliff.logging import setup_logging
 
 
 def register(app: typer.Typer) -> None:
     @app.command("export-json")
+    @handle_user_errors
     def cmd_export_json(
         schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
         sort: Literal["name", "rating", "country", "temperature"] = typer.Option(

@@ -13,7 +13,9 @@ from rich.panel import Panel
 
 import steinschliff.utils as utils_module
 from scripts.cli.common import PROJECT_ROOT, console, normalize_condition_filter, restore_stdout
+from scripts.cli.error_handler import handle_user_errors
 from steinschliff.catalog import filter_services_by_condition, select_services
+from steinschliff.exceptions import SteinschliffUserError
 from steinschliff.export.csv import export_structures_csv_string
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
@@ -21,6 +23,7 @@ from steinschliff.logging import setup_logging
 
 def register(app: typer.Typer) -> None:  # noqa: C901
     @app.command("export-csv")
+    @handle_user_errors
     def cmd_export_csv(
         schliffs_dir: str = typer.Option("schliffs", help="Директория с YAML-файлами"),
         sort: Literal["name", "rating", "country", "temperature"] = typer.Option(
@@ -97,20 +100,16 @@ def register(app: typer.Typer) -> None:  # noqa: C901
                     service_filter=service,
                 )
             except ValueError as e:
-                console.print(Panel.fit(str(e), border_style="red"))
-                raise typer.Exit(code=1) from e
+                raise SteinschliffUserError(str(e)) from e
 
             if condition:
                 normalized_condition = normalize_condition_filter(condition)
                 if not normalized_condition:
-                    console.print(
-                        Panel.fit(
-                            f"Неизвестное условие '{condition}'. "
-                            "Допустимые: red, blue, violet, orange, green, yellow, pink, brown",
-                            border_style="red",
-                        )
+                    msg = (
+                        f"Неизвестное условие '{condition}'. "
+                        "Допустимые: red, blue, violet, orange, green, yellow, pink, brown"
                     )
-                    raise typer.Exit(code=1)
+                    raise SteinschliffUserError(msg)
 
                 selected_services = filter_services_by_condition(
                     services=selected_services,
