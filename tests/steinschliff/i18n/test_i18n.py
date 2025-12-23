@@ -6,7 +6,7 @@ from steinschliff.i18n import get_translation_directory, load_translations
 def test_get_translation_directory_returns_absolute_path():
     path = get_translation_directory()
     assert path
-    assert path.startswith("/")
+    assert path.is_absolute()
 
 
 def test_load_translations_success():

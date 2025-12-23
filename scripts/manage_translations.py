@@ -3,7 +3,6 @@
 """
 
 import logging
-import os
 import sys
 from pathlib import Path
 
@@ -55,7 +54,7 @@ def cmd_update(
 def cmd_update_all() -> None:
     """Обновить все существующие локали."""
     translations_dir = get_translation_directory()
-    locales = [d for d in os.listdir(translations_dir) if os.path.isdir(os.path.join(translations_dir, d))]
+    locales = [p.name for p in translations_dir.iterdir() if p.is_dir()]
     if locales:
         for locale in locales:
             logger.info("Обновление локали %s...", locale)
@@ -74,7 +73,7 @@ def cmd_compile() -> None:
 def cmd_list() -> None:
     """Показать список доступных локалей."""
     translations_dir = get_translation_directory()
-    locales = [d for d in os.listdir(translations_dir) if os.path.isdir(os.path.join(translations_dir, d))]
+    locales = [p.name for p in translations_dir.iterdir() if p.is_dir()]
     if locales:
         logger.info("Доступные локали:")
         for locale in locales:

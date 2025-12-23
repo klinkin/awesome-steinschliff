@@ -5,10 +5,10 @@
 - утилиты для извлечения/инициализации/обновления/компиляции переводов через `pybabel`
 """
 
-import glob
 import logging
 import subprocess
 from gettext import NullTranslations
+from pathlib import Path
 
 from babel.support import Translations
 
@@ -21,13 +21,13 @@ from .paths import translations_dir as package_translations_dir
 logger = logging.getLogger(__name__)
 
 
-def get_translation_directory() -> str:
+def get_translation_directory() -> Path:
     """Получить директорию с переводами.
 
     Returns:
-        Абсолютный путь к директории с переводами.
+        Абсолютный путь к директории с переводами внутри пакета.
     """
-    return str(package_translations_dir())
+    return package_translations_dir()
 
 
 def load_translations(locale: str) -> Translations | NullTranslations:
@@ -42,7 +42,7 @@ def load_translations(locale: str) -> Translations | NullTranslations:
     translations_dir = get_translation_directory()
 
     try:
-        translations = Translations.load(translations_dir, [locale])
+        translations = Translations.load(str(translations_dir), [locale])
         print_kv_panel("Переводы", [("Локаль", locale), ("Статус", "загружены")], border_style="magenta")
         return translations
     except OSError as e:
@@ -67,7 +67,7 @@ def extract_messages() -> None:
         output_pot = project_root() / "messages.pot"
 
         # Находим все шаблоны .jinja2
-        templates = glob.glob(str(templates_dir / "*.jinja2"))
+        templates = sorted(templates_dir.glob("*.jinja2"))
         if not templates:
             logger.error("Не найдены шаблоны в директории %s", templates_dir)
             return
@@ -87,7 +87,7 @@ def extract_messages() -> None:
             "-o",
             str(output_pot),
         ]
-        cmd.extend(templates)  # Добавляем пути ко всем шаблонам
+        cmd.extend(str(p) for p in templates)  # Добавляем пути ко всем шаблонам
 
         logger.info("Выполнение команды: %s", " ".join(cmd))
         result = subprocess.run(
@@ -103,8 +103,7 @@ def extract_messages() -> None:
             logger.info("Сообщения успешно извлечены в %s", output_pot)
 
             # Проверка, что файл не пустой
-            with open(output_pot, encoding="utf-8") as f:
-                content = f.read()
+            content = Path(output_pot).read_text(encoding="utf-8")
 
             if "msgid" not in content or len(content.strip()) < 50:
                 logger.warning("Файл messages.pot пустой или содержит мало строк.")
@@ -121,8 +120,9 @@ def init_locale(locale: str) -> None:
         locale: Код локали (например, `"ru"` или `"en"`).
     """
     try:
+        pot_path = project_root() / "messages.pot"
         result = subprocess.run(
-            ["pybabel", "init", "-i", "messages.pot", "-d", get_translation_directory(), "-l", locale],
+            ["pybabel", "init", "-i", str(pot_path), "-d", str(get_translation_directory()), "-l", locale],
             capture_output=True,
             check=False,
             text=True,
@@ -144,8 +144,9 @@ def update_locale(locale: str) -> None:
         locale: Код локали (например, `"ru"` или `"en"`).
     """
     try:
+        pot_path = project_root() / "messages.pot"
         result = subprocess.run(
-            ["pybabel", "update", "-i", "messages.pot", "-d", get_translation_directory(), "-l", locale],
+            ["pybabel", "update", "-i", str(pot_path), "-d", str(get_translation_directory()), "-l", locale],
             capture_output=True,
             check=False,
             text=True,
@@ -164,7 +165,7 @@ def compile_translations() -> None:
     """Скомпилировать все переводы (через `pybabel compile`)."""
     try:
         result = subprocess.run(
-            ["pybabel", "compile", "-d", get_translation_directory()],
+            ["pybabel", "compile", "-d", str(get_translation_directory())],
             capture_output=True,
             check=False,
             text=True,
