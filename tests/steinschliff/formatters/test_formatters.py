@@ -48,6 +48,11 @@ def test_format_temperature_range_edge_cases(payload):
     assert format_temperature_range(payload) == ""
 
 
+def test_format_temperature_range_string_numbers_are_supported():
+    # Ветка: min/max приходят как строки -> должны обработаться через float(...) и префиксы +/-.
+    assert format_temperature_range([{"min": "0", "max": "1"}]) == "+1 °C … 0 °C"
+
+
 def test_format_image_link_basic(tmp_path):
     # Создаем файл изображения внутри output_dir
     output_dir = tmp_path
@@ -83,6 +88,11 @@ def test_format_similars_with_links(tmp_path):
     # Ссылка на найденную структуру с относительным путем и просто текст для отсутствующей
     assert "[S1](service/S1.yaml)" in res
     assert "Missing" in res
+
+
+def test_format_similars_with_links_non_list_returns_str():
+    generator_stub = SimpleNamespace(get_path_by_name=lambda _name: None)
+    assert format_similars_with_links("S1", generator_stub, ".") == "S1"
 
 
 def test_formatters_relative_path_fallbacks(tmp_path):

@@ -25,6 +25,13 @@ def test_select_services_raises_for_unknown():
         select_services(services=services, service_metadata=meta, service_filter="nope")
 
 
+def test_select_services_returns_all_for_blank_filter():
+    services = {"svc": [StructureInfo(name="S", file_path="x")]}
+    meta = {"svc": ServiceMetadata(name="Service Visible")}
+    selected = select_services(services=services, service_metadata=meta, service_filter="   ")
+    assert list(selected.keys()) == ["svc"]
+
+
 def test_filter_services_by_condition_filters_items():
     services = {
         "svc": [
@@ -35,3 +42,9 @@ def test_filter_services_by_condition_filters_items():
     filtered = filter_services_by_condition(services=services, condition_key="blue")
     assert list(filtered.keys()) == ["svc"]
     assert [s.name for s in filtered["svc"]] == ["A"]
+
+
+def test_filter_services_by_condition_returns_all_for_blank_key():
+    services = {"svc": [StructureInfo(name="A", condition="blue", file_path="a")]}
+    filtered = filter_services_by_condition(services=services, condition_key="  ")
+    assert list(filtered.keys()) == ["svc"]

@@ -1,5 +1,6 @@
 import yaml
 
+from steinschliff.config import GeneratorConfig
 from steinschliff.export.json import export_structures_json
 from steinschliff.generator import ReadmeGenerator
 
@@ -46,12 +47,12 @@ def test_sort_by_temperature_and_export_json(tmp_path):
     # Мета-файл, чтобы не влиять на сортировку
     _write_yaml(svc / "_meta.yaml", {"name": "Service", "country": "Россия"})
 
-    config = {
-        "schliffs_dir": str(root),
-        "readme_file": str(root / "README.md"),
-        "readme_ru_file": str(root / "README_ru.md"),
-        "sort_field": "temperature",
-    }
+    config = GeneratorConfig(
+        schliffs_dir=root,
+        readme_file=root / "README.md",
+        readme_ru_file=root / "README_ru.md",
+        sort_field="temperature",
+    )
 
     gen = ReadmeGenerator(config)
     gen.load_structures()

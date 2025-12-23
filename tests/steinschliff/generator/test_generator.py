@@ -4,6 +4,7 @@ import tempfile
 import pytest
 import yaml
 
+from steinschliff.config import GeneratorConfig
 from steinschliff.generator import ReadmeGenerator
 
 
@@ -67,7 +68,11 @@ class TestProcessYamlFiles:
         4. Пропуск _meta.yaml файлов
         """
         # Подготовка генератора с минимальной конфигурацией
-        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
+        config = GeneratorConfig(
+            schliffs_dir=setup_test_files,
+            readme_file=os.path.join(setup_test_files, "README.md"),
+            readme_ru_file=os.path.join(setup_test_files, "README_ru.md"),
+        )
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
@@ -121,7 +126,11 @@ class TestProcessYamlFiles:
         Проверяет, что словарь name_to_path в ReadmeGenerator корректен.
         """
         # Подготовка генератора
-        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
+        config = GeneratorConfig(
+            schliffs_dir=setup_test_files,
+            readme_file=os.path.join(setup_test_files, "README.md"),
+            readme_ru_file=os.path.join(setup_test_files, "README_ru.md"),
+        )
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
@@ -173,11 +182,11 @@ class TestGenerate:
             yield temp_dir
 
     def test_generate_creates_readme_and_uses_metadata(self, setup_generate_files):
-        config = {
-            "schliffs_dir": setup_generate_files,
-            "readme_file": os.path.join(setup_generate_files, "README.md"),
-            "readme_ru_file": os.path.join(setup_generate_files, "README_ru.md"),
-        }
+        config = GeneratorConfig(
+            schliffs_dir=setup_generate_files,
+            readme_file=os.path.join(setup_generate_files, "README.md"),
+            readme_ru_file=os.path.join(setup_generate_files, "README_ru.md"),
+        )
         generator = ReadmeGenerator(config)
         generator.load_structures()
         generator.load_service_metadata()

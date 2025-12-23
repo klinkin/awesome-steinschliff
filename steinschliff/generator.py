@@ -38,18 +38,16 @@ logger = logging.getLogger("steinschliff.generator")
 class ReadmeGenerator:
     """Класс для генерации README из YAML-файлов структур."""
 
-    def __init__(self, config: dict[str, object] | GeneratorConfig) -> None:
+    def __init__(self, config: GeneratorConfig) -> None:
         """Инициализирует генератор.
 
         Args:
-            config: Конфигурация генератора (словарь для совместимости или GeneratorConfig).
+            config: Конфигурация генератора.
         """
-        cfg: dict[str, Any] = dict(config.as_dict()) if isinstance(config, GeneratorConfig) else dict(config)
-
-        self.schliffs_dir = str(cfg["schliffs_dir"])
-        self.readme_file = str(cfg["readme_file"])
-        self.readme_ru_file = str(cfg["readme_ru_file"])
-        self.sort_field = str(cfg.get("sort_field", "name"))
+        self.schliffs_dir = str(config.schliffs_dir)
+        self.readme_file = str(config.readme_file)
+        self.readme_ru_file = str(config.readme_ru_file)
+        self.sort_field = str(config.sort_field or "name")
 
         # Инициализируем пустые структуры данных
         self.services: defaultdict[str, list[StructureInfo]] = defaultdict(list)

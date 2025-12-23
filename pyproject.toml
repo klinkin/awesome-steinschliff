@@ -103,6 +103,10 @@ relative_files = true
 omit = [
   "steinschliff/templates/*",
   "steinschliff/templates/**/*",
+  # Тонкие оболочки / фасады (покрытие не даёт сигнала).
+  "steinschliff/exceptions.py",
+  "steinschliff/logging.py",
+  "steinschliff/utils.py",
 ]
 
 [tool.codespell]
