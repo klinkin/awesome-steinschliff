@@ -4,7 +4,7 @@ from typing import Literal
 
 import typer
 
-from scripts.cli.common import run_generate
+from steinschliff.cli.common import run_generate
 
 
 def register(app: typer.Typer) -> None:

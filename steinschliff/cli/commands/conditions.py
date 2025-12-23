@@ -8,7 +8,7 @@ from typing import Literal
 import typer
 from rich.table import Table
 
-from scripts.cli.common import PROJECT_ROOT, console
+from steinschliff.cli.common import PROJECT_ROOT, console
 from steinschliff.config import GeneratorConfig
 from steinschliff.formatters import format_temperature_range
 from steinschliff.generator import ReadmeGenerator

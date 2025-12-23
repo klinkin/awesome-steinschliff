@@ -9,8 +9,8 @@ import typer
 from rich.panel import Panel
 from rich.table import Table
 
-from scripts.cli.common import PROJECT_ROOT, console
-from scripts.cli.error_handler import handle_user_errors
+from steinschliff.cli.common import PROJECT_ROOT, console
+from steinschliff.cli.error_handler import handle_user_errors
 from steinschliff.config import GeneratorConfig
 from steinschliff.export.json import export_structures_json
 from steinschliff.generator import ReadmeGenerator

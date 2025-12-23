@@ -7,12 +7,10 @@ from __future__ import annotations
 
 import io
 import logging
-import os
 import sys
 from collections import Counter
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as pkg_version
-from pathlib import Path
 from typing import Literal
 
 import typer
@@ -27,6 +25,7 @@ from steinschliff.formatters import format_list_for_display, format_temperature_
 from steinschliff.generator import ReadmeGenerator
 from steinschliff.logging import setup_logging
 from steinschliff.models import StructureInfo
+from steinschliff.paths import project_root
 from steinschliff.snow_conditions import get_condition_info, get_name_ru, get_valid_keys, normalize_condition_input
 from steinschliff.ui.rich import print_kv_panel
 
@@ -37,8 +36,7 @@ try:
 except PackageNotFoundError:
     APP_VERSION = "dev"
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-
+PROJECT_ROOT = project_root()
 
 SortField = Literal["name", "rating", "country", "temperature"]
 LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
@@ -64,29 +62,28 @@ def prepare_config(
     logger = logging.getLogger("steinschliff")
 
     project_dir = PROJECT_ROOT
-    schliffs_abs = os.path.join(project_dir, schliffs_dir)
-    output_en_abs = os.path.join(project_dir, output)
-    output_ru_abs = os.path.join(project_dir, output_ru)
-    translations_abs = os.path.join(project_dir, translations_dir)
+    schliffs_abs = (project_dir / schliffs_dir).resolve()
+    output_en_abs = (project_dir / output).resolve()
+    output_ru_abs = (project_dir / output_ru).resolve()
+    translations_abs = (project_dir / translations_dir).resolve()
 
-    if not os.path.exists(translations_abs):
-        os.makedirs(translations_abs)
-        print_kv_panel("Переводы", [("Создана директория", translations_abs)], border_style="blue")
+    if not translations_abs.exists():
+        translations_abs.mkdir(parents=True, exist_ok=True)
+        print_kv_panel("Переводы", [("Создана директория", str(translations_abs))], border_style="blue")
 
     if create_translations:
         for lang in ["en", "ru"]:
-            translation_file = os.path.join(translations_abs, f"{lang}.json")
-            if not os.path.exists(translation_file):
-                with open(translation_file, "w", encoding="utf-8") as f:
-                    f.write("{}")
-                print_kv_panel("Переводы", [("Создан файл", translation_file)], border_style="blue")
+            translation_file = translations_abs / f"{lang}.json"
+            if not translation_file.exists():
+                translation_file.write_text("{}", encoding="utf-8")
+                print_kv_panel("Переводы", [("Создан файл", str(translation_file))], border_style="blue")
 
     config = GeneratorConfig(
-        schliffs_dir=Path(schliffs_abs),
-        readme_file=Path(output_en_abs),
-        readme_ru_file=Path(output_ru_abs),
+        schliffs_dir=schliffs_abs,
+        readme_file=output_en_abs,
+        readme_ru_file=output_ru_abs,
         sort_field=sort,
-        translations_dir=Path(translations_abs),
+        translations_dir=translations_abs,
     )
 
     return logger, config
@@ -249,14 +246,14 @@ def load_generator_for_reporting(
     """Упрощённый билдер генератора для read-only команд (list/export-csv/conditions)."""
     setup_logging(level=getattr(logging, log_level))
     project_dir = PROJECT_ROOT
-    schliffs_abs = os.path.join(project_dir, schliffs_dir)
+    schliffs_abs = (project_dir / schliffs_dir).resolve()
 
     config = GeneratorConfig(
-        schliffs_dir=Path(schliffs_abs),
-        readme_file=Path(project_dir / "README_en.md"),
-        readme_ru_file=Path(project_dir / "README.md"),
+        schliffs_dir=schliffs_abs,
+        readme_file=(project_dir / "README_en.md").resolve(),
+        readme_ru_file=(project_dir / "README.md").resolve(),
         sort_field=sort,
-        translations_dir=Path(project_dir / "translations"),
+        translations_dir=(project_dir / "translations").resolve(),
     )
     generator = ReadmeGenerator(config)
     generator.load_structures()
@@ -272,14 +269,14 @@ def compute_conditions_stats(
     """Собирает статистику по snow conditions из YAML + справочника snow_conditions."""
     setup_logging(level=getattr(logging, log_level))
     project_dir = PROJECT_ROOT
-    schliffs_abs = os.path.join(project_dir, schliffs_dir)
+    schliffs_abs = (project_dir / schliffs_dir).resolve()
 
     config = GeneratorConfig(
-        schliffs_dir=Path(schliffs_abs),
-        readme_file=Path(project_dir / "README_en.md"),
-        readme_ru_file=Path(project_dir / "README.md"),
+        schliffs_dir=schliffs_abs,
+        readme_file=(project_dir / "README_en.md").resolve(),
+        readme_ru_file=(project_dir / "README.md").resolve(),
         sort_field="name",
-        translations_dir=Path(project_dir / "translations"),
+        translations_dir=(project_dir / "translations").resolve(),
     )
 
     generator = ReadmeGenerator(config)

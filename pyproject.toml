@@ -30,7 +30,7 @@ dev = [
 ]
 
 [project.scripts]
-steinschliff = "scripts.cli:app"
+steinschliff = "steinschliff.cli.entry_point:entry_point"
 
 
 [build-system]
@@ -93,7 +93,7 @@ ignore = [
 flake8-unused-arguments.ignore-variadic-names = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["steinschliff", "scripts"]
+packages = ["steinschliff"]
 
 [tool.coverage.run]
 source = ["steinschliff"]
