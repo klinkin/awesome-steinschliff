@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
-from steinschliff.paths import relpath as relpath_path
+from steinschliff.paths import relpath
 
 logger = logging.getLogger("steinschliff.formatters")
 
@@ -109,17 +109,8 @@ def format_similars_with_links(
         path = generator.get_path_by_name(str_item)
 
         if path:
-            # Конвертируем в относительный путь от файла README
-            path_obj = Path(path)
-            try:
-                # Создаем относительный путь если возможно
-                if path_obj.is_relative_to(output_path):
-                    rel_path = path_obj.relative_to(output_path)
-                else:
-                    rel_path = path_obj.relative_to(Path.cwd())
-            except ValueError:
-                # Если не удалось создать относительный путь, используем общий helper.
-                rel_path = relpath_path(path, output_dir)
+            # Всегда строим относительный путь от output_dir (как "классический" relpath).
+            rel_path = relpath(Path(path), output_path)
             # Кодируем путь для корректной работы Markdown при пробелах
             encoded_path = url_encode_path(rel_path)
             result.append(f"[{str_item}]({encoded_path})")
@@ -214,22 +205,8 @@ def format_image_link(image_value: str | list[str], structure_name: str, output_
         if not path or not isinstance(path, str):
             return ""
 
-        # Создаём объекты Path
-        path_obj = Path(path)
-        output_path = Path(output_dir)
-
-        # Создаём относительный путь (безопасно, с обработкой ошибок)
-        try:
-            # Пробуем создать относительный путь напрямую
-            if path_obj.is_absolute() and output_path.is_absolute():
-                # Для абсолютных путей пробуем создать относительный путь
-                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
-            else:
-                # Для относительных путей
-                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
-        except ValueError:
-            # Если не удалось создать относительный путь, возвращаемся к общему helper.
-            relative_path = relpath_path(path, output_dir)
+        # Всегда строим относительный путь от output_dir (как "классический" relpath).
+        relative_path = relpath(Path(path), Path(output_dir))
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
         # Кодируем путь для корректной работы Markdown при пробелах в сегментах

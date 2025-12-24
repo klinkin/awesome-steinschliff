@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import logging
-import os
-from pathlib import Path
 from typing import Literal
 
 import typer
@@ -35,14 +33,14 @@ def register(app: typer.Typer) -> None:
         logger = logging.getLogger("steinschliff")
 
         project_dir = PROJECT_ROOT
-        schliffs_abs = os.path.join(project_dir, schliffs_dir)
+        schliffs_abs = (project_dir / schliffs_dir).resolve()
 
         cfg = GeneratorConfig(
-            schliffs_dir=Path(schliffs_abs),
-            readme_file=Path(os.path.join(project_dir, "README_en.md")),
-            readme_ru_file=Path(os.path.join(project_dir, "README.md")),
+            schliffs_dir=schliffs_abs,
+            readme_file=(project_dir / "README_en.md").resolve(),
+            readme_ru_file=(project_dir / "README.md").resolve(),
             sort_field=sort,
-            translations_dir=Path(os.path.join(project_dir, "translations")),
+            translations_dir=(project_dir / "translations").resolve(),
         )
         try:
             generator = ReadmeGenerator(cfg)

@@ -20,9 +20,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black>=24.4.0,<25.0.0",
+    "mkdocs>=1.6.0,<2.0.0",
+    "mkdocs-material>=9.5.0,<10.0.0",
     "mypy>=1.9.0,<2.0.0",
     "pre-commit>=3.7.0,<4.0.0",
+    "pymdown-extensions>=10.0.0,<11.0.0",
     "ruff>=0.14.0,<1.0.0",
     "pytest>=8.3.5,<9.0.0",
     "pytest-cov>=6.1.1,<7.0.0",
@@ -32,13 +34,14 @@ dev = [
 [project.scripts]
 steinschliff = "steinschliff.cli.entry_point:entry_point"
 
+[project.urls]
+Source = "https://github.com/klinkin/awesome-steinschliff"
+Issues = "https://github.com/klinkin/awesome-steinschliff/issues"
+
 
 [build-system]
 requires = ["hatchling>=1.26.0"]
 build-backend = "hatchling.build"
-
-[tool.black]
-line-length = 120
 
 [tool.ruff]
 line-length = 120
@@ -82,7 +85,6 @@ extend-select = [
 ignore = [
   "ISC001", # Конфликтует с форматировщиком
   "PLR",    # Дизайн-правила pylint (слишком шумные)
-  "PTH",    # pathlib-миграция: полезно, но слишком шумно для существующего кода/тестов
   "UP007",  # Разрешаем Optional[T] вместо T | None (по желанию команды)
   "PGH003", # Не всегда удобно требовать конкретные noqa-коды
   "RUF001", # Допускаем нелатиницу (полезно для ru/i18n контента)

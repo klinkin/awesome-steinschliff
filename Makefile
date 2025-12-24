@@ -10,11 +10,10 @@ PROJECT_ROOT := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # Исполняемые файлы инструментов
 UV = uv
-PYTHON = uv run python
-MYPY = uv run mypy
-RUFF = uv run ruff
-BLACK = uv run black
-PYTEST = uv run pytest
+PYTHON = uv run --frozen python
+MYPY = uv run --frozen mypy
+RUFF = uv run --frozen ruff
+PYTEST = uv run --frozen pytest
 
 # Пути проекта и webapp
 WEBAPP_DIR   := $(PROJECT_ROOT)/webapp
@@ -50,9 +49,10 @@ help:
 	@echo "${GREEN}make help${DEF}              - ${YELLOW}Показать это сообщение справки${DEF}"
 	@echo ""
 	@echo "${BLUE}Качество и тестирование:${DEF}"
-	@echo "${GREEN}make lint${DEF}              - ${YELLOW}Проверка синтаксиса (mypy, ruff, black)${DEF}"
-	@echo "${GREEN}make format${DEF}            - ${YELLOW}Форматирование проекта с ruff и black${DEF}"
+	@echo "${GREEN}make lint${DEF}              - ${YELLOW}Проверка синтаксиса (mypy, ruff check, ruff format --check)${DEF}"
+	@echo "${GREEN}make format${DEF}            - ${YELLOW}Форматирование проекта (ruff format) + сортировка импортов${DEF}"
 	@echo "${GREEN}make test${DEF}              - ${YELLOW}Запуск тестов${DEF}"
+	@echo "${GREEN}make check${DEF}             - ${YELLOW}Быстрый прогон (ruff + mypy + pre-commit --all-files)${DEF}"
 	@echo ""
 	@echo "${BLUE}Интернационализация (i18n):${DEF}"
 	@echo "${GREEN}make i18n-extract${DEF}      - ${YELLOW}Извлечение переводимых строк${DEF}"
@@ -74,6 +74,11 @@ help:
 	@echo "${GREEN}make webapp-preview${DEF}    - ${YELLOW}Предпросмотр сборки${DEF}"
 	@echo "${GREEN}make site-build${DEF}        - ${YELLOW}Алиас на webapp-build${DEF}"
 	@echo ""
+	@echo "${BLUE}Документация (MkDocs):${DEF}"
+	@echo "${GREEN}make docs-dev${DEF}          - ${YELLOW}Запуск MkDocs dev-сервера${DEF}"
+	@echo "${GREEN}make docs-build${DEF}        - ${YELLOW}Сборка MkDocs в site/${DEF}"
+	@echo "${GREEN}make docs-check${DEF}        - ${YELLOW}Проверка сборки MkDocs (--strict)${DEF}"
+	@echo ""
 	@echo "${BLUE}CI/CD:${DEF}"
 	@echo "${GREEN}make ci${DEF}                - ${YELLOW}Запуск lint, тестов и сборки${DEF}"
 	@echo ""
@@ -89,9 +94,17 @@ help:
 lint:
 	@echo "${YELLOW}Запуск проверки синтаксиса...${DEF}"
 	$(MYPY) $(PY_SRC)
+	$(RUFF) format --check $(PY_SRC)
 	$(RUFF) check $(PY_SRC)
-	$(BLACK) --check $(PY_SRC)
 	@echo "${GREEN}Проверка синтаксиса завершена.${DEF}"
+
+.PHONY: check
+check:
+	@echo "${YELLOW}Быстрый прогон (ruff + mypy + pre-commit)...${DEF}"
+	$(RUFF) check $(PY_SRC)
+	$(MYPY) $(PY_SRC)
+	$(UV) run --frozen pre-commit run --all-files
+	@echo "${GREEN}Быстрый прогон завершён.${DEF}"
 
 .PHONY: test
 test:
@@ -102,7 +115,6 @@ test:
 .PHONY: format
 format:
 	@echo "${YELLOW}Форматирование проекта...${DEF}"
-	$(BLACK) $(PY_SRC)
 	$(RUFF) format $(PY_SRC)
 	$(RUFF) check --fix --select I $(PY_SRC)
 	@echo "${GREEN}Форматирование завершено.${DEF}"
@@ -159,19 +171,19 @@ i18n-list:
 .PHONY: build
 build:
 	@echo "${YELLOW}Сборка проекта...${DEF}"
-	$(UV) run steinschliff generate --sort $(or $(SORT),$(DEFAULT_SORT))
+	$(UV) run --frozen steinschliff generate --sort $(or $(SORT),$(DEFAULT_SORT))
 	@echo "${GREEN}Проект собран.${DEF}"
 
 .PHONY: export-json
 export-json:
 	@echo "${YELLOW}Экспорт JSON данных...${DEF}"
-	$(UV) run steinschliff export-json
+	$(UV) run --frozen steinschliff export-json
 	@echo "${GREEN}JSON экспортирован.${DEF}"
 
 .PHONY: export-csv
 export-csv:
 	@echo "${YELLOW}Экспорт CSV данных...${DEF}"
-	$(UV) run steinschliff export-csv --output structures.csv
+	$(UV) run --frozen steinschliff export-csv --output structures.csv
 	@echo "${GREEN}CSV экспортирован в structures.csv${DEF}"
 
 # --------------------------------------------------------------------------------
@@ -180,7 +192,7 @@ export-csv:
 .PHONY: bootstrap webapp-install webapp-dev webapp-build webapp-preview site-build
 
 bootstrap:
-	$(UV) sync --extra dev
+	$(UV) sync --frozen --extra dev
 	$(WEBAPP_NPM) ci
 
 webapp-install:
@@ -196,6 +208,20 @@ webapp-preview:
 	$(WEBAPP_NPM) run preview
 
 site-build: webapp-build
+
+# --------------------------------------------------------------------------------
+# Документация (MkDocs)
+
+.PHONY: docs-dev docs-build docs-check
+
+docs-dev:
+	$(UV) run --frozen mkdocs serve
+
+docs-build:
+	$(UV) run --frozen mkdocs build
+
+docs-check:
+	$(UV) run --frozen mkdocs build --strict
 
 # --------------------------------------------------------------------------------
 # Очистка

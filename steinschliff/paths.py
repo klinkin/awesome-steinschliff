@@ -11,7 +11,6 @@
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 
 
@@ -56,7 +55,7 @@ def snow_conditions_dir() -> Path:
 def relpath(path: str | Path, start: str | Path) -> Path:
     """Построить относительный путь `path` относительно `start`.
 
-    Это тонкая обёртка над `os.path.relpath`, чтобы не размазывать `os.path` по коду.
+    Поведение близко к классическому `relpath`, но реализовано через `pathlib`, чтобы не использовать `os.path`.
 
     Args:
         path: Путь, который нужно сделать относительным.
@@ -65,5 +64,20 @@ def relpath(path: str | Path, start: str | Path) -> Path:
     Returns:
         Относительный путь как `Path`.
     """
+    p_abs = Path(path).resolve()
+    s_abs = Path(start).resolve()
 
-    return Path(os.path.relpath(str(path), str(start)))
+    p_parts = p_abs.parts
+    s_parts = s_abs.parts
+
+    common_len = 0
+    for a, b in zip(p_parts, s_parts, strict=False):
+        if a != b:
+            break
+        common_len += 1
+
+    up_levels = [".."] * (len(s_parts) - common_len)
+    down_parts = list(p_parts[common_len:])
+    rel_parts = [*up_levels, *down_parts]
+
+    return Path(*rel_parts) if rel_parts else Path()

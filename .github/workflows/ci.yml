@@ -23,22 +23,29 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: pipxproject/action-install-pipx@v1
-
-      - name: Install poetry via pipx
-        run: pipx install poetry
-
-      - name: Cache Poetry virtualenvs
-        uses: actions/cache@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            venv-${{ runner.os }}-${{ matrix.python-version }}-
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: webapp/package-lock.json
 
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-ansi
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up just
+        uses: extractions/setup-just@v2
+
+      - name: Bootstrap (Python + webapp)
+        run: just bootstrap
+
+      - name: Check (ruff + mypy + pre-commit)
+        run: just check
+
+      - name: Docs check (mkdocs --strict)
+        run: just docs-check
 
       - name: Run CI (lint, tests, build)
-        run: make ci
+        run: just ci

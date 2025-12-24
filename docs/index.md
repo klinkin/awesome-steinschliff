@@ -19,5 +19,3 @@
 - **Линтинг/типы/формат**: `just lint`, `just format`
 - **Тесты**: `just test`
 - **Сборка README**: `just build`
-
-

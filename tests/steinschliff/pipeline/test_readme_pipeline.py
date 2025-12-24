@@ -12,7 +12,7 @@ from steinschliff.pipeline.readme import (
 
 
 def _write_yaml(path: Path, data: dict) -> None:
-    with open(path, "w", encoding="utf-8") as f:
+    with path.open("w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, allow_unicode=True)
 
 

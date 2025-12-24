@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import yaml
 
 from steinschliff.config import GeneratorConfig
@@ -6,7 +8,7 @@ from steinschliff.generator import ReadmeGenerator
 
 
 def _write_yaml(path, data):
-    with open(path, "w", encoding="utf-8") as f:
+    with Path(path).open("w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, allow_unicode=True)
 
 

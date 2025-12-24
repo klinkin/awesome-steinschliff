@@ -148,9 +148,9 @@ class SnowCondition(BaseModel):
     temperature: list[TemperatureRange] | None = None  # Диапазон температур
     snow_age: list[str] | None = []  # например: ["new"], ["old"], ["transformed"]
     humidity: list[str] | None = []  # например: ["saturated", "wet", "dry", "very_dry"]
-    texture: list[str] | None = (
-        []
-    )  # например: ["powdery", "coarse", "icy", "sugary", "slushy", "glazing", "squeaky", "dirty"]
+    texture: (
+        list[str] | None
+    ) = []  # например: ["powdery", "coarse", "icy", "sugary", "slushy", "glazing", "squeaky", "dirty"]
     description: str | None = ""
     description_ru: str | None = ""
     friction: str | None = ""

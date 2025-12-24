@@ -8,6 +8,7 @@
 - [Воспроизводимые прогоны через uv](#воспроизводимые-прогоны-через-uv)
 - [Повседневные команды](#повседневные-команды)
 - [i18n](#i18n)
+- [Документация (MkDocs)](#документация-mkdocs)
 - [Webapp (Astro)](#webapp-astro)
 - [Эквиваленты make → just](#эквиваленты-make--just)
 
@@ -47,7 +48,7 @@ uv sync --frozen --extra dev
 
 ```bash
 just check                 # ruff check + mypy + pre-commit run --all-files
-just lint                  # mypy + ruff check + black --check
+just lint                  # mypy + ruff format --check + ruff check
 just format                # форматирование + сортировка импортов
 just test                  # pytest
 just build                 # генерация README (sort=temperature)
@@ -68,6 +69,22 @@ just i18n-update ru
 just i18n-update-all
 just i18n-compile
 just i18n-list
+```
+
+## Документация (MkDocs)
+
+Локальный сайт документации собирается из `docs/` (конфиг: `mkdocs.yml`).
+
+Запуск dev-сервера:
+
+```bash
+just docs-dev
+```
+
+Сборка статического сайта в `site/`:
+
+```bash
+just docs-build
 ```
 
 ## Webapp (Astro)

@@ -1,10 +1,12 @@
+from pathlib import Path
+
 import yaml
 
 from steinschliff.io.yaml import read_yaml_file
 
 
 def _write_yaml(path, data) -> None:
-    with open(path, "w", encoding="utf-8") as f:
+    with Path(path).open("w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, allow_unicode=True)
 
 

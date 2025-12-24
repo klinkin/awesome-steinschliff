@@ -62,5 +62,3 @@ uv run --frozen steinschliff list --service "Fischer"
 uv run --frozen steinschliff list --condition "blue"
 uv run --frozen steinschliff list --service "Fischer" --condition "blue"
 ```
-
-

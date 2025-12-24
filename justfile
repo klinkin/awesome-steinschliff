@@ -29,11 +29,11 @@ help:
 # --- Quality -------------------------------------------------
 
 [group("quality")]
-[doc("Статический анализ: mypy + ruff + black --check.")]
+[doc("Статический анализ: mypy + ruff check + ruff format --check.")]
 lint:
   uv run --frozen mypy steinschliff scripts tests
+  uv run --frozen ruff format --check steinschliff scripts tests
   uv run --frozen ruff check steinschliff scripts tests
-  uv run --frozen black --check steinschliff scripts tests
 
 [group("quality")]
 [doc("Быстрый check (как в rendercv): ruff check + mypy + pre-commit run --all-files.")]
@@ -43,9 +43,8 @@ check:
   uv run --frozen pre-commit run --all-files
 
 [group("quality")]
-[doc("Форматирование: black + ruff format + фиксация import-порядка.")]
+[doc("Форматирование: ruff format + фиксация import-порядка.")]
 format:
-  uv run --frozen black steinschliff scripts tests
   uv run --frozen ruff format steinschliff scripts tests
   uv run --frozen ruff check --fix --select I steinschliff scripts tests
 
@@ -133,6 +132,23 @@ webapp-build:
 [doc("Предпросмотр сборки webapp.")]
 webapp-preview:
   cd webapp && npm run preview
+
+# --- Docs (MkDocs) -------------------------------------------
+
+[group("docs")]
+[doc("Запуск сайта документации (MkDocs) в dev-режиме.")]
+docs-dev:
+  uv run --frozen mkdocs serve
+
+[group("docs")]
+[doc("Сборка статического сайта документации (MkDocs) в папку site/.")]
+docs-build:
+  uv run --frozen mkdocs build
+
+[group("docs")]
+[doc("Проверка сборки документации (MkDocs) в строгом режиме.")]
+docs-check:
+  uv run --frozen mkdocs build --strict
 
 # --- Bootstrap / clean ---------------------------------------
 

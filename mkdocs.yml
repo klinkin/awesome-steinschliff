@@ -1,5 +1,10 @@
 site_name: Awesome Steinschliff
+site_description: Каталог знаний о лыжных структурах (штайншлифтах)
 docs_dir: docs
+
+repo_url: https://github.com/klinkin/awesome-steinschliff
+repo_name: klinkin/awesome-steinschliff
+edit_uri: edit/main/docs/
 
 nav:
   - Документация: index.md
@@ -9,6 +14,71 @@ nav:
   - Вклад: contributing.md
 
 theme:
-  name: readthedocs
+  name: material
+  language: ru
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: "Переключить на тёмную тему"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb
+        name: "Переключить на светлую тему"
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - content.code.copy
+    - content.action.view
+    - content.action.edit
+    - navigation.footer
+    - navigation.tabs
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.top
+    - navigation.sections
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.follow
+    - content.code.annotate
+    - content.tabs.link
 
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.extra:
+      pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+      title: Page contents
+      # Для корректных якорей в RU-заголовках (и чтобы работали ссылки вида #быстрый-старт).
+      # NB: `uslugify` помечен как deprecated в pymdown-extensions, но в MkDocs это всё ещё
+      # самый совместимый вариант (сигнатура toc.slugify ожидает callable(text, separator)).
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - admonition
 
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/klinkin/awesome-steinschliff

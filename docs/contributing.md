@@ -11,7 +11,7 @@
 
 ## Кодекс поведения
 
-Пожалуйста, ознакомьтесь и следуйте: [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md).
+Пожалуйста, ознакомьтесь и следуйте: [`CODE_OF_CONDUCT.md`](https://github.com/klinkin/awesome-steinschliff/blob/main/CODE_OF_CONDUCT.md).
 
 ## Вопрос или проблема
 
@@ -66,5 +66,3 @@ git commit -m "docs: update docs index"
 
 Предпочтительно `Squash and merge`.
 Подробнее: `https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-commits`
-
-

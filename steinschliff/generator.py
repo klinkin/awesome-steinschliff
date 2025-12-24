@@ -24,8 +24,7 @@ from .formatters import (
 from .i18n import load_translations
 from .io import read_service_metadata
 from .models import ServiceMetadata, StructureInfo
-from .paths import relpath as relpath_path
-from .paths import templates_dir
+from .paths import relpath, templates_dir
 from .pipeline.readme import (
     build_template_data,
     discover_yaml_files,
@@ -82,7 +81,7 @@ class ReadmeGenerator:
         self.jinja_env.filters["format_similars"] = format_similars_with_links
         self.jinja_env.filters["format_temperature"] = format_temperature_range
         self.jinja_env.filters["format_features"] = format_features
-        self.jinja_env.filters["relpath"] = lambda p, start: str(relpath_path(p, start))
+        self.jinja_env.filters["relpath"] = lambda p, start: str(relpath(p, start))
         self.jinja_env.filters["phone_link"] = lambda phone: f"[{phone!s}](tel:{phone!s})"
         self.jinja_env.filters["urlencode"] = url_encode_path
 
@@ -236,7 +235,7 @@ class ReadmeGenerator:
             rendered_content = template.render(**template_data)
 
             # Записываем результат в файл
-            with open(output_file, "w", encoding="utf-8") as f:
+            with Path(output_file).open("w", encoding="utf-8") as f:
                 f.write(rendered_content)
 
             # logger.info("README для языка %s успешно сгенерирован в %s", locale.upper(), Path(output_file).resolve())

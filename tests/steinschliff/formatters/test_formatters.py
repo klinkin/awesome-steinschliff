@@ -107,7 +107,7 @@ def test_formatters_relative_path_fallbacks(tmp_path):
 
     generator_stub = SimpleNamespace(get_path_by_name=lambda name: str(struct_file) if name == "S2" else None)
 
-    # format_similars_with_links -> путь не является поддиректорией output_dir, должен сработать os.path.relpath
+    # format_similars_with_links -> путь не является поддиректорией output_dir, должен сработать relpath(...)
     txt = format_similars_with_links(["S2"], generator_stub, str(out_dir))
     assert "](" in txt  # есть ссылка
     assert ")" in txt
