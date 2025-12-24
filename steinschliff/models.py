@@ -1,46 +1,20 @@
-"""
-Модели данных для Steinschliff.
+"""Модели данных Steinschliff (Pydantic).
+
+Здесь описаны:
+- модели входного YAML (`SchliffStructure`, `ServiceMetadata`)
+- модели “для отображения” (`StructureInfo`)
+- справочники (`SnowCondition`)
 """
 
-from pathlib import Path
 from typing import Any
 
-import yaml
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-# Допустимые значения для condition из SnowCondition
-DEFAULT_SNOW_CONDITIONS = ["red", "blue", "violet", "orange", "green", "yellow", "pink", "brown"]
-
-
-def get_valid_snow_condition_keys() -> list[str]:
-    """
-    Возвращает список допустимых ключей для condition из файлов snow_conditions/*.yaml.
-
-    Returns:
-        Список строк с ключами: ['red', 'blue', 'violet', 'orange', 'green', 'yellow', 'pink', 'brown']
-    """
-    project_root = Path(__file__).resolve().parents[1]
-    snow_conditions_dir = project_root / "snow_conditions"
-
-    if not snow_conditions_dir.exists():
-        # Возвращаем хардкодный список, если директория недоступна
-        return DEFAULT_SNOW_CONDITIONS
-
-    valid_keys = []
-    for yaml_file in snow_conditions_dir.glob("*.yaml"):
-        try:
-            with yaml_file.open("r", encoding="utf-8") as f:
-                data = yaml.safe_load(f) or {}
-                if isinstance(data, dict) and "key" in data:
-                    valid_keys.append(str(data["key"]))
-        except (OSError, yaml.YAMLError):
-            continue
-
-    return sorted(valid_keys) if valid_keys else DEFAULT_SNOW_CONDITIONS
+from steinschliff.snow_conditions import get_valid_keys
 
 
 class TemperatureRange(BaseModel):
-    """Диапазон температуры снега"""
+    """Диапазон температуры снега."""
 
     min: float
     max: float
@@ -49,7 +23,7 @@ class TemperatureRange(BaseModel):
 
 
 class Service(BaseModel):
-    """Модель сервиса по обработке лыж"""
+    """Сервис/производитель (как поле в структуре)."""
 
     name: str | None = ""
 
@@ -57,7 +31,7 @@ class Service(BaseModel):
 
 
 class SchliffStructure(BaseModel):
-    """Модель структуры"""
+    """Модель YAML-структуры (как хранится в `schliffs/*/*.yaml`)."""
 
     name: str | int
     description: str | None
@@ -85,17 +59,16 @@ class SchliffStructure(BaseModel):
     @field_validator("condition")
     @classmethod
     def validate_condition(cls, v: Any) -> str:
-        """
-        Валидирует, что condition является допустимым ключом из SnowCondition.
+        """Провалидировать `condition` как допустимый snow condition key.
 
         Args:
-            v: Значение для проверки
+            v: Значение для проверки (любого типа).
 
         Returns:
-            Валидированное значение
+            Нормализованный ключ (lower/strip) или `""` для пустого значения.
 
         Raises:
-            ValueError: Если значение не является допустимым ключом SnowCondition
+            ValueError: Если значение не входит в список допустимых ключей.
         """
         if v is None:
             return ""
@@ -104,16 +77,17 @@ class SchliffStructure(BaseModel):
         if not value:
             return ""
 
-        valid_keys = get_valid_snow_condition_keys()
+        valid_keys = get_valid_keys()
         if value not in valid_keys:
             valid_str = ", ".join(valid_keys)
-            raise ValueError(f"condition must be one of valid SnowCondition keys: {valid_str}. Got: '{v}'")
+            msg = f"condition must be one of valid SnowCondition keys: {valid_str}. Got: '{v}'"
+            raise ValueError(msg)
 
         return value
 
 
 class ContactInfo(BaseModel):
-    """Модель контактной информации"""
+    """Контактная информация сервиса (из `_meta.yaml`)."""
 
     email: str | None = None
     phones: list[str] | None = None  # Массив телефонных номеров
@@ -124,7 +98,7 @@ class ContactInfo(BaseModel):
 
 
 class ServiceMetadata(BaseModel):
-    """Модель метаданных сервиса обработки лыж"""
+    """Метаданные сервиса (из `_meta.yaml`)."""
 
     name: str | None = ""
     description: str | None = ""
@@ -139,7 +113,7 @@ class ServiceMetadata(BaseModel):
 
 
 class StructureInfo(BaseModel):
-    """Модель обработанной информации о структуре для вывода в README"""
+    """Структура в виде, удобном для рендера/экспорта."""
 
     name: str
     description: str | None = ""
@@ -174,9 +148,9 @@ class SnowCondition(BaseModel):
     temperature: list[TemperatureRange] | None = None  # Диапазон температур
     snow_age: list[str] | None = []  # например: ["new"], ["old"], ["transformed"]
     humidity: list[str] | None = []  # например: ["saturated", "wet", "dry", "very_dry"]
-    texture: list[str] | None = (
-        []
-    )  # например: ["powdery", "coarse", "icy", "sugary", "slushy", "glazing", "squeaky", "dirty"]
+    texture: (
+        list[str] | None
+    ) = []  # например: ["powdery", "coarse", "icy", "sugary", "slushy", "glazing", "squeaky", "dirty"]
     description: str | None = ""
     description_ru: str | None = ""
     friction: str | None = ""

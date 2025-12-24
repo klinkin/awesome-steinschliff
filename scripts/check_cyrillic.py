@@ -67,7 +67,7 @@ def check_yaml_file(repo_root: Path, abs_path: Path) -> list[str]:
             continue
 
         if in_similars:
-            if line.startswith(" ") or line.startswith("\t"):
+            if line.startswith((" ", "\t")):
                 m_item = similars_item_re.match(line)
                 if m_item and contains_cyrillic(m_item.group(1) or ""):
                     violations.append(f"{rel_path}:{line_no}: Cyrillic found in similars item")

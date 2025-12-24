@@ -1,10 +1,14 @@
+from pathlib import Path
+
 import yaml
 
-from steinschliff.generator import ReadmeGenerator, export_json
+from steinschliff.config import GeneratorConfig
+from steinschliff.export.json import export_structures_json
+from steinschliff.generator import ReadmeGenerator
 
 
 def _write_yaml(path, data):
-    with open(path, "w", encoding="utf-8") as f:
+    with Path(path).open("w", encoding="utf-8") as f:
         yaml.safe_dump(data, f, allow_unicode=True)
 
 
@@ -23,7 +27,7 @@ def test_sort_by_temperature_and_export_json(tmp_path):
         {
             "name": "Warm",
             "description": "",
-            "snow_temperature": [{"min": -5, "max": 5}],
+            "temperature": [{"min": -5, "max": 5}],
         },
     )
     _write_yaml(
@@ -31,7 +35,7 @@ def test_sort_by_temperature_and_export_json(tmp_path):
         {
             "name": "Cold",
             "description": "",
-            "snow_temperature": [{"min": -20, "max": -5}],
+            "temperature": [{"min": -20, "max": -5}],
         },
     )
     _write_yaml(
@@ -45,12 +49,12 @@ def test_sort_by_temperature_and_export_json(tmp_path):
     # Мета-файл, чтобы не влиять на сортировку
     _write_yaml(svc / "_meta.yaml", {"name": "Service", "country": "Россия"})
 
-    config = {
-        "schliffs_dir": str(root),
-        "readme_file": str(root / "README.md"),
-        "readme_ru_file": str(root / "README_ru.md"),
-        "sort_field": "temperature",
-    }
+    config = GeneratorConfig(
+        schliffs_dir=root,
+        readme_file=root / "README.md",
+        readme_ru_file=root / "README_ru.md",
+        sort_field="temperature",
+    )
 
     gen = ReadmeGenerator(config)
     gen.load_structures()
@@ -66,5 +70,5 @@ def test_sort_by_temperature_and_export_json(tmp_path):
 
     # Проверим экспорт JSON
     out_json = root / "out" / "data.json"
-    export_json({"svc": ordered}, str(out_json))
+    export_structures_json(services={"svc": ordered}, out_path=str(out_json))
     assert out_json.exists()

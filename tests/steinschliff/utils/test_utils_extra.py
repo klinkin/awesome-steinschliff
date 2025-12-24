@@ -1,17 +1,14 @@
 from unittest.mock import patch
 
-from steinschliff.utils import (
-    print_validation_summary,
-    read_service_metadata,
-    read_yaml_file,
-)
+from steinschliff.io.yaml import read_service_metadata, read_yaml_file
+from steinschliff.ui.rich import print_validation_summary
 
 
-def test_print_validation_summary_info(caplog):
-    # Лишь проверяем, что не падает и что логируется INFO-сообщение
-    caplog.set_level("INFO")
+def test_print_validation_summary_info(capsys):
+    # Проверяем, что Rich-панель выводится в stdout (а не через logging).
     print_validation_summary(3, 1, 2)
-    assert any("РЕЗУЛЬТАТЫ ВАЛИДАЦИИ YAML-ФАЙЛОВ" in r.message for r in caplog.records)
+    out = capsys.readouterr().out
+    assert "Результаты валидации YAML-файлов" in out
 
 
 def test_read_yaml_file_invalid_yaml(tmp_path):
@@ -32,9 +29,7 @@ def test_read_yaml_file_not_found():
     assert read_yaml_file("/path/does/not/exist.yaml") is None
 
 
-def test_read_service_metadata_warnings_and_errors(tmp_path, caplog):
-    caplog.set_level("INFO")
-
+def test_read_service_metadata_warnings_and_errors(tmp_path, capsys):
     root = tmp_path
     s1 = root / "svc1"
     s2 = root / "svc2"
@@ -53,7 +48,7 @@ def test_read_service_metadata_warnings_and_errors(tmp_path, caplog):
 
     services = ["svc1", "svc2", "svc3"]
 
-    with patch("steinschliff.utils.read_yaml_file") as mocked:
+    with patch("steinschliff.io.yaml.read_yaml_file") as mocked:
 
         def side_effect(path):
             if str(path).endswith("svc1/_meta.yaml"):
@@ -67,8 +62,9 @@ def test_read_service_metadata_warnings_and_errors(tmp_path, caplog):
 
     # svc2 инициализировался с валидными данными
     assert "svc2" in meta
-    # svc1 и svc3 должны логироваться как проблемные
-    assert any("Пустые файлы метаданных" in r.message for r in caplog.records) or any(
-        "Пустые файлы" in r.message for r in caplog.records
-    )
-    assert any("Ошибка чтения метаданных" in r.message for r in caplog.records)
+    # svc1 и svc3 должны быть выведены в stdout (Rich-панели).
+    out = capsys.readouterr().out
+    assert "Пустые файлы метаданных" in out
+    assert "svc1" in out
+    assert "Ошибки чтения метаданных" in out
+    assert "svc3: boom" in out

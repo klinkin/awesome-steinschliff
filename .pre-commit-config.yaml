@@ -1,7 +1,9 @@
 ---
+default_language_version:
+  python: python3.13
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-merge-conflict
       - id: trailing-whitespace
@@ -10,14 +12,20 @@ repos:
         args: [--fix=lf]
       - id: check-added-large-files
         args: ['--maxkb=1024']
+      - id: check-case-conflict
+      - id: check-symlinks
       - id: check-yaml
+        args: [--unsafe]
       - id: check-json
-      # - id: check-toml
-      # - id: no-commit-to-branch
-      #   args: [--branch, main]
+      - id: check-toml
+      - id: check-ast
+      - id: debug-statements
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: [--branch, main]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         args:
@@ -25,35 +33,35 @@ repos:
           - --ignore-words-list=schliff,Schliff,Ramsau,Serviccer,Salomon,Rossignol,Fischer,Madshus,Skipole
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
+    rev: v1.37.1
     hooks:
       - id: yamllint
         args: ['-d', '{extends: default, rules: {line-length: disable}}']
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.41.0
+    rev: v0.47.0
     hooks:
       - id: markdownlint
         args: ['--disable', 'MD013,MD012,MD024,MD004']
 
-  # Локальные — через Poetry, чтобы использовать твои версии и конфиги
+  # Локальные — через uv, чтобы использовать зафиксированные версии из uv.lock и конфиги проекта
   - repo: local
     hooks:
       - id: ruff
-        name: Ruff (poetry)
-        entry: poetry run ruff check
+        name: Ruff (uv)
+        entry: uv run --frozen ruff check
         language: system
         types: [python]
 
-      - id: black
-        name: Black check (poetry)
-        entry: poetry run black --check
+      - id: ruff-format
+        name: Ruff format --check (uv)
+        entry: uv run --frozen ruff format --check
         language: system
         types: [python]
 
       - id: mypy
-        name: Mypy (poetry)
-        entry: poetry run mypy steinschliff scripts tests
+        name: Mypy (uv)
+        entry: uv run --frozen mypy steinschliff scripts tests
         language: system
         pass_filenames: false
 
@@ -64,13 +72,4 @@ repos:
         entry: python scripts/check_cyrillic.py
         language: python
         types: [file]
-        files: ^(schliffs/|README\.md)
-
-  # - repo: local
-  #   hooks:
-  #     - id: check-cyrillic
-  #       name: Forbid Cyrillic in file names and YAML name/similars
-  #       entry: poetry run python scripts/check_cyrillic.py
-  #       language: system
-  #       types: [file]
-  #       files: ^(schliffs/|README\.md)
+        files: ^schliffs/

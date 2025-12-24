@@ -4,7 +4,7 @@ description:
 description_ru: тёплый весенний старый снег, вода; от +3 и выше
 website_url: https://serviccer.ru/strukturyi.html
 snow_type:
-  - trancformed
+  - transformed
   - wet
   - water
 temperature:

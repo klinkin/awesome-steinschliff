@@ -1,10 +1,10 @@
-import os
 import tempfile
+from pathlib import Path
 
 import pytest
 import yaml
 
-from steinschliff.utils import find_yaml_files, read_service_metadata, read_yaml_file
+from steinschliff.io.yaml import find_yaml_files, read_service_metadata, read_yaml_file
 
 
 class TestUtils:
@@ -19,13 +19,13 @@ class TestUtils:
                 "snow_temperature": [{"min": -10, "max": 0}],
             }
             yaml.safe_dump(yaml_content, f)
-            temp_path = f.name
+            temp_path = Path(f.name)
 
-        yield temp_path
+        yield str(temp_path)
 
         # Удаляем файл после теста
-        if os.path.exists(temp_path):
-            os.unlink(temp_path)
+        if temp_path.exists():
+            temp_path.unlink()
 
     def test_read_yaml_file(self, yaml_test_file):
         """Тестирует чтение YAML-файла."""
@@ -43,37 +43,38 @@ class TestUtils:
         # Тестируем чтение некорректного YAML
         with tempfile.NamedTemporaryFile(suffix=".yaml", delete=False, mode="w", encoding="utf-8") as f:
             f.write("invalid yaml content: [\n")
-            invalid_path = f.name
+            invalid_path = Path(f.name)
 
         try:
-            data = read_yaml_file(invalid_path)
+            data = read_yaml_file(str(invalid_path))
             assert data is None
         finally:
-            if os.path.exists(invalid_path):
-                os.unlink(invalid_path)
+            if invalid_path.exists():
+                invalid_path.unlink()
 
     def test_find_yaml_files(self):
         """Тестирует поиск YAML-файлов в директории."""
         # Создаем временную директорию со структурой для тестов
         with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir_path = Path(temp_dir)
             # Создаем поддиректории
-            subdir1 = os.path.join(temp_dir, "subdir1")
-            subdir2 = os.path.join(temp_dir, "subdir2")
-            os.makedirs(subdir1)
-            os.makedirs(subdir2)
+            subdir1 = temp_dir_path / "subdir1"
+            subdir2 = temp_dir_path / "subdir2"
+            subdir1.mkdir(parents=True)
+            subdir2.mkdir(parents=True)
 
             # Создаем файлы
             yaml_files = [
-                os.path.join(temp_dir, "file1.yaml"),
-                os.path.join(subdir1, "file2.yaml"),
-                os.path.join(subdir2, "file3.yaml"),
+                temp_dir_path / "file1.yaml",
+                subdir1 / "file2.yaml",
+                subdir2 / "file3.yaml",
             ]
 
-            non_yaml_file = os.path.join(temp_dir, "file.txt")
+            non_yaml_file = temp_dir_path / "file.txt"
 
             # Создаем файлы
-            for path in yaml_files + [non_yaml_file]:
-                with open(path, "w") as f:
+            for path in [*yaml_files, non_yaml_file]:
+                with Path(path).open("w") as f:
                     f.write("test")
 
             # Тестируем поиск
@@ -82,30 +83,31 @@ class TestUtils:
 
             # Проверяем, что все YAML-файлы найдены
             for yaml_file in yaml_files:
-                assert any(os.path.samefile(yaml_file, found_file) for found_file in found_files)
+                assert any(Path(found_file).samefile(yaml_file) for found_file in found_files)
 
             # Проверяем, что не-YAML файл не найден
-            assert not any(os.path.samefile(non_yaml_file, found_file) for found_file in found_files)
+            assert not any(Path(found_file).samefile(non_yaml_file) for found_file in found_files)
 
     def test_read_service_metadata(self):
         """Тестирует чтение метаданных сервисов."""
         # Создаем временную директорию для теста
         with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir_path = Path(temp_dir)
             # Создаем структуру сервисов
-            service1_dir = os.path.join(temp_dir, "service1")
-            service2_dir = os.path.join(temp_dir, "service2")
-            os.makedirs(service1_dir)
-            os.makedirs(service2_dir)
+            service1_dir = temp_dir_path / "service1"
+            service2_dir = temp_dir_path / "service2"
+            service1_dir.mkdir(parents=True)
+            service2_dir.mkdir(parents=True)
 
             # Создаем метаданные для первого сервиса
-            meta1_path = os.path.join(service1_dir, "_meta.yaml")
-            with open(meta1_path, "w", encoding="utf-8") as f:
+            meta1_path = service1_dir / "_meta.yaml"
+            with meta1_path.open("w", encoding="utf-8") as f:
                 meta1 = {"name": "Service1", "description": "First service description", "country": "Russia"}
                 yaml.safe_dump(meta1, f)
 
             # Создаем некорректные метаданные для второго сервиса
-            meta2_path = os.path.join(service2_dir, "_meta.yaml")
-            with open(meta2_path, "w", encoding="utf-8") as f:
+            meta2_path = service2_dir / "_meta.yaml"
+            with meta2_path.open("w", encoding="utf-8") as f:
                 f.write("invalid: yaml: [\n")
 
             # Тестируем чтение метаданных

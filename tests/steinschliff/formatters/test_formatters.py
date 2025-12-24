@@ -29,14 +29,14 @@ def test_aliases_behave_like_format_list():
 
 
 @pytest.mark.parametrize(
-    "temp,min_val,max_val,expected",
+    ("temp", "expected"),
     [
-        ([{"min": -8, "max": 1}], -8, 1, "+1 °C … –8 °C"),
-        ([{"min": -10.0, "max": 0.0}], -10.0, 0.0, "0 °C … –10 °C"),
-        ([{"min": 2, "max": 5}], 2, 5, "+5 °C … +2 °C"),
+        ([{"min": -8, "max": 1}], "+1 °C … –8 °C"),
+        ([{"min": -10.0, "max": 0.0}], "0 °C … –10 °C"),
+        ([{"min": 2, "max": 5}], "+5 °C … +2 °C"),
     ],
 )
-def test_format_temperature_range_ok(temp, min_val, max_val, expected):
+def test_format_temperature_range_ok(temp, expected):
     assert format_temperature_range(temp) == expected
 
 
@@ -46,6 +46,11 @@ def test_format_temperature_range_ok(temp, min_val, max_val, expected):
 )
 def test_format_temperature_range_edge_cases(payload):
     assert format_temperature_range(payload) == ""
+
+
+def test_format_temperature_range_string_numbers_are_supported():
+    # Ветка: min/max приходят как строки -> должны обработаться через float(...) и префиксы +/-.
+    assert format_temperature_range([{"min": "0", "max": "1"}]) == "+1 °C … 0 °C"
 
 
 def test_format_image_link_basic(tmp_path):
@@ -85,6 +90,11 @@ def test_format_similars_with_links(tmp_path):
     assert "Missing" in res
 
 
+def test_format_similars_with_links_non_list_returns_str():
+    generator_stub = SimpleNamespace(get_path_by_name=lambda _name: None)
+    assert format_similars_with_links("S1", generator_stub, ".") == "S1"
+
+
 def test_formatters_relative_path_fallbacks(tmp_path):
     # Подготовим файлы в tmp_path, а output_dir сделаем отдельной директорией
     svc_dir = tmp_path / "svc"
@@ -97,10 +107,12 @@ def test_formatters_relative_path_fallbacks(tmp_path):
 
     generator_stub = SimpleNamespace(get_path_by_name=lambda name: str(struct_file) if name == "S2" else None)
 
-    # format_similars_with_links -> путь не является поддиректорией output_dir, должен сработать os.path.relpath
+    # format_similars_with_links -> путь не является поддиректорией output_dir, должен сработать relpath(...)
     txt = format_similars_with_links(["S2"], generator_stub, str(out_dir))
-    assert "](" in txt and ")" in txt  # есть ссылка
+    assert "](" in txt  # есть ссылка
+    assert ")" in txt
 
     # format_image_link -> тот же случай с разными директориями
     link = format_image_link(str(struct_file), "S2", str(out_dir))
-    assert link.startswith("![S2](") and ")" in link
+    assert link.startswith("![S2](")
+    assert ")" in link

@@ -6,7 +6,7 @@ website_url:
 snow_type:
   - coarse
   - frozen
-  - trancformed
+  - transformed
 temperature:
   - min: -5
     max: 5

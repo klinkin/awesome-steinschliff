@@ -1,10 +1,13 @@
-import os
 import tempfile
+from collections import defaultdict
+from pathlib import Path
 
 import pytest
 import yaml
 
+from steinschliff.config import GeneratorConfig
 from steinschliff.generator import ReadmeGenerator
+from steinschliff.pipeline.readme import load_structures_from_yaml_files
 
 
 class TestProcessYamlFiles:
@@ -12,15 +15,16 @@ class TestProcessYamlFiles:
     def setup_test_files(self):
         """Создает временную директорию с тестовыми YAML-файлами."""
         with tempfile.TemporaryDirectory() as temp_dir:
+            temp_dir_path = Path(temp_dir)
             # Создаем тестовую структуру директорий
-            service1_dir = os.path.join(temp_dir, "service1")
-            service2_dir = os.path.join(temp_dir, "service2")
-            os.makedirs(service1_dir)
-            os.makedirs(service2_dir)
+            service1_dir = temp_dir_path / "service1"
+            service2_dir = temp_dir_path / "service2"
+            service1_dir.mkdir(parents=True)
+            service2_dir.mkdir(parents=True)
 
             # Создаем тестовые файлы
             test_files = {
-                os.path.join(service1_dir, "struct1.yaml"): {
+                service1_dir / "struct1.yaml": {
                     "name": "Structure1",
                     "description": "Test description",
                     "description_ru": "Тестовое описание",
@@ -29,26 +33,26 @@ class TestProcessYamlFiles:
                     "country": "Россия",
                     "tags": ["tag1", "tag2"],
                 },
-                os.path.join(service1_dir, "struct2.yaml"): {
+                service1_dir / "struct2.yaml": {
                     "name": "Structure2",
                     "description": "Another description",
                     "snow_type": ["old"],
                     "service": {"name": "TestService"},
                 },
-                os.path.join(service2_dir, "struct3.yaml"): {
+                service2_dir / "struct3.yaml": {
                     "name": "Structure3",
                     "description": "Third description",
                     "similars": ["Structure1", "Structure2"],
                 },
                 # Файл с ошибкой
-                os.path.join(service2_dir, "invalid.yaml"): "invalid: yaml: content",
+                service2_dir / "invalid.yaml": "invalid: yaml: content",
                 # Мета-файл, который должен быть пропущен
-                os.path.join(service1_dir, "_meta.yaml"): {"name": "Service1", "description": "Test service"},
+                service1_dir / "_meta.yaml": {"name": "Service1", "description": "Test service"},
             }
 
             # Записываем содержимое в файлы
             for file_path, content in test_files.items():
-                with open(file_path, "w", encoding="utf-8") as f:
+                with Path(file_path).open("w", encoding="utf-8") as f:
                     if isinstance(content, dict):
                         yaml.safe_dump(content, f, allow_unicode=True)
                     else:
@@ -56,7 +60,7 @@ class TestProcessYamlFiles:
 
             yield temp_dir
 
-    def test_process_yaml_files(self, setup_test_files, monkeypatch, caplog):
+    def test_process_yaml_files(self, setup_test_files, caplog):
         """
         Тестирует метод _process_yaml_files ReadmeGenerator.
 
@@ -67,19 +71,23 @@ class TestProcessYamlFiles:
         4. Пропуск _meta.yaml файлов
         """
         # Подготовка генератора с минимальной конфигурацией
-        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
+        config = GeneratorConfig(
+            schliffs_dir=setup_test_files,
+            readme_file=Path(setup_test_files) / "README.md",
+            readme_ru_file=Path(setup_test_files) / "README_ru.md",
+        )
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
-        yaml_files = [
-            os.path.join(dirpath, f)
-            for dirpath, _, files in os.walk(setup_test_files)
-            for f in files
-            if f.endswith(".yaml")
-        ]
+        yaml_files = list(Path(setup_test_files).rglob("*.yaml"))
 
-        # Запускаем обработку файлов
-        generator._process_yaml_files(yaml_files)
+        # Шаг LOAD+VALIDATE вынесен в pipeline (и тестируется отдельно)
+        loaded = load_structures_from_yaml_files(
+            yaml_files=yaml_files,
+            schliffs_dir=Path(setup_test_files),
+        )
+        generator.services = defaultdict(list, loaded.services)
+        generator.name_to_path = loaded.name_to_path
 
         # Проверяем результаты
 
@@ -121,19 +129,22 @@ class TestProcessYamlFiles:
         Проверяет, что словарь name_to_path в ReadmeGenerator корректен.
         """
         # Подготовка генератора
-        config = {"schliffs_dir": setup_test_files, "readme_file": "README.md", "readme_ru_file": "README_ru.md"}
+        config = GeneratorConfig(
+            schliffs_dir=setup_test_files,
+            readme_file=Path(setup_test_files) / "README.md",
+            readme_ru_file=Path(setup_test_files) / "README_ru.md",
+        )
         generator = ReadmeGenerator(config)
 
         # Находим все YAML-файлы
-        yaml_files = [
-            os.path.join(dirpath, f)
-            for dirpath, _, files in os.walk(setup_test_files)
-            for f in files
-            if f.endswith(".yaml")
-        ]
+        yaml_files = list(Path(setup_test_files).rglob("*.yaml"))
 
-        # Запускаем обработку файлов
-        generator._process_yaml_files(yaml_files)
+        loaded = load_structures_from_yaml_files(
+            yaml_files=yaml_files,
+            schliffs_dir=Path(setup_test_files),
+        )
+        generator.services = defaultdict(list, loaded.services)
+        generator.name_to_path = loaded.name_to_path
 
         # Проверяем, что name_to_path содержит все структуры
         assert len(generator.name_to_path) == 3
@@ -141,7 +152,7 @@ class TestProcessYamlFiles:
         # Проверяем, что метод get_path_by_name корректно работает
         for name, path in generator.name_to_path.items():
             assert generator.get_path_by_name(name) == path
-            assert os.path.exists(path)
+            assert Path(path).exists()
 
 
 class TestGenerate:
@@ -149,16 +160,17 @@ class TestGenerate:
     def setup_generate_files(self):
         """Создает временную директорию с сервисом и метаданными для теста generate."""
         with tempfile.TemporaryDirectory() as temp_dir:
-            service_dir = os.path.join(temp_dir, "service1")
-            os.makedirs(service_dir)
+            temp_dir_path = Path(temp_dir)
+            service_dir = temp_dir_path / "service1"
+            service_dir.mkdir(parents=True)
 
             structures = {
-                os.path.join(service_dir, "z.yaml"): {"name": "Zeta", "description": "Z"},
-                os.path.join(service_dir, "a.yaml"): {"name": "Alpha", "description": "A"},
+                service_dir / "z.yaml": {"name": "Zeta", "description": "Z"},
+                service_dir / "a.yaml": {"name": "Alpha", "description": "A"},
             }
 
             for path, content in structures.items():
-                with open(path, "w", encoding="utf-8") as f:
+                with Path(path).open("w", encoding="utf-8") as f:
                     yaml.safe_dump(content, f, allow_unicode=True)
 
             meta = {
@@ -167,25 +179,25 @@ class TestGenerate:
                 "country": "Россия",
                 "contact": {"email": "info@example.com"},
             }
-            with open(os.path.join(service_dir, "_meta.yaml"), "w", encoding="utf-8") as f:
+            with (service_dir / "_meta.yaml").open("w", encoding="utf-8") as f:
                 yaml.safe_dump(meta, f, allow_unicode=True)
 
             yield temp_dir
 
     def test_generate_creates_readme_and_uses_metadata(self, setup_generate_files):
-        config = {
-            "schliffs_dir": setup_generate_files,
-            "readme_file": os.path.join(setup_generate_files, "README.md"),
-            "readme_ru_file": os.path.join(setup_generate_files, "README_ru.md"),
-        }
+        config = GeneratorConfig(
+            schliffs_dir=setup_generate_files,
+            readme_file=Path(setup_generate_files) / "README.md",
+            readme_ru_file=Path(setup_generate_files) / "README_ru.md",
+        )
         generator = ReadmeGenerator(config)
         generator.load_structures()
         generator.load_service_metadata()
         generator.generate()
 
-        readme_path = os.path.join(setup_generate_files, "README.md")
-        assert os.path.exists(readme_path)
-        with open(readme_path, encoding="utf-8") as f:
+        readme_path = Path(setup_generate_files) / "README.md"
+        assert readme_path.exists()
+        with readme_path.open(encoding="utf-8") as f:
             content = f.read()
 
         assert "Some description" in content

@@ -146,16 +146,16 @@ Address: МО, г.Красногорск, ул.Речная д.37 за здан�
 
 | Name | Description | Snow Type | Temp Range | Image | Tags | Similar Structures | Features |
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
-| [SR12-3](schliffs/serviccer/SR12-3.yaml) |  | trancformed, wet, water | +10 °C … +3 °C |  | весенний снег, вода, тепло |  |  |
+| [SR12-3](schliffs/serviccer/SR12-3.yaml) |  | transformed, wet, water | +10 °C … +3 °C |  | весенний снег, вода, тепло |  |  |
 | [SV150](schliffs/serviccer/SV150.yaml) |  | spring | +5 °C … +3 °C |  | тепло, весенний снег |  |  |
 | [W1](schliffs/serviccer/W1.yaml) |  | classic, coarse, glossy | +3 °C … 0 °C |  | классика, крупное зерно, глянец |  |  |
 | [SV100](schliffs/serviccer/SV100.yaml) |  | fresh, old, glossy | +3 °C … –3 °C |  | глянец, замыленный |  | не едет в воду |
-| [SR15](schliffs/serviccer/SR15.yaml) |  | trancformed | +3 °C … –3 °C |  | фирн, трансформированный |  |  |
+| [SR15](schliffs/serviccer/SR15.yaml) |  | transformed | +3 °C … –3 °C |  | фирн, трансформированный |  |  |
 | [G2-2](schliffs/serviccer/G2-2.yaml) |  | all, glossy | +2 °C … –5 °C |  | глянец |  |  |
 | [R10-3](schliffs/serviccer/R10-3.yaml) |  | fresh, glossy | 0 °C … –5 °C |  | универсальный, глянец, TOP |  |  |
 | [G3.1](schliffs/serviccer/G3.1.yaml) |  | fresh | 0 °C … –5 °C |  | универсальный, свежий снег |  |  |
 | [SV600](schliffs/serviccer/SV600.yaml) |  | all | –2 °C … –10 °C |  | универсальный, TOP |  |  |
-| [V7-3](schliffs/serviccer/V7-3.yaml) |  | trancformed, fine_grained | –2 °C … –15 °C |  | старый снег, подготовленная трасса |  |  |
+| [V7-3](schliffs/serviccer/V7-3.yaml) |  | transformed, fine_grained | –2 °C … –15 °C |  | старый снег, подготовленная трасса |  |  |
 | [77](schliffs/serviccer/77.yaml) |  | all | –5 °C … –18 °C |  | холод |  |  |
 | [SR21](schliffs/serviccer/SR21.yaml) |  | all | –5 °C … –15 °C |  | универсальный |  |  |
 | [R11-2](schliffs/serviccer/R11-2.yaml) |  | all, fresh | –8 °C … –18 °C |  | холод, свежий снег |  |  |
@@ -245,7 +245,7 @@ Website: [Atomic](https://www.atomic.com)
 | [AW7](schliffs/atomic/AW7.yaml) |  | fine_grained, wet | +5 °C … –5 °C |  | крупнозернистый, водянистый, весна, конек, классика |  |  |
 | [AW1](schliffs/atomic/AW1.yaml) |  | wet | 0 °C … –4 °C |  | влажный снег, классика |  |  |
 | [AM2](schliffs/atomic/AM2.yaml) |  | fresh, wet | –1 °C … –5 °C |  | свежий снег, влажный, конек, классика |  |  |
-| [AM6](schliffs/atomic/AM6.yaml) |  | fine_grained, trancformed | –1 °C … –8 °C |  | крупнозернистый, конек, классика |  |  |
+| [AM6](schliffs/atomic/AM6.yaml) |  | fine_grained, transformed | –1 °C … –8 °C |  | крупнозернистый, конек, классика |  |  |
 | [AM1](schliffs/atomic/AM1.yaml) |  | artificial, fresh | –3 °C … –10 °C |  | смешанный снег, конек, классика |  |  |
 | [AM7](schliffs/atomic/AM7.yaml) |  | frozen | –4 °C … –15 °C |  | сухой снег, конек, классика |  |  |
 | [AC4](schliffs/atomic/AC4.yaml) |  | all | –5 °C … –15 °C |  | холодный, универсальный, высокая влажность, конек, классика |  |  |
@@ -308,14 +308,14 @@ FISCHER 25|26 BASE STRUCTURES
 | [F-359](schliffs/fischer26/F-359.yaml) |  | wet, fine_grained | +5 °C … 0 °C |  | мокрый снег | TZ1-2 |  |
 | [F-372](schliffs/fischer26/F-372.yaml) |  | coarse, wet | +5 °C … 0 °C |  | мокрый снег, крупнозернистый | [P11-2](schliffs/fischer/P11-2.yaml) |  |
 | [F-390](schliffs/fischer26/F-390.yaml) |  | wet, classic | +5 °C … 0 °C |  | мокрый снег, классика | [P9-2](schliffs/fischer/P9-2.yaml) |  |
-| [F-311](schliffs/fischer26/F-311.yaml) |  | coarse, frozen, trancformed | +5 °C … –5 °C |  | крупнозернистый, перемороженный | [P11-1](schliffs/fischer/P11-1.yaml) |  |
+| [F-311](schliffs/fischer26/F-311.yaml) |  | coarse, frozen, transformed | +5 °C … –5 °C |  | крупнозернистый, перемороженный | [P11-1](schliffs/fischer/P11-1.yaml) |  |
 | [F-275](schliffs/fischer26/F-275.yaml) |  | all | +5 °C … –10 °C |  | универсальный | [P5-1](schliffs/fischer/P5-1.yaml) |  |
 | [F-395](schliffs/fischer26/F-395.yaml) |  | wet, rain | +5 °C … 0 °C |  | мокрый снег, дождь | P14-1 |  |
 | [F-205](schliffs/fischer26/F-205.yaml) |  | fresh | +3 °C … –5 °C |  | свежий снег | [P1-1](schliffs/fischer/P1-1.yaml) |  |
 | [F-230](schliffs/fischer26/F-230.yaml) |  | all | +2 °C … –7 °C |  | универсальный | [P5-0](schliffs/fischer/P5-0.yaml) |  |
 | [F-256](schliffs/fischer26/F-256.yaml) |  | artificial, fine_grained | +2 °C … –5 °C |  | искусственный снег | [P22-6](schliffs/fischer/P22-6.yaml) |  |
 | [F-211](schliffs/fischer26/F-211.yaml) |  | fine_grained | +1 °C … –8 °C |  | мелкозернистый | P2-1 |  |
-| [F-226](schliffs/fischer26/F-226.yaml) |  | trancformed, wet, fresh | 0 °C … –7 °C |  | мокрый снег, свежий снег | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
+| [F-226](schliffs/fischer26/F-226.yaml) |  | transformed, wet, fresh | 0 °C … –7 °C |  | мокрый снег, свежий снег | [S12-6](schliffs/ramsau/S12-6.yaml), [P10-3](schliffs/fischer/P10-3.yaml) |  |
 | [F-201](schliffs/fischer26/F-201.yaml) |  | fine_grained | 0 °C … –10 °C |  | универсальный | [P10-1](schliffs/fischer/P10-1.yaml) |  |
 | [F-198](schliffs/fischer26/F-198.yaml) |  | all | 0 °C … –10 °C |  | универсальный | [TZ1-1](schliffs/fischer/TZ1-1.yaml) |  |
 | [F-138](schliffs/fischer26/F-138.yaml) |  | all | –5 °C … –15 °C |  | холодный, универсальный | [C8-1](schliffs/fischer/C8-1.yaml) |  |
@@ -381,7 +381,7 @@ Website: [Rossignol](https://www.rossignol.com)
 |------|------------|-----------|----------------|------|------|-------------------|-------------------|
 | [S13-6](schliffs/ramsau/S13-6.yaml) |  | wet | +10 °C … 0 °C |  | мокрый снег, дождь, плюсовая температура | [F1](schliffs/marsport/F1.yaml), [M63](schliffs/madshus/M63.yaml) |  |
 | [T1](schliffs/ramsau/T1.yaml) |  | old, wet, dirty | +5 °C … 0 °C |  | крупнозернистый | [S13-5](schliffs/ramsau/S13-5.yaml), [B3312](schliffs/beme/B3312.yaml) |  |
-| [OH3](schliffs/ramsau/OH3.yaml) |  | trancformed, fine_grained, icy | +5 °C … –7 °C |  | смешанный снег, суше, чем S13-5, Оберхоф, ледянистый фирн | [S13-5](schliffs/ramsau/S13-5.yaml), [B3312](schliffs/beme/B3312.yaml) | появился шлифт относительно недавно, сильно позднее S-шлифтов, модификация S13-5 под Оберхоф |
+| [OH3](schliffs/ramsau/OH3.yaml) |  | transformed, fine_grained, icy | +5 °C … –7 °C |  | смешанный снег, суше, чем S13-5, Оберхоф, ледянистый фирн | [S13-5](schliffs/ramsau/S13-5.yaml), [B3312](schliffs/beme/B3312.yaml) | появился шлифт относительно недавно, сильно позднее S-шлифтов, модификация S13-5 под Оберхоф |
 | [S13-5](schliffs/ramsau/S13-5.yaml) |  | fresh, falling, wet | +5 °C … 0 °C |  | свежий снег, падающий снег, мокрый, плюсовая температура | [F1](schliffs/marsport/F1.yaml), [M63](schliffs/madshus/M63.yaml) |  |
 | [S13-4](schliffs/ramsau/S13-4.yaml) |  | wet, natural, artificial | +5 °C … –5 °C |  | влажный снег, натуральный снег, искусственный снег, широкий диапазон | [P5-1](schliffs/fischer/P5-1.yaml), [S13-5](schliffs/ramsau/S13-5.yaml) | большой диапазон |
 | [S13-5-08](schliffs/ramsau/S13-5-08.yaml) |  | wet, fine_grained, fresh | +3 °C … –3 °C |  | мелкозернистый, влажный, свежий | [S13-5](schliffs/ramsau/S13-5.yaml), [C12-7](schliffs/fischer/C12-7.yaml) |  |

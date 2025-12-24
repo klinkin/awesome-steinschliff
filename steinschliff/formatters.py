@@ -1,26 +1,30 @@
-"""
-Функции форматирования для Steinschliff.
+"""Функции форматирования для Steinschliff.
+
+Сюда складываем “чистые” функции, которые:
+- не читают файлы
+- не зависят от Rich/CLI
+- преобразуют данные в строки для вывода/шаблонов
 """
 
 import logging
-import os
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
+
+from steinschliff.paths import relpath
 
 logger = logging.getLogger("steinschliff.formatters")
 
 
 def format_list(items: list[str | int | None] | str | None, allow_empty: bool = False) -> str:
-    """
-    Универсальная функция для форматирования списков элементов в строку.
+    """Отформатировать список значений в строку через запятую.
 
     Args:
-        items: Список элементов, строка или None.
-        allow_empty: Разрешать ли пустые строки в списке.
+        items: Список элементов, строка или `None`.
+        allow_empty: Если `True`, сохраняет пустые строки; иначе пустые строки отбрасываются.
 
     Returns:
-        Отформатированная строка с элементами, разделенными запятыми.
+        Строка с элементами, разделёнными запятыми. Для `None`/пустого входа возвращает `""`.
     """
     if not items:
         return ""
@@ -37,7 +41,14 @@ def format_list(items: list[str | int | None] | str | None, allow_empty: bool = 
 
 # Для обратной совместимости определяем функции через универсальную
 def format_snow_types(items: list[str | int | None] | str | None) -> str:
-    """Форматирует список типов снега, разрешая пустые строки."""
+    """Отформатировать список типов снега, разрешая пустые строки.
+
+    Args:
+        items: Типы снега.
+
+    Returns:
+        Отформатированная строка (значения через запятую).
+    """
     return format_list(items, allow_empty=True)
 
 
@@ -49,10 +60,15 @@ format_features = format_list
 
 
 def url_encode_path(path_value: str | Path) -> str:
-    """
-    Возвращает URL-кодированное представление пути для использования в Markdown-ссылках.
+    """Закодировать путь для использования в Markdown-ссылках.
 
-    Эквивалент urllib.parse.quote с сохранением разделителей директорий.
+    Эквивалент `urllib.parse.quote`, но со сохранением разделителей директорий (`/`).
+
+    Args:
+        path_value: Путь (строка или `Path`).
+
+    Returns:
+        URL-кодированная строка пути.
     """
     # Преобразуем в строку и кодируем, сохраняя слэши
     return quote(str(path_value), safe="/")
@@ -63,16 +79,16 @@ def format_similars_with_links(
     generator,
     output_dir: str,
 ) -> str:
-    """
-    Форматирует список похожих структур со ссылками на их файлы.
+    """Отформатировать “похожие структуры” со ссылками на их YAML-файлы.
 
     Args:
-        similars: Список названий похожих структур, строка или None.
-        generator: Экземпляр ReadmeGenerator для получения путей по именам.
-        output_dir: Директория, в которой будет сохранен файл README.
+        similars: Список имён похожих структур, строка или `None`.
+        generator: Объект с методом `get_path_by_name(name: str) -> str | None`.
+        output_dir: Директория, относительно которой строятся ссылки (директория README).
 
     Returns:
-        Отформатированная строка со ссылками на похожие структуры, разделенные запятыми.
+        Строка вида `"[S1](path/to/S1.yaml), S2"` или `""`, если вход пуст.
+        Если `similars` не список — возвращает `str(similars)`.
     """
     if not similars:
         return ""
@@ -93,17 +109,8 @@ def format_similars_with_links(
         path = generator.get_path_by_name(str_item)
 
         if path:
-            # Конвертируем в относительный путь от файла README
-            path_obj = Path(path)
-            try:
-                # Создаем относительный путь если возможно
-                if path_obj.is_relative_to(output_path):
-                    rel_path = path_obj.relative_to(output_path)
-                else:
-                    rel_path = path_obj.relative_to(Path.cwd())
-            except ValueError:
-                # Если не удалось создать относительный путь, используем os.path.relpath
-                rel_path = Path(os.path.relpath(path, output_dir))
+            # Всегда строим относительный путь от output_dir (как "классический" relpath).
+            rel_path = relpath(Path(path), output_path)
             # Кодируем путь для корректной работы Markdown при пробелах
             encoded_path = url_encode_path(rel_path)
             result.append(f"[{str_item}]({encoded_path})")
@@ -116,16 +123,16 @@ def format_similars_with_links(
 def format_temperature_range(
     temperature: list[dict[str, Any]] | None,
 ) -> str:
-    """
-    Форматирует диапазон температуры снега для отображения в таблице в формате "max °C … min °C".
-    В соответствии с предметной областью, сначала указывается более теплая температура, затем более холодная.
-    Пример: "+1 °C … –8 °C" или "–3 °C … –5 °C"
+    """Отформатировать диапазон температуры для отображения в таблице.
+
+    Формат: `"max °C … min °C"`. В предметной области сначала указывается более тёплая
+    температура, затем более холодная.
 
     Args:
-        temperature: Список диапазонов температуры.
+        temperature: Список диапазонов температуры (используется только первый элемент).
 
     Returns:
-        Отформатированная строка с диапазоном температуры в формате "max °C … min °C".
+        Отформатированная строка или `""` для пустого/некорректного входа.
     """
     if not temperature or not isinstance(temperature, list) or not temperature[0]:
         return ""
@@ -171,16 +178,15 @@ def format_temperature_range(
 
 
 def format_image_link(image_value: str | list[str], structure_name: str, output_dir: str) -> str:
-    """
-    Форматирует изображение для отображения в Markdown.
+    """Сформировать Markdown-ссылку на изображение структуры.
 
     Args:
-        image_value: Путь к изображению или список путей к изображениям
-        structure_name: Имя структуры (используется как alt-текст для изображения)
-        output_dir: Директория для вывода (используется для создания относительных путей)
+        image_value: Путь к изображению или список путей (берётся первый элемент).
+        structure_name: Имя структуры (используется как alt-текст).
+        output_dir: Директория вывода (для построения относительных путей).
 
     Returns:
-        Форматированная строка Markdown для изображения
+        Markdown-строка вида `![Name](path/to/img.jpg)` или `""` для некорректного входа.
     """
     try:
         # Проверка на пустое значение
@@ -199,22 +205,8 @@ def format_image_link(image_value: str | list[str], structure_name: str, output_
         if not path or not isinstance(path, str):
             return ""
 
-        # Создаём объекты Path
-        path_obj = Path(path)
-        output_path = Path(output_dir)
-
-        # Создаём относительный путь (безопасно, с обработкой ошибок)
-        try:
-            # Пробуем создать относительный путь напрямую
-            if path_obj.is_absolute() and output_path.is_absolute():
-                # Для абсолютных путей пробуем создать относительный путь
-                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
-            else:
-                # Для относительных путей
-                relative_path = path_obj.relative_to(output_path) if path_obj.is_relative_to(output_path) else path_obj
-        except ValueError:
-            # Если не удалось создать относительный путь, возвращаемся к os.path.relpath
-            relative_path = Path(os.path.relpath(path, output_dir))
+        # Всегда строим относительный путь от output_dir (как "классический" relpath).
+        relative_path = relpath(Path(path), Path(output_dir))
 
         # Возвращаем форматированную ссылку в синтаксисе Markdown
         # Кодируем путь для корректной работы Markdown при пробелах в сегментах
